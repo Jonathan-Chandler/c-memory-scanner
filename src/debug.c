@@ -45,3 +45,24 @@ void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo)
 void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo){}
 #endif
 
+#if (CURRENT_DEBUG_LOG_LEVEL >= DEBUG_LOG_ERROR)
+void debug_print_last_win_error()
+{
+  LPVOID lpMsgBuf;
+  DWORD dw = GetLastError();
+
+  debug_error("Windows error: 0x%lX", GetLastError());
+  FormatMessage(
+      FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+      FORMAT_MESSAGE_FROM_SYSTEM |
+      FORMAT_MESSAGE_IGNORE_INSERTS,
+      NULL,
+      dw,
+      MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+      (LPTSTR) &lpMsgBuf,
+      0, NULL );
+  printf(lpMsgBuf);
+}
+#else
+void debug_print_last_win_error(){}
+#endif

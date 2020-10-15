@@ -58,22 +58,9 @@ mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
 
     if (ReadProcessMemory(hProcess, (mb->addr + current_byte), &mb->buffer[current_byte], READ_PROCESS_MEMORY_SZ, NULL) == 0)
     {
-      LPVOID lpMsgBuf;
-      DWORD dw = GetLastError();
-
       debug_verbose("fail copying byte %u at address 0x%X", current_byte, (uint32_t)(mb->addr + current_byte));
       debug_print_mem_basic_flags(meminfo);
-      debug_error("Fail to read process memory: 0x%lX", GetLastError());
-      FormatMessage(
-          FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-          FORMAT_MESSAGE_FROM_SYSTEM |
-          FORMAT_MESSAGE_IGNORE_INSERTS,
-          NULL,
-          dw,
-          MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-          (LPTSTR) &lpMsgBuf,
-          0, NULL );
-      printf(lpMsgBuf);
+      debug_print_last_win_error();
 
       return NULL;
     }
@@ -87,83 +74,13 @@ mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
 
     if (ReadProcessMemory(hProcess, (mb->addr + current_byte), &mb->buffer[current_byte], bytes_remaining, NULL) == 0)
     {
-      //debug_verbose("DWORD: %u\n SIZE_T: %u", sizeof(DWORD), sizeof(SIZE_T));
-      LPVOID lpMsgBuf;
-      DWORD dw = GetLastError();
       debug_verbose("fail copying byte %u at address 0x%X", current_byte, (uint32_t)(mb->addr + current_byte));
-      debug_error("Fail to read process memory: 0x%lX", GetLastError());
-      FormatMessage(
-          FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-          FORMAT_MESSAGE_FROM_SYSTEM |
-          FORMAT_MESSAGE_IGNORE_INSERTS,
-          NULL,
-          dw,
-          MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-          (LPTSTR) &lpMsgBuf,
-          0, NULL );
-      printf(lpMsgBuf);
+      debug_print_mem_basic_flags(meminfo);
+      debug_print_last_win_error();
 
       return NULL;
     }
   }
-
-//  while (bytes_remaining != 0)
-//  {
-//    ReadProcessMemory(hProcess, mb->addr, mb->buffer, bytes_remaining, &bytes_read);
-//    debug_verbose("bytes read: %u", bytes_read);
-//    bytes_remaining -= bytes_read;
-//    debug_verbose("bytes remaining: %u", bytes_read);
-//  }
-
-//    if (ReadProcessMemory(hProcess, mb->addr, mb->buffer, mb->size, NULL) == 0)
-//    {
-//      LPVOID lpMsgBuf;
-//      DWORD dw = GetLastError();
-//      debug_error("Fail to read process memory: 0x%lX", GetLastError());
-//      FormatMessage(
-//          FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-//          FORMAT_MESSAGE_FROM_SYSTEM |
-//          FORMAT_MESSAGE_IGNORE_INSERTS,
-//          NULL,
-//          dw,
-//          MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-//          (LPTSTR) &lpMsgBuf,
-//          0, NULL );
-//      printf(lpMsgBuf);
-//    }
-//  }
-  
-
-//    LPVOID lpMsgBuf;
-//    LPVOID lpDisplayBuf;
-//    DWORD dw = GetLastError();
-//        FormatMessage(
-//        FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-//        FORMAT_MESSAGE_FROM_SYSTEM |
-//        FORMAT_MESSAGE_IGNORE_INSERTS,
-//        NULL,
-//        dw,
-//        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-//        (LPTSTR) &lpMsgBuf,
-//        0, NULL );
-//
-//    lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT, 
-//        (lstrlen((LPCTSTR)lpMsgBuf) + lstrlen((LPCTSTR)lpszFunction) + 40) * sizeof(TCHAR)); 
-//
-//    StringCchPrintf((LPTSTR)lpDisplayBuf, 
-//        LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-//        TEXT("%s failed with error %d: %s"), 
-//        lpszFunction, dw, lpMsgBuf); 
-//    MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK); 
-//
-//    LocalFree(lpMsgBuf);
-//    LocalFree(lpDisplayBuf);
-//
-//
-//    free(mb->buffer);
-//    free(mb);
-//    return NULL;
-//  }
 
   return mb;
 }

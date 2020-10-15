@@ -220,18 +220,3 @@ mblock_t* create_scan(procInfo_t *procInfo)
 // //  SIZE_T                    dwLength
 // }
 
-// void Trainer::setValue(LPVOID address, LPVOID offset, short int value)
-// {
-//   if (hwnd == 0)
-//     return;
-// 
-//   if (WriteProcessMemory(hProcess, (LPVOID)((unsigned int)address + (unsigned int)offset), &value, sizeof(value), NULL))
-//   {
-//     cout << "Value was written successfully." << endl;
-//   }
-//   else
-//   {
-//     cout << "Error: Could not modify value." << endl;
-//   }
-// }
-// 

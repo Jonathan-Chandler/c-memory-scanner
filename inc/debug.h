@@ -34,4 +34,5 @@
 #endif
 
 void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo);
+void debug_print_last_win_error(void);
 #endif
