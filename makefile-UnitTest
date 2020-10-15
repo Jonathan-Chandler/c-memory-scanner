@@ -1,0 +1,26 @@
+ECHO = echo
+MAKE = mingw32-make
+CC = gcc
+INCLUDES = -Iinc
+CFLAGS = -Wall -DCURRENT_DEBUG_LOG_LEVEL=0
+
+SOURCES = $(wildcard src/*.c)
+OBJS = $(SOURCES:src/%.c=build/no_debug/%.o)
+
+SOURCES_UNIT = $(wildcard src/unit_tests/*.c)
+OBJS_UNIT = $(SOURCES_UNIT:src/unit_tests/%.c=build/unit_tests/%.o)
+OBJS_UNIT += $(filter-out build/no_debug/main.o,$(OBJS))
+OBJ_NAME_UNIT = unit_test.exe
+
+build/no_debug/%.o: src/%.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+build/unit_tests/%.o: src/unit_tests/%.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+all: $(OBJS) $(OBJS_UNIT)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_UNIT) -o $(OBJ_NAME_UNIT)
+
+clean:
+	rm *.exe build/no_debug/*.o build/unit_tests/*.o
+

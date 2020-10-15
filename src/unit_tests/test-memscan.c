@@ -1,0 +1,44 @@
+#include <windows.h>
+#include "memscan.h"
+#include "unit_tests/test-memscan.h"
+#include "unit_tests/minunit.h"
+
+int foo = 7;
+
+char * test_foo()
+{
+  mu_assert("error, foo != 7", foo == 7);
+  return 0;
+}
+
+// getWindowHandle(&hWindow, "Twitch");
+// getProcessId(hWindow, &proc_id);
+// getProcessHandle(&hProcess, proc_id);
+// closeProcessHandle(&hProcess);
+// 
+// initialize(&block, "Twitch");
+// destroy(&block);
+
+char * test_getWindowHandle()
+{
+  HWND hWindow = 0;
+
+  // returns existing window handle
+  mu_assert("Unit Test Error: Twitch window title was not found", getWindowHandle(&hWindow, "Twitch") == 0);
+
+  // fails with bad window handle
+  mu_assert("Unit Test Error: aoeuaoeuaoeuaoeuainagdc window title was found", getWindowHandle(&hWindow, "aoeuaoeuaoeuaoeuainagdc") != 0);
+
+  // fails with bad output pointer
+  mu_assert("Unit Test Error: aoeuaoeuaoeuaoeuainagdc window title was found", getWindowHandle(NULL, "Twitch") != 0);
+
+  return 0;
+}
+
+//char * test_getProcessId(HWND hWindow, DWORD *proc_id);
+//char * test_getProcessHandle(HANDLE *hProcess, DWORD proc_id);
+//char * test_closeProcessHandle(HANDLE *hProcess);
+//char *
+//char * test_initialize(mblock_t *block, const char *windowTitle);
+//char * test_destroy(mblock_t *block);
+
