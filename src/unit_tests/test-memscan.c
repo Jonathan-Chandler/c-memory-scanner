@@ -30,7 +30,7 @@ char * test_getWindowHandle()
   mu_assert("Unit Test Error: aoeuaoeuaoeuaoeuainagdc window title was found", getWindowHandle(&hWindow, "aoeuaoeuaoeuaoeuainagdc") != 0);
 
   // fails with bad output pointer
-  mu_assert("Unit Test Error: aoeuaoeuaoeuaoeuainagdc window title was found", getWindowHandle(NULL, "Twitch") != 0);
+  mu_assert("Unit Test Error: Allowed getWindowHandle null pointer", getWindowHandle(NULL, "Twitch") != 0);
 
   return 0;
 }

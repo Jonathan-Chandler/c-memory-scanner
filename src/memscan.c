@@ -4,6 +4,11 @@
 #include "memscan.h"
 #include "debug.h"
 
+#define MEMINFO_PROTECT_IS_WRITABLE (PAGE_READWRITE | PAGE_WRITECOPY | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)
+#define MEMINFO_PROTECT_IS_READABLE (PAGE_READONLY | PAGE_READWRITE | PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE)
+#define MEMINFO_PROTECT_IS_EXECUTABLE (PAGE_EXECUTE | PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)
+// PAGE_GUARD
+
 int getWindowHandle(HWND *hWindow, const char *windowTitle)
 {
   if (hWindow == 0)
@@ -120,18 +125,18 @@ int destroy(procInfo_t *block)
   int retval;
   mblock_t *current_buffer;
 
-  retval = closeProcessHandle(&block->hProcess);
-  if (retval < 0)
-    return retval;
-
   // delete all blocks in list
   current_buffer = block->head;
   while (current_buffer != 0)
   {
     mblock_t *temp = current_buffer;
     current_buffer = current_buffer->next;
-    destroy_memblock(temp);
+    destroy_memblock(&temp);
   }
+
+  retval = closeProcessHandle(&block->hProcess);
+  if (retval < 0)
+    return retval;
 
   return 0;
 }
@@ -151,8 +156,6 @@ mblock_t* create_scan(procInfo_t *procInfo)
 
   while (1)
   {
-    printf("\n");
-    
     // read memory information for block starting at addr
     if (VirtualQueryEx(procInfo->hProcess, addr, &memInfo, sizeof(memInfo)) == 0)
     {
@@ -160,53 +163,21 @@ mblock_t* create_scan(procInfo_t *procInfo)
       break;
     }
 
-    debug_verbose("AllocationProtect = 0x%lX", memInfo.AllocationProtect);
-    debug_verbose("State = 0x%lX", memInfo.State);
-    printf("State Flags = ");
-    if (memInfo.State & MEM_COMMIT)
-      printf("MEM_COMMIT");
-    if (memInfo.State & MEM_FREE)
-      printf(" | MEM_FREE");
-    if (memInfo.State & MEM_RESERVE)
-      printf(" | MEM_RESERVE");
-    printf("\n");
+    //debug_print_mem_basic_flags(&memInfo);
 
-    debug_verbose("Protect = 0x%lX", memInfo.Protect);
-    printf("Protect Flags = ");
-    if (memInfo.Protect & PAGE_NOACCESS)
-      printf("PAGE_NOACCESS");
-    if (memInfo.Protect & PAGE_READONLY)
-      printf(" | PAGE_READONLY");
-    if (memInfo.Protect & PAGE_READWRITE)
-      printf(" | PAGE_READWRITE");
-    if (memInfo.Protect & PAGE_WRITECOPY)
-      printf(" | PAGE_WRITECOPY");
-    if (memInfo.Protect & PAGE_TARGETS_INVALID)
-      printf(" | PAGE_TARGETS_INVALID");
-    if (memInfo.Protect & PAGE_GUARD)
-      printf(" | PAGE_GUARD");
-    printf("\n");
-
-    debug_verbose("Type = 0x%lX", memInfo.Type);
-    printf("Type Flags = ");
-    if (memInfo.Type & MEM_IMAGE)
-      printf("MEM_IMAGE");
-    if (memInfo.Type & MEM_MAPPED)
-      printf(" | MEM_MAPPED");
-    if (memInfo.Type & MEM_PRIVATE)
-      printf(" | MEM_PRIVATE");
-    printf("\n");
-
-    // ignore unused memory blocks (0x10000 | 0x2000)
-    if ((memInfo.State & (MEM_FREE | MEM_RESERVE))
-    || (memInfo.Protect & (PAGE_NOACCESS)))
+    // ignore uncommitted / non-writable / guarded pages
+    if (!(memInfo.State & MEM_COMMIT)
+      ||  !(memInfo.Protect & MEMINFO_PROTECT_IS_WRITABLE)
+      ||  (memInfo.Protect & PAGE_GUARD))
     {
       // set next address starting point at the end of memory that was just read
       addr = (uint8_t*) (memInfo.BaseAddress + memInfo.RegionSize);
 
-      debug_verbose("Skip to memory addr: 0x%X", (uint32_t) addr);
+      //debug_verbose("Skip to memory addr: 0x%X", (uint32_t) addr);
       continue;
     }
+
+    //debug_print_mem_basic_flags(&memInfo);
 
     mblock_t *nextBlock = create_memblock(procInfo->hProcess, &memInfo);
     if (nextBlock == 0)

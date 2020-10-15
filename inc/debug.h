@@ -2,6 +2,7 @@
 #define __DEBUG_H__
 #include <stdint.h>
 #include <stdio.h>
+#include <windows.h>
 
 #define DEBUG_LOG_NONE      0
 #define DEBUG_LOG_ERROR     1
@@ -32,4 +33,5 @@
 #define debug_error(...)
 #endif
 
+void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo);
 #endif

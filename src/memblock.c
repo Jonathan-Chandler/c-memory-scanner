@@ -18,7 +18,8 @@
 // } MEMORY_BASIC_INFORMATION, *PMEMORY_BASIC_INFORMATION;
 
 #define READ_PROCESS_MEMORY_SZ (1024*128)
-// #define READ_PROCESS_MEMORY_SZ 4
+// #define READ_PROCESS_MEMORY_SZ 2
+
 mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
 {
   mblock_t *mb = malloc(sizeof(mblock_t));
@@ -48,6 +49,7 @@ mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
   // debug_verbose("hprocess: 0x%X - buffer 0x%X - size: %d", (uint32_t) hProcess, (uint32_t) mb->buffer, (uint32_t) mb->size);
   // debug_verbose("read %d bytes at starting addr 0x%X to buffer", (uint32_t) mb->size, (uint32_t) mb->addr);
 
+  //debug_verbose("copy %u / %u", current_byte, mb->size);
   reads_required = mb->size / READ_PROCESS_MEMORY_SZ;
   for (uint32_t read_it = 0; read_it < reads_required; read_it++)
   {
@@ -56,7 +58,23 @@ mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
 
     if (ReadProcessMemory(hProcess, (mb->addr + current_byte), &mb->buffer[current_byte], READ_PROCESS_MEMORY_SZ, NULL) == 0)
     {
-      debug_verbose("fail copying byte %u at address %u", current_byte, (uint32_t)(mb->addr + current_byte));
+      LPVOID lpMsgBuf;
+      DWORD dw = GetLastError();
+
+      debug_verbose("fail copying byte %u at address 0x%X", current_byte, (uint32_t)(mb->addr + current_byte));
+      debug_print_mem_basic_flags(meminfo);
+      debug_error("Fail to read process memory: 0x%lX", GetLastError());
+      FormatMessage(
+          FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+          FORMAT_MESSAGE_FROM_SYSTEM |
+          FORMAT_MESSAGE_IGNORE_INSERTS,
+          NULL,
+          dw,
+          MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+          (LPTSTR) &lpMsgBuf,
+          0, NULL );
+      printf(lpMsgBuf);
+
       return NULL;
     }
   }
@@ -69,7 +87,22 @@ mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
 
     if (ReadProcessMemory(hProcess, (mb->addr + current_byte), &mb->buffer[current_byte], bytes_remaining, NULL) == 0)
     {
-      debug_verbose("fail copying byte %u at address %u", current_byte, (uint32_t)(mb->addr + current_byte));
+      //debug_verbose("DWORD: %u\n SIZE_T: %u", sizeof(DWORD), sizeof(SIZE_T));
+      LPVOID lpMsgBuf;
+      DWORD dw = GetLastError();
+      debug_verbose("fail copying byte %u at address 0x%X", current_byte, (uint32_t)(mb->addr + current_byte));
+      debug_error("Fail to read process memory: 0x%lX", GetLastError());
+      FormatMessage(
+          FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+          FORMAT_MESSAGE_FROM_SYSTEM |
+          FORMAT_MESSAGE_IGNORE_INSERTS,
+          NULL,
+          dw,
+          MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+          (LPTSTR) &lpMsgBuf,
+          0, NULL );
+      printf(lpMsgBuf);
+
       return NULL;
     }
   }
@@ -135,7 +168,7 @@ mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
   return mb;
 }
 
-void destroy_memblock(mblock_t *mb)
+void destroy_memblock(mblock_t **mb)
 {
   if (mb == 0)
   {
@@ -143,10 +176,20 @@ void destroy_memblock(mblock_t *mb)
     return;
   }
 
-  if (mb->buffer != 0)
-    free(mb->buffer);
+  if (*mb == 0)
+  {
+    debug_error("mb points to NULL address");
+    return;
+  }
 
-  free(mb);
+  debug_verbose("deallocate address 0x%X", (uint32_t) ((*mb)->addr));
+
+  if ((*mb)->buffer != 0)
+    free((*mb)->buffer);
+
+  free(*mb);
+
+  *mb = NULL;
 }
 
 int memblock_read_buffer(HANDLE hProcess, mblock_t *mb)

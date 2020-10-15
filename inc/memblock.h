@@ -12,6 +12,6 @@ typedef struct _mblock_t
 } mblock_t;
 
 mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo);
-void destroy_memblock(mblock_t *mb);
+void destroy_memblock(mblock_t **mb);
 
 #endif
