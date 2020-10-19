@@ -141,7 +141,7 @@ int destroy(procInfo_t *block)
   return 0;
 }
 
-mblock_t* create_scan(procInfo_t *procInfo)
+mblock_t* create_block_list(procInfo_t *procInfo)
 {
   mblock_t *mb_list = NULL;
   mblock_t *mb_current;
@@ -163,6 +163,7 @@ mblock_t* create_scan(procInfo_t *procInfo)
       break;
     }
 
+    //debug_verbose("Memory addr 0x%X", (uint32_t) memInfo.BaseAddress);
     //debug_print_mem_basic_flags(&memInfo);
 
     // ignore uncommitted / non-writable / guarded pages
@@ -174,6 +175,7 @@ mblock_t* create_scan(procInfo_t *procInfo)
       addr = (uint8_t*) (memInfo.BaseAddress + memInfo.RegionSize);
 
       //debug_verbose("Skip to memory addr: 0x%X", (uint32_t) addr);
+      //debug_verbose("Skip memory addr 0x%08X - size 0x%lX", (uint32_t) memInfo.BaseAddress, memInfo.RegionSize);
       continue;
     }
 
@@ -181,7 +183,19 @@ mblock_t* create_scan(procInfo_t *procInfo)
 
     mblock_t *nextBlock = create_memblock(procInfo->hProcess, &memInfo);
     if (nextBlock == 0)
+    {
+      debug_verbose("Could not create memblock");
       return NULL;
+    }
+
+    // update buffer for this block
+    if (update_block(nextBlock) < 0)
+    {
+      // failed to ReadProcessMem for block
+      debug_error("Fail to update block at addr: 0x%X", (uint32_t)nextBlock->addr);
+      destroy_memblock(&nextBlock);
+      return NULL;
+    }
 
     if (mb_list == 0)
     {
@@ -198,7 +212,7 @@ mblock_t* create_scan(procInfo_t *procInfo)
     mb_current = nextBlock;
     mb_current->next = NULL;
 
-    debug_verbose("read %d bytes at starting addr 0x%X to buffer", (uint32_t) memInfo.RegionSize, (uint32_t) memInfo.BaseAddress);
+    //debug_verbose("read %d bytes at starting addr 0x%X to buffer", (uint32_t) memInfo.RegionSize, (uint32_t) memInfo.BaseAddress);
 
     // set next address starting point at the end of memory that was just read
     addr = (uint8_t*) (memInfo.BaseAddress + memInfo.RegionSize);
@@ -207,7 +221,72 @@ mblock_t* create_scan(procInfo_t *procInfo)
   return mb_list;
 }
 
+int update_block_list(mblock_t *mb_list)
+{
+  mblock_t *block_it = mb_list;
 
+  while (block_it)
+  {
+    if (update_block(block_it))
+    {
+      debug_verbose("Failed to update block");
+      return -1;
+    }
+
+    block_it = block_it->next;
+  }
+
+  return 0;
+}
+
+int filter_list(mblock_t *mb_list)
+{
+  return 0;
+}
+
+int search_block_list(mblock_t *mb_list, uint8_t *value, int value_size)
+{
+  mblock_t *current_block = mb_list;
+
+  while (current_block)
+  {
+    //debug_verbose("searching block %p\n", current_block);
+    search_block(current_block, value, value_size);
+
+    current_block = current_block->next;
+  }
+
+  return 0;
+}
+
+
+int dump_block_list(mblock_t *mb_list)
+{
+  mblock_t *current_block = mb_list;
+
+  while (current_block)
+  {
+    dump_block(current_block);
+
+    current_block = current_block->next;
+  }
+
+  return 0;
+}
+
+int dump_list_addr(mblock_t *mb_list, int addr)
+{
+  mblock_t *current_block = mb_list;
+
+  while (current_block)
+  {
+    dump_block_addr(current_block, addr);
+
+    current_block = current_block->next;
+  }
+
+  return 0;
+}
 
 // int getPages(procInfo_t *block, )
 // {

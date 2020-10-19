@@ -17,8 +17,13 @@ int getProcessId(HWND hWindow, DWORD *proc_id);
 int getProcessHandle(HANDLE *hProcess, DWORD proc_id);
 int closeProcessHandle(HANDLE *hProcess);
 
-int initialize(procInfo_t *block, const char *windowTitle);
-int destroy(procInfo_t *block);
-mblock_t* create_scan(procInfo_t *procInfo);
+int initialize(procInfo_t *procInfo, const char *windowTitle);
+int destroy(procInfo_t *procInfo);
+
+mblock_t* create_block_list(procInfo_t *procInfo);
+int update_block_list(mblock_t *mb_list);
+int search_block_list(mblock_t *mb_list, uint8_t *value, int value_size);
+int dump_block_list(mblock_t *mb_list);
+int dump_list_addr(mblock_t *mb_list, int addr);
 
 #endif
