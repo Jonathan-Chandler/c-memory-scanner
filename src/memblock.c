@@ -61,7 +61,7 @@ void destroy_memblock(mblock_t **mb)
     return;
   }
 
-  //debug_verbose("deallocate address 0x%X", (uint32_t) ((*mb)->addr));
+  //debug_verbose("deallocate address 0x%08X", (uint32_t) ((*mb)->addr));
 
   if ((*mb)->buffer != 0)
     free((*mb)->buffer);
@@ -199,9 +199,29 @@ int update_block(mblock_t *mb)
 // check all bytes in block
 int search_block(mblock_t *current_block, uint8_t *value, int value_size)
 {
-  int final_byte = current_block->size - value_size;
+  int final_byte;
   search_res_t *current_search;
 
+  // don't search null block / null buffer
+  if (current_block == NULL)
+  {
+    debug_verbose("searching null block");
+    return -1;
+  }
+
+  if (current_block->buffer == NULL || current_block->size == 0)
+  {
+    debug_verbose("searching null block buffer");
+    return -1;
+  }
+
+  if (value == NULL || value_size == 0)
+  {
+    debug_verbose("comparison value was null");
+    return -1;
+  }
+
+  final_byte = current_block->size - value_size;
   if (final_byte < 0)
   {
     //debug_verbose("buffer too small for value_size");
@@ -213,7 +233,7 @@ int search_block(mblock_t *current_block, uint8_t *value, int value_size)
     if (0 == memcmp(&current_block->buffer[comparison_byte], value, value_size))
     {
       search_res_t *temp;
-      debug_verbose("Found value at 0x%08X", (uint32_t)(current_block->addr + comparison_byte));
+      //debug_verbose("Found value at 0x%08X", (uint32_t)(current_block->addr + comparison_byte));
 
       // add current byte to list of matching offsets
       if ((temp = malloc(sizeof(search_res_t))) == 0)
@@ -241,11 +261,11 @@ int search_block(mblock_t *current_block, uint8_t *value, int value_size)
   search_res_t *temp = current_block->search_res;
   if (temp)
   {
-    printf("current_block = %X\n", (uint32_t)current_block->addr);
+    //printf("current_block = %X\n", (uint32_t)current_block->addr);
     while (temp)
     {
-      printf("matched buffer byte = 0x%X\n", temp->match_offset);
-      printf("matching address = 0x%08X\n", (uint32_t)(current_block->addr + temp->match_offset));
+      //printf("matched buffer byte = 0x%X\n", temp->match_offset);
+      //printf("matching address = 0x%08X\n", (uint32_t)(current_block->addr + temp->match_offset));
       temp = temp->next_res;
     }
   }

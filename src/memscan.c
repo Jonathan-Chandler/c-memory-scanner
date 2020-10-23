@@ -9,17 +9,17 @@
 #define MEMINFO_PROTECT_IS_EXECUTABLE (PAGE_EXECUTE | PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)
 // PAGE_GUARD
 
-int getWindowHandle(HWND *hWindow, const char *windowTitle)
+int getWindowHandle(procInfo_t *procInfo, const char *windowTitle)
 {
-  if (hWindow == 0)
+  if (procInfo == NULL)
   {
-    debug_error("Null window handle");
+    debug_error("Null process information");
     return -1;
   }
 
-  *hWindow = FindWindow(0, windowTitle);
+  procInfo->hWindow = FindWindow(0, windowTitle);
 
-  if (*hWindow == 0)
+  if (procInfo->hWindow == 0)
   {
     debug_error("%s window not found", windowTitle);
     return -1;
@@ -32,68 +32,74 @@ int getWindowHandle(HWND *hWindow, const char *windowTitle)
   return 0;
 }
 
-int getProcessId(HWND hWindow, DWORD *proc_id)
+int getProcessId(procInfo_t *procInfo)
 {
-  if (hWindow == 0)
+  if (procInfo->hWindow == 0)
   {
     debug_error("Null hWindow");
     return -1;
   }
 
-  GetWindowThreadProcessId(hWindow, proc_id);
-  if (proc_id == 0)
+  GetWindowThreadProcessId(procInfo->hWindow, &procInfo->proc_id);
+  if (procInfo->proc_id == 0)
   {
     debug_error("Could not get process id");
     return -1;
   }
   else
   {
-    debug_verbose("Found process id: %lu", *proc_id);
+    debug_verbose("Found process id: %lu", procInfo->proc_id);
   }
 
   return 0;
 }
 
-int getProcessHandle(HANDLE *hProcess, DWORD proc_id)
+int getProcessHandle(procInfo_t *procInfo)
 {
-  if (proc_id == 0)
+  if (procInfo->proc_id == 0)
   {
     debug_error("Null process ID");
     return -1;
   }
 
-  *hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, proc_id);
+  procInfo->hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, procInfo->proc_id);
 
-  if (hProcess == 0)
+  if (procInfo->hProcess == 0)
   {
     debug_error("Failed to get handle for process");
     return -1;
   }
   else
   {
-    debug_verbose("Receive process handle: %u", (unsigned int) *hProcess);
+    debug_verbose("Open process handle: %u", (unsigned int) procInfo->hProcess);
   }
 
   return 0;
 }
 
-int closeProcessHandle(HANDLE *hProcess)
+int closeProcessHandle(procInfo_t *procInfo)
 {
-  if (*hProcess == 0)
+  if (procInfo == 0)
+  {
+    debug_error("Null process info");
+    return -1;
+  }
+
+  if (procInfo->hProcess == 0)
   {
     debug_error("Null process handle");
     return -1;
   }
 
-  debug_verbose("Closed process handle: %u", (unsigned int) hProcess);
-  CloseHandle(*hProcess);
-  *hProcess = 0;
+  debug_verbose("Closed process handle: %u", (unsigned int) procInfo->hProcess);
+  CloseHandle(procInfo->hProcess);
+  procInfo->hProcess = 0;
 
   return 0;
 }
 
 
-int initialize(procInfo_t *block, const char *windowTitle)
+int initialize(procInfo_t **block, const char *windowTitle)
 {
   int retval;
 
@@ -103,30 +109,49 @@ int initialize(procInfo_t *block, const char *windowTitle)
     return -1;
   }
 
-  memset(block, 0, sizeof(procInfo_t));
+  *block = malloc(sizeof(procInfo_t));
+  if (*block == 0)
+  {
+    return -1;
+  }
 
-  retval = getWindowHandle(&block->hWindow, windowTitle);
+  memset(*block, 0, sizeof(procInfo_t));
+
+  retval = getWindowHandle(*block, windowTitle);
   if (retval < 0)
     return retval;
 
-  retval = getProcessId(block->hWindow, &block->proc_id);
+  retval = getProcessId(*block);
   if (retval < 0)
     return retval;
 
-  retval = getProcessHandle(&block->hProcess, block->proc_id);
+  retval = getProcessHandle(*block);
   if (retval < 0)
     return retval;
 
   return 0;
 }
 
-int destroy(procInfo_t *block)
+int destroy(procInfo_t **block)
 {
   int retval;
   mblock_t *current_buffer;
 
+  if (block == NULL)
+  {
+    debug_error("Null ProcInfo");
+    return 0;
+  }
+
+  if (*block == NULL)
+  {
+    debug_error("Null *ProcInfo");
+    return 0;
+  }
+
   // delete all blocks in list
-  current_buffer = block->head;
+  current_buffer = (*block)->head;
+
   while (current_buffer != 0)
   {
     mblock_t *temp = current_buffer;
@@ -134,7 +159,7 @@ int destroy(procInfo_t *block)
     destroy_memblock(&temp);
   }
 
-  retval = closeProcessHandle(&block->hProcess);
+  retval = closeProcessHandle(*block);
   if (retval < 0)
     return retval;
 
@@ -159,7 +184,7 @@ mblock_t* create_block_list(procInfo_t *procInfo)
     // read memory information for block starting at addr
     if (VirtualQueryEx(procInfo->hProcess, addr, &memInfo, sizeof(memInfo)) == 0)
     {
-      debug_verbose("Ended scan at address: 0x%X", (uint32_t)addr);
+      //debug_verbose("Ended scan at address: 0x%X", (uint32_t)addr);
       break;
     }
 
@@ -239,26 +264,94 @@ int update_block_list(mblock_t *mb_list)
   return 0;
 }
 
-int filter_list(mblock_t *mb_list)
+int search_block_list(procInfo_t *current_scan, uint8_t *value, int value_size)
 {
+  mblock_t dummy;
+  mblock_t *current_block;
+  mblock_t *prev_block;
+
+  if (current_scan == NULL)
+  {
+      debug_error("Null procInfo");
+      return -1;
+  }
+
+  if (value == NULL || value_size == 0)
+  {
+      debug_error("Null search value");
+      return -1;
+  }
+
+  // easier to reference previous node
+  dummy.next = current_scan->head;
+  prev_block = &dummy;
+
+  current_block = current_scan->head;
+  while (current_block != NULL)
+  {
+    search_block(current_block, value, value_size);
+
+    // current block did not contain value
+    if (current_block->search_res == NULL)
+    {
+      // remove current_block from list
+      prev_block->next = current_block->next;
+
+      // delete current_block
+      destroy_memblock(&current_block);
+
+      // iterate current_block to current_block->next
+      current_block = prev_block->next;
+    }
+    else
+    {
+      // block contained value, iterate both
+      current_block = current_block->next;
+      prev_block = prev_block->next;
+    }
+  }
+
+  current_scan->head = dummy.next;
   return 0;
 }
 
-int search_block_list(mblock_t *mb_list, uint8_t *value, int value_size)
+int dump_scan_results(procInfo_t *current_scan)
 {
-  mblock_t *current_block = mb_list;
+  mblock_t *current_block;
+  search_res_t *current_search;
+
+  if (current_scan == NULL)
+  {
+      debug_error("Null scan");
+      return -1;
+  }
+
+  if ((current_block = current_scan->head) == NULL)
+  {
+      debug_error("No matches");
+      return 0;
+  }
+
+  if (current_block->search_res == NULL)
+  {
+      debug_error("No matches");
+      return 0;
+  }
 
   while (current_block)
   {
-    //debug_verbose("searching block %p\n", current_block);
-    search_block(current_block, value, value_size);
+    current_search = current_block->search_res;
+    while (current_search)
+    {
+      printf("Found value at 0x%08X\n",(uint32_t)(current_search->match_offset + current_block->addr));
+      current_search = current_search->next_res;
+    }
 
     current_block = current_block->next;
   }
 
   return 0;
 }
-
 
 int dump_block_list(mblock_t *mb_list)
 {
@@ -287,6 +380,7 @@ int dump_list_addr(mblock_t *mb_list, int addr)
 
   return 0;
 }
+
 
 // int getPages(procInfo_t *block, )
 // {
