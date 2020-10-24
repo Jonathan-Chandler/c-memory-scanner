@@ -2,11 +2,11 @@
 #include "debug.h"
 #include "memscan.h"
 #include "memblock.h"
+#include "cli.h"
 
 int main(int argc, char *argv[])
 {
   procInfo_t *procInfo;
-  mblock_t *result;
   int rc;
   uint32_t value = 999993599;
 
@@ -16,16 +16,22 @@ int main(int argc, char *argv[])
   }
 
   initialize(&procInfo, argv[1]);
-  result = create_block_list(procInfo);
-  rc = update_block_list(result);
+
+  rc = create_block_list(procInfo);
   if (rc != 0)
     printf("rc: %d\n", rc);
 
-  procInfo->head = result;
+  rc = update_block_list(procInfo);
+  if (rc != 0)
+    printf("rc: %d\n", rc);
+
   search_block_list(procInfo, (uint8_t*)&value, sizeof(value));
+
   dump_scan_results(procInfo);
 
   destroy(&procInfo);
+
+  cli_main(argv[1]);
 
   return 0;
 }

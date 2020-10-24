@@ -20,9 +20,10 @@ int closeProcessHandle(procInfo_t *procInfo);
 int initialize(procInfo_t **procInfo, const char *windowTitle);
 int destroy(procInfo_t **procInfo);
 
-mblock_t* create_block_list(procInfo_t *procInfo);
-int update_block_list(mblock_t *mb_list);
-int search_block_list(procInfo_t *current_scan, uint8_t *value, int value_size);
+int create_block_list(procInfo_t *procInfo);
+int update_block_list(procInfo_t *procInfo);
+int search_block_list(procInfo_t *procInfo, uint8_t *value, int value_size);
+
 int dump_block_list(mblock_t *mb_list);
 int dump_list_addr(mblock_t *mb_list, int addr);
 int dump_scan_results(procInfo_t *current_scan);

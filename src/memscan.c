@@ -166,7 +166,7 @@ int destroy(procInfo_t **block)
   return 0;
 }
 
-mblock_t* create_block_list(procInfo_t *procInfo)
+int create_block_list(procInfo_t *procInfo)
 {
   mblock_t *mb_list = NULL;
   mblock_t *mb_current;
@@ -176,7 +176,7 @@ mblock_t* create_block_list(procInfo_t *procInfo)
   if (procInfo->hProcess == 0)
   {
     debug_error("Bad process handle");
-    return NULL;
+    return -1;
   }
 
   while (1)
@@ -210,7 +210,7 @@ mblock_t* create_block_list(procInfo_t *procInfo)
     if (nextBlock == 0)
     {
       debug_verbose("Could not create memblock");
-      return NULL;
+      return -1;
     }
 
     // update buffer for this block
@@ -219,7 +219,7 @@ mblock_t* create_block_list(procInfo_t *procInfo)
       // failed to ReadProcessMem for block
       debug_error("Fail to update block at addr: 0x%X", (uint32_t)nextBlock->addr);
       destroy_memblock(&nextBlock);
-      return NULL;
+      return -1;
     }
 
     if (mb_list == 0)
@@ -242,13 +242,14 @@ mblock_t* create_block_list(procInfo_t *procInfo)
     // set next address starting point at the end of memory that was just read
     addr = (uint8_t*) (memInfo.BaseAddress + memInfo.RegionSize);
   }
+  procInfo->head = mb_list;
 
-  return mb_list;
+  return 0;
 }
 
-int update_block_list(mblock_t *mb_list)
+int update_block_list(procInfo_t *current_scan)
 {
-  mblock_t *block_it = mb_list;
+  mblock_t *block_it = current_scan->head;
 
   while (block_it)
   {
