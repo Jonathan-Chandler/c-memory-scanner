@@ -15,8 +15,9 @@ typedef struct _mblock_t
   uint8_t *addr;
   int size;
   uint8_t *buffer;
-  struct _mblock_t *next;
+  uint32_t match_count;
   search_res_t *search_res;
+  struct _mblock_t *next;
 } mblock_t;
 
 mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo);
@@ -27,4 +28,19 @@ int search_block(mblock_t *current_block, uint8_t *value, int value_size);
 int dump_block(mblock_t *mb);
 int dump_block_addr(mblock_t *mb, int addr);
 
+
+//  HWND hWindow;
+//  HANDLE hProcess;
+//  DWORD proc_id;
+
+// typedef struct _MEMORY_BASIC_INFORMATION {
+//   PVOID  BaseAddress;
+//   PVOID  AllocationBase;
+//   DWORD  AllocationProtect;
+//   WORD   PartitionId;
+//   SIZE_T RegionSize;
+//   DWORD  State;
+//   DWORD  Protect;
+//   DWORD  Type;
+// } MEMORY_BASIC_INFORMATION, *PMEMORY_BASIC_INFORMATION;
 #endif

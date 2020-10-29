@@ -2,23 +2,12 @@
 #include "memblock.h"
 #include "debug.h"
 
-//  HWND hWindow;
-//  HANDLE hProcess;
-//  DWORD proc_id;
+// #define READ_PROCESS_MEMORY_SZ (1024*128)
+#define READ_PROCESS_MEMORY_SZ (128*128)
+// 997738607
 
-// typedef struct _MEMORY_BASIC_INFORMATION {
-//   PVOID  BaseAddress;
-//   PVOID  AllocationBase;
-//   DWORD  AllocationProtect;
-//   WORD   PartitionId;
-//   SIZE_T RegionSize;
-//   DWORD  State;
-//   DWORD  Protect;
-//   DWORD  Type;
-// } MEMORY_BASIC_INFORMATION, *PMEMORY_BASIC_INFORMATION;
-
-#define READ_PROCESS_MEMORY_SZ (1024*128)
-// #define READ_PROCESS_MEMORY_SZ 2
+// local function to filter current search results
+int filter_block(mblock_t *current_block, uint8_t *value, int value_size);
 
 mblock_t* create_memblock(HANDLE hProcess, MEMORY_BASIC_INFORMATION *meminfo)
 {
@@ -124,6 +113,7 @@ int update_block(mblock_t *mb)
     uint32_t current_byte = read_it * READ_PROCESS_MEMORY_SZ;
     //debug_verbose("copy %u / %u", current_byte, mb->size);
 
+// ---virtualqueryex before update
     if (ReadProcessMemory(mb->hProcess, (mb->addr + current_byte), &mb->buffer[current_byte], READ_PROCESS_MEMORY_SZ, NULL) == 0)
     {
       MEMORY_BASIC_INFORMATION memInfo;
@@ -201,6 +191,7 @@ int search_block(mblock_t *current_block, uint8_t *value, int value_size)
 {
   int final_byte;
   search_res_t *current_search;
+  uint32_t match_count = 0;
 
   // don't search null block / null buffer
   if (current_block == NULL)
@@ -221,10 +212,17 @@ int search_block(mblock_t *current_block, uint8_t *value, int value_size)
     return -1;
   }
 
+  // filter results if not initial search
+  if (current_block->search_res != 0)
+  {
+    return filter_block(current_block, value, value_size);
+  }
+
+  // 997770137
   final_byte = current_block->size - value_size;
   if (final_byte < 0)
   {
-    //debug_verbose("buffer too small for value_size");
+    debug_verbose("buffer too small for value_size");
     return 0;
   }
 
@@ -233,7 +231,8 @@ int search_block(mblock_t *current_block, uint8_t *value, int value_size)
     if (0 == memcmp(&current_block->buffer[comparison_byte], value, value_size))
     {
       search_res_t *temp;
-      //debug_verbose("Found value at 0x%08X", (uint32_t)(current_block->addr + comparison_byte));
+      match_count++;
+      debug_verbose("Found value at 0x%08X", (uint32_t)(current_block->addr + comparison_byte));
 
       // add current byte to list of matching offsets
       if ((temp = malloc(sizeof(search_res_t))) == 0)
@@ -258,18 +257,68 @@ int search_block(mblock_t *current_block, uint8_t *value, int value_size)
     }
   }
 
-  search_res_t *temp = current_block->search_res;
-  if (temp)
+  // update search count
+  current_block->match_count = match_count;
+
+  return 0;
+}
+
+int filter_block(mblock_t *current_block, uint8_t *value, int value_size)
+{
+  uint32_t match_count = 0;
+  search_res_t dummy;
+  search_res_t *previous;
+  search_res_t *current;
+
+  // don't search null block / null buffer
+  if (current_block == NULL)
   {
-    //printf("current_block = %X\n", (uint32_t)current_block->addr);
-    while (temp)
+    debug_verbose("searching null block");
+    return -1;
+  }
+
+  if (current_block->buffer == NULL || current_block->size == 0)
+  {
+    debug_verbose("searching null block buffer");
+    return -1;
+  }
+
+  if (value == NULL || value_size == 0)
+  {
+    debug_verbose("comparison value was null");
+    return -1;
+  }
+
+  dummy.next_res = current_block->search_res;
+  previous = &dummy;
+  current = current_block->search_res;
+  while (current != NULL)
+  {
+    uint32_t comparison_byte = current->match_offset;
+
+    if (0 == memcmp(&current_block->buffer[comparison_byte], value, value_size))
     {
-      //printf("matched buffer byte = 0x%X\n", temp->match_offset);
-      //printf("matching address = 0x%08X\n", (uint32_t)(current_block->addr + temp->match_offset));
-      temp = temp->next_res;
+      debug_verbose("Filtered value match at 0x%08X", (uint32_t)(current_block->addr + comparison_byte));
+      match_count++;
+
+      // iterate to next search
+      previous = current;
+      current = current->next_res;
+    }
+    else
+    {
+      // remove node from list
+      previous->next_res = current->next_res;
+      free(current);
+
+      // iterate current only
+      current = previous->next_res;
     }
   }
 
+  // update search results list and count
+  current_block->search_res = dummy.next_res;
+  current_block->match_count = match_count;
   return 0;
 }
 

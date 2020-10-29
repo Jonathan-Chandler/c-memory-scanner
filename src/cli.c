@@ -22,7 +22,7 @@ int cli_main(char *window_title)
 //  char size_buffer[CLI_BUFFER_SIZE];
 //  char value_buffer[CLI_BUFFER_SIZE];
   int selection = -1;
-  procInfo_t *procInfo;
+  procInfo_t *procInfo = NULL;
 
   if ((retval = initialize(&procInfo, window_title)) != 0)
     return retval;
@@ -45,6 +45,11 @@ int cli_main(char *window_title)
         break;
 
       case CLI_NEW_SEARCH:
+//        if (procInfo != 0)
+//        {
+//          destroy_block_list(&procInfo);
+//        }
+
         if ((retval = create_block_list(procInfo)) != 0)
           return retval;
         break;

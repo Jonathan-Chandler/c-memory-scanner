@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
   procInfo_t *procInfo;
   int rc;
-  uint32_t value = 999993599;
+  uint32_t value = 997738607;
 
   if (argc == 1)
   {
