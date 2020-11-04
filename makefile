@@ -1,20 +1,24 @@
+# BASE_DIR = $(shell pwd)
 ECHO = echo
 MAKE = mingw32-make
 CC = gcc
-INCLUDES = -Iinc
 CFLAGS = -Wall
 
-SOURCES = $(wildcard src/*.c)
-OBJS = $(SOURCES:src/%.c=build/debug/%.o)
-OBJ_NAME = memscan-debug.exe
-
-build/debug/%.o: src/%.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+export ECHO
+export CC
+export INCLUDES
+export CFLAGS
 
 all: $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(OBJ_NAME)
+	mkdir -p ../../build/unit_tests/
+	mkdir -p ../../build/test_application/
+	mkdir -p ../../build/scanner/
+	$(MAKE) -C ./src/scanner all
+	$(MAKE) -C ./src/test_application all
+	$(MAKE) -C ./src/unit_tests all
 
 clean:
-	rm *.exe build/no_debug/*.o build/unit_tests/*.o
-#	rm *.exe build/debug/*.o
+	$(MAKE) -C ./src/scanner clean
+	$(MAKE) -C ./src/test_application clean
+	$(MAKE) -C ./src/unit_tests clean
 

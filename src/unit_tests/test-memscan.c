@@ -21,9 +21,11 @@ char * test_foo()
 
 char * test_getWindowHandle()
 {
-//  procInfo_t *procInfo;
-//  
-//   mu_assert("Unit Test Error: Initialization failed", initialize(&procInfo, "Twitch") == 0);
+  procInfo_t *procInfo;
+  initialize(&procInfo, "test_application");
+
+  mu_assert("Unit Test Error: Initialization failed", initialize(&procInfo, "test_application") == 0);
+  
 // 
 //   mu_assert("Unit Test Error: Initialization returned null pointer", procInfo == 0);
 // 

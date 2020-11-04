@@ -5,13 +5,13 @@
 int tests_run = 0;
 int bar = 5;
  
-char * test_bar() 
+char* test_bar() 
 {
   mu_assert("error, bar != 5", bar == 5);
   return 0;
 }
 
-char * all_tests() 
+char* all_tests() 
 {
   mu_run_test(test_getWindowHandle);
 
