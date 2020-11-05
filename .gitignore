@@ -1,2 +1,4 @@
 *.o
-build/debug/*.o
+build/unit_tests/*.o
+build/scanner/*.o
+build/test_application/*.o

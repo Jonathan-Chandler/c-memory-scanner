@@ -1,25 +1,28 @@
 #include <stdio.h>
-#include "unit_tests/minunit.h"
-#include "unit_tests/test-memscan.h"
+#include "minunit.h"
+#include "test-memscan.h"
+#include "test-memblock.h"
 
 int tests_run = 0;
-int bar = 5;
  
-char* test_bar() 
+char* blank_test()
 {
-  mu_assert("error, bar != 5", bar == 5);
   return 0;
 }
-
+ 
 char* all_tests() 
 {
-  mu_run_test(test_getWindowHandle);
+  char *res;
 
-  mu_run_test(test_foo);
-  mu_run_test(test_bar);
+  //mu_run_test(test_getWindowHandle);
+  if ((res = test_all_memblock()) != 0)
+    return res;
+
+  //mu_run_test(blank_test);
+
   return 0;
 }
- 
+
 int main(int argc, char **argv)
 {
   char *result = all_tests();

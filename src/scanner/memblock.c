@@ -60,29 +60,6 @@ void destroy_memblock(mblock_t **mb)
   *mb = NULL;
 }
 
-//int memblock_read_buffer(mblock_t *mb)
-//{
-//  if (mb == 0)
-//  {
-//    debug_error("Memory block is NULL");
-//    return -1;
-//  }
-//
-//  if (mb->buffer == 0)
-//  {
-//    debug_error("Memory block buffer is NULL");
-//    return -1;
-//  }
-//
-//  if (ReadProcessMemory(hProcess, mb->addr, mb->buffer, mb->size, NULL) == 0)
-//  {
-//    debug_error("Fail to read process memory");
-//    return -1;
-//  }
-//
-//  return 0;
-//}
-
 int update_block(mblock_t *mb)
 {
   //char read_buffer[READ_PROCESS_MEMORY_SZ] = {0};
@@ -163,28 +140,6 @@ int update_block(mblock_t *mb)
   }
   return 0;
 }
-
-//// assume aligned to blocks of value_size
-//int search_block(mblock_t *current_block, uint8_t *value, int value_size)
-//{
-//  int final_byte = current_block->size - value_size;
-//
-//  if (final_byte < 0)
-//  {
-//    debug_verbose("buffer too small for value_size");
-//    return 0;
-//  }
-//
-//  for (int comparison_byte = 0; comparison_byte < final_byte; comparison_byte += value_size)
-//  {
-//    if (0 == memcmp(&current_block->buffer[comparison_byte], value, value_size))
-//    {
-//      debug_verbose("Found value at 0x%x", (uint32_t)(current_block->addr + comparison_byte));
-//    }
-//  }
-//
-//  return 0;
-//}
 
 // check all bytes in block
 int search_block(mblock_t *current_block, uint8_t *value, int value_size)

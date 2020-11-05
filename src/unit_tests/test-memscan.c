@@ -1,7 +1,7 @@
 #include <windows.h>
 #include "memscan.h"
-#include "unit_tests/test-memscan.h"
-#include "unit_tests/minunit.h"
+#include "test-memscan.h"
+#include "minunit.h"
 
 int foo = 7;
 

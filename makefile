@@ -1,4 +1,3 @@
-# BASE_DIR = $(shell pwd)
 ECHO = echo
 MAKE = mingw32-make
 CC = gcc

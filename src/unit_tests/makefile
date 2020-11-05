@@ -1,4 +1,4 @@
-INCLUDES = -I../../inc
+INCLUDES = -I../../inc/scanner -I../../inc/unit_tests
 SOURCES = $(wildcard *.c)
 OBJS = $(SOURCES:%.c=../../build/unit_tests/%.o)
 OBJ_NAME = ../../unit_test.exe

@@ -2,16 +2,17 @@
 #include <windows.h>
 #include <stdio.h>
 
+#define MS_BEFORE_CLOSING 3000
+
 int main(void)
 {
-//  char c;
   DWORD pid = GetCurrentProcessId();
   int ms_elapsed;
   int seconds_elapsed = 0;
   clock_t start_time;
   printf("PID: 0x%08lx\n", pid);
 
-  // wait 10 seconds
+  // wait X seconds
   start_time = clock();
   do 
   {
@@ -23,7 +24,7 @@ int main(void)
       seconds_elapsed = ms_elapsed/1000;
       printf("seconds elapsed: %d\n", seconds_elapsed);
     }
-  } while (ms_elapsed < 10000);
+  } while (ms_elapsed < MS_BEFORE_CLOSING);
 
   return 0;
 }
