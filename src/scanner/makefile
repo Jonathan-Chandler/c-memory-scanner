@@ -11,5 +11,5 @@ all: $(OBJS)
 
 clean:
 	rm -f ../../build/scanner/*
-	rm -f $(OBJS)
+	rm -f $(OBJ_NAME)
 

@@ -1,9 +1,9 @@
 #ifndef __TEST_MEMSCAN_H__
 #define __TEST_MEMSCAN_H__
-#include "memscan.h"
+#include "memory_scan.h"
 
-char * test_foo();
 char * test_getWindowHandle();
+char * test_all_memory_scan();
 
 // char * test_getProcessId(HWND hWindow, DWORD *proc_id);
 // char * test_getProcessHandle(HANDLE *hProcess, DWORD proc_id);

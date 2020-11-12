@@ -1,38 +1,38 @@
 #include <windows.h>
 #include "debug.h"
-#include "memscan.h"
-#include "memblock.h"
+#include "memory_scan.h"
+#include "scan_results.h"
 #include "cli.h"
 
 int main(int argc, char *argv[])
 {
-  procInfo_t *procInfo;
-  int rc;
-  uint32_t value = 997738607;
+  mem_scan_t *this_scan;
+//  int rc;
+//  uint32_t value = 997738607;
 
   if (argc == 1)
   {
     printf("Expected process name: %s <process_name>", argv[0]);
   }
 
-  initialize(&procInfo, argv[1]);
-
-  rc = create_block_list(procInfo);
-  if (rc != 0)
-    printf("rc: %d\n", rc);
-
-  rc = update_block_list(procInfo);
-  if (rc != 0)
-    printf("rc: %d\n", rc);
-
-  search_block_list(procInfo, (uint8_t*)&value, sizeof(value));
-
-  dump_scan_results(procInfo);
-
-  destroy(&procInfo);
-
-  cli_main(argv[1]);
-
+  mem_scan_init(&this_scan, argv[1]);
+//
+//  rc = memscan_create(procInfo);
+//  if (rc != 0)
+//    printf("rc: %d\n", rc);
+//
+//  rc = memscan_update(procInfo);
+//  if (rc != 0)
+//    printf("rc: %d\n", rc);
+//
+//  memscan_search(procInfo, (uint8_t*)&value, sizeof(value));
+//
+//  memscan_dump_results(procInfo);
+//
+//  memscan_destroy(&procInfo);
+//
+//  cli_main(argv[1]);
+//
   return 0;
 }
 

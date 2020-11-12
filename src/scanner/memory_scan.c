@@ -1,167 +1,106 @@
+#include <errno.h>
 #include <windows.h>
-// #include <memoryapi.h> // virtualqueryex
-
-#include "memscan.h"
+#include "process_info.h"
+#include "memory_scan.h"
 #include "debug.h"
 
-int getWindowHandle(procInfo_t *procInfo, const char *windowTitle)
+int mem_scan_init(mem_scan_t **this_scan, const char *window_title)
 {
-  if (procInfo == NULL)
+  int retval;
+  mem_scan_t *temp_scan = 0;
+
+  if (this_scan == 0)
   {
-    debug_error("Null process information");
-    return -1;
+    debug_error("Memory scan return pointer was null");
+    return -EINVAL;
   }
 
-  procInfo->hWindow = FindWindow(0, windowTitle);
+  // return null pointer by default
+  *this_scan = 0;
 
-  if (procInfo->hWindow == 0)
+  if (window_title == 0)
   {
-    debug_error("%s window not found", windowTitle);
-    return -1;
-  }
-  else
-  {
-    debug_verbose("Found %s window", windowTitle);
+    debug_error("Memory scan window title was null");
+    return -EINVAL;
   }
 
+  if (strcmp(window_title, "") == 0)
+  {
+    debug_error("Empty memory scan window title string");
+    return -EINVAL;
+  }
+
+
+  // allocate and zero mem_scan_t
+  temp_scan = malloc(sizeof(temp_scan));
+  if (temp_scan == 0)
+  {
+    debug_error("Unable to allocate memory");
+    return -ENOMEM;
+  }
+  memset(temp_scan, 0, sizeof(mem_scan_t));
+
+  if ((retval = proc_info_init(&temp_scan->proc_info, window_title)) < 0)
+  {
+    free(temp_scan);
+    return retval;
+  }
+
+  // set return pointer to created scan
+  *this_scan = temp_scan;
   return 0;
 }
 
-int getProcessId(procInfo_t *procInfo)
-{
-  if (procInfo->hWindow == 0)
-  {
-    debug_error("Null hWindow");
-    return -1;
-  }
-
-  GetWindowThreadProcessId(procInfo->hWindow, &procInfo->proc_id);
-  if (procInfo->proc_id == 0)
-  {
-    debug_error("Could not get process id");
-    return -1;
-  }
-  else
-  {
-    debug_verbose("Found process id: %lu", procInfo->proc_id);
-  }
-
-  return 0;
-}
-
-int getProcessHandle(procInfo_t *procInfo)
-{
-  if (procInfo->proc_id == 0)
-  {
-    debug_error("Null process ID");
-    return -1;
-  }
-
-  procInfo->hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, procInfo->proc_id);
-
-  if (procInfo->hProcess == 0)
-  {
-    debug_error("Failed to get handle for process");
-    return -1;
-  }
-  else
-  {
-    debug_verbose("Open process handle: %u", (unsigned int) procInfo->hProcess);
-  }
-
-  return 0;
-}
-
-int closeProcessHandle(procInfo_t *procInfo)
-{
-  if (procInfo == 0)
-  {
-    debug_error("Null process info");
-    return -1;
-  }
-
-  if (procInfo->hProcess == 0)
-  {
-    debug_error("Null process handle");
-    return -1;
-  }
-
-  debug_verbose("Closed process handle: %u", (unsigned int) procInfo->hProcess);
-  CloseHandle(procInfo->hProcess);
-  procInfo->hProcess = 0;
-
-  return 0;
-}
-
-
-int initialize(procInfo_t **block, const char *windowTitle)
+int mem_scan_destroy(mem_scan_t **this_scan)
 {
   int retval;
 
-  if (block == 0)
+  if (this_scan == NULL)
   {
-    debug_error("Unable to allocate block for %s - memory block was NULL", windowTitle);
-    return -1;
+    debug_error("Receive null scan pointer");
+    return -EINVAL;
   }
 
-  *block = malloc(sizeof(procInfo_t));
-  if (*block == 0)
+  if (*this_scan == NULL)
   {
-    return -1;
+    debug_error("Receive pointer to null scan");
+    return -EINVAL;
   }
 
-  memset(*block, 0, sizeof(procInfo_t));
+  if ((*this_scan)->proc_info == NULL)
+  {
+    debug_error("Mem_scan contained null proc_info");
+    return -EINVAL;
+  }
 
-  retval = getWindowHandle(*block, windowTitle);
-  if (retval < 0)
+  if ( (retval = proc_info_destroy(&(*this_scan)->proc_info)) != 0)
+  {
     return retval;
+  }
 
-  retval = getProcessId(*block);
-  if (retval < 0)
-    return retval;
+//  scan_res_t *scan_results;
+//  if (*block == NULL)
+//  {
+//    debug_error("Null *ProcInfo");
+//    return 0;
+//  }
+//
+//  // delete all blocks in list
+//  current_buffer = (*block)->head;
+//
+//  while (current_buffer != 0)
+//  {
+//    mblock_t *temp = current_buffer;
+//    current_buffer = current_buffer->next;
+//    memblock_destroy(&temp);
+//  }
 
-  retval = getProcessHandle(*block);
-  if (retval < 0)
-    return retval;
-
+  *this_scan = 0;
   return 0;
 }
 
-int destroy(procInfo_t **block)
-{
-  int retval;
-  mblock_t *current_buffer;
-
-  if (block == NULL)
-  {
-    debug_error("Null ProcInfo");
-    return 0;
-  }
-
-  if (*block == NULL)
-  {
-    debug_error("Null *ProcInfo");
-    return 0;
-  }
-
-  // delete all blocks in list
-  current_buffer = (*block)->head;
-
-  while (current_buffer != 0)
-  {
-    mblock_t *temp = current_buffer;
-    current_buffer = current_buffer->next;
-    destroy_memblock(&temp);
-  }
-
-  retval = closeProcessHandle(*block);
-  if (retval < 0)
-    return retval;
-
-  return 0;
-}
-
-int create_block_list(procInfo_t *procInfo)
+#if 0
+int mem_scan_create(procInfo_t *procInfo)
 {
   mblock_t *mb_list = NULL;
   mblock_t *mb_current;
@@ -201,7 +140,7 @@ int create_block_list(procInfo_t *procInfo)
 
     //debug_print_mem_basic_flags(&memInfo);
 
-    mblock_t *nextBlock = create_memblock(procInfo->hProcess, &memInfo);
+    mblock_t *nextBlock = memblock_initialize(procInfo->hProcess, &memInfo);
     if (nextBlock == 0)
     {
       debug_verbose("Could not create memblock");
@@ -209,11 +148,11 @@ int create_block_list(procInfo_t *procInfo)
     }
 
     // update buffer for this block
-    if (update_block(nextBlock) < 0)
+    if (memblock_update(nextBlock) < 0)
     {
       // failed to ReadProcessMem for block
       debug_error("Fail to update block at addr: 0x%X", (uint32_t)nextBlock->addr);
-      destroy_memblock(&nextBlock);
+      memblock_destroy(&nextBlock);
       return -1;
     }
 
@@ -242,13 +181,13 @@ int create_block_list(procInfo_t *procInfo)
   return 0;
 }
 
-int update_block_list(procInfo_t *current_scan)
+int mem_scan_update(procInfo_t *current_scan)
 {
   mblock_t *block_it = current_scan->head;
 
   while (block_it)
   {
-    if (update_block(block_it))
+    if (memblock_update(block_it))
     {
       debug_verbose("Failed to update block");
       return -1;
@@ -260,7 +199,7 @@ int update_block_list(procInfo_t *current_scan)
   return 0;
 }
 
-int search_block_list(procInfo_t *current_scan, uint8_t *value, int value_size)
+int mem_scan_search(procInfo_t *current_scan, uint8_t *value, int value_size)
 {
   mblock_t dummy;
   mblock_t *current_block;
@@ -285,7 +224,7 @@ int search_block_list(procInfo_t *current_scan, uint8_t *value, int value_size)
   current_block = current_scan->head;
   while (current_block != NULL)
   {
-    search_block(current_block, value, value_size);
+    memblock_search(current_block, value, value_size);
 
     // current block did not contain value
     if (current_block->search_res == NULL)
@@ -294,7 +233,7 @@ int search_block_list(procInfo_t *current_scan, uint8_t *value, int value_size)
       prev_block->next = current_block->next;
 
       // delete current_block
-      destroy_memblock(&current_block);
+      memblock_destroy(&current_block);
 
       // iterate current_block to current_block->next
       current_block = prev_block->next;
@@ -311,7 +250,57 @@ int search_block_list(procInfo_t *current_scan, uint8_t *value, int value_size)
   return 0;
 }
 
-int dump_scan_results(procInfo_t *current_scan)
+int mem_scan_search_new(procInfo_t *current_scan, uint8_t *value, int value_size)
+{
+  mblock_t dummy;
+  mblock_t *current_block;
+  mblock_t *prev_block;
+
+  if (current_scan == NULL)
+  {
+      debug_error("Null procInfo");
+      return -1;
+  }
+
+  if (value == NULL || value_size == 0)
+  {
+      debug_error("Null search value");
+      return -1;
+  }
+
+  // easier to reference previous node
+  dummy.next = current_scan->head;
+  prev_block = &dummy;
+
+  current_block = current_scan->head;
+  while (current_block != NULL)
+  {
+    memblock_search(current_block, value, value_size);
+
+    // current block did not contain value
+    if (current_block->search_res == NULL)
+    {
+      // remove current_block from list
+      prev_block->next = current_block->next;
+
+      // delete current_block
+      memblock_destroy(&current_block);
+
+      // iterate current_block to current_block->next
+      current_block = prev_block->next;
+    }
+    else
+    {
+      // block contained value, iterate both
+      current_block = current_block->next;
+      prev_block = prev_block->next;
+    }
+  }
+
+  current_scan->head = dummy.next;
+  return 0;
+}
+int mem_scan_dump_results(procInfo_t *current_scan)
 {
   mblock_t *current_block;
   search_res_t *current_search;
@@ -376,16 +365,5 @@ int dump_list_addr(mblock_t *mb_list, int addr)
 
   return 0;
 }
-
-
-// int getPages(procInfo_t *block, )
-// {
-// //   LPCVOID lpAddress;
-// //   PMEMORY_BASIC_INFORMATION lpBuffer,
-// 
-//   VirtualQueryEx(block->hProcess, )
-// //  LPCVOID                   lpAddress,
-// //  PMEMORY_BASIC_INFORMATION lpBuffer,
-// //  SIZE_T                    dwLength
-// }
+#endif
 

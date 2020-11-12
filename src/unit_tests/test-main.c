@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "minunit.h"
-#include "test-memscan.h"
-#include "test-memblock.h"
+#include "test-process_info.h"
+#include "test-memory_scan.h"
+#include "test-scan_results.h"
 
 int tests_run = 0;
  
@@ -14,11 +15,11 @@ char* all_tests()
 {
   char *res;
 
-  //mu_run_test(test_getWindowHandle);
-  if ((res = test_all_memblock()) != 0)
+  if ((res = test_all_process_info()) != 0)
     return res;
 
-  //mu_run_test(blank_test);
+  if ((res = test_all_memory_scan()) != 0)
+    return res;
 
   return 0;
 }
@@ -29,11 +30,19 @@ int main(int argc, char **argv)
 
   if (result != 0) 
   {
+    printf("\n");
+    printf("********************************************************************************************************************************************************\n");
     printf("%s\n", result);
+    printf("********************************************************************************************************************************************************\n");
+    printf("\n");
   }
   else 
   {
+    printf("\n");
+    printf("********************************************************************************************************************************************************\n");
     printf("ALL TESTS PASSED\n");
+    printf("********************************************************************************************************************************************************\n");
+    printf("\n");
   }
 
   printf("Tests run: %d\n", tests_run);
