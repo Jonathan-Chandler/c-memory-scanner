@@ -3,14 +3,6 @@
 #include "test-memory_scan.h"
 #include "minunit.h"
 
-// getWindowHandle(&hWindow, "Twitch");
-// getProcessId(hWindow, &proc_id);
-// getProcessHandle(&hProcess, proc_id);
-// closeProcessHandle(&hProcess);
-// 
-// memscan_initialize(&block, "Twitch");
-// memscan_destroy(&block);
-
 mem_scan_t *this_scan;
 
 char *test_mem_scan_init()
@@ -37,14 +29,6 @@ char *test_mem_scan_destroy()
 
   return 0;
 }
-//
-////char * test_getProcessId(HWND hWindow, DWORD *proc_id);
-////char * test_getProcessHandle(HANDLE *hProcess, DWORD proc_id);
-////char * test_closeProcessHandle(HANDLE *hProcess);
-////char *
-////char * test_initialize(mblock_t *block, const char *windowTitle);
-////char * test_destroy(mblock_t *block);
-//
 
 char *test_all_memory_scan()
 {
@@ -55,9 +39,8 @@ char *test_all_memory_scan()
   
   if ((res = test_mem_scan_destroy()) != 0)
     return res;
-// 
+
 //   mu_assert("Unit Test Error: Initialization returned null pointer", procInfo == 0);
-// 
 // 
 //   // returns existing window handle
 //   mu_assert("Unit Test Error: Twitch window title was not found", procInfo->hWindow == 0);

@@ -165,9 +165,9 @@ int proc_info_close_process_handle(proc_info_t *proc_info)
     return -EINVAL;
   }
 
+  debug_verbose("Closed process handle: %u", (unsigned int) proc_info->process_handle);
   CloseHandle(proc_info->process_handle);
   proc_info->process_handle = 0;
-  debug_verbose("Closed process handle: %u", (unsigned int) proc_info->process_handle);
 
   return 0;
 }
