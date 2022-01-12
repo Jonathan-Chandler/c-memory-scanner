@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "minunit.h"
 #include "test-process_info.h"
-#include "test-memory_scan.h"
-#include "test-scan_results.h"
+#include "test-memory_page.h"
 
 int tests_run = 0;
  
@@ -15,10 +14,10 @@ char* all_tests()
 {
   char *res;
 
-  if ((res = test_all_process_info()) != 0)
-    return res;
+  //if ((res = test_all_process_info()) != 0)
+  //  return res;
 
-  if ((res = test_all_memory_scan()) != 0)
+  if ((res = test_all_mem_page()) != 0)
     return res;
 
   return 0;
@@ -26,8 +25,10 @@ char* all_tests()
 
 int main(int argc, char **argv)
 {
-  char *result = all_tests();
+  char *result;
+  debug_print = false;
 
+  result = all_tests();
   if (result != 0) 
   {
     printf("\n");

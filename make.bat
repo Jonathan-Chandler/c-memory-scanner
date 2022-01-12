@@ -6,13 +6,13 @@ echo.
 if errorlevel 1 goto build_failed
 
 rem wait 1 second for test target application to start
-start "test_application" "test_application.exe"
-SLEEP 1
+rem start "test_application" "test_application.exe"
+rem SLEEP 1
 echo.
 call unit_test.exe
 if errorlevel 1 goto unit_test_failed
 echo.
-call scanner.exe "DarkStone DSI"
+rem call scanner.exe "DarkStone DSI"
 goto exit_make
 
 :build_failed
