@@ -6,6 +6,8 @@
 
 int main(int argc, char *argv[])
 {
+  debug_level = DEBUG_LOG_VERBOSE;
+
 //  uint32_t value = 55;
 //  mem_page_t *this_page;
 //

@@ -1,6 +1,7 @@
 #include "debug.h"
 
-#if (CURRENT_DEBUG_LOG_LEVEL >= DEBUG_LOG_VERBOSE)
+int debug_level = DEBUG_LOG_VERBOSE;
+
 void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo)
 {
     printf("AllocationProtect = 0x%lX", memInfo->AllocationProtect);
@@ -41,11 +42,7 @@ void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo)
       printf("MEM_PRIVATE ");
     printf("\n");
 }
-#else
-void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo){}
-#endif
 
-#if (CURRENT_DEBUG_LOG_LEVEL >= DEBUG_LOG_ERROR)
 void debug_print_last_win_error()
 {
   LPVOID lpMsgBuf;
@@ -63,6 +60,4 @@ void debug_print_last_win_error()
       0, NULL );
   printf(lpMsgBuf);
 }
-#else
-void debug_print_last_win_error(){}
-#endif
+
