@@ -7,7 +7,7 @@
 const LPCVOID save_lp_base_addr = (LPCVOID)0x12345678;
 const SIZE_T save_n_size = 15;
 const char save_buffer[] = "0123456789ABCDEF0123456789ABCDEF";
-const char* save_file_name = "UNIT_TEST_SAVE";
+const char* save_file_name = "data/unit_tests/unit_test_save.dat";
 
 char *test_mem_page_init_destroy()
 {
@@ -84,6 +84,42 @@ char *test_mem_page_load()
   return 0;
 }
 
+char *test_mem_page_search()
+{
+  mem_page_t *this_page = NULL;
+  // search
+  SIZE_T nTestSearchLen = 0;
+  char *pTestSearchString = "abcd";
+  SIZE_T nTestSearchStartIndex = 0;
+
+  // results
+  bool wasFound = true;
+  SIZE_T nFoundIndex = 1;
+
+
+  //mem_page_search(mem_page_t *pPage, const SIZE_T nStringLength, const char *pSearch, SIZE_T nStartIndex, bool *bWasFound, SIZE_T *nFoundIndex)
+  // only valid pointers
+  mu_assert("Mem page search allows null page", 
+      mem_page_search(NULL, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) != 0);
+
+  mu_assert("Mem page allows 0 length search string", 
+      mem_page_search(this_page, 0, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) != 0);
+
+  mu_assert("Mem page allows null search", 
+      mem_page_search(this_page, nTestSearchLen, NULL, nTestSearchStartIndex, &wasFound, &nFoundIndex) != 0);
+
+  mu_assert("Mem page allows null was found pointer", 
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, NULL, &nFoundIndex) != 0);
+
+  mu_assert("Mem page allows NULL found index pointer", 
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, NULL) != 0);
+
+  mu_assert("Mem page search fails with valid params", 
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) == 0);
+
+  return 0;
+}
+
 char *test_all_mem_page()
 {
   char *res = 0;
@@ -97,6 +133,10 @@ char *test_all_mem_page()
   if ((res = test_mem_page_load()) != 0)
     return res;
 
+  if ((res = test_mem_page_search()) != 0)
+    return res;
+
   return 0;
 }
+
 

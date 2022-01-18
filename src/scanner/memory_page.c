@@ -65,7 +65,6 @@ int mem_page_destroy(mem_page_t **ppMemPage)
     return -EINVAL;
   }
 
-
   pcBuffer = pPage->pcBuffer;
 
   if (pcBuffer != NULL)
@@ -84,6 +83,29 @@ int mem_page_destroy(mem_page_t **ppMemPage)
   *ppMemPage = NULL;
 
   return 0;
+}
+
+bool mem_page_is_valid(mem_page_t *page)
+{
+  if (page == NULL)
+  {
+    debug_error("NULL memory page pointer");
+    return false;
+  }
+
+  if (page->nSize == 0)
+  {
+    debug_error("Zero length memory page");
+    return false;
+  }
+
+  if (page->pcBuffer == 0)
+  {
+    debug_error("Null memory page buffer");
+    return false;
+  }
+
+  return true;
 }
 
 int mem_page_save(const mem_page_t *pMemPage, const char *pszFileName)
@@ -272,3 +294,57 @@ exit_fail:
   return -EBADF;
 }
 
+int mem_page_search(mem_page_t *pPage, const SIZE_T nStringLength, const char *pSearch, SIZE_T nStartIndex, bool *bWasFound, SIZE_T *nFoundIndex)
+{
+  // exit invalid pointers
+  if (pPage == NULL || pSearch == NULL || bWasFound == NULL || nFoundIndex == NULL)
+  {
+    debug_error("Receive NULL pointer");
+    return -EINVAL;
+  }
+
+  // exit invalid memory page
+  if (!mem_page_is_valid(pPage))
+  {
+    debug_error("Receive invalid mem page");
+    return -EINVAL;
+  }
+
+  // exit search string was 0 length
+  if (nStringLength == 0)
+  {
+    debug_error("Search string length was 0");
+    return -EINVAL;
+  }
+
+  *bWasFound = false;
+  *nFoundIndex = 0;
+
+  // exit if search string is larger than size of buffer
+  if ((nStartIndex + nStringLength) > pPage->nSize)
+  {
+    return 0;
+  }
+
+  // search starting at nStartIndex and end at (buffer size - length of search string)
+  for (SIZE_T i = nStartIndex; i < (pPage->nSize - nStringLength); i++)
+  {
+    SIZE_T x;
+    for (x = 0; x < nStringLength; x++)
+    {
+      // compare each byte of search string
+      if (pPage->pcBuffer[i+x] != pSearch[x])
+        break;
+    }
+
+    // return true if all bytes matched
+    if (x == nStringLength)
+    {
+      *bWasFound = true;
+      *nFoundIndex = i;
+      return 0;
+    }
+  }
+
+  return 0;
+}

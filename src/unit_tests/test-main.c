@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "minunit.h"
 #include "test-process_info.h"
 #include "test-memory_page.h"
 
+//bool debug_print = false;
 int tests_run = 0;
  
 char* blank_test()
@@ -26,7 +28,6 @@ char* all_tests()
 int main(int argc, char **argv)
 {
   char *result;
-  debug_print = false;
 
   result = all_tests();
   if (result != 0) 
