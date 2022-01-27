@@ -4,6 +4,7 @@
 #include "minunit.h"
 #include "test-process_info.h"
 #include "test-memory_page.h"
+#include "test-memory_manager.h"
 
 //bool debug_print = false;
 int tests_run = 0;
@@ -21,6 +22,9 @@ char* all_tests()
   //  return res;
 
   if ((res = test_all_mem_page()) != 0)
+    return res;
+
+  if ((res = test_all_mem_mgr()) != 0)
     return res;
 
   return 0;

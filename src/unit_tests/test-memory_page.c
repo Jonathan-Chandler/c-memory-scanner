@@ -4,10 +4,10 @@
 #include "test-memory_page.h"
 #include "minunit.h"
 
-const LPCVOID save_lp_base_addr = (LPCVOID)0x12345678;
-const SIZE_T save_n_size = 32;
-const char save_buffer[] = "0123456789ABCDEF0123456789ABCDEF";
-const char* save_file_name = "data/unit_tests/unit_test_save.dat";
+static const LPCVOID save_lp_base_addr = (LPCVOID)0x12345678;
+static const SIZE_T save_n_size = 32;
+static const char save_buffer[] = "0123456789ABCDEF0123456789ABCDEF";
+static const char* save_file_name = "data/unit_tests/unit_test_save.dat";
 
 char *test_mem_page_init_destroy()
 {
@@ -97,7 +97,7 @@ char *test_mem_page_search()
   const SIZE_T secondMatch = 0x1A;
 
   // returned results
-  bool wasFound = true;
+  bool bWasFound = true;
   SIZE_T nFoundIndex = 1;
 
   // load page from saved file in page_save test
@@ -105,48 +105,50 @@ char *test_mem_page_search()
 
   // only valid pointers
   mu_assert("Mem page search allows null page", 
-      mem_page_search(NULL, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) != 0);
+      mem_page_search(NULL, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &bWasFound, &nFoundIndex) != 0);
   mu_assert("Mem page allows 0 length search string", 
-      mem_page_search(this_page, 0, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) != 0);
+      mem_page_search(this_page, 0, pTestSearchString, nTestSearchStartIndex, &bWasFound, &nFoundIndex) != 0);
   mu_assert("Mem page allows null search", 
-      mem_page_search(this_page, nTestSearchLen, NULL, nTestSearchStartIndex, &wasFound, &nFoundIndex) != 0);
+      mem_page_search(this_page, nTestSearchLen, NULL, nTestSearchStartIndex, &bWasFound, &nFoundIndex) != 0);
   mu_assert("Mem page allows null was found pointer", 
       mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, NULL, &nFoundIndex) != 0);
   mu_assert("Mem page allows NULL found index pointer", 
-      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, NULL) != 0);
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &bWasFound, NULL) != 0);
 
   // test search with no matches
   mu_assert("Mem page first search fails with valid params", 
-      mem_page_search(this_page, nTestSearchLen, pBadTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) == 0);
-  mu_assert("Mem page search was found for unmatched string", wasFound == false);
+      mem_page_search(this_page, nTestSearchLen, pBadTestSearchString, nTestSearchStartIndex, &bWasFound, &nFoundIndex) == 0);
+  mu_assert("Mem page search was found for unmatched string", bWasFound == false);
   mu_assert("Mem page search set index for unmatched string", nFoundIndex == 0);
 
   // test search first match
   mu_assert("Mem page first search fails with valid params", 
-      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) == 0);
-  mu_assert("Mem page search fails to set was found for first match", wasFound == true);
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &bWasFound, &nFoundIndex) == 0);
+  mu_assert("Mem page search fails to set was found for first match", bWasFound == true);
   mu_assert("Mem page search fails to set found index for first match", firstMatch == nFoundIndex);
 
   // test search for second match starting at found index + 1
-  wasFound = false;
+  bWasFound = false;
   nTestSearchStartIndex = nFoundIndex+1;
   mu_assert("Mem page second search fails with valid params", 
-      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) == 0);
-  mu_assert("Mem page search fails to set was found for second match", wasFound == true);
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &bWasFound, &nFoundIndex) == 0);
+  mu_assert("Mem page search fails to set was found for second match", bWasFound == true);
   mu_assert("Mem page search fails to set found index for second match", secondMatch == nFoundIndex);
 
   // test third search - expect no more matches
-  wasFound = false;
+  bWasFound = false;
   nTestSearchStartIndex = nFoundIndex+1;
   mu_assert("Mem page second search fails with valid params", 
-      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &wasFound, &nFoundIndex) == 0);
-  mu_assert("Mem page search fails to set was found for second match", wasFound == false);
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, nTestSearchStartIndex, &bWasFound, &nFoundIndex) == 0);
+  mu_assert("Mem page search fails to set was found for second match", bWasFound == false);
   mu_assert("Mem page search fails to set found index for second match", nFoundIndex == 0);
 
   // test return values if search begin index is out of range
+  bWasFound = true;
+  nFoundIndex = 1;
   mu_assert("Mem page second search fails with valid params", 
-      mem_page_search(this_page, nTestSearchLen, pTestSearchString, (save_n_size+1), &wasFound, &nFoundIndex) == 0);
-  mu_assert("Mem page search set was found for out of range", wasFound == false);
+      mem_page_search(this_page, nTestSearchLen, pTestSearchString, (save_n_size+1), &bWasFound, &nFoundIndex) == 0);
+  mu_assert("Mem page search set was found for out of range", bWasFound == false);
   mu_assert("Mem page search fails to reset found index for out of range", nFoundIndex == 0);
 
   return 0;
