@@ -246,3 +246,4 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
   return 0;
 }
 
+//int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
