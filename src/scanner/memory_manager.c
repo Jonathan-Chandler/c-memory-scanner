@@ -165,6 +165,9 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
     // skip "." and ".." directories
     if (strcmp(fdFile.cFileName, ".") != 0 && strcmp(fdFile.cFileName, "..") != 0)
     {
+      //int retval;
+      //mem_page_t *pCurrentPage = NULL;
+
       // don't overflow buffer
       if ((nDirNameLen + strlen(fdFile.cFileName)) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
       {
@@ -173,14 +176,27 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
         return -EINVAL;
       }
 
-      // sPath = dir\currentFile
+      // skip subdirectories
+      if (fdFile.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+      {
+        debug_error("Skip subdir: %s\n", sPath);
+        continue;
+      }
+
+      // sPath = load_dir/currentFile
       sprintf(sPath, "%s/%s", pszDirName, fdFile.cFileName);
 
-      // skip subdirectories
-      if (!(fdFile.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+#if 0
+      if ((retval = mem_page_load(&pCurrentPage, sPath)) == 0)
       {
-        printf("File: %s\n", sPath);
+        mem_mgr_add_node(pMgr, pCurrentPage);
       }
+      else
+      {
+        debug_error("Fail to create node for file %s\n", sPath);
+        continue;
+      }
+#endif
     }
   }
   while (FindNextFile(hFind, &fdFile));
@@ -190,7 +206,43 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
   return 0;
 }
 
-int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *node)
+int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 {
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null memory manager pointer");
+    return -EINVAL;
+  }
+
+  if (pNode == NULL)
+  {
+    debug_error("Receive null node pointer");
+    return -EINVAL;
+  }
+
+  // 
+  pMgr->pLastNode = pNode;
+
+  if (pMgr->pFirstNode == NULL)
+    pMgr->pFirstNode = pNode;
+
   return 0;
 }
+
+int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
+{
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null memory manager pointer");
+    return -EINVAL;
+  }
+
+  if (pNode == NULL)
+  {
+    debug_error("Receive null node pointer");
+    return -EINVAL;
+  }
+
+  return 0;
+}
+

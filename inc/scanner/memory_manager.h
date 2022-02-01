@@ -21,8 +21,8 @@ int mem_mgr_destroy(mem_mgr_t **page);
 int mem_mgr_node_init(mem_mgr_node_t **ppNode, mem_page_t *pPage);
 int mem_mgr_node_destroy(mem_mgr_node_t **ppNode);
 
-int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *node);
-int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *node);
+int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode);
+int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode);
 
 int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName);
 int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName);

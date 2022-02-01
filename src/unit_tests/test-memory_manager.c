@@ -11,6 +11,7 @@
 //static const char save_buffer[] = "0123456789ABCDEF0123456789ABCDEF";
 //static const char* save_file_name = "data/unit_tests/unit_test_save.dat";
 static const char* save_file_dir = "data/unit_tests";
+static const SIZE_T test_page_size = 32;
 
 char *test_mem_mgr_init_destroy()
 {
@@ -26,6 +27,70 @@ char *test_mem_mgr_init_destroy()
 
   // test destroy with invalid
   mu_assert("Unit Test Error: mem_mgr_destroy allows null pointer", mem_mgr_destroy(NULL) != 0);
+
+  return 0;
+}
+
+char *test_mem_mgr_node_init_destroy()
+{
+  mem_mgr_node_t *pTestNode = NULL;
+  mem_page_t *pTestPage = NULL;
+  mem_mgr_node_t *pNodeNull = NULL;
+
+  // allocate page for node
+  mu_assert("Unit Test Error: mem_page_init failed to allocate page", mem_page_init(&pTestPage, test_page_size) == 0);
+  mu_assert("Unit Test Error: mem_page_init failed to allocate page", pTestPage != NULL);
+
+  // test node init with invalid params
+  mu_assert("Unit Test Error: mem_mgr_node_init allows invalid pointer", mem_mgr_node_init(&pTestNode, NULL) != 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init allows invalid pointer", mem_mgr_node_init(NULL, pTestPage) != 0);
+
+  // init test node
+  mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pTestNode, pTestPage) == 0);
+
+  // test node delete with invalid nodes
+  mu_assert("Unit Test Error: mem_mgr_node_destroy allows invalid pointer", mem_mgr_node_destroy(NULL) != 0);
+  mu_assert("Unit Test Error: mem_mgr_node_destroy allows invalid pointer", mem_mgr_node_destroy(&pNodeNull) != 0);
+
+  // test destroy with valid node
+  mu_assert("Unit Test Error: mem_mgr_node_destroy fails with valid pointer", mem_mgr_node_destroy(&pTestNode) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_destroy fails to set pointer to NULL", pTestNode == NULL);
+
+  return 0;
+}
+
+char *test_mem_mgr_add_delete_node()
+{
+  mem_mgr_t *this_mgr = NULL;
+  mem_mgr_node_t *pNode1 = NULL;
+  mem_mgr_node_t *pNode2 = NULL;
+  mem_page_t *pPage1 = NULL;
+  mem_page_t *pPage2 = NULL;
+  
+  // init manager
+  mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
+
+  // init pages
+  mu_assert("Unit Test Error: mem_page_init page1 fails with valid pointer", mem_page_init(&pPage1, 10) == 0);
+  mu_assert("Unit Test Error: mem_page_init page2 fails with valid pointer", mem_page_init(&pPage2, 10) == 0);
+
+  // init nodes
+  mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pNode1, pPage1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode2, pPage2) == 0);
+
+  // add node does not allow invalid pointer
+  mu_assert("Unit Test Error: mem_mgr_add_node allows invalid manager pointer", mem_mgr_add_node(NULL, pNode1) != 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node allows invalid node pointer", mem_mgr_add_node(this_mgr, NULL) != 0);
+
+  // manager add nodes
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode1 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode2 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode2) == 0);
+
+  // manager delete node
+  //mu_assert("Unit Test Error: mem_mgr_node_destroy for pNode1 fails with valid pointer", mem_mgr_node_destroy(&pNode1) == 0);
+
+  // manager deallocate
+  mu_assert("Unit Test Error: mem_mgr_destroy fails with valid node list", mem_mgr_destroy(&this_mgr) == 0);
 
   return 0;
 }
@@ -46,11 +111,18 @@ char *test_mem_mgr_load_dir()
 }
 
 
+
 char *test_all_mem_mgr()
 {
   char *res = 0;
 
   if ((res = test_mem_mgr_init_destroy()) != 0)
+    return res;
+
+  if ((res = test_mem_mgr_node_init_destroy()) != 0)
+    return res;
+  
+  if ((res = test_mem_mgr_add_delete_node()) != 0)
     return res;
 
   if ((res = test_mem_mgr_load_dir()) != 0)
