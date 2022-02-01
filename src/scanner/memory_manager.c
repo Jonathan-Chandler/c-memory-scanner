@@ -5,6 +5,8 @@
 #include "memory_page.h"
 #include "debug.h"
 
+#include <stdint.h>
+
 #define MEM_MGR_MAX_FILE_PATH_NAME_LEN 2048
 
 int mem_mgr_init(mem_mgr_t **ppMgr)
@@ -220,9 +222,14 @@ int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
     return -EINVAL;
   }
 
-  // 
+  // append to non empty list
+  if (pMgr->pLastNode != NULL)
+    pMgr->pLastNode->pNextNode = pNode;
+
+  // update last node
   pMgr->pLastNode = pNode;
 
+  // update first node if empty list
   if (pMgr->pFirstNode == NULL)
     pMgr->pFirstNode = pNode;
 
@@ -231,6 +238,10 @@ int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 
 int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 {
+  int retval = 0;
+  mem_mgr_node_t *pPrevNode;
+  mem_mgr_node_t *pCurrentNode;
+
   if (pMgr == NULL)
   {
     debug_error("Receive null memory manager pointer");
@@ -243,7 +254,50 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
     return -EINVAL;
   }
 
-  return 0;
+  // search for node addr
+  pPrevNode = NULL;
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode != NULL)
+  {
+    //printf("pCurrent addr = 0x%08X\n", (uint32_t)pCurrentNode);
+    // found deleted node
+    if (pCurrentNode == pNode)
+    {
+      // removing first node
+      if (pNode == pMgr->pFirstNode)
+      {
+        pMgr->pFirstNode = pCurrentNode->pNextNode;
+      }
+
+      // removing last node
+      if (pNode == pMgr->pLastNode)
+      {
+        pMgr->pLastNode = pPrevNode;
+      }
+
+      // skip removed node in linked list if not first node
+      if (pPrevNode != NULL)
+      {
+        pPrevNode->pNextNode = pCurrentNode->pNextNode;
+      }
+
+      // deallocate node
+      if ((retval = mem_mgr_node_destroy(&pCurrentNode)) != 0)
+      {
+        debug_error("Failed to destroy found node");
+        return retval;
+      }
+
+      return 0;
+    }
+
+    // set previous node to current and get next
+    pPrevNode = pCurrentNode;
+    pCurrentNode = pCurrentNode->pNextNode;
+  }
+
+  // not found
+  debug_error("Failed to find deleted node");
+  return -ENXIO;
 }
 
-//int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
