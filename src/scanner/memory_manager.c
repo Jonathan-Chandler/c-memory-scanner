@@ -223,23 +223,18 @@ int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
     return -EINVAL;
   }
 
-  printf("add node %08X\n", (uint32_t)pNode);
-
   // make sure newly added first element.pPreviousNode is NULL
   pNode->pPrevNode = NULL;
 
   // set existing first node as next from pNode
   pNode->pNextNode = pMgr->pFirstNode;
-  printf("pMgr->pNextNode = %08X\n", (uint32_t)pMgr->pFirstNode);
 
   // set newly added pNode as first node
   pMgr->pFirstNode = pNode;
-  printf("pMgr->pFirstNode = %08X\n", (uint32_t)pNode);
 
   // newly added node becomes previous node from node that was originally first
   if (pNode->pNextNode != NULL)
   {
-    printf("pNode->pNextNode->pPrevNode = %08X\n", (uint32_t)pNode);
     pNode->pNextNode->pPrevNode = pNode;
   }
 
@@ -262,34 +257,26 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
     return -EINVAL;
   }
 
-  printf("delete node %08X\n", (uint32_t)pNode);
-
   // removing first node
   if (pNode == pMgr->pFirstNode)
   {
-    printf("remove first node\n");
     // remove reference to deleted node if next node exists
     if (pNode->pNextNode != NULL)
     {
-      printf("pNode->pNextNode->pPrevNode = NULL\n");
       pNode->pNextNode->pPrevNode = NULL;
     }
 
     // update to new first node
-    printf("pMgr->pFirstNode = %08X\n", (uint32_t)pNode->pNextNode);
     pMgr->pFirstNode = pNode->pNextNode;
   }
   else
   {
-    printf("not removing first node\n");
     // link previous node to next node
-    printf("pNode->pPrevNode->pNextNode = %08X\n", (uint32_t)pNode->pNextNode);
     pNode->pPrevNode->pNextNode = pNode->pNextNode;
 
     // link next node to previous node if not removing last in list
     if (pNode->pNextNode != NULL)
     {
-      printf("pNode->pNextNode->pPrevNode = %08X\n", (uint32_t)pNode->pPrevNode);
       pNode->pNextNode->pPrevNode = pNode->pPrevNode;
     }
   }
