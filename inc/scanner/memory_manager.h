@@ -7,12 +7,12 @@ typedef struct mem_mgr_node_t
 {
   mem_page_t *pThisPage;
   struct mem_mgr_node_t *pNextNode;
+  struct mem_mgr_node_t *pPrevNode;
 } mem_mgr_node_t;
 
 typedef struct mem_mgr_t
 {
   mem_mgr_node_t *pFirstNode;
-  mem_mgr_node_t *pLastNode;
 } mem_mgr_t;
 
 int mem_mgr_init(mem_mgr_t **page);

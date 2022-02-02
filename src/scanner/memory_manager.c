@@ -28,7 +28,6 @@ int mem_mgr_init(mem_mgr_t **ppMgr)
 
   // return empty manager struct
   pRetMgr->pFirstNode = NULL;
-  pRetMgr->pLastNode = NULL;
   *ppMgr = pRetMgr;
 
   return 0;
@@ -88,6 +87,7 @@ int mem_mgr_node_init(mem_mgr_node_t **ppNode, mem_page_t *pPage)
   // set pointer to return new empty node
   pRetNode->pThisPage = pPage;
   pRetNode->pNextNode = NULL;
+  pRetNode->pPrevNode = NULL;
   *ppNode = pRetNode;
 
   return 0;
@@ -208,6 +208,7 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
   return 0;
 }
 
+// add node to top of list
 int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 {
   if (pMgr == NULL)
@@ -222,16 +223,25 @@ int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
     return -EINVAL;
   }
 
-  // append to non empty list
-  if (pMgr->pLastNode != NULL)
-    pMgr->pLastNode->pNextNode = pNode;
+  printf("add node %08X\n", (uint32_t)pNode);
 
-  // update last node
-  pMgr->pLastNode = pNode;
+  // make sure newly added first element.pPreviousNode is NULL
+  pNode->pPrevNode = NULL;
 
-  // update first node if empty list
-  if (pMgr->pFirstNode == NULL)
-    pMgr->pFirstNode = pNode;
+  // set existing first node as next from pNode
+  pNode->pNextNode = pMgr->pFirstNode;
+  printf("pMgr->pNextNode = %08X\n", (uint32_t)pMgr->pFirstNode);
+
+  // set newly added pNode as first node
+  pMgr->pFirstNode = pNode;
+  printf("pMgr->pFirstNode = %08X\n", (uint32_t)pNode);
+
+  // newly added node becomes previous node from node that was originally first
+  if (pNode->pNextNode != NULL)
+  {
+    printf("pNode->pNextNode->pPrevNode = %08X\n", (uint32_t)pNode);
+    pNode->pNextNode->pPrevNode = pNode;
+  }
 
   return 0;
 }
@@ -239,8 +249,6 @@ int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 {
   int retval = 0;
-  mem_mgr_node_t *pPrevNode;
-  mem_mgr_node_t *pCurrentNode;
 
   if (pMgr == NULL)
   {
@@ -254,50 +262,45 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
     return -EINVAL;
   }
 
-  // search for node addr
-  pPrevNode = NULL;
-  pCurrentNode = pMgr->pFirstNode;
-  while (pCurrentNode != NULL)
+  printf("delete node %08X\n", (uint32_t)pNode);
+
+  // removing first node
+  if (pNode == pMgr->pFirstNode)
   {
-    //printf("pCurrent addr = 0x%08X\n", (uint32_t)pCurrentNode);
-    // found deleted node
-    if (pCurrentNode == pNode)
+    printf("remove first node\n");
+    // remove reference to deleted node if next node exists
+    if (pNode->pNextNode != NULL)
     {
-      // removing first node
-      if (pNode == pMgr->pFirstNode)
-      {
-        pMgr->pFirstNode = pCurrentNode->pNextNode;
-      }
-
-      // removing last node
-      if (pNode == pMgr->pLastNode)
-      {
-        pMgr->pLastNode = pPrevNode;
-      }
-
-      // skip removed node in linked list if not first node
-      if (pPrevNode != NULL)
-      {
-        pPrevNode->pNextNode = pCurrentNode->pNextNode;
-      }
-
-      // deallocate node
-      if ((retval = mem_mgr_node_destroy(&pCurrentNode)) != 0)
-      {
-        debug_error("Failed to destroy found node");
-        return retval;
-      }
-
-      return 0;
+      printf("pNode->pNextNode->pPrevNode = NULL\n");
+      pNode->pNextNode->pPrevNode = NULL;
     }
 
-    // set previous node to current and get next
-    pPrevNode = pCurrentNode;
-    pCurrentNode = pCurrentNode->pNextNode;
+    // update to new first node
+    printf("pMgr->pFirstNode = %08X\n", (uint32_t)pNode->pNextNode);
+    pMgr->pFirstNode = pNode->pNextNode;
+  }
+  else
+  {
+    printf("not removing first node\n");
+    // link previous node to next node
+    printf("pNode->pPrevNode->pNextNode = %08X\n", (uint32_t)pNode->pNextNode);
+    pNode->pPrevNode->pNextNode = pNode->pNextNode;
+
+    // link next node to previous node if not removing last in list
+    if (pNode->pNextNode != NULL)
+    {
+      printf("pNode->pNextNode->pPrevNode = %08X\n", (uint32_t)pNode->pPrevNode);
+      pNode->pNextNode->pPrevNode = pNode->pPrevNode;
+    }
   }
 
-  // not found
-  debug_error("Failed to find deleted node");
-  return -ENXIO;
+  // deallocate node
+  if ((retval = mem_mgr_node_destroy(&pNode)) != 0)
+  {
+    debug_error("Failed to destroy found node");
+    return retval;
+  }
+
+  return 0;
 }
 

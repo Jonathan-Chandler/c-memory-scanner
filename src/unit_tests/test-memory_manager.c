@@ -64,7 +64,6 @@ char *test_mem_mgr_node_init_destroy()
 char *test_mem_mgr_add_delete_node()
 {
   mem_mgr_t *this_mgr = NULL;
-  mem_mgr_node_t *pDummy = (void*)0x1;
   mem_mgr_node_t *pNode1 = NULL;
   mem_mgr_node_t *pNode2 = NULL;
   mem_mgr_node_t *pNode3 = NULL;
@@ -97,14 +96,12 @@ char *test_mem_mgr_add_delete_node()
   // delete node does not allow invalid pointer
   mu_assert("Unit Test Error: mem_mgr_del_node allows invalid pointer", mem_mgr_del_node(NULL, pNode1) != 0);
   mu_assert("Unit Test Error: mem_mgr_del_node allows invalid pointer", mem_mgr_del_node(this_mgr, NULL) != 0);
-  mu_assert("Unit Test Error: mem_mgr_del_node succeeds with invalid pointer", mem_mgr_del_node(this_mgr, pDummy) != 0);
 
   // manager delete node
   mu_assert("Unit Test Error: mem_mgr_del_node for pNode2 fails with valid pointer", mem_mgr_del_node(this_mgr, pNode2) == 0);
   mu_assert("Unit Test Error: mem_mgr_del_node for pNode1 fails with valid pointer", mem_mgr_del_node(this_mgr, pNode1) == 0);
   mu_assert("Unit Test Error: mem_mgr_del_node for pNode3 fails with valid pointer", mem_mgr_del_node(this_mgr, pNode3) == 0);
   mu_assert("Unit Test Error: mem_mgr_del_node did not set this_mgr->pFirstNode to null", this_mgr->pFirstNode == NULL);
-  mu_assert("Unit Test Error: mem_mgr_del_node did not set this_mgr->pLastNode to null", this_mgr->pLastNode == NULL);
 
   // manager deallocate
   mu_assert("Unit Test Error: mem_mgr_destroy fails with valid node list", mem_mgr_destroy(&this_mgr) == 0);
