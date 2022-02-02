@@ -125,148 +125,77 @@ int mem_mgr_node_destroy(mem_mgr_node_t **ppNode)
   return 0;
 }
 
-int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
+int mem_mgr_node_equal(mem_mgr_node_t *pNode1, mem_mgr_node_t *pNode2, bool *pbEqual)
 {
-  char sPath[MEM_MGR_MAX_FILE_PATH_NAME_LEN];
-  SIZE_T nDirNameLen;
-  mem_mgr_node_t const *pCurrentNode;
-  mem_page_t const *pCurrentPage;
+  int retval;
 
-  // null pointer to mem_mgr_t
-  if (pMgr == NULL)
+  if (pNode1 == NULL)
   {
-    debug_error("Receive null pMgr");
+    debug_error("Receive null memory node pointer 1");
     return -EINVAL;
   }
 
-  // pszDirName is null
-  if (pszDirName == NULL)
+  if (pNode2 == NULL)
   {
-    debug_error("Receive null pszDirName");
+    debug_error("Receive null memory node pointer 2");
     return -EINVAL;
   }
 
-  // pszDirName is blank
-  if (strcmp(pszDirName,"") == 0)
+  if (pbEqual == NULL)
   {
-    debug_error("Receive blank pszDirName");
+    debug_error("Receive null isEqual return pointer");
+    return -EINVAL;
+  }
+  *pbEqual = false;
+
+  if (!mem_page_is_valid(pNode1->pThisPage))
+  {
+    debug_error("Receive invalid page in node pointer 1");
     return -EINVAL;
   }
 
-  // pszDirName > maximum file path name
-  if (((nDirNameLen = strlen(pszDirName)) + MEM_MGR_MAX_FILE_NAME_LEN) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
+  if (!mem_page_is_valid(pNode2->pThisPage))
   {
-    debug_error("File path name too long");
+    debug_error("Receive invalid page in node pointer 2");
     return -EINVAL;
   }
 
-  // save each node page as <0xbase_addr>.dat
-  pCurrentNode = pMgr->pFirstNode;
-  while (pCurrentNode != NULL)
+  if ((retval = mem_page_compare(pNode1->pThisPage, pNode2->pThisPage, pbEqual)) != 0)
   {
-    pCurrentPage = pCurrentNode->pThisPage;
-    if (pCurrentPage == NULL)
-    {
-      debug_error("Saving NULL page");
-      return -EINVAL;
-    }
-
-    sprintf(sPath, "%s/0x%08X.dat", pszDirName, (uint32_t)pCurrentPage->lpBaseAddr);
-
-    if (mem_page_save(pCurrentPage, sPath) != 0)
-    {
-      debug_error("Error while saving file %s", sPath);
-      return -EINVAL;
-    }
-
-    pCurrentNode = pCurrentNode->pNextNode;
+    debug_error("Fail to compare node equal");
+    return retval;
   }
 
   return 0;
 }
 
-int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
+int mem_mgr_search_addr(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, LPCVOID lpSearchAddr)
 {
-  WIN32_FIND_DATA fdFile;
-  HANDLE hFind = NULL;
-  char sPath[MEM_MGR_MAX_FILE_PATH_NAME_LEN];
-  SIZE_T nDirNameLen;
-
+  mem_mgr_node_t *pCurrentNode;
   if (pMgr == NULL)
   {
-    debug_error("Receive null pMgr");
+    debug_error("Receive null memory manager pointer");
     return -EINVAL;
   }
 
-  if (pszDirName == NULL)
+  if (ppResult == NULL)
   {
-    debug_error("Receive null pszDirName");
+    debug_error("Receive null result node pointer");
     return -EINVAL;
   }
+  *ppResult = NULL;
 
-  if (strcmp(pszDirName,"") == 0)
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode != NULL)
   {
-    debug_error("Receive blank pszDirName");
-    return -EINVAL;
-  }
-
-  if ((nDirNameLen = strlen(pszDirName)) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
-  {
-    debug_error("File path name too long");
-    return -EINVAL;
-  }
-
-  // all files
-  sprintf(sPath, "%s\\*.*", pszDirName);
-
-  if((hFind = FindFirstFile(sPath, &fdFile)) == INVALID_HANDLE_VALUE)
-  {
-    debug_error("Path not found: %s", pszDirName);
-    return -EINVAL;
-  }
-
-  do
-  {
-    // skip "." and ".." directories
-    if (strcmp(fdFile.cFileName, ".") != 0 && strcmp(fdFile.cFileName, "..") != 0)
+    if (lpSearchAddr == pCurrentNode->pThisPage->lpBaseAddr)
     {
-      //int retval;
-      //mem_page_t *pCurrentPage = NULL;
-
-      // don't overflow buffer
-      if ((nDirNameLen + strlen(fdFile.cFileName)) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
-      {
-        debug_error("File path name too long for file %s", fdFile.cFileName);
-        FindClose(hFind);
-        return -EINVAL;
-      }
-
-      // skip subdirectories
-      if (fdFile.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-      {
-        debug_error("Skip subdir: %s\n", sPath);
-        continue;
-      }
-
-      // sPath = load_dir/currentFile
-      sprintf(sPath, "%s/%s", pszDirName, fdFile.cFileName);
-
-#if 0
-      if ((retval = mem_page_load(&pCurrentPage, sPath)) == 0)
-      {
-        mem_mgr_add_node(pMgr, pCurrentPage);
-      }
-      else
-      {
-        debug_error("Fail to create node for file %s\n", sPath);
-        continue;
-      }
-#endif
+      *ppResult = pCurrentNode;
+      return 0;
     }
-  }
-  while (FindNextFile(hFind, &fdFile));
 
-  FindClose(hFind);
+    pCurrentNode = pCurrentNode->pNextNode;
+  }
 
   return 0;
 }
@@ -353,4 +282,165 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 
   return 0;
 }
+
+int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
+{
+  char sPath[MEM_MGR_MAX_FILE_PATH_NAME_LEN];
+  SIZE_T nDirNameLen;
+  mem_mgr_node_t const *pCurrentNode;
+  mem_page_t const *pCurrentPage;
+
+  // null pointer to mem_mgr_t
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null pMgr");
+    return -EINVAL;
+  }
+
+  // pszDirName is null
+  if (pszDirName == NULL)
+  {
+    debug_error("Receive null pszDirName");
+    return -EINVAL;
+  }
+
+  // pszDirName is blank
+  if (strcmp(pszDirName,"") == 0)
+  {
+    debug_error("Receive blank pszDirName");
+    return -EINVAL;
+  }
+
+  // pszDirName > maximum file path name
+  if (((nDirNameLen = strlen(pszDirName)) + MEM_MGR_MAX_FILE_NAME_LEN) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
+  {
+    debug_error("File path name too long");
+    return -EINVAL;
+  }
+
+  // save each node page as <0xbase_addr>.dat
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode != NULL)
+  {
+    pCurrentPage = pCurrentNode->pThisPage;
+    if (pCurrentPage == NULL)
+    {
+      debug_error("Saving NULL page");
+      return -EINVAL;
+    }
+
+    sprintf(sPath, "%s/0x%08X.dat", pszDirName, (uint32_t)pCurrentPage->lpBaseAddr);
+
+    if (mem_page_save(pCurrentPage, sPath) != 0)
+    {
+      debug_error("Error while saving file %s", sPath);
+      return -EINVAL;
+    }
+
+    pCurrentNode = pCurrentNode->pNextNode;
+  }
+
+  return 0;
+}
+
+int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
+{
+  WIN32_FIND_DATA fdFile;
+  HANDLE hFind = NULL;
+  char sPath[MEM_MGR_MAX_FILE_PATH_NAME_LEN];
+  SIZE_T nDirNameLen;
+  int retval;
+  mem_page_t *pCurrentPage = NULL;
+  mem_mgr_node_t *pCurrentNode = NULL;
+
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null pMgr");
+    return -EINVAL;
+  }
+
+  if (pszDirName == NULL)
+  {
+    debug_error("Receive null pszDirName");
+    return -EINVAL;
+  }
+
+  if (strcmp(pszDirName,"") == 0)
+  {
+    debug_error("Receive blank pszDirName");
+    return -EINVAL;
+  }
+
+  if ((nDirNameLen = strlen(pszDirName)) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
+  {
+    debug_error("File path name too long");
+    return -EINVAL;
+  }
+
+  // all files
+  sprintf(sPath, "%s\\*.*", pszDirName);
+
+  if((hFind = FindFirstFile(sPath, &fdFile)) == INVALID_HANDLE_VALUE)
+  {
+    debug_error("Path not found: %s", pszDirName);
+    return -EINVAL;
+  }
+
+  do
+  {
+    // skip "." and ".." directories
+    if (strcmp(fdFile.cFileName, ".") != 0 && strcmp(fdFile.cFileName, "..") != 0)
+    {
+      pCurrentPage = NULL;
+
+      // check overflow file name buffer
+      if ((nDirNameLen + strlen(fdFile.cFileName)) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
+      {
+        debug_error("File path name too long for file %s", fdFile.cFileName);
+        FindClose(hFind);
+        return -EINVAL;
+      }
+
+      // skip subdirectories
+      if (fdFile.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+      {
+        debug_error("Skip subdir: %s\n", sPath);
+        continue;
+      }
+
+      // sPath = load_dir/currentFile
+      sprintf(sPath, "%s/%s", pszDirName, fdFile.cFileName);
+
+      // create page from file
+      retval = mem_page_load_file(&pCurrentPage, sPath);
+      if (retval != 0)
+      {
+        debug_error("Fail to create page from file %s", sPath);
+        return retval;
+      }
+
+      // create node from page
+      retval = mem_mgr_node_init(&pCurrentNode, pCurrentPage);
+      if (retval != 0)
+      {
+        debug_error("Fail to create node from file %s", sPath);
+        return retval;
+      }
+
+      // add node to list
+      retval = mem_mgr_add_node(pMgr, pCurrentNode);
+      if (retval != 0)
+      {
+        debug_error("Fail to add node from file %s", sPath);
+        return retval;
+      }
+    }
+  }
+  while (FindNextFile(hFind, &fdFile));
+
+  FindClose(hFind);
+
+  return 0;
+}
+
 

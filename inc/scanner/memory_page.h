@@ -13,7 +13,8 @@ typedef struct mem_page_t
 int mem_page_init(mem_page_t **page, SIZE_T nSize);
 int mem_page_destroy(mem_page_t **page);
 
-bool mem_page_is_valid(mem_page_t *page);
+bool mem_page_is_valid(const mem_page_t *page);
+int mem_page_compare(const mem_page_t *pPage1, const mem_page_t *pPage2, bool *pEqual);
 
 int mem_page_save(const mem_page_t *page, const char *pszFileName);
 int mem_page_load_buffer(mem_page_t *pMemPage, LPCVOID lpBaseAddr, SIZE_T nSize, const char *pCopiedBuff);

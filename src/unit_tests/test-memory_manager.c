@@ -109,9 +109,70 @@ char *test_mem_mgr_add_delete_node()
   return 0;
 }
 
+char *test_mem_mgr_search_addr()
+{
+  mem_mgr_t *this_mgr = NULL;
+  mem_mgr_node_t *pResult = NULL;
+  mem_mgr_node_t *pNode1 = NULL;
+  mem_mgr_node_t *pNode2 = NULL;
+  mem_mgr_node_t *pNode3 = NULL;
+  mem_page_t *pPage1 = NULL;
+  mem_page_t *pPage2 = NULL;
+  mem_page_t *pPage3 = NULL;
+  const char data1[] = "atoehusaotneuh";
+  const char data2[] = "saonteuhsathii";
+  const char data3[] = "saoeidbaosecna";
+  SIZE_T test_page_size = sizeof(data1);
+  const LPCVOID lpPageAddr1 = (LPCVOID)0x12345678;
+  const LPCVOID lpPageAddr2 = (LPCVOID)0x09876543;
+  const LPCVOID lpPageAddr3 = (LPCVOID)0xABCDEF01;
+  
+  // init manager
+  mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
+
+  // init pages
+  mu_assert("Unit Test Error: mem_page_init page1 fails with valid pointer", mem_page_init(&pPage1, test_page_size) == 0);
+  mu_assert("Unit Test Error: mem_page_init page2 fails with valid pointer", mem_page_init(&pPage2, test_page_size) == 0);
+  mu_assert("Unit Test Error: mem_page_init page3 fails with valid pointer", mem_page_init(&pPage3, test_page_size) == 0);
+
+  // copy page data
+  mu_assert("Unit Test Error: mem_page_init failed to copy page1", mem_page_load_buffer(pPage1, lpPageAddr1, test_page_size, data1) == 0);
+  mu_assert("Unit Test Error: mem_page_init failed to copy page2", mem_page_load_buffer(pPage2, lpPageAddr2, test_page_size, data2) == 0);
+  mu_assert("Unit Test Error: mem_page_init failed to copy page3", mem_page_load_buffer(pPage3, lpPageAddr3, test_page_size, data3) == 0);
+
+  // init nodes
+  mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pNode1, pPage1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode2, pPage2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage3) == 0);
+
+  // add nodes
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode1 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode2 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode3 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode3) == 0);
+
+  // search for invalid param
+  mu_assert("Unit Test Error: mem_mgr_search_node allows invalid mgr pointer", mem_mgr_search_addr(NULL, &pResult, lpPageAddr1) != 0);
+  mu_assert("Unit Test Error: mem_mgr_search_node allows invalid result pointer", mem_mgr_search_addr(this_mgr, NULL, lpPageAddr1) != 0);
+
+  // search for valid param
+  mu_assert("Unit Test Error: mem_mgr_search_node for pNode1 fails with valid pointer", mem_mgr_search_addr(this_mgr, &pResult, lpPageAddr1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_search_node for pNode1 did not match pointer", pResult == pNode1);
+  mu_assert("Unit Test Error: mem_mgr_search_node for pNode2 fails with valid pointer", mem_mgr_search_addr(this_mgr, &pResult, lpPageAddr2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_search_node for pNode2 did not match pointer", pResult == pNode2);
+  mu_assert("Unit Test Error: mem_mgr_search_node for pNode3 fails with valid pointer", mem_mgr_search_addr(this_mgr, &pResult, lpPageAddr3) == 0);
+  mu_assert("Unit Test Error: mem_mgr_search_node for pNode3 did not match pointer", pResult == pNode3);
+
+  mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate", mem_mgr_destroy(&this_mgr) == 0);
+
+  return 0;
+}
+
 char *test_mem_mgr_save_load_dir()
 {
   mem_mgr_t *this_mgr = NULL;
+  mem_mgr_t *loaded_mgr = NULL;
+  mem_mgr_node_t *pSearchedNode = NULL;
+  mem_mgr_node_t *pResultNode = NULL;
   mem_mgr_node_t *pNode1 = NULL;
   mem_mgr_node_t *pNode2 = NULL;
   mem_mgr_node_t *pNode3 = NULL;
@@ -126,9 +187,11 @@ char *test_mem_mgr_save_load_dir()
   const LPCVOID lpPageAddr2 = (LPCVOID)0x09876543;
   const LPCVOID lpPageAddr3 = (LPCVOID)0xABCDEF01;
   static const char* save_dir_name = "data/unit_tests/save_dir";
+  bool bNodesEqual;
   
   // init manager
   mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
+  mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&loaded_mgr) == 0);
 
   // init pages
   mu_assert("Unit Test Error: mem_page_init page1 fails with valid pointer", mem_page_init(&pPage1, test_page_size) == 0);
@@ -164,17 +227,37 @@ char *test_mem_mgr_save_load_dir()
   mu_assert("Unit Test Error: mem_mgr_load_dir allows blank dir name", mem_mgr_load_dir(this_mgr, "") != 0);
 
   // load dir
-  //mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_load_dir(&this_mgr) == 0);
+  mu_assert("Unit Test Error: mem_mgr_load_dir fails with valid pointer", mem_mgr_load_dir(loaded_mgr, save_dir_name) == 0);
+  mu_assert("Unit Test Error: mem_mgr_load_dir returns NULL pointer", loaded_mgr != NULL);
 
-  mu_assert("Unit Test Error: mem_mgr_load_dir allows null dir", mem_mgr_load_dir(this_mgr, NULL) != 0);
-  mu_assert("Unit Test Error: mem_mgr_load_dir fails with valid dir", mem_mgr_load_dir(this_mgr, save_file_dir) == 0);
+  // nodes equal with invalid params
+  mu_assert("Unit Test Error: mem_mgr_node_equal allows invalid pointer 1", mem_mgr_node_equal(NULL, pNode2, &bNodesEqual) != 0);
+  mu_assert("Unit Test Error: mem_mgr_node_equal allows invalid pointer 2", mem_mgr_node_equal(pNode1, NULL, &bNodesEqual) != 0);
+  mu_assert("Unit Test Error: mem_mgr_node_equal allows invalid return pointer", mem_mgr_node_equal(pNode1, pNode2, NULL) != 0);
 
-  mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate", mem_mgr_destroy(&this_mgr) == 0);
+  // nodes not equal
+  mu_assert("Unit Test Error: mem_mgr_node_equal fails with valid params", mem_mgr_node_equal(pNode1, pNode2, &bNodesEqual) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_equal equal with diff values", bNodesEqual == false);
+
+  // search node addresses from saved list in the loaded node list and check nodes are equal
+  pSearchedNode = this_mgr->pFirstNode;
+  while (pSearchedNode != NULL)
+  {
+    LPCVOID searchedAddr = pSearchedNode->pThisPage->lpBaseAddr;
+    mu_assert("Unit Test Error: mem_mgr_search_node for pSearchedNode fails with valid pointer", mem_mgr_search_addr(loaded_mgr, &pResultNode, searchedAddr) == 0);
+    mu_assert("Unit Test Error: mem_mgr_search_node fails to find node", pResultNode != NULL);
+    mu_assert("Unit Test Error: mem_mgr_node_equal fails with valid params", mem_mgr_node_equal(pSearchedNode, pResultNode, &bNodesEqual) == 0);
+    mu_assert("Unit Test Error: mem_mgr_node_equal equal with diff values", bNodesEqual == true);
+
+    if (pSearchedNode != NULL)
+      pSearchedNode = pSearchedNode->pNextNode;
+  }
+  
+  mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate saved pages", mem_mgr_destroy(&this_mgr) == 0);
+  mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate loaded pages", mem_mgr_destroy(&loaded_mgr) == 0);
 
   return 0;
 }
-
-
 
 char *test_all_mem_mgr()
 {
@@ -187,6 +270,9 @@ char *test_all_mem_mgr()
     return res;
   
   if ((res = test_mem_mgr_add_delete_node()) != 0)
+    return res;
+
+  if ((res = test_mem_mgr_search_addr()) != 0)
     return res;
 
   if ((res = test_mem_mgr_save_load_dir()) != 0)

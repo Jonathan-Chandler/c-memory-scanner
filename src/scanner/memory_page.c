@@ -85,7 +85,49 @@ int mem_page_destroy(mem_page_t **ppMemPage)
   return 0;
 }
 
-bool mem_page_is_valid(mem_page_t *page)
+int mem_page_compare(const mem_page_t *pPage1, const mem_page_t *pPage2, bool *pEqual)
+{
+  if (!mem_page_is_valid(pPage1))
+  {
+    debug_error("Compare to invalid page - 1");
+    return -EINVAL;
+  }
+
+  if (!mem_page_is_valid(pPage2))
+  {
+    debug_error("Compare to invalid page - 2");
+    return -EINVAL;
+  }
+
+  if (pEqual == NULL)
+  {
+    debug_error("Receive NULL pEqual");
+    return -EINVAL;
+  }
+
+  if (pPage1->lpBaseAddr != pPage2->lpBaseAddr)
+  {
+    *pEqual = false;
+    return 0;
+  }
+
+  if (pPage1->nSize != pPage2->nSize)
+  {
+    *pEqual = false;
+    return 0;
+  }
+
+  if (memcmp(pPage1->pcBuffer, pPage2->pcBuffer, pPage1->nSize) != 0)
+  {
+    *pEqual = false;
+    return 0;
+  }
+
+  *pEqual = true;
+  return 0;
+}
+
+bool mem_page_is_valid(const mem_page_t *page)
 {
   if (page == NULL)
   {
