@@ -26,6 +26,7 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode);
 
 int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName);
 int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName);
+
 int mem_mgr_load_proc(mem_mgr_t **pMgr, proc_info_t *pProcInfo);
 
 int mem_mgr_search(mem_mgr_t *pMgr, mem_mgr_t **result, const SIZE_T nStringLength, const char *pSearch);

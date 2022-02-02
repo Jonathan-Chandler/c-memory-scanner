@@ -17,5 +17,7 @@ all: $(OBJS)
 clean:
 	rm -f $(OBJ_NAME)
 	rm -f ../../build/unit_tests/*
+	rm -f ../../data/unit_tests/unit_test_save.dat
+	rm -f ../../data/unit_tests/save_dir/*
 
 

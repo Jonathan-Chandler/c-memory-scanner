@@ -7,7 +7,8 @@
 
 #include <stdint.h>
 
-#define MEM_MGR_MAX_FILE_PATH_NAME_LEN 2048
+#define MEM_MGR_MAX_FILE_PATH_NAME_LEN  2048
+#define MEM_MGR_MAX_FILE_NAME_LEN       15    // /0x(32-bit addr) + extension (/0x12345678.dat)
 
 int mem_mgr_init(mem_mgr_t **ppMgr)
 {
@@ -124,9 +125,67 @@ int mem_mgr_node_destroy(mem_mgr_node_t **ppNode)
   return 0;
 }
 
-//int mem_mgr_save(const mem_mgr_t *pMgr, const char *pszFileName);
-//int mem_mgr_load_proc(mem_mgr_t **pMgr, proc_info_t *pProcInfo);
-//int mem_mgr_search(mem_mgr_t *pMgr, mem_mgr_t **result, const SIZE_T nStringLength, const char *pSearch);
+int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
+{
+  char sPath[MEM_MGR_MAX_FILE_PATH_NAME_LEN];
+  SIZE_T nDirNameLen;
+  mem_mgr_node_t const *pCurrentNode;
+  mem_page_t const *pCurrentPage;
+
+  // null pointer to mem_mgr_t
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null pMgr");
+    return -EINVAL;
+  }
+
+  // pszDirName is null
+  if (pszDirName == NULL)
+  {
+    debug_error("Receive null pszDirName");
+    return -EINVAL;
+  }
+
+  // pszDirName is blank
+  if (strcmp(pszDirName,"") == 0)
+  {
+    debug_error("Receive blank pszDirName");
+    return -EINVAL;
+  }
+
+  // pszDirName > maximum file path name
+  if (((nDirNameLen = strlen(pszDirName)) + MEM_MGR_MAX_FILE_NAME_LEN) >= MEM_MGR_MAX_FILE_PATH_NAME_LEN)
+  {
+    debug_error("File path name too long");
+    return -EINVAL;
+  }
+
+  // save each node page as <0xbase_addr>.dat
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode != NULL)
+  {
+    printf("pCurrentNode = 0x%08X\n", (uint32_t)pCurrentNode);
+    pCurrentPage = pCurrentNode->pThisPage;
+    if (pCurrentPage == NULL)
+    {
+      debug_error("Saving NULL page");
+      return -EINVAL;
+    }
+
+    sprintf(sPath, "%s/0x%08X.dat", pszDirName, (uint32_t)pCurrentPage->lpBaseAddr);
+    printf("saving to path %s\n", sPath);
+
+    if (mem_page_save(pCurrentPage, sPath) != 0)
+    {
+      debug_error("Error while saving file %s", sPath);
+      return -EINVAL;
+    }
+
+    pCurrentNode = pCurrentNode->pNextNode;
+  }
+
+  return 0;
+}
 
 int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
 {
@@ -143,7 +202,13 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
 
   if (pszDirName == NULL)
   {
-    debug_error("Receive null pMgr");
+    debug_error("Receive null pszDirName");
+    return -EINVAL;
+  }
+
+  if (strcmp(pszDirName,"") == 0)
+  {
+    debug_error("Receive blank pszDirName");
     return -EINVAL;
   }
 
@@ -153,7 +218,7 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
     return -EINVAL;
   }
 
-  //Specify a file mask. *.* = We want everything!
+  // all files
   sprintf(sPath, "%s\\*.*", pszDirName);
 
   if((hFind = FindFirstFile(sPath, &fdFile)) == INVALID_HANDLE_VALUE)

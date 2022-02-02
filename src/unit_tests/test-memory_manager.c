@@ -119,9 +119,13 @@ char *test_mem_mgr_save_load_dir()
   mem_page_t *pPage2 = NULL;
   mem_page_t *pPage3 = NULL;
   const char data1[] = "atoehusaotneuh";
-  //const char data2[] = "saonteuhsathii";
-  //const char data3[] = "saoeidbaosecna";
+  const char data2[] = "saonteuhsathii";
+  const char data3[] = "saoeidbaosecna";
   SIZE_T test_page_size = sizeof(data1);
+  const LPCVOID lpPageAddr1 = (LPCVOID)0x12345678;
+  const LPCVOID lpPageAddr2 = (LPCVOID)0x09876543;
+  const LPCVOID lpPageAddr3 = (LPCVOID)0xABCDEF01;
+  static const char* save_dir_name = "data/unit_tests/save_dir";
   
   // init manager
   mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
@@ -131,19 +135,36 @@ char *test_mem_mgr_save_load_dir()
   mu_assert("Unit Test Error: mem_page_init page2 fails with valid pointer", mem_page_init(&pPage2, test_page_size) == 0);
   mu_assert("Unit Test Error: mem_page_init page3 fails with valid pointer", mem_page_init(&pPage3, test_page_size) == 0);
 
+  // copy page data
+  mu_assert("Unit Test Error: mem_page_init failed to copy page1", mem_page_load_buffer(pPage1, lpPageAddr1, test_page_size, data1) == 0);
+  mu_assert("Unit Test Error: mem_page_init failed to copy page2", mem_page_load_buffer(pPage2, lpPageAddr2, test_page_size, data2) == 0);
+  mu_assert("Unit Test Error: mem_page_init failed to copy page3", mem_page_load_buffer(pPage3, lpPageAddr3, test_page_size, data3) == 0);
+
   // init nodes
   mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pNode1, pPage1) == 0);
   mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode2, pPage2) == 0);
-  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage3) == 0);
 
   // add nodes
   mu_assert("Unit Test Error: mem_mgr_add_node for pNode1 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode1) == 0);
   mu_assert("Unit Test Error: mem_mgr_add_node for pNode2 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode2) == 0);
   mu_assert("Unit Test Error: mem_mgr_add_node for pNode3 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode3) == 0);
 
-  //mu_assert("Unit Test Error: mem_mgr_load_dir allows null mgr", mem_mgr_load_dir(this_mgr, save_file_dir) != 0);
+  // invalid save_dir parameters
+  mu_assert("Unit Test Error: mem_mgr_save_dir allows NULL mem_mgr", mem_mgr_save_dir(NULL, save_file_dir) != 0);
+  mu_assert("Unit Test Error: mem_mgr_save_dir allows null dir name", mem_mgr_save_dir(this_mgr, NULL) != 0);
+  mu_assert("Unit Test Error: mem_mgr_save_dir allows blank dir name", mem_mgr_save_dir(this_mgr, "") != 0);
 
-  mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
+  // save dir
+  mu_assert("Unit Test Error: mem_mgr_save_dir fails with valid pointer", mem_mgr_save_dir(this_mgr, save_dir_name) == 0);
+
+  // invalid load_dir parameters
+  mu_assert("Unit Test Error: mem_mgr_load_dir allows NULL mem_mgr", mem_mgr_load_dir(NULL, save_file_dir) != 0);
+  mu_assert("Unit Test Error: mem_mgr_load_dir allows null dir name", mem_mgr_load_dir(this_mgr, NULL) != 0);
+  mu_assert("Unit Test Error: mem_mgr_load_dir allows blank dir name", mem_mgr_load_dir(this_mgr, "") != 0);
+
+  // load dir
+  //mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_load_dir(&this_mgr) == 0);
 
   mu_assert("Unit Test Error: mem_mgr_load_dir allows null dir", mem_mgr_load_dir(this_mgr, NULL) != 0);
   mu_assert("Unit Test Error: mem_mgr_load_dir fails with valid dir", mem_mgr_load_dir(this_mgr, save_file_dir) == 0);
