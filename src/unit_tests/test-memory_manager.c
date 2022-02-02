@@ -82,7 +82,7 @@ char *test_mem_mgr_add_delete_node()
   // init nodes
   mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pNode1, pPage1) == 0);
   mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode2, pPage2) == 0);
-  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page3 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage2) == 0);
 
   // add node does not allow invalid pointer
   mu_assert("Unit Test Error: mem_mgr_add_node allows invalid manager pointer", mem_mgr_add_node(NULL, pNode1) != 0);
@@ -109,10 +109,39 @@ char *test_mem_mgr_add_delete_node()
   return 0;
 }
 
-char *test_mem_mgr_load_dir()
+char *test_mem_mgr_save_load_dir()
 {
   mem_mgr_t *this_mgr = NULL;
-  mu_assert("Unit Test Error: mem_mgr_load_dir allows null mgr", mem_mgr_load_dir(this_mgr, save_file_dir) != 0);
+  mem_mgr_node_t *pNode1 = NULL;
+  mem_mgr_node_t *pNode2 = NULL;
+  mem_mgr_node_t *pNode3 = NULL;
+  mem_page_t *pPage1 = NULL;
+  mem_page_t *pPage2 = NULL;
+  mem_page_t *pPage3 = NULL;
+  const char data1[] = "atoehusaotneuh";
+  //const char data2[] = "saonteuhsathii";
+  //const char data3[] = "saoeidbaosecna";
+  SIZE_T test_page_size = sizeof(data1);
+  
+  // init manager
+  mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
+
+  // init pages
+  mu_assert("Unit Test Error: mem_page_init page1 fails with valid pointer", mem_page_init(&pPage1, test_page_size) == 0);
+  mu_assert("Unit Test Error: mem_page_init page2 fails with valid pointer", mem_page_init(&pPage2, test_page_size) == 0);
+  mu_assert("Unit Test Error: mem_page_init page3 fails with valid pointer", mem_page_init(&pPage3, test_page_size) == 0);
+
+  // init nodes
+  mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pNode1, pPage1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode2, pPage2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage2) == 0);
+
+  // add nodes
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode1 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode2 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode3 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode3) == 0);
+
+  //mu_assert("Unit Test Error: mem_mgr_load_dir allows null mgr", mem_mgr_load_dir(this_mgr, save_file_dir) != 0);
 
   mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
 
@@ -139,7 +168,7 @@ char *test_all_mem_mgr()
   if ((res = test_mem_mgr_add_delete_node()) != 0)
     return res;
 
-  if ((res = test_mem_mgr_load_dir()) != 0)
+  if ((res = test_mem_mgr_save_load_dir()) != 0)
     return res;
   
   return 0;

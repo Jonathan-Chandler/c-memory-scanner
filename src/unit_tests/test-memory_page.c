@@ -38,12 +38,9 @@ char *test_mem_page_save()
 
   mu_assert("Unit Test Error: mem_page_init failed to allocate", mem_page_init(&this_page, save_n_size) == 0);
 
-  // set values
-  this_page->lpBaseAddr = save_lp_base_addr;
-  for (SIZE_T i = 0; i < save_n_size; i++)
-  {
-    this_page->pcBuffer[i] = save_buffer[i];
-  }
+  // copy buffer
+  mu_assert("Unit Test Error: mem_page_init failed to copy", mem_page_load_buffer(this_page, save_lp_base_addr, save_n_size, save_buffer) == 0);
+  
 
   // check size was set
   mu_assert("Unit Test Error: mem_page_init failed set nSize", this_page->nSize == save_n_size);
@@ -60,17 +57,17 @@ char *test_mem_page_save()
   return 0;
 }
 
-char *test_mem_page_load()
+char *test_mem_page_load_file()
 {
   mem_page_t *this_page = NULL;
 
   // don't accept invalid param
-  mu_assert("Unit Test Error: mem_page_load allows null page", mem_page_load(NULL, save_file_name) != 0);
-  mu_assert("Unit Test Error: mem_page_load allows null file name", mem_page_load(&this_page, NULL) != 0);
-  mu_assert("Unit Test Error: mem_page_load allows empty file name", mem_page_load(&this_page, "") != 0);
+  mu_assert("Unit Test Error: mem_page_load_file allows null page", mem_page_load_file(NULL, save_file_name) != 0);
+  mu_assert("Unit Test Error: mem_page_load_file allows null file name", mem_page_load_file(&this_page, NULL) != 0);
+  mu_assert("Unit Test Error: mem_page_load_file allows empty file name", mem_page_load_file(&this_page, "") != 0);
 
   // loaded file matches saved file values
-  mu_assert("Unit Test Error: mem_page_load failed", mem_page_load(&this_page, save_file_name) == 0);
+  mu_assert("Unit Test Error: mem_page_load_file failed", mem_page_load_file(&this_page, save_file_name) == 0);
   mu_assert("Unit Test Error: loaded file did not match saved lpBaseAddr", this_page->lpBaseAddr == save_lp_base_addr);
   mu_assert("Unit Test Error: loaded file did not match saved nSize", this_page->nSize == save_n_size);
   for (SIZE_T i = 0; i < save_n_size; i++)
@@ -101,7 +98,7 @@ char *test_mem_page_search()
   SIZE_T nFoundIndex = 1;
 
   // load page from saved file in page_save test
-  mu_assert("Unit Test Error: mem_page_load failed", mem_page_load(&this_page, save_file_name) == 0);
+  mu_assert("Unit Test Error: mem_page_load_file failed", mem_page_load_file(&this_page, save_file_name) == 0);
 
   // only valid pointers
   mu_assert("Mem page search allows null page", 
@@ -164,7 +161,7 @@ char *test_all_mem_page()
   if ((res = test_mem_page_save()) != 0)
     return res;
 
-  if ((res = test_mem_page_load()) != 0)
+  if ((res = test_mem_page_load_file()) != 0)
     return res;
 
   if ((res = test_mem_page_search()) != 0)

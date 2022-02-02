@@ -195,7 +195,42 @@ exit_fail:
   return -EBADF;
 }
 
-int mem_page_load(mem_page_t **ppMemPage, const char *pszFileName)
+int mem_page_load_buffer(mem_page_t *pMemPage, LPCVOID lpBaseAddr, SIZE_T nSize, const char *pCopiedBuff)
+{
+  if (pMemPage == NULL)
+  {
+    debug_error("NULL memory page");
+    return -EINVAL;
+  }
+
+  if (pCopiedBuff == NULL)
+  {
+    debug_error("NULL copied buffer");
+    return -EINVAL;
+  }
+
+  if (pMemPage->pcBuffer == NULL)
+  {
+    debug_error("NULL destination page buffer");
+    return -EINVAL;
+  }
+
+  if (pMemPage->nSize != nSize)
+  {
+    debug_error("Page size does not match");
+    return -EINVAL;
+  }
+
+  // copy addr
+  pMemPage->lpBaseAddr = lpBaseAddr;
+
+  // copy buffer
+  memcpy(pMemPage->pcBuffer, pCopiedBuff, nSize);
+
+  return 0;
+}
+
+int mem_page_load_file(mem_page_t **ppMemPage, const char *pszFileName)
 {
   mem_page_t *pRetPage = NULL;
   FILE *pFile = NULL;
