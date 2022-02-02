@@ -164,7 +164,6 @@ int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
   pCurrentNode = pMgr->pFirstNode;
   while (pCurrentNode != NULL)
   {
-    printf("pCurrentNode = 0x%08X\n", (uint32_t)pCurrentNode);
     pCurrentPage = pCurrentNode->pThisPage;
     if (pCurrentPage == NULL)
     {
@@ -173,7 +172,6 @@ int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
     }
 
     sprintf(sPath, "%s/0x%08X.dat", pszDirName, (uint32_t)pCurrentPage->lpBaseAddr);
-    printf("saving to path %s\n", sPath);
 
     if (mem_page_save(pCurrentPage, sPath) != 0)
     {

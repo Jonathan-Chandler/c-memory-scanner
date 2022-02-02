@@ -9,8 +9,6 @@ rem wait 1 second for test target application to start
 rem start "test_application" "test_application.exe"
 rem SLEEP 1
 echo.
-rm -rf data/unit_tests/unit_test_save.dat
-rm -rf data/unit_tests/save_dir/*
 call unit_test.exe
 if errorlevel 1 goto unit_test_failed
 echo.
