@@ -249,6 +249,7 @@ char *test_mem_mgr_save_load_dir()
     mu_assert("Unit Test Error: mem_mgr_node_equal fails with valid params", mem_mgr_node_equal(pSearchedNode, pResultNode, &bNodesEqual) == 0);
     mu_assert("Unit Test Error: mem_mgr_node_equal equal with diff values", bNodesEqual == true);
 
+    //printf("searched %08X\n", (uint32_t)pSearchedNode->pThisPage->lpBaseAddr);
     if (pSearchedNode != NULL)
       pSearchedNode = pSearchedNode->pNextNode;
   }

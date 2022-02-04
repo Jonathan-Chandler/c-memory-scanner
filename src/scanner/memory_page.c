@@ -6,19 +6,20 @@
 
 #define MEMORY_PAGE_BUFFER_WRITE_SIZE 1024          // number of bytes to write at once when saving a page         
 #define MEMORY_PAGE_BUFFER_READ_SIZE  1024          // number of bytes to read at once when loading a saved page
+#define MEM_PAGE_READ_SZ (1024*4)                   // number of bytes read during each loop of ReadProcessMemory
 
 // create buffer to store page
-int mem_page_init(mem_page_t **pPage, SIZE_T nSize)
+int mem_page_init(mem_page_t **ppPage, SIZE_T nSize)
 {
   mem_page_t *pRetPage;
   char *pBuf;
 
-  if (pPage == NULL)
+  if (ppPage == NULL)
   {
     debug_error("Null return page pointer");
     return -EINVAL;
   }
-  *pPage = NULL;
+  *ppPage = NULL;
 
   if (nSize == 0)
   {
@@ -42,14 +43,165 @@ int mem_page_init(mem_page_t **pPage, SIZE_T nSize)
   // return new page
   pRetPage->nSize = nSize;
   pRetPage->pcBuffer = pBuf;
-  *pPage = pRetPage;
+  *ppPage = pRetPage;
 
   return 0;
+}
+
+int mem_page_init_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo, LPCVOID lpcBaseAddr, LPCVOID *lpcNextAddr)
+{
+  MEMORY_BASIC_INFORMATION memInfo;
+  mem_page_t *pRetPage = NULL;
+  int retval;
+  //debug_verbose("ppPage=\n");
+  debug_verbose("lpcBaseAddr=0x%08X", (uint32_t)lpcBaseAddr);
+  //debug_verbose("lpcNextAddr=0x%08X", (uint32_t)*lpcNextAddr);
+
+  if (ppPage == NULL)
+  {
+    debug_error("Null return page pointer");
+    return -EINVAL;
+  }
+  *ppPage = NULL;
+
+  if (pProcInfo == NULL)
+  {
+    debug_error("Null process info pointer");
+    return -EINVAL;
+  }
+
+  if (lpcNextAddr == NULL)
+  {
+    debug_error("Null next addr pointer");
+    return -EINVAL;
+  }
+
+  if (VirtualQueryEx(pProcInfo->hProcess, lpcBaseAddr, &memInfo, sizeof(memInfo)) == 0)
+  {
+    debug_error("VirtualQueryEx returns 0");
+    retval = MEM_PAGE_SIGNAL_END;
+    goto deallocate_exit;
+  }
+
+  // set next memory page start addr
+  *lpcNextAddr = memInfo.BaseAddress + memInfo.RegionSize;
+  //debug_verbose("memInfo.BaseAddress=0x%08X", (uint32_t)memInfo.BaseAddress);
+  //debug_verbose("memInfo.RegionSize=0x%08X", (uint32_t)memInfo.RegionSize);
+  
+  // ignore uncommitted / non-writable / guarded pages
+  if (!(memInfo.State & MEM_COMMIT)
+    ||  !(memInfo.Protect & MEMINFO_PROTECT_IS_WRITABLE)
+    ||  (memInfo.Protect & PAGE_GUARD))
+  {
+    // page should be skipped - return null page with no error
+    retval = 0;
+    goto deallocate_exit;
+  }
+
+  // allocate space for queried address
+  if ((retval = mem_page_init(&pRetPage, memInfo.RegionSize)) != 0)
+  {
+    debug_error("Fail to init mem page - %d", retval);
+    goto deallocate_exit;
+  }
+
+  if (pRetPage == NULL)
+  {
+    retval = -ENOMEM;
+    debug_error("Fail to init mem page - %d", retval);
+    goto deallocate_exit;
+  }
+
+  // set base address pointer
+  pRetPage->lpBaseAddr = memInfo.BaseAddress;
+
+  // read process memory page to buffer
+  if ((retval = mem_page_update_from_process(pRetPage, pProcInfo)) != 0)
+  {
+    debug_error("Fail to update mem page - %d", retval);
+    goto deallocate_exit;
+  }
+
+  // return new page
+  *ppPage = pRetPage;
+
+  return 0;
+
+deallocate_exit:
+  mem_page_destroy(&pRetPage);
+  *ppPage = NULL;
+
+  return retval;
+}
+
+int mem_page_refresh_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo)
+{
+  MEMORY_BASIC_INFORMATION memInfo;
+  mem_page_t *pPage = NULL;
+  int retval;
+
+  if (ppPage == NULL)
+  {
+    debug_error("Null return page pointer");
+    return -EINVAL;
+  }
+
+  if (*ppPage == NULL)
+  {
+    debug_error("Null return page *pointer");
+    return -EINVAL;
+  }
+  pPage = *ppPage;
+
+  if (pProcInfo == NULL)
+  {
+    debug_error("Null process info pointer");
+    return -EINVAL;
+  }
+
+  if (VirtualQueryEx(pProcInfo->hProcess, pPage->lpBaseAddr, &memInfo, sizeof(memInfo)) == 0)
+  {
+    // reached end of list
+    debug_verbose("VirtualQueryEx ret 0");
+    retval = MEM_PAGE_SIGNAL_END;
+    goto deallocate_exit;
+  }
+
+  // ignore uncommitted / non-writable / guarded pages
+  if (!(memInfo.State & MEM_COMMIT)
+    ||  !(memInfo.Protect & MEMINFO_PROTECT_IS_WRITABLE)
+    ||  (memInfo.Protect & PAGE_GUARD))
+  {
+    // page should be skipped - return null page with no error
+    retval = 0;
+    goto deallocate_exit;
+  }
+
+  // allocated space did not match memInfo
+  if (pPage->nSize != memInfo.RegionSize)
+  {
+    retval = -EINVAL;
+    goto deallocate_exit;
+  }
+
+  // read process memory page to buffer
+  if ((retval = mem_page_update_from_process(pPage, pProcInfo)) != 0)
+  {
+    goto deallocate_exit;
+  }
+
+  return 0;
+
+deallocate_exit:
+  mem_page_destroy(ppPage);
+
+  return retval;
 }
 
 int mem_page_destroy(mem_page_t **ppMemPage)
 {
   mem_page_t *pPage;
+  int retval = 0;
   char *pcBuffer;
 
   if (ppMemPage == NULL)
@@ -61,7 +213,8 @@ int mem_page_destroy(mem_page_t **ppMemPage)
   pPage = *ppMemPage;
   if (pPage == NULL)
   {
-    debug_error("Deallocating NULL page");
+    // already deallocated
+    //debug_error("Deallocating NULL page");
     return -EINVAL;
   }
 
@@ -75,6 +228,7 @@ int mem_page_destroy(mem_page_t **ppMemPage)
   {
     // don't return error value or page won't be destroyed
     debug_error("Null page buffer pointer");
+    retval = -ENXIO;
   }
 
   free(pPage);
@@ -82,7 +236,7 @@ int mem_page_destroy(mem_page_t **ppMemPage)
   // set pointer to destroyed page as null
   *ppMemPage = NULL;
 
-  return 0;
+  return retval;
 }
 
 int mem_page_compare(const mem_page_t *pPage1, const mem_page_t *pPage2, bool *pEqual)
@@ -362,9 +516,8 @@ int mem_page_load_file(mem_page_t **ppMemPage, const char *pszFileName)
   return 0;
 
 exit_fail:
-  *ppMemPage = NULL;
-
   mem_page_destroy(&pRetPage);
+  *ppMemPage = NULL;
 
   if (pFile)
     fclose(pFile);
@@ -426,3 +579,96 @@ int mem_page_search(mem_page_t *pPage, const SIZE_T nStringLength, const char *p
   return 0;
 }
 
+int mem_page_update_from_process(mem_page_t *pPage, proc_info_t *pProcInfo)
+{
+  uint32_t bytes_remaining;
+  uint32_t reads_required;
+
+  if (pPage == NULL)
+  {
+      debug_error("Updating null page");
+      return -EINVAL;
+  }
+
+  if (pPage->pcBuffer == NULL)
+  {
+      debug_error("Updating with null buffer");
+      return -EINVAL;
+  }
+
+  if (pProcInfo == NULL)
+  {
+      debug_error("Updating with null pointer to process info");
+      return -EINVAL;
+  }
+
+  reads_required = pPage->nSize / MEM_PAGE_READ_SZ;
+  for (uint32_t read_it = 0; read_it < reads_required; read_it++)
+  {
+    uint32_t current_byte = read_it * MEM_PAGE_READ_SZ;
+
+    if (ReadProcessMemory(pProcInfo->hProcess, (pPage->lpBaseAddr + current_byte), &pPage->pcBuffer[current_byte], MEM_PAGE_READ_SZ, NULL) == 0)
+    {
+      //MEMORY_BASIC_INFORMATION memInfo;
+
+      debug_verbose("Fail copying byte %u at address 0x%X", current_byte, (uint32_t)(pPage->lpBaseAddr + current_byte));
+      debug_print_last_win_error();
+
+#if 0
+      // query memory flags for this address
+      if (VirtualQueryEx(pProcInfo->hProcess, (pPage->lpBaseAddr + current_byte), &memInfo, sizeof(memInfo)) == 0)
+      {
+        debug_verbose("Fail to get virtualQueryEx information: 0x%X", (uint32_t)(pPage->lpBaseAddr + current_byte));
+      }
+      else
+      {
+        debug_print_mem_basic_flags(&memInfo);
+      }
+#endif
+
+      return -ENXIO;
+    }
+  }
+
+  // copy remaining bytes
+  if ((bytes_remaining = (pPage->nSize % MEM_PAGE_READ_SZ)) > 0)
+  {
+    uint32_t current_byte = reads_required * MEM_PAGE_READ_SZ;
+
+    if (ReadProcessMemory(pProcInfo->hProcess, (pPage->lpBaseAddr + current_byte), &pPage->pcBuffer[current_byte], bytes_remaining, NULL) == 0)
+    {
+      //MEMORY_BASIC_INFORMATION memInfo;
+
+      debug_verbose("fail copying byte %u at address 0x%X", current_byte, (uint32_t)(pPage->pcBuffer + current_byte));
+      debug_print_last_win_error();
+
+#if 0
+      // query memory flags for this address
+      if (VirtualQueryEx(pProcInfo->hProcess, (pPage->lpBaseAddr + current_byte), &memInfo, sizeof(memInfo)) == 0)
+      {
+        debug_verbose("Fail to get virtualQueryEx information: 0x%X", (uint32_t)(pPage->lpBaseAddr + current_byte));
+      }
+      else
+      {
+        debug_print_mem_basic_flags(&memInfo);
+      }
+#endif
+
+      return -ENXIO;
+    }
+  }
+  return 0;
+}
+
+void mem_page_print_addr_sz(mem_page_t *pPage)
+{
+  if (pPage == NULL)
+  {
+    printf("Printing NULL page\n");
+    return;
+  }
+
+  printf("pPage->lpBaseAddr = 0x%08X\n", (uint32_t)pPage->lpBaseAddr);
+  printf("pPage->nSize = %lu\n", pPage->nSize);
+  printf("pPage->pcBuffer = 0x%08X\n", (uint32_t)pPage->pcBuffer);
+}

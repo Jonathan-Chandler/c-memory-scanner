@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 #define MEM_MGR_MAX_FILE_PATH_NAME_LEN  2048
-#define MEM_MGR_MAX_FILE_NAME_LEN       15    // /0x(32-bit addr) + extension (/0x12345678.dat)
+#define MEM_MGR_MAX_FILE_NAME_LEN       15    // .../0x(32-bit addr) + extension (/0x12345678.dat)
 
 int mem_mgr_init(mem_mgr_t **ppMgr)
 {
@@ -21,7 +21,7 @@ int mem_mgr_init(mem_mgr_t **ppMgr)
   }
   *ppMgr = NULL;
 
-  if ((pRetMgr = calloc(1, sizeof(mem_mgr_t))) == 0)
+  if ((pRetMgr = malloc(sizeof(mem_mgr_t))) == 0)
   {
     debug_error("Fail to allocate memory manager");
     return -ENOMEM;
@@ -36,8 +36,6 @@ int mem_mgr_init(mem_mgr_t **ppMgr)
 
 int mem_mgr_destroy(mem_mgr_t **ppMgr)
 {
-  mem_mgr_node_t *pCurrentNode;
-  mem_mgr_node_t *pNextNode = NULL;
   mem_mgr_t *pMgr;
   if (ppMgr == NULL)
   {
@@ -45,6 +43,30 @@ int mem_mgr_destroy(mem_mgr_t **ppMgr)
     return -EINVAL;
   }
   pMgr = *ppMgr;
+
+  // destroy all allocated nodes
+  if (mem_mgr_destroy_all_nodes(pMgr) != 0)
+  {
+    debug_error("Fail to destroy attached nodes");
+  }
+
+  // free manager and set pointer to null
+  free(pMgr);
+  *ppMgr = NULL;
+
+  return 0;
+}
+
+int mem_mgr_destroy_all_nodes(mem_mgr_t *pMgr)
+{
+  mem_mgr_node_t *pCurrentNode;
+  mem_mgr_node_t *pNextNode;
+
+  if (pMgr == NULL)
+  {
+    debug_error("Null pointer to memory manager");
+    return -EINVAL;
+  }
   pCurrentNode = pMgr->pFirstNode;
 
   // free all nodes
@@ -54,10 +76,6 @@ int mem_mgr_destroy(mem_mgr_t **ppMgr)
     mem_mgr_node_destroy(&pCurrentNode);
     pCurrentNode = pNextNode;
   }
-
-  // free manager and set pointer to null
-  free(pMgr);
-  *ppMgr = NULL;
 
   return 0;
 }
@@ -443,4 +461,155 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
   return 0;
 }
 
+int mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
+{
+  int retval = 0;
+  LPCVOID lpcBaseAddr = 0;
+  LPCVOID lpcNextAddr = 0;
 
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null memory manager");
+    return -EINVAL;
+  }
+
+  if (pProcInfo == NULL)
+  {
+    debug_error("Receive null process info");
+    return -EINVAL;
+  }
+
+  // expected empty list, deallocate all nodes
+  if (pMgr->pFirstNode != NULL)
+  {
+    retval = mem_mgr_destroy_all_nodes(pMgr);
+  }
+
+  // failed to deallocate existing nodes
+  if (retval != 0)
+  {
+    debug_error("Fail to destroy all nodes - %d", retval);
+    return retval;
+  }
+
+  // get all pages
+  lpcBaseAddr = 0;
+  while (1)
+  {
+    mem_mgr_node_t *pNewNode = NULL;
+    mem_page_t *pNewPage = NULL;
+
+    // initialize new page with buffer copied from external process page data starting at lpcBaseAddr
+    retval = mem_page_init_from_proc_addr(&pNewPage, pProcInfo, lpcBaseAddr, &lpcNextAddr);
+    if (retval != 0 && retval != MEM_PAGE_SIGNAL_END)
+    {
+      debug_error("Fail to initialize page from proc addr - %d", retval);
+      return retval;
+    }
+    lpcBaseAddr = lpcNextAddr;
+
+    // exit - copied all pages
+    if (retval == MEM_PAGE_SIGNAL_END || (uint32_t)lpcBaseAddr >= 0x80000000)
+    {
+      debug_verbose("lpcbase = 0x%08X", (uint32_t)lpcBaseAddr);
+      debug_verbose("rc - %d", retval);
+      debug_verbose("Reached end of address list");
+      return 0;
+    }
+
+    // null page is returned if lpcBaseAddr is not valid
+    if (pNewPage == NULL)
+    {
+      //debug_verbose("skip to addr 0x%08X", (uint32_t)lpcBaseAddr);
+      continue;
+    }
+
+    // create a new node with memory page
+    retval = mem_mgr_node_init(&pNewNode, pNewPage);
+    if (retval != 0)
+    {
+      debug_error("Fail to initialize node - %d", retval);
+      return retval;
+    }
+
+    // add node at beginning of list of nodes in manager
+    retval = mem_mgr_add_node(pMgr, pNewNode);
+    if (retval != 0)
+    {
+      debug_error("Fail to initialize node - %d", retval);
+      return retval;
+    }
+  }
+
+  return 0;
+}
+
+int mem_mgr_refresh_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
+{
+  int retval;
+  mem_mgr_node_t *pCurrentNode;
+
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null memory manager");
+    return -EINVAL;
+  }
+
+  if (pProcInfo == NULL)
+  {
+    debug_error("Receive null process info");
+    return -EINVAL;
+  }
+
+  // get all pages
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode != NULL)
+  {
+    mem_page_t *pCurrentPage = pCurrentNode->pThisPage;
+
+    // refresh external page data starting at lpcBaseAddr
+    retval = mem_page_refresh_from_proc_addr(&pCurrentPage, pProcInfo);
+    if (retval != 0 || pCurrentPage == NULL)
+    {
+      // failed to update - delete this node and restart the refresh loop
+      debug_error("Fail to refresh page - removing node - ret %d", retval);
+      mem_mgr_del_node(pMgr, pCurrentNode);
+      pCurrentNode = pMgr->pFirstNode;
+      continue;
+    }
+
+    pCurrentNode = pCurrentNode->pNextNode;
+  }
+
+  return 0;
+}
+
+void mem_mgr_print_nodes(mem_mgr_t *pMgr)
+{
+  int iNodeCount = 0;
+  mem_mgr_node_t *pCurrentNode;
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null pointer to memory manager");
+    return;
+  }
+  
+  if (pMgr->pFirstNode == NULL)
+  {
+    debug_error("Receive pointer to memory manager with no nodes");
+    return;
+  }
+
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode != NULL)
+  {
+    printf("node %d:\n", iNodeCount);
+    printf("pCurrentNode->pThisPage = 0x%08X\n", (uint32_t) pCurrentNode->pThisPage);
+    printf("pCurrentNode->pPrevNode = 0x%08X\n", (uint32_t) pCurrentNode->pPrevNode);
+    printf("pCurrentNode->pNextNode = 0x%08X\n", (uint32_t) pCurrentNode->pNextNode);
+    mem_page_print_addr_sz(pCurrentNode->pThisPage);
+    printf("\n");
+    iNodeCount++;
+    pCurrentNode = pCurrentNode->pNextNode;
+  }
+}

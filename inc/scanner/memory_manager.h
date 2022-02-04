@@ -15,8 +15,9 @@ typedef struct mem_mgr_t
   mem_mgr_node_t *pFirstNode;
 } mem_mgr_t;
 
-int mem_mgr_init(mem_mgr_t **page);
-int mem_mgr_destroy(mem_mgr_t **page);
+int mem_mgr_init(mem_mgr_t **ppMgr);
+int mem_mgr_destroy(mem_mgr_t **ppMgr);
+int mem_mgr_destroy_all_nodes(mem_mgr_t *pMgr);
 
 int mem_mgr_node_init(mem_mgr_node_t **ppNode, mem_page_t *pPage);
 int mem_mgr_node_destroy(mem_mgr_node_t **ppNode);
@@ -30,7 +31,9 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode);
 int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName);
 int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName);
 
-int mem_mgr_load_proc(mem_mgr_t **pMgr, proc_info_t *pProcInfo);
+int mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo);
+
+void mem_mgr_print_nodes(mem_mgr_t *pMgr);
 
 
 #endif // __MEMORY_MANAGER_H__

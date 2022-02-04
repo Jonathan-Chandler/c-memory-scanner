@@ -9,12 +9,12 @@
 
 typedef struct 
 {
-  HWND window_handle;
-  HANDLE process_handle;
-  DWORD process_id;
+  HWND hWindow;
+  HANDLE hProcess;
+  DWORD dwProcessId;
 } proc_info_t;
 
-int proc_info_init(proc_info_t **process_info, const char *window_title);
-int proc_info_destroy(proc_info_t **process_info);
+int proc_info_init(proc_info_t **pProcInfo, const char *pszWindowTitle);
+int proc_info_destroy(proc_info_t **pProcInfo);
 
 #endif

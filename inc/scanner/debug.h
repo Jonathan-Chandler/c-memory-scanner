@@ -22,7 +22,7 @@ extern int debug_level;
   }
 
 #define debug_error(...) \
-  if (debug_level >= DEBUG_LOG_ERROR) \
+  if (debug_level >= DEBUG_LOG_VERBOSE) \
   { \
     printf("ERROR::%s::%d::%s::", __FILE__, __LINE__, __func__); \
     printf(__VA_ARGS__); \
