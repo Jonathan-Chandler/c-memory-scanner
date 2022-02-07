@@ -33,6 +33,8 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName);
 
 int mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo);
 
+int mem_mgr_search_data(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, LPCVOID lpSearchAddr);
+
 void mem_mgr_print_nodes(mem_mgr_t *pMgr);
 
 

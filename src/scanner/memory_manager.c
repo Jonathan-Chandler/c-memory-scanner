@@ -511,9 +511,11 @@ int mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
     // exit - copied all pages
     if (retval == MEM_PAGE_SIGNAL_END || (uint32_t)lpcBaseAddr >= 0x80000000)
     {
+#if 0
       debug_verbose("lpcbase = 0x%08X", (uint32_t)lpcBaseAddr);
       debug_verbose("rc - %d", retval);
       debug_verbose("Reached end of address list");
+#endif
       return 0;
     }
 
@@ -613,3 +615,37 @@ void mem_mgr_print_nodes(mem_mgr_t *pMgr)
     pCurrentNode = pCurrentNode->pNextNode;
   }
 }
+
+#if 0
+int mem_mgr_search_data(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, const char *pSearchData)
+{
+  mem_mgr_node_t *pCurrentNode;
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null memory manager pointer");
+    return -EINVAL;
+  }
+
+  if (ppResult == NULL)
+  {
+    debug_error("Receive null result node pointer");
+    return -EINVAL;
+  }
+  *ppResult = NULL;
+
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode != NULL)
+  {
+    if (lpSearchAddr == pCurrentNode->pThisPage->lpBaseAddr)
+    {
+      *ppResult = pCurrentNode;
+      return 0;
+    }
+
+    pCurrentNode = pCurrentNode->pNextNode;
+  }
+
+  return 0;
+}
+#endif
+

@@ -1,7 +1,8 @@
 ECHO = echo
-MAKE = mingw32-make
+#MAKE = mingw32-make
+MAKE = make
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -m32
 
 export ECHO
 export CC

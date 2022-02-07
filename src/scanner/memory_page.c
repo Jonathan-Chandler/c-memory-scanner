@@ -54,8 +54,8 @@ int mem_page_init_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo, LP
   mem_page_t *pRetPage = NULL;
   int retval;
   //debug_verbose("ppPage=\n");
-  debug_verbose("lpcBaseAddr=0x%08X", (uint32_t)lpcBaseAddr);
   //debug_verbose("lpcNextAddr=0x%08X", (uint32_t)*lpcNextAddr);
+  //debug_verbose("lpcBaseAddr=0x%08X", (uint32_t)lpcBaseAddr);
 
   if (ppPage == NULL)
   {
@@ -78,7 +78,7 @@ int mem_page_init_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo, LP
 
   if (VirtualQueryEx(pProcInfo->hProcess, lpcBaseAddr, &memInfo, sizeof(memInfo)) == 0)
   {
-    debug_error("VirtualQueryEx returns 0");
+    //debug_error("VirtualQueryEx returns 0");
     retval = MEM_PAGE_SIGNAL_END;
     goto deallocate_exit;
   }
@@ -162,7 +162,7 @@ int mem_page_refresh_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo)
   if (VirtualQueryEx(pProcInfo->hProcess, pPage->lpBaseAddr, &memInfo, sizeof(memInfo)) == 0)
   {
     // reached end of list
-    debug_verbose("VirtualQueryEx ret 0");
+    //debug_verbose("VirtualQueryEx ret 0");
     retval = MEM_PAGE_SIGNAL_END;
     goto deallocate_exit;
   }
