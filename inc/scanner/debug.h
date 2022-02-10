@@ -4,6 +4,15 @@
 #include <stdio.h>
 #include <windows.h>
 
+#define DLL_EXPORT_EN
+#ifdef DLL_EXPORT_EN
+  #define MEM_API __declspec(dllexport)
+#else
+  #define MEM_API __declspec(dllimport)
+#endif
+
+#define ADD_CALL __cdecl
+
 enum 
 {
   DEBUG_LOG_NONE,
@@ -29,6 +38,6 @@ extern int debug_level;
     printf("\n"); \
   }
 
-void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo);
-void debug_print_last_win_error(void);
+MEM_API void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo);
+MEM_API void debug_print_last_win_error(void);
 #endif

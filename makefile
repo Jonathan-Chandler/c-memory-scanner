@@ -2,7 +2,8 @@ ECHO = echo
 #MAKE = mingw32-make
 MAKE = make
 CC = gcc
-CFLAGS = -Wall -m32
+#CFLAGS = -Wall -m32 
+CFLAGS = -Wall -m32 -s -shared -Wl,--subsystem,windows
 
 export ECHO
 export CC

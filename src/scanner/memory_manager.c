@@ -10,7 +10,7 @@
 #define MEM_MGR_MAX_FILE_PATH_NAME_LEN  2048
 #define MEM_MGR_MAX_FILE_NAME_LEN       15    // .../0x(32-bit addr) + extension (/0x12345678.dat)
 
-int mem_mgr_init(mem_mgr_t **ppMgr)
+int ADD_CALL mem_mgr_init(mem_mgr_t **ppMgr)
 {
   mem_mgr_t *pRetMgr;
 
@@ -34,7 +34,7 @@ int mem_mgr_init(mem_mgr_t **ppMgr)
   return 0;
 }
 
-int mem_mgr_destroy(mem_mgr_t **ppMgr)
+int ADD_CALL mem_mgr_destroy(mem_mgr_t **ppMgr)
 {
   mem_mgr_t *pMgr;
   if (ppMgr == NULL)
@@ -57,7 +57,7 @@ int mem_mgr_destroy(mem_mgr_t **ppMgr)
   return 0;
 }
 
-int mem_mgr_destroy_all_nodes(mem_mgr_t *pMgr)
+int ADD_CALL mem_mgr_destroy_all_nodes(mem_mgr_t *pMgr)
 {
   mem_mgr_node_t *pCurrentNode;
   mem_mgr_node_t *pNextNode;
@@ -80,7 +80,7 @@ int mem_mgr_destroy_all_nodes(mem_mgr_t *pMgr)
   return 0;
 }
 
-int mem_mgr_node_init(mem_mgr_node_t **ppNode, mem_page_t *pPage)
+int ADD_CALL mem_mgr_node_init(mem_mgr_node_t **ppNode, mem_page_t *pPage)
 {
   mem_mgr_node_t *pRetNode;
 
@@ -112,7 +112,7 @@ int mem_mgr_node_init(mem_mgr_node_t **ppNode, mem_page_t *pPage)
   return 0;
 }
 
-int mem_mgr_node_destroy(mem_mgr_node_t **ppNode)
+int ADD_CALL mem_mgr_node_destroy(mem_mgr_node_t **ppNode)
 {
   mem_mgr_node_t *pNode;
 
@@ -143,7 +143,7 @@ int mem_mgr_node_destroy(mem_mgr_node_t **ppNode)
   return 0;
 }
 
-int mem_mgr_node_equal(mem_mgr_node_t *pNode1, mem_mgr_node_t *pNode2, bool *pbEqual)
+int ADD_CALL mem_mgr_node_equal(mem_mgr_node_t *pNode1, mem_mgr_node_t *pNode2, bool *pbEqual)
 {
   int retval;
 
@@ -187,7 +187,7 @@ int mem_mgr_node_equal(mem_mgr_node_t *pNode1, mem_mgr_node_t *pNode2, bool *pbE
   return 0;
 }
 
-int mem_mgr_search_addr(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, LPCVOID lpSearchAddr)
+int ADD_CALL mem_mgr_search_addr(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, LPCVOID lpSearchAddr)
 {
   mem_mgr_node_t *pCurrentNode;
   if (pMgr == NULL)
@@ -219,7 +219,7 @@ int mem_mgr_search_addr(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, LPCVOID lpSe
 }
 
 // add node to top of list
-int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
+int ADD_CALL mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 {
   if (pMgr == NULL)
   {
@@ -251,7 +251,7 @@ int mem_mgr_add_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
   return 0;
 }
 
-int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
+int ADD_CALL mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
 {
   int retval = 0;
 
@@ -301,7 +301,7 @@ int mem_mgr_del_node(mem_mgr_t *pMgr, mem_mgr_node_t *pNode)
   return 0;
 }
 
-int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
+int ADD_CALL mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
 {
   char sPath[MEM_MGR_MAX_FILE_PATH_NAME_LEN];
   SIZE_T nDirNameLen;
@@ -361,7 +361,7 @@ int mem_mgr_save_dir(const mem_mgr_t *pMgr, const char *pszDirName)
   return 0;
 }
 
-int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
+int ADD_CALL mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
 {
   WIN32_FIND_DATA fdFile;
   HANDLE hFind = NULL;
@@ -461,7 +461,7 @@ int mem_mgr_load_dir(mem_mgr_t *pMgr, const char *pszDirName)
   return 0;
 }
 
-int mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
+int ADD_CALL mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
 {
   int retval = 0;
   LPCVOID lpcBaseAddr = 0;
@@ -546,7 +546,7 @@ int mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
   return 0;
 }
 
-int mem_mgr_refresh_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
+int ADD_CALL mem_mgr_refresh_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
 {
   int retval;
   mem_mgr_node_t *pCurrentNode;
@@ -586,7 +586,7 @@ int mem_mgr_refresh_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo)
   return 0;
 }
 
-void mem_mgr_print_nodes(mem_mgr_t *pMgr)
+void ADD_CALL mem_mgr_print_nodes(mem_mgr_t *pMgr)
 {
   int iNodeCount = 0;
   mem_mgr_node_t *pCurrentNode;
@@ -617,7 +617,7 @@ void mem_mgr_print_nodes(mem_mgr_t *pMgr)
 }
 
 #if 0
-int mem_mgr_search_data(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, const char *pSearchData)
+int ADD_CALL mem_mgr_search_data(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, const char *pSearchData)
 {
   mem_mgr_node_t *pCurrentNode;
   if (pMgr == NULL)

@@ -3,6 +3,9 @@ SOURCES = $(wildcard *.c)
 OBJS = $(SOURCES:%.c=../../build/unit_tests/%.o)
 OBJ_NAME = ../../unit_test.exe
 
+#redefine cflags for executable
+CFLAGS = -Wall -m32 
+
 # filter out scanner main function
 SCANNER_MAIN = $(shell ls ../../build/scanner/main.o)
 ALL_SCANNER_OBJS = $(shell ls ../../build/scanner/*.o)

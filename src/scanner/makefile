@@ -1,7 +1,8 @@
 INCLUDES = -I../../inc/scanner
 SOURCES = $(wildcard *.c)
 OBJS = $(SOURCES:%.c=../../build/scanner/%.o)
-OBJ_NAME = ../../scanner.exe
+#OBJ_NAME = ../../scanner.exe
+OBJ_NAME = ../../memscan.dll
 
 ../../build/scanner/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

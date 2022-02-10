@@ -9,7 +9,7 @@
 #define MEM_PAGE_READ_SZ (1024*4)                   // number of bytes read during each loop of ReadProcessMemory
 
 // create buffer to store page
-int mem_page_init(mem_page_t **ppPage, SIZE_T nSize)
+int ADD_CALL mem_page_init(mem_page_t **ppPage, SIZE_T nSize)
 {
   mem_page_t *pRetPage;
   char *pBuf;
@@ -48,7 +48,7 @@ int mem_page_init(mem_page_t **ppPage, SIZE_T nSize)
   return 0;
 }
 
-int mem_page_init_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo, LPCVOID lpcBaseAddr, LPCVOID *lpcNextAddr)
+int ADD_CALL mem_page_init_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo, LPCVOID lpcBaseAddr, LPCVOID *lpcNextAddr)
 {
   MEMORY_BASIC_INFORMATION memInfo;
   mem_page_t *pRetPage = NULL;
@@ -134,7 +134,7 @@ deallocate_exit:
   return retval;
 }
 
-int mem_page_refresh_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo)
+int ADD_CALL mem_page_refresh_from_proc_addr(mem_page_t **ppPage, proc_info_t *pProcInfo)
 {
   MEMORY_BASIC_INFORMATION memInfo;
   mem_page_t *pPage = NULL;
@@ -198,7 +198,7 @@ deallocate_exit:
   return retval;
 }
 
-int mem_page_destroy(mem_page_t **ppMemPage)
+int ADD_CALL mem_page_destroy(mem_page_t **ppMemPage)
 {
   mem_page_t *pPage;
   int retval = 0;
@@ -239,7 +239,7 @@ int mem_page_destroy(mem_page_t **ppMemPage)
   return retval;
 }
 
-int mem_page_compare(const mem_page_t *pPage1, const mem_page_t *pPage2, bool *pEqual)
+int ADD_CALL mem_page_compare(const mem_page_t *pPage1, const mem_page_t *pPage2, bool *pEqual)
 {
   if (!mem_page_is_valid(pPage1))
   {
@@ -281,7 +281,7 @@ int mem_page_compare(const mem_page_t *pPage1, const mem_page_t *pPage2, bool *p
   return 0;
 }
 
-bool mem_page_is_valid(const mem_page_t *page)
+bool ADD_CALL mem_page_is_valid(const mem_page_t *page)
 {
   if (page == NULL)
   {
@@ -304,7 +304,7 @@ bool mem_page_is_valid(const mem_page_t *page)
   return true;
 }
 
-int mem_page_save(const mem_page_t *pMemPage, const char *pszFileName)
+int ADD_CALL mem_page_save(const mem_page_t *pMemPage, const char *pszFileName)
 {
   FILE *pFile = NULL;
   SIZE_T nBytesWritten;
@@ -391,7 +391,7 @@ exit_fail:
   return -EBADF;
 }
 
-int mem_page_load_buffer(mem_page_t *pMemPage, LPCVOID lpBaseAddr, SIZE_T nSize, const char *pCopiedBuff)
+int ADD_CALL mem_page_load_buffer(mem_page_t *pMemPage, LPCVOID lpBaseAddr, SIZE_T nSize, const char *pCopiedBuff)
 {
   if (pMemPage == NULL)
   {
@@ -426,7 +426,7 @@ int mem_page_load_buffer(mem_page_t *pMemPage, LPCVOID lpBaseAddr, SIZE_T nSize,
   return 0;
 }
 
-int mem_page_load_file(mem_page_t **ppMemPage, const char *pszFileName)
+int ADD_CALL mem_page_load_file(mem_page_t **ppMemPage, const char *pszFileName)
 {
   mem_page_t *pRetPage = NULL;
   FILE *pFile = NULL;
@@ -524,7 +524,7 @@ exit_fail:
   return -EBADF;
 }
 
-int mem_page_search(mem_page_t *pPage, const SIZE_T nStringLength, const char *pSearch, SIZE_T nStartIndex, bool *bWasFound, SIZE_T *nFoundIndex)
+int ADD_CALL mem_page_search(mem_page_t *pPage, const SIZE_T nStringLength, const char *pSearch, SIZE_T nStartIndex, bool *bWasFound, SIZE_T *nFoundIndex)
 {
   // exit invalid pointers
   if (pPage == NULL || pSearch == NULL || bWasFound == NULL || nFoundIndex == NULL)
@@ -579,7 +579,7 @@ int mem_page_search(mem_page_t *pPage, const SIZE_T nStringLength, const char *p
   return 0;
 }
 
-int mem_page_update_from_process(mem_page_t *pPage, proc_info_t *pProcInfo)
+int ADD_CALL mem_page_update_from_process(mem_page_t *pPage, proc_info_t *pProcInfo)
 {
   uint32_t bytes_remaining;
   uint32_t reads_required;
@@ -660,7 +660,7 @@ int mem_page_update_from_process(mem_page_t *pPage, proc_info_t *pProcInfo)
   return 0;
 }
 
-void mem_page_print_addr_sz(mem_page_t *pPage)
+void ADD_CALL mem_page_print_addr_sz(mem_page_t *pPage)
 {
   if (pPage == NULL)
   {

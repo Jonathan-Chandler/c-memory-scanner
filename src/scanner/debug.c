@@ -2,7 +2,7 @@
 
 int debug_level = DEBUG_LOG_VERBOSE;
 
-void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo)
+void ADD_CALL debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo)
 {
     printf("AllocationProtect = 0x%lX", memInfo->AllocationProtect);
 
@@ -43,7 +43,7 @@ void debug_print_mem_basic_flags(MEMORY_BASIC_INFORMATION *memInfo)
     printf("\n");
 }
 
-void debug_print_last_win_error()
+void ADD_CALL debug_print_last_win_error()
 {
   LPVOID lpMsgBuf;
   DWORD dw = GetLastError();

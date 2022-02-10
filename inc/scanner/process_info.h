@@ -1,6 +1,7 @@
 #ifndef __PROCESS_INFO_H__
 #define __PROCESS_INFO_H__
 #include <windows.h>
+#include "debug.h"
 
 #define MEMINFO_PROTECT_IS_WRITABLE (PAGE_READWRITE | PAGE_WRITECOPY | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)
 #define MEMINFO_PROTECT_IS_READABLE (PAGE_READONLY | PAGE_READWRITE | PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE)
@@ -14,7 +15,7 @@ typedef struct
   DWORD dwProcessId;
 } proc_info_t;
 
-int proc_info_init(proc_info_t **pProcInfo, const char *pszWindowTitle);
-int proc_info_destroy(proc_info_t **pProcInfo);
+MEM_API int ADD_CALL proc_info_init(proc_info_t **pProcInfo, const char *pszWindowTitle);
+MEM_API int ADD_CALL proc_info_destroy(proc_info_t **pProcInfo);
 
 #endif
