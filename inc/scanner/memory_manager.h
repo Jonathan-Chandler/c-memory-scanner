@@ -38,7 +38,7 @@ MEM_API int ADD_CALL mem_mgr_load_proc(mem_mgr_t *pMgr, proc_info_t *pProcInfo);
 
 MEM_API int ADD_CALL mem_mgr_filter_pages(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, const SIZE_T nSearchDataLength, const char *pSearchData);
 
-MEM_API int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength, const char *pSearchData, PVOID nStartAddress, bool *pbFoundPage, LPCVOID *pFoundAddress);
+MEM_API int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength, const char *pSearchData, LPCVOID nStartAddress, bool *pbFoundPage, LPCVOID *pFoundAddress);
 
 
 MEM_API void ADD_CALL mem_mgr_print_nodes(mem_mgr_t *pMgr);

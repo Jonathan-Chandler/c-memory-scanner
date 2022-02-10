@@ -636,7 +636,6 @@ void ADD_CALL mem_mgr_print_nodes(mem_mgr_t *pMgr)
   }
 }
 
-
 int ADD_CALL mem_mgr_filter_pages(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, const SIZE_T nStringLength, const char *pSearchData)
 {
   mem_mgr_node_t *pCurrentNode;
@@ -692,7 +691,7 @@ int ADD_CALL mem_mgr_filter_pages(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, co
   return 0;
 }
 
-int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength, const char *pSearchData, PVOID nStartAddress, bool *pbFoundPage, LPCVOID *pFoundAddress)
+int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength, const char *pSearchData, LPCVOID nStartAddress, bool *pbFoundPage, LPCVOID *pFoundAddress)
 {
   mem_mgr_node_t *pCurrentNode;
   if (pMgr == NULL)
