@@ -143,6 +143,25 @@ int ADD_CALL mem_mgr_node_destroy(mem_mgr_node_t **ppNode)
   return 0;
 }
 
+MEM_API int ADD_CALL mem_mgr_node_get_page(mem_mgr_node_t *pNode, mem_page_t **ppPage)
+{
+  if (pNode == NULL)
+  {
+    debug_error("Null pointer to node");
+    return -EINVAL;
+  }
+
+  if (ppPage == NULL)
+  {
+    debug_error("Null return page pointer");
+    return -EINVAL;
+  }
+
+  *ppPage = pNode->pThisPage;
+
+  return 0;
+}
+
 int ADD_CALL mem_mgr_node_equal(mem_mgr_node_t *pNode1, mem_mgr_node_t *pNode2, bool *pbEqual)
 {
   int retval;
@@ -206,7 +225,8 @@ int ADD_CALL mem_mgr_search_addr(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, LPC
   pCurrentNode = pMgr->pFirstNode;
   while (pCurrentNode != NULL)
   {
-    if (lpSearchAddr == pCurrentNode->pThisPage->lpBaseAddr)
+    if (lpSearchAddr >= pCurrentNode->pThisPage->lpBaseAddr 
+        && lpSearchAddr <= (pCurrentNode->pThisPage->lpBaseAddr + pCurrentNode->pThisPage->nSize))
     {
       *ppResult = pCurrentNode;
       return 0;
@@ -616,8 +636,8 @@ void ADD_CALL mem_mgr_print_nodes(mem_mgr_t *pMgr)
   }
 }
 
-#if 0
-int ADD_CALL mem_mgr_search_data(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, const char *pSearchData)
+
+int ADD_CALL mem_mgr_filter_pages(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, const SIZE_T nStringLength, const char *pSearchData)
 {
   mem_mgr_node_t *pCurrentNode;
   if (pMgr == NULL)
@@ -636,16 +656,122 @@ int ADD_CALL mem_mgr_search_data(mem_mgr_t *pMgr, mem_mgr_node_t **ppResult, con
   pCurrentNode = pMgr->pFirstNode;
   while (pCurrentNode != NULL)
   {
-    if (lpSearchAddr == pCurrentNode->pThisPage->lpBaseAddr)
+    SIZE_T nFoundIndex;
+    bool bWasFound = false;
+    int retval = mem_page_search(pCurrentNode->pThisPage, nStringLength, pSearchData, 0, &bWasFound, &nFoundIndex);
+
+    if (retval != 0)
     {
-      *ppResult = pCurrentNode;
-      return 0;
+      debug_error("Search failed with error %d", retval);
+      return retval;
     }
 
-    pCurrentNode = pCurrentNode->pNextNode;
+    // delete the node if there was no match
+    if (bWasFound == false)
+    {
+      mem_mgr_node_t *pNextNode = pCurrentNode->pNextNode;        // save pointer to next node before deleting
+
+      // delete node from list
+      retval = mem_mgr_del_node(pMgr, pCurrentNode);
+      if (retval != 0)
+      {
+        debug_error("Delete node failed with error %d", retval);
+        return retval;
+      }
+
+      // set pCurrentNode to saved next node
+      pCurrentNode = pNextNode;
+    }
+    else
+    {
+      // found filtered search data - go to next node
+      pCurrentNode = pCurrentNode->pNextNode;
+    }
   }
 
   return 0;
 }
-#endif
+
+int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength, const char *pSearchData, PVOID nStartAddress, bool *pbFoundPage, LPCVOID *pFoundAddress)
+{
+  mem_mgr_node_t *pCurrentNode;
+  if (pMgr == NULL)
+  {
+    debug_error("Receive null memory manager pointer");
+    return -EINVAL;
+  }
+
+  if (nSearchDataLength == 0)
+  {
+    debug_error("Receive 0 search data length");
+    return -EINVAL;
+  }
+
+  if (pSearchData == NULL)
+  {
+    debug_error("Receive NULL search data pointer");
+    return -EINVAL;
+  }
+
+  if (pbFoundPage == NULL)
+  {
+    debug_error("Receive null result found page pointer");
+    return -EINVAL;
+  }
+  *pbFoundPage = false;
+
+  if (pFoundAddress == NULL)
+  {
+    debug_error("Receive NULL found address");
+    return -EINVAL;
+  }
+  pFoundAddress = 0;
+
+  if (pMgr->pFirstNode == NULL)
+  {
+    debug_error("Receive empty node list");
+    return -EINVAL;
+  }
+
+  // skip to last node
+  pCurrentNode = pMgr->pFirstNode;
+  while (pCurrentNode->pNextNode != NULL)
+    pCurrentNode = pCurrentNode->pNextNode;
+
+  // iterate through nodes backwards until found page containing this address
+  while (pCurrentNode != NULL)
+  {
+    // go to next page if highest address on current page is less than starting address
+    if ((pCurrentNode->pThisPage->lpBaseAddr + pCurrentNode->pThisPage->nSize) < nStartAddress)
+      pCurrentNode = pCurrentNode->pPrevNode;
+    else
+      break;
+  }
+
+  // continue to iterate through list backwards
+  while (pCurrentNode != NULL)
+  {
+    SIZE_T nFoundIndex;
+    int retval = mem_page_search(pCurrentNode->pThisPage, nSearchDataLength, pSearchData, 0, pbFoundPage, &nFoundIndex);
+
+    if (retval != 0)
+    {
+      debug_error("Search failed with error %d", retval);
+      return retval;
+    }
+
+    // found matching address on page
+    if (*pbFoundPage)
+    {
+      // new address is page base + search found index
+      *pFoundAddress = pCurrentNode->pThisPage->lpBaseAddr + nFoundIndex;
+      return 0;
+    }
+
+    // found filtered search data - go to next node
+    pCurrentNode = pCurrentNode->pPrevNode;
+  }
+
+  return 0;
+}
 
