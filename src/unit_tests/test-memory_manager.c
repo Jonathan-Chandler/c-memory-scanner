@@ -172,70 +172,6 @@ char *test_mem_mgr_search_addr()
   return 0;
 }
 
-char *test_mem_mgr_page_search()
-{
-  mem_mgr_t *this_mgr = NULL;
-  mem_mgr_node_t *pNode1 = NULL;
-  mem_mgr_node_t *pNode2 = NULL;
-  mem_mgr_node_t *pNode3 = NULL;
-  mem_page_t *pPage1 = NULL;
-  mem_page_t *pPage2 = NULL;
-  mem_page_t *pPage3 = NULL;
-  const char data1[] = "atoaousaotneuh";
-  const char data2[] = "saamteuhsaumii";
-  const char data3[] = "saoeaobaosecna";
-  SIZE_T test_page_size = sizeof(data1);
-  const LPCVOID lpPageAddr1 = (LPCVOID)0x00010000;
-  const LPCVOID lpPageAddr2 = (LPCVOID)0x00020000;
-  const LPCVOID lpPageAddr3 = (LPCVOID)0x08000000;
-
-  SIZE_T nSearchDataLength = 2;
-  char pSearchData[] = "ao";
-  LPCVOID nStartAddress = 0;
-  bool bFoundPage;
-  LPCVOID nFoundAddress = 0;
-  
-  // init manager
-  mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
-
-  // init pages
-  mu_assert("Unit Test Error: mem_page_init page1 fails with valid pointer", mem_page_init(&pPage1, test_page_size) == 0);
-  mu_assert("Unit Test Error: mem_page_init page2 fails with valid pointer", mem_page_init(&pPage2, test_page_size) == 0);
-  mu_assert("Unit Test Error: mem_page_init page3 fails with valid pointer", mem_page_init(&pPage3, test_page_size) == 0);
-
-  // copy page data
-  mu_assert("Unit Test Error: mem_page_init failed to copy page1", mem_page_load_buffer(pPage1, lpPageAddr1, test_page_size, data1) == 0);
-  mu_assert("Unit Test Error: mem_page_init failed to copy page2", mem_page_load_buffer(pPage2, lpPageAddr2, test_page_size, data2) == 0);
-  mu_assert("Unit Test Error: mem_page_init failed to copy page3", mem_page_load_buffer(pPage3, lpPageAddr3, test_page_size, data3) == 0);
-
-  // init nodes
-  mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pNode1, pPage1) == 0);
-  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode2, pPage2) == 0);
-  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage3) == 0);
-
-  // add nodes
-  mu_assert("Unit Test Error: mem_mgr_add_node for pNode1 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode1) == 0);
-  mu_assert("Unit Test Error: mem_mgr_add_node for pNode2 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode2) == 0);
-  mu_assert("Unit Test Error: mem_mgr_add_node for pNode3 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode3) == 0);
-
-  // invalid values
-  mu_assert("Unit Test Error: mem_mgr_page_search allows null manager", mem_mgr_page_search(NULL, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress) != 0);
-  mu_assert("Unit Test Error: mem_mgr_page_search allows 0 data len", mem_mgr_page_search(this_mgr, 0, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress) != 0);
-  mu_assert("Unit Test Error: mem_mgr_page_search allows null search data", mem_mgr_page_search(this_mgr, nSearchDataLength, NULL, nStartAddress, &bFoundPage, &nFoundAddress) != 0);
-  mu_assert("Unit Test Error: mem_mgr_page_search allows null bool pointer", mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, NULL, &nFoundAddress) != 0);
-  mu_assert("Unit Test Error: mem_mgr_page_search allows null found addr", mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, NULL) != 0);
-
-  // valid values
-  //mu_assert("Unit Test Error: mem_mgr_page_search ", mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress) != 0);
-  //printf("found:%d addr:%d\n", bFoundPage, (uint32_t)nFoundAddress);
-
-  //mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress)
-
-  mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate", mem_mgr_destroy(&this_mgr) == 0);
-
-  return 0;
-}
-
 char *test_mem_mgr_save_load_dir()
 {
   mem_mgr_t *this_mgr = NULL;
@@ -325,6 +261,78 @@ char *test_mem_mgr_save_load_dir()
   
   mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate saved pages", mem_mgr_destroy(&this_mgr) == 0);
   mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate loaded pages", mem_mgr_destroy(&loaded_mgr) == 0);
+
+  return 0;
+}
+
+char *test_mem_mgr_page_search()
+{
+  mem_mgr_t *this_mgr = NULL;
+  mem_mgr_node_t *pNode1 = NULL;
+  mem_mgr_node_t *pNode2 = NULL;
+  mem_mgr_node_t *pNode3 = NULL;
+  mem_page_t *pPage1 = NULL;
+  mem_page_t *pPage2 = NULL;
+  mem_page_t *pPage3 = NULL;
+  const char data1[] = "atoaousaotneuh"; // "ao" match at 3, 7
+  const char data2[] = "saamteuhsaumii"; // none
+  const char data3[] = "saoeaobaosecna"; // ao match at 1, 4, 7
+  SIZE_T test_page_size = sizeof(data1);
+  const LPCVOID lpPageAddr1 = (LPCVOID)0x00010000;
+  const LPCVOID lpPageAddr2 = (LPCVOID)0x00020000;
+  const LPCVOID lpPageAddr3 = (LPCVOID)0x08000000;
+
+  SIZE_T nSearchDataLength = 2;
+  char pSearchData[] = "ao";
+  LPCVOID nStartAddress = 0;
+  bool bFoundPage;
+  LPCVOID nFoundAddress = 0;
+  const LPCVOID nExpectedResults[] = {(LPCVOID)0x00010003, (LPCVOID)0x00010007, (LPCVOID)0x08000001, (LPCVOID)0x08000004, (LPCVOID)0x08000007};
+
+  // init manager
+  mu_assert("Unit Test Error: mem_mgr_init fails with valid pointer", mem_mgr_init(&this_mgr) == 0);
+
+  // init pages
+  mu_assert("Unit Test Error: mem_page_init page1 fails with valid pointer", mem_page_init(&pPage1, test_page_size) == 0);
+  mu_assert("Unit Test Error: mem_page_init page2 fails with valid pointer", mem_page_init(&pPage2, test_page_size) == 0);
+  mu_assert("Unit Test Error: mem_page_init page3 fails with valid pointer", mem_page_init(&pPage3, test_page_size) == 0);
+
+  // copy page data
+  mu_assert("Unit Test Error: mem_page_init failed to copy page1", mem_page_load_buffer(pPage1, lpPageAddr1, test_page_size, data1) == 0);
+  mu_assert("Unit Test Error: mem_page_init failed to copy page2", mem_page_load_buffer(pPage2, lpPageAddr2, test_page_size, data2) == 0);
+  mu_assert("Unit Test Error: mem_page_init failed to copy page3", mem_page_load_buffer(pPage3, lpPageAddr3, test_page_size, data3) == 0);
+
+  // init nodes
+  mu_assert("Unit Test Error: mem_mgr_node_init page1 fails with valid pointer", mem_mgr_node_init(&pNode1, pPage1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode2, pPage2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_node_init page2 fails with valid pointer", mem_mgr_node_init(&pNode3, pPage3) == 0);
+
+  // add nodes
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode1 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode1) == 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode2 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode2) == 0);
+  mu_assert("Unit Test Error: mem_mgr_add_node for pNode3 fails with valid pointer", mem_mgr_add_node(this_mgr, pNode3) == 0);
+
+  // invalid values
+  mu_assert("Unit Test Error: mem_mgr_page_search allows null manager", mem_mgr_page_search(NULL, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress) != 0);
+  mu_assert("Unit Test Error: mem_mgr_page_search allows 0 data len", mem_mgr_page_search(this_mgr, 0, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress) != 0);
+  mu_assert("Unit Test Error: mem_mgr_page_search allows null search data", mem_mgr_page_search(this_mgr, nSearchDataLength, NULL, nStartAddress, &bFoundPage, &nFoundAddress) != 0);
+  mu_assert("Unit Test Error: mem_mgr_page_search allows null bool pointer", mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, NULL, &nFoundAddress) != 0);
+  mu_assert("Unit Test Error: mem_mgr_page_search allows null found addr", mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, NULL) != 0);
+
+  // valid values
+  for (int i = 0; i < sizeof(nExpectedResults)/sizeof(nExpectedResults[0]); i++)
+  {
+    mu_assert("Unit Test Error: mem_mgr_page_search fails with valid search", mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress) == 0);
+    mu_assert("Unit Test Error: mem_mgr_page_search fails to find value", bFoundPage);
+    mu_assert("Unit Test Error: mem_mgr_page_search returns wrong address", nExpectedResults[i] == nFoundAddress);
+    nStartAddress = nFoundAddress + 1;
+  }
+  mu_assert("Unit Test Error: mem_mgr_page_search fails with valid search", mem_mgr_page_search(this_mgr, nSearchDataLength, pSearchData, nStartAddress, &bFoundPage, &nFoundAddress) == 0);
+  mu_assert("Unit Test Error: mem_mgr_page_search finds unexpected search result", !(bFoundPage));
+  mu_assert("Unit Test Error: mem_mgr_page_search finds unexpected address", 0 == nFoundAddress);
+
+  // deallocate
+  mu_assert("Unit Test Error: mem_mgr_destroy failed to deallocate", mem_mgr_destroy(&this_mgr) == 0);
 
   return 0;
 }

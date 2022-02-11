@@ -724,7 +724,7 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
     debug_error("Receive NULL found address");
     return -EINVAL;
   }
-  pFoundAddress = 0;
+  *pFoundAddress = 0;
 
   if (pMgr->pFirstNode == NULL)
   {
@@ -735,7 +735,9 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
   // skip to last node
   pCurrentNode = pMgr->pFirstNode;
   while (pCurrentNode->pNextNode != NULL)
+  {
     pCurrentNode = pCurrentNode->pNextNode;
+  }
 
   // iterate through nodes backwards until found page containing this address
   while (pCurrentNode != NULL)
@@ -751,8 +753,31 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
   while (pCurrentNode != NULL)
   {
     SIZE_T nFoundIndex;
-    int retval = mem_page_search(pCurrentNode->pThisPage, nSearchDataLength, pSearchData, 0, pbFoundPage, &nFoundIndex);
+    SIZE_T nStartIndex;
+    LPCVOID nEndAddress = pCurrentNode->pThisPage->lpBaseAddr + pCurrentNode->pThisPage->nSize;
+    int retval;
 
+    // set starting index on current page
+    if (nStartAddress < pCurrentNode->pThisPage->lpBaseAddr)
+    {
+      // address to start search was lower than the beginning address of this page, start at index 0
+      nStartIndex = 0;
+    }
+    else if (nStartAddress >= pCurrentNode->pThisPage->lpBaseAddr && nStartAddress < nEndAddress)
+    {
+      // search starting address is somewhere in the address range of the current page
+      nStartIndex = nStartAddress - pCurrentNode->pThisPage->lpBaseAddr;
+    }
+    else
+    {
+      // search start address is higher than the address range of the current page, skip this page
+      nStartIndex = pCurrentNode->pThisPage->nSize;
+    }
+    
+    // search current page data
+    retval = mem_page_search(pCurrentNode->pThisPage, nSearchDataLength, pSearchData, nStartIndex, pbFoundPage, &nFoundIndex);
+
+    // current page was not valid
     if (retval != 0)
     {
       debug_error("Search failed with error %d", retval);
@@ -767,7 +792,7 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
       return 0;
     }
 
-    // found filtered search data - go to next node
+    // not found - go to next node
     pCurrentNode = pCurrentNode->pPrevNode;
   }
 
