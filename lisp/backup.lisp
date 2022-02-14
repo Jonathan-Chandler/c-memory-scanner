@@ -12,10 +12,8 @@
 ; load memory scan dll
 (cffi:load-foreign-library "memscan.dll")
 
-;(cffi:defcstruct (c-proc-info-t :class proc-info-t)
-;  (h-window :uint32)
-;  (h-process :uint32)
-;  (dw-process-id :uint32))
+; load user32
+(cffi:load-foreign-library "user32.dll")
 
 (cffi:defcstruct proc-info-t
   (h-window :uint32)
@@ -234,6 +232,24 @@
 (setf converted-proc-info (mem-aref (mem-aref pp-proc-info :pointer) '(:struct proc-info-t)))
 (write converted-proc-info)
 
+
+
+;int write-process-memory(HANDLE  hProcess, LPVOID  lpBaseAddress, LPCVOID lpBuffer, SIZE_T  nSize, SIZE_T *lpNumberOfBytesWritten)
+;   [in]  HANDLE  hProcess,
+;   [in]  LPVOID  lpBaseAddress,
+;   [in]  LPCVOID lpBuffer,
+;   [in]  SIZE_T  nSize,
+;   [out] SIZE_T  *lpNumberOfBytesWritten
+;
+;   @return       0 - Success
+;               !=0 - Failed
+(cffi:defcfun ("WriteProcessMemory" write-process-memory) :bool
+  "Close process handle and free memory for process information" 
+  (h-Process :uint32)
+  (lp-base-addr :uint32)
+  (lpc-buffer :pointer)
+  (n-size :uint32)
+  (lp-bytes-written :pointer))
 
 
 
@@ -637,5 +653,6 @@
 
 ; deallocate **mem_page
 ;(setf retval (mem-page-destroy pp-mem-page))
+
 
 

@@ -31,11 +31,13 @@ int ADD_CALL mem_mgr_init(mem_mgr_t **ppMgr)
   pRetMgr->pFirstNode = NULL;
   *ppMgr = pRetMgr;
 
+#if 0
   printf("%s::%d::%s::Initialize memory manager to block at %08X\n", __FILE__, __LINE__, __func__, (uint32_t) pRetMgr);
   printf("%s::%d::%s::Writing pointer to address at %08X\n", __FILE__, __LINE__, __func__, (uint32_t)ppMgr);
   printf("%s::%d::%s::ppMgr = %08X\n", __FILE__, __LINE__, __func__, (uint32_t)ppMgr);
   printf("%s::%d::%s::*ppMgr = %08X\n\n", __FILE__, __LINE__, __func__, (uint32_t)*ppMgr);
   //printf("%s::%d::%s::**ppMgr = %08X\n", __FILE__, __LINE__, __func__, (uint32_t)**ppMgr);
+#endif
 
   return 0;
 }
@@ -737,6 +739,8 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
     debug_error("Receive empty node list");
     return -EINVAL;
   }
+
+#if 0
   printf("%s::%d::%s::SEARCH\n", __FILE__, __LINE__, __func__);
   printf("%s::%d::%s::pMgr = 0x%08X\n", __FILE__, __LINE__, __func__, (uint32_t) pMgr);
   printf("%s::%d::%s::nSearchDataLength = %d\n", __FILE__, __LINE__, __func__, (uint32_t)nSearchDataLength);
@@ -748,6 +752,7 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
   for (uint8_t i = 0; i < nSearchDataLength; i++)
     printf("%s::%d::%s::pSearchData[%d] = 0x%02X\n", __FILE__, __LINE__, __func__, (uint8_t)i, (uint8_t)pSearchData[i]);
   printf("\n\n");
+#endif
 
   // skip to last node
   pCurrentNode = pMgr->pFirstNode;
@@ -806,7 +811,9 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
     {
       // new address is page base + search found index
       *pFoundAddress = pCurrentNode->pThisPage->lpBaseAddr + nFoundIndex;
+#if 0
       printf("%s::%d::%s::Found match at address = 0x%08X\n\n", __FILE__, __LINE__, __func__, (uint32_t)((uint32_t)pCurrentNode->pThisPage->lpBaseAddr + (uint32_t)nFoundIndex));
+#endif
       return 0;
     }
 

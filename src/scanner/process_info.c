@@ -64,9 +64,11 @@ int proc_info_init(proc_info_t **ppProcInfo, const char *pszWindowTitle)
 
   *ppProcInfo = temp_info;
 
+#if 0
   printf("%s::%d::%s::ppProcInfo = %08X\n", __FILE__, __LINE__, __func__, (uint32_t)ppProcInfo);
   printf("%s::%d::%s::*ppMgr = %08X\n\n", __FILE__, __LINE__, __func__, (uint32_t)*ppProcInfo);
   //printf("%s::%d::%s::**ppMgr = %08X\n", __FILE__, __LINE__, __func__, (uint32_t)**ppProcInfo);
+#endif
 
   return 0;
 }
