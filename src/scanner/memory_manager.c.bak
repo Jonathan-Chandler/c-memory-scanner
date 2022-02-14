@@ -737,17 +737,6 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
     debug_error("Receive empty node list");
     return -EINVAL;
   }
-  printf("%s::%d::%s::SEARCH\n", __FILE__, __LINE__, __func__);
-  printf("%s::%d::%s::pMgr = 0x%08X\n", __FILE__, __LINE__, __func__, (uint32_t) pMgr);
-  printf("%s::%d::%s::nSearchDataLength = %d\n", __FILE__, __LINE__, __func__, (uint32_t)nSearchDataLength);
-  printf("%s::%d::%s::pSearchData = 0x%08X\n", __FILE__, __LINE__, __func__, (uint32_t)pSearchData);
-  printf("%s::%d::%s::nStartAddress = 0x%08X\n", __FILE__, __LINE__, __func__, (uint32_t)nStartAddress);
-  printf("%s::%d::%s::pbFoundPage = 0x%08X\n", __FILE__, __LINE__, __func__, (uint32_t)pbFoundPage);
-  printf("%s::%d::%s::pFoundAddress = 0x%08X\n\n", __FILE__, __LINE__, __func__, (uint32_t)pFoundAddress);
-
-  for (uint8_t i = 0; i < nSearchDataLength; i++)
-    printf("%s::%d::%s::pSearchData[%d] = 0x%02X\n", __FILE__, __LINE__, __func__, (uint8_t)i, (uint8_t)pSearchData[i]);
-  printf("\n\n");
 
   // skip to last node
   pCurrentNode = pMgr->pFirstNode;
@@ -806,7 +795,6 @@ int ADD_CALL mem_mgr_page_search(mem_mgr_t *pMgr, const SIZE_T nSearchDataLength
     {
       // new address is page base + search found index
       *pFoundAddress = pCurrentNode->pThisPage->lpBaseAddr + nFoundIndex;
-      printf("%s::%d::%s::Found match at address = 0x%08X\n\n", __FILE__, __LINE__, __func__, (uint32_t)((uint32_t)pCurrentNode->pThisPage->lpBaseAddr + (uint32_t)nFoundIndex));
       return 0;
     }
 
