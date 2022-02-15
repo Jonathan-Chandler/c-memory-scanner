@@ -27,3 +27,7 @@
       (return-from process-handle-close pp-proc-info))
     (format t "Failed to close process handle: ~d" retval)))
 
+(defun pp-proc-info-get-h-process (pp-proc-info)
+  (return-from pp-proc-info-get-h-process (getf (mem-aref (mem-aref pp-proc-info :pointer) '(:struct proc-info-t)) 'H-PROCESS)))
+
+;(defparameter test (pp-proc-info-get-h-process pp-proc-info))
