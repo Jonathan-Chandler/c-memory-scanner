@@ -61,7 +61,7 @@
     'LYCANTHROPY #x350))
 
 (defun print-equip-stats (print-list)
-  (loop for x from 0 to (- (length print-list) 1) by 2 do 
+  (loop for x from 0 below (length print-list) by 2 do 
         (format T "~A - ~D~%" 
                (nth x res-test)
                (nth (+ x 1) res-test))
@@ -111,7 +111,7 @@
   (defparameter ret-list nil)
   (defparameter item-slot-index (getf darkstone-armor-slots slot))
   ; iterate over stats and write to game if tag was found
-  (loop for x from 0 to (- (length darkstone-item-stats-offsets) 1) by 2 do 
+  (loop for x from 0 below (length darkstone-item-stats-offsets) by 2 do 
         (progn 
           (defparameter current-offset (getf darkstone-item-stats-offsets (nth x darkstone-item-stats-offsets)))
           (defparameter p-value (foreign-alloc :int16 :initial-element 0))

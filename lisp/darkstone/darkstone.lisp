@@ -53,3 +53,7 @@
 (defparameter skill-level 1)
 ;(write-skill-level pp-proc-info skill-name skill-level)
 
+(defparameter skill-name 'LYCANTHROPY)
+(defparameter skill-level 1)
+;(write-skill-level pp-proc-info skill-name skill-level)
+
