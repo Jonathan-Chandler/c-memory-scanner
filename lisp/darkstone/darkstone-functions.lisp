@@ -1,5 +1,65 @@
 (in-package :lisp-memscan)
 
+(defparameter darkstone-spell-offsets
+  (list 
+    'CONFUSION #x00
+    'HEALING   #x10
+    'FEAR      #x20
+    'THUNDER   #x30
+    'SLOWNESS #x40
+    'FIREWALL #x50
+    'MUTATION #x60
+    'STONE #x70
+    'NIGHTVISION #x80
+    'HASTE #x90
+    'MAGICMISSILE #xA0
+    'FIREBALL #xB0
+    'ABSORPTION #xC0
+    'ANTIDOTE #xD0
+    'FLAMETHROWER #xE0
+    'STORM #xF0
+    'INVIS #x100
+    'DEATHDOME #x110
+    'INVOCATION #x120
+    'SPARK #x130
+    'TELEPORT #x140
+    'DETECT #x150
+    'FOOD #x160
+    'BERSERKER #x170
+    'FORGETFULNESS #x180
+    'REFLECTIONS #x190
+    'MAGICBOMB #x1A0
+    'MAGICDOOR #x1B0
+    'POISONCLOUD #x1C0
+    'RESURRECTION #x1D0
+    'TELEKINESIS #x1E0
+    'LIGHT #x1F0))
+
+(defparameter darkstone-skill-offsets
+  (list 
+    'IDENTIFICATION #x200
+    'TRADE #x210
+    'REPAIR #x220
+    'PERCEPTION #x230
+    'DEFUSING #x240
+    'FORESTER #x250
+    'LEARNING #x260
+    'THEFT #x270
+    'SILENCE #x280
+    'MEDITATION #x290
+    'CONCENTRATION #x2A0
+    'ORIENTATION #x2B0
+    'MEDICINE #x2C0
+    'RECHARGING #x2D0
+    'EXORCISM #x2E0
+    'PRAYER #x2F0
+    'DETECTION #x300
+    'MASTEROFARMS #x310
+    'COMMUNIONMONK #x320
+    'COMMUNIONWIZARD #x330
+    'LANGUAGE #x340
+    'LYCANTHROPY #x350))
+
 (defun print-equip-stats (print-list)
   (loop for x from 0 to (- (length print-list) 1) by 2 do 
         (format T "~A - ~D~%" 
@@ -135,4 +195,78 @@
   (if retval
     (print "Sucessfully wrote item data") 
     (print "Failed to write data")))
+
+(defun write-spell-level (pp-proc-info spell-name spell-level)
+  "Write spell level"
+  ; spell_address = (LPVOID)0x00AFA034; GOG
+  ; spell_address = (LPVOID)0x00AFA1E4; Steam
+
+  ; get process handle from **c-process-info-t
+  (defparameter h-proc (pp-proc-info-get-h-process pp-proc-info))
+  (defparameter p-value (foreign-alloc :int16 :initial-element spell-level))
+  (defparameter p-zero-value (foreign-alloc :uint32 :initial-element 0))
+
+  ; address of spell level
+  (defparameter spell-addr #x00AFA034)
+  (setf spell-addr (+ spell-addr (getf darkstone-spell-offsets spell-name)))
+  (print "spell addr")
+  (print spell-addr)
+  (print (getf darkstone-spell-offsets spell-name))
+
+  ; address of spell timer
+  (defparameter spell-timer-addr (+ spell-addr 12))
+
+  ; write 16-bit spell level
+  (defparameter retval (write-process-memory h-proc spell-addr p-value 2 (null-pointer)))
+  ; return error if failed
+  (if retval
+    (print "Sucessfully wrote spell data") 
+    (print "Failed to write data"))
+
+  ; write 32-bit spell timer value
+  (defparameter retval (write-process-memory h-proc spell-timer-addr p-zero-value 4 (null-pointer)))
+  (if retval
+    (print "Sucessfully wrote spell data") 
+    (print "Failed to write data"))
+
+  ; free memory
+  (foreign-free p-value)
+  (foreign-free p-zero-value))
+
+(defun write-skill-level (pp-proc-info skill-name skill-level)
+  "Write skill level"
+  ; skill_address = (LPVOID)0x00AFA034; GOG
+  ; skill_address = (LPVOID)0x00AFA1E4; Steam
+
+  ; get process handle from **c-process-info-t
+  (defparameter h-proc (pp-proc-info-get-h-process pp-proc-info))
+  (defparameter p-value (foreign-alloc :int16 :initial-element skill-level))
+  (defparameter p-zero-value (foreign-alloc :uint32 :initial-element 0))
+
+  ; address of skill level
+  (defparameter skill-addr #x00AFA034)
+  (setf skill-addr (+ skill-addr (getf darkstone-skill-offsets skill-name)))
+  (print "skill addr")
+  (print skill-addr)
+  (print (getf darkstone-skill-offsets skill-name))
+
+  ; address of skill timer
+  (defparameter skill-timer-addr (+ skill-addr 12))
+
+  ; write 16-bit skill level
+  (defparameter retval (write-process-memory h-proc skill-addr p-value 2 (null-pointer)))
+  ; return error if failed
+  (if retval
+    (print "Sucessfully wrote skill data") 
+    (print "Failed to write data"))
+
+  ; write 32-bit skill timer value
+  (defparameter retval (write-process-memory h-proc skill-timer-addr p-zero-value 4 (null-pointer)))
+  (if retval
+    (print "Sucessfully wrote skill data") 
+    (print "Failed to write data"))
+
+  ; free memory
+  (foreign-free p-value)
+  (foreign-free p-zero-value))
 

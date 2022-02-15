@@ -45,3 +45,11 @@
 (defparameter res-test (read-equip-stats pp-proc-info slot-req))
 (print-equip-stats res-test)
 
+(defparameter spell-name 'MAGICDOOR)
+(defparameter spell-level 1)
+;(write-spell-level pp-proc-info spell-name spell-level)
+
+(defparameter skill-name 'IDENTIFICATION)
+(defparameter skill-level 1)
+;(write-skill-level pp-proc-info skill-name skill-level)
+
