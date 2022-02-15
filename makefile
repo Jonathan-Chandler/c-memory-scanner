@@ -17,6 +17,7 @@ all: $(OBJS)
 	$(MAKE) -C ./src/scanner all
 	#$(MAKE) -C ./src/test_application all
 	$(MAKE) -C ./src/unit_tests all
+	cp memscan.dll ./lisp/
 
 clean:
 	$(MAKE) -C ./src/scanner clean
