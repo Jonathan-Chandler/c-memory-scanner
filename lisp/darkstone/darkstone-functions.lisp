@@ -209,9 +209,6 @@
   ; address of spell level
   (defparameter spell-addr #x00AFA034)
   (setf spell-addr (+ spell-addr (getf darkstone-spell-offsets spell-name)))
-  (print "spell addr")
-  (print spell-addr)
-  (print (getf darkstone-spell-offsets spell-name))
 
   ; address of spell timer
   (defparameter spell-timer-addr (+ spell-addr 12))
@@ -246,9 +243,6 @@
   ; address of skill level
   (defparameter skill-addr #x00AFA034)
   (setf skill-addr (+ skill-addr (getf darkstone-skill-offsets skill-name)))
-  (print "skill addr")
-  (print skill-addr)
-  (print (getf darkstone-skill-offsets skill-name))
 
   ; address of skill timer
   (defparameter skill-timer-addr (+ skill-addr 12))
