@@ -1,0 +1,118 @@
+
+;;;   Inlining BIT-STREAM-GET-BYTE
+;;; Note:
+;;;   in file DEFLATE.LISP, position 23304
+;;;   at (DEFUN DECODE-BLOCK ...)
+;;;   Inlining BIT-STREAM-GET-BYTE
+;;; Note:
+;;;   in file DEFLATE.LISP, position 23304
+;;;   at (DEFUN DECODE-BLOCK ...)
+;;;   Inlining BIT-STREAM-GET-BYTE
+;;; Note:
+;;;   in file DEFLATE.LISP, position 23304
+;;;   at (DEFUN DECODE-BLOCK ...)
+;;;   Inlining SLIDING-WINDOW-STREAM-WRITE-BYTE
+;;; Note:
+;;;   in file DEFLATE.LISP, position 23304
+;;;   at (DEFUN DECODE-BLOCK ...)
+;;;   Inlining BIT-STREAM-GET-BYTE
+;;; Note:
+;;;   in file DEFLATE.LISP, position 23304
+;;;   at (DEFUN DECODE-BLOCK ...)
+;;;   Inlining SLIDING-WINDOW-STREAM-WRITE-BYTE
+;;; Note:
+;;;   in file DEFLATE.LISP, position 23304
+;;;   at (DEFUN DECODE-BLOCK ...)
+;;;   Inlining BIT-STREAM-GET-BYTE
+;;; End of Pass 1.
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/deflate.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/deflate.o
+;;; Finished compiling EXT:DEFLATE;DEFLATE.LISP.
+;;;
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e4E51tmp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e4E51tmp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   ar cr C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/libdeflate.a C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e4E51tmp.o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/deflate.o
+;;; Note:
+;;;   Invoking external command:
+;;;   ranlib C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/libdeflate.a
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5046tmp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5046tmp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/deflate.fas -LC:/work/c/memscan-dll/lisp/ecl-21.2.1/build C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5046tmp.o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/deflate.o -shared -Wl,--export-all-symbols -Wl,--stack,1048576 ecl.dll -lgmp -lws2_32
+(compile-file "ext:quicklisp;ecl-quicklisp.lisp" :output-file #P"BUILD:EXT;ECL-QUICKLISP.O.NEWEST" :SYSTEM-P T :C-FILE T :DATA-FILE T :H-FILE T)
+;;;
+;;; Compiling EXT:QUICKLISP;ECL-QUICKLISP.LISP.
+;;; OPTIMIZE levels: Safety=2, Space=1, Speed=1, Debug=1
+;;;
+;;; End of Pass 1.
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/ecl-quicklisp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/ecl-quicklisp.o
+;;; Finished compiling EXT:QUICKLISP;ECL-QUICKLISP.LISP.
+;;;
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e545Etmp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e545Etmp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   ar cr C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/libecl-quicklisp.a C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e545Etmp.o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/ecl-quicklisp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   ranlib C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/libecl-quicklisp.a
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5624tmp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5624tmp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ecl-quicklisp.fas -LC:/work/c/memscan-dll/lisp/ecl-21.2.1/build C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5624tmp.o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/ecl-quicklisp.o -shared -Wl,--export-all-symbols -Wl,--stack,1048576 ecl.dll -lgmp -lws2_32
+(compile-file "ext:package-locks;package-locks.lisp" :output-file #P"BUILD:EXT;PACKAGE-LOCKS.O.NEWEST" :SYSTEM-P T :C-FILE T :DATA-FILE T :H-FILE T)
+;;;
+;;; Compiling EXT:PACKAGE-LOCKS;PACKAGE-LOCKS.LISP.
+;;; OPTIMIZE levels: Safety=2, Space=1, Speed=1, Debug=1
+;;;
+;;; End of Pass 1.
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/package-locks.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/package-locks.o
+;;; Finished compiling EXT:PACKAGE-LOCKS;PACKAGE-LOCKS.LISP.
+;;;
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5A1Ctmp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5A1Ctmp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   ar cr C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/libpackage-locks.a C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5A1Ctmp.o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/package-locks.o
+;;; Note:
+;;;   Invoking external command:
+;;;   ranlib C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/libpackage-locks.a
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5C02tmp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5C02tmp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/package-locks.fas -LC:/work/c/memscan-dll/lisp/ecl-21.2.1/build C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5C02tmp.o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/ext/package-locks.o -shared -Wl,--export-all-symbols -Wl,--stack,1048576 ecl.dll -lgmp -lws2_32
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -I. -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/build -g -O2 -D_THREAD_SAFE -Dmingw32 -IC:/work/c/memscan-dll/lisp/ecl-21.2.1/src/c -c C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5E74tmp.c -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5E74tmp.o
+;;; Note:
+;;;   Invoking external command:
+;;;   gcc -o C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/bin/ecl.exe -LC:/work/c/memscan-dll/lisp/ecl-21.2.1/build C:/work/c/memscan-dll/lisp/ecl-21.2.1/build/e5E74tmp.o -L./ ecl.res ecl.dll -lws2_32
+(#P"package-locks.asd" #P"package-locks.fas" #P"libpackage-locks.a" #P"ecl-quicklisp.asd" #P"ecl-quicklisp.fas" #P"libecl-quicklisp.a" #P"deflate.asd" #P"deflate.fas" #P"libdeflate.a" #P"ql-minitar.asd" #P"ql-minitar.fas" #P"libql-minitar.a" #P"ecl-curl.asd" #P"ecl-curl.fas" #P"libecl-curl.a" #P"sb-bsd-sockets.asd" #P"sb-bsd-sockets.fas" #P"libsb-bsd-sockets.a" #P"sockets.asd" #P"sockets.fas" #P"libsockets.a" #P"prebuilt-asdf.asd" #P"asdf.fas" #P"libasdf.a" #P"ecl-help.asd" #P"ecl-help.fas" #P"libecl-help.a" #P"ecl-cdb.asd" #P"ecl-cdb.fas" #P"libecl-cdb.a" #P"cmp.asd" #P"cmp.fas" #P"libcmp.a") /bin/sh: line 1: cd: /c/work/c/memscan-dll/lisp/ecl-21.2.1/src/../.git: No such file or directory
+tags generation failed, but this does not break the build.
+make[2]: Entering directory '/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/doc'
+cp -r /c/work/c/memscan-dll/lisp/ecl-21.2.1/src/doc/manual .
+make MAKEINFO=/usr/bin/makeinfo -C manual info
+make[3]: Entering directory '/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/doc/manual'
+/usr/bin/makeinfo --no-split manual.txi
+macros.txi:135: warning: redefining Texinfo language command: @seealso
+gzip < ecl.info > ecl.info.gz
+make[3]: Leaving directory '/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/doc/manual'
+make[2]: Leaving directory '/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/doc'
+make[1]: Leaving directory '/c/work/c/memscan-dll/lisp/ecl-21.2.1/build'
+
