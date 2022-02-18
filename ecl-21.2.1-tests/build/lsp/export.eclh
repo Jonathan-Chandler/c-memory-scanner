@@ -1,0 +1,35 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L2filter_dolist_declarations(cl_object );
+static cl_object LC1__lambda4(cl_narg, cl_object , ...);
+static cl_object LC3dolist(cl_object , cl_object );
+static cl_object LC4dotimes(cl_object , cl_object );
+static cl_object LC5do_do__expand(cl_object , cl_object );
+static cl_object L6eval_feature(cl_object );
+static cl_object L7do_read_feature(cl_object , cl_object , cl_object , cl_object );
+static cl_object L8sharp___reader(cl_object , cl_object , cl_object );
+static cl_object L9sharp___reader(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 21
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 2
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,3,0,ecl_make_fixnum(19),ecl_make_fixnum(17),(cl_objectfn)L8sharp___reader,NULL,ECL_NIL,ecl_make_fixnum(8299)},
+{0,0,3,0,ecl_make_fixnum(20),ecl_make_fixnum(18),(cl_objectfn)L9sharp___reader,NULL,ECL_NIL,ecl_make_fixnum(8385)},
+};

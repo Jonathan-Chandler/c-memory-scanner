@@ -1,0 +1,69 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1select_clos_n(cl_object );
+static cl_object L2select_clos_n_inner_class(cl_object );
+static cl_object LC3select_clos_n(cl_object );
+static cl_object LC4select_clos_n(cl_object );
+static cl_object LC5select_clos_l(cl_object );
+static cl_object L6select_clos_l_inner_class(cl_object );
+static cl_object LC7select_clos_l(cl_object );
+static cl_object LC8select_clos_l(cl_object );
+static cl_object LC9select_clos_j(cl_object );
+static cl_object L10select_clos_j_inner_class(cl_object );
+static cl_object LC11select_clos_j(cl_object );
+static cl_object LC12select_clos_j(cl_object );
+static cl_object L13select_clos__();
+static cl_object L14class_local_slots(cl_object );
+static cl_object L15class_class_slots(cl_object );
+static cl_object LC16inspect_obj(cl_object );
+static cl_object L17inspect_obj_inner_class(cl_object );
+static cl_object LC18inspect_obj(cl_object );
+static cl_object LC19inspect_obj(cl_object );
+static cl_object LC20documentation(cl_object , cl_object );
+static cl_object LC21_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC22documentation(cl_object , cl_object );
+static cl_object LC23_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC24documentation(cl_object , cl_object );
+static cl_object LC25_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC26documentation(cl_object , cl_object );
+static cl_object LC27_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC28documentation(cl_object , cl_object );
+static cl_object LC29_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC30documentation(cl_object , cl_object );
+static cl_object LC31_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC32documentation(cl_object , cl_object );
+static cl_object LC33_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC34documentation(cl_object , cl_object );
+static cl_object LC35_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object LC36documentation(cl_object , cl_object );
+static cl_object LC37_setf_documentation_(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 83
+#define VMtemp 27
+#define ECL_DEFINE_SETF_FUNCTIONS \
+VV[82]=ecl_setf_definition(ECL_SYM("DOCUMENTATION",314),ECL_T);\
+VV[70]=ecl_setf_definition(ECL_SYM("SLOT-VALUE",973),ECL_T);
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 6
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(71),ecl_make_fixnum(12),(cl_objectfn)L2select_clos_n_inner_class,NULL,ECL_NIL,ecl_make_fixnum(2803)},
+{0,0,1,0,ecl_make_fixnum(72),ecl_make_fixnum(18),(cl_objectfn)L6select_clos_l_inner_class,NULL,ECL_NIL,ecl_make_fixnum(4951)},
+{0,0,1,0,ecl_make_fixnum(74),ecl_make_fixnum(21),(cl_objectfn)L10select_clos_j_inner_class,NULL,ECL_NIL,ecl_make_fixnum(6995)},
+{0,0,1,0,ecl_make_fixnum(75),ecl_make_fixnum(24),(cl_objectfn)L14class_local_slots,NULL,ECL_NIL,ecl_make_fixnum(9157)},
+{0,0,1,0,ecl_make_fixnum(76),ecl_make_fixnum(25),(cl_objectfn)L15class_class_slots,NULL,ECL_NIL,ecl_make_fixnum(9270)},
+{0,0,1,0,ecl_make_fixnum(79),ecl_make_fixnum(54),(cl_objectfn)L17inspect_obj_inner_class,NULL,ECL_NIL,ecl_make_fixnum(11643)},
+};

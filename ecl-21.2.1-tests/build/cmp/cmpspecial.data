@@ -1,0 +1,28 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1542, (cl_index)1542,
+        (ecl_base_char*)
+":always c::c1quote \"The declaration ~s was found in a bad place.\" c::c1declare c"
+ "::c1the c::c1form \"Type mismatch was found in ~s.\" c::c1truly-the \"The variable "
+ "binding ~s is illegal.\" c::c1compiler-let c::c2compiler-let c::var :args :sp-cha"
+ "nge c::no-sp-change c::global 0 0 \"The lambda expression ~s is illegal.\" \"LAMBDA"
+ "\" \"The function ~s is illegal.\" c::c1function c::closure \"c2function: c1form is "
+ "of unexpected kind.\" c::make-cclosure c::c2function c::fun c::*env* c::lexical c"
+ "::*lex* c::*level* \"Sharing code for closure\" \"Sharing code for local function ~"
+ "A\" c::*local-funs* c::new-local \"CL\" \"CLOS\" \"SI\" \"(\" \"->symbol.gfdef)\" \"ecl_fdef"
+ "inition(\" \")\" c::*setf-definitions* \"ECL_CONS_CAR(\" c::wt-fdefinition c::*env-lv"
+ "l* \"ecl_nthcdr(~D,~A)\" c::environment-accessor \"ecl_make_cclosure_va((cl_objectf"
+ "n)\" \",\" \",Cblock,\" \"wt-make-closure: lexical closure detected.\" \"ecl_make_cfun(("
+ "cl_objectfn_fixed)\" \",ECL_NIL,Cblock,\" \"ecl_make_cfun_va((cl_objectfn)\" c::wt-ma"
+ "ke-closure 0 c::check-args-number c::c1constant-value 0 c::cmperr 0 c::policy-th"
+ "e-is-checked c::c1checked-value 0 c::c1expr c::c1form-type c::values-type-and c:"
+ ":values-type-primary-type c::cmpwarn 0 c::too-few-args c::c1progn c::make-c1form"
+ " 0 c::c2expr 0 c::local-function-ref c::fun-var c::make-c1form* c::add-to-read-n"
+ "odes c::function-block-name-declaration 0 c::unwind-exit c::baboon 0 c::fun-clos"
+ "ure c::fun-parent c::cmpnote c::fun-name c::fun-cfun 0 c::safe-compile c::add-sy"
+ "mbol c::wt c::data-empty-loc 0 c::env-var-name c::fun-env 0 c::fun-minarg c::fun"
+ "-fixed-narg \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

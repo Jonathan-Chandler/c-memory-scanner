@@ -1,0 +1,35 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+#include <complex.h>
+#include <float.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1c1constant_value(cl_narg, cl_object , ...);
+#define L1c1constant_valuekeys (&VV[69])
+static cl_object L2make_single_constant_optimizer(cl_object , cl_object );
+static cl_object L3make_optimizable_constants(cl_object );
+static cl_object L4optimizable_constants_list(cl_object );
+static cl_object Cblock;
+#define VM 83
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 4
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(68),ecl_make_fixnum(12),(cl_objectfn)L1c1constant_value,NULL,ECL_NIL,ecl_make_fixnum(656)},
+{0,0,2,0,ecl_make_fixnum(78),ecl_make_fixnum(17),(cl_objectfn)L2make_single_constant_optimizer,NULL,ECL_NIL,ecl_make_fixnum(3044)},
+{0,0,1,0,ecl_make_fixnum(81),ecl_make_fixnum(18),(cl_objectfn)L3make_optimizable_constants,NULL,ECL_NIL,ecl_make_fixnum(4292)},
+{0,0,1,0,ecl_make_fixnum(82),ecl_make_fixnum(67),(cl_objectfn)L4optimizable_constants_list,NULL,ECL_NIL,ecl_make_fixnum(4461)},
+};

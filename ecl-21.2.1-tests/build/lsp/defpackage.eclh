@@ -1,0 +1,33 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC3defpackage(cl_object , cl_object );
+static cl_object LC1designators(cl_object );
+static cl_object LC2__lambda263(cl_object );
+static cl_object L4check_disjoint(cl_narg, ...);
+static cl_object L5dodefpackage(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L6find_or_make_symbol(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 22
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS \
+VV[20]=ecl_setf_definition(ECL_SYM("DOCUMENTATION",314),ECL_T);
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 2
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(16),ecl_make_fixnum(11),(cl_objectfn)LC3defpackage,NULL,ECL_NIL,ecl_make_fixnum(1719)},
+{0,0,12,0,ecl_make_fixnum(19),ecl_make_fixnum(9),(cl_objectfn)L5dodefpackage,NULL,ECL_NIL,ecl_make_fixnum(8627)},
+};

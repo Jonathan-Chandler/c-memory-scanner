@@ -1,0 +1,56 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1search_keyword(cl_object , cl_object );
+static cl_object L2check_keyword(cl_narg, cl_object , cl_object , ...);
+static cl_object L3dm_too_many_arguments(cl_object );
+static cl_object L4dm_too_few_arguments(cl_object );
+static cl_object L8destructure(cl_object , cl_object );
+static cl_object LC7dm_v(volatile cl_object  *, cl_object , cl_object );
+static cl_object LC6dm_vl(volatile cl_object  *, cl_object , cl_object , cl_object );
+static cl_object LC5tempsym(volatile cl_object  *);
+static cl_object L9find_documentation(cl_object );
+static cl_object L10remove_documentation(cl_object );
+static cl_object L11find_declarations(cl_narg, cl_object , ...);
+static cl_object L12expand_defmacro(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC13destructuring_bind(cl_object , cl_object );
+static cl_object L18cmp_env_for_bytecodes(cl_object );
+static cl_object LC17local_fun_error_function(cl_object );
+static cl_object LC15local_var_error_function(cl_object );
+static cl_object LC16__lambda46(cl_narg, cl_object , cl_object , ...);
+static cl_object LC14__lambda45(cl_narg, cl_object , cl_object , ...);
+static cl_object L20macrolet_functions(cl_object , cl_object );
+static cl_object LC19__lambda62(cl_object );
+static cl_object L21cmp_env_register_macrolet(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 39
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 11
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(28),ecl_make_fixnum(0),(cl_objectfn)L1search_keyword,NULL,ECL_NIL,ecl_make_fixnum(1807)},
+{0,0,-3,0,ecl_make_fixnum(29),ecl_make_fixnum(3),(cl_objectfn)L2check_keyword,NULL,ECL_NIL,ecl_make_fixnum(2019)},
+{0,0,1,0,ecl_make_fixnum(30),ecl_make_fixnum(5),(cl_objectfn)L3dm_too_many_arguments,NULL,ECL_NIL,ecl_make_fixnum(2683)},
+{0,0,1,0,ecl_make_fixnum(31),ecl_make_fixnum(8),(cl_objectfn)L4dm_too_few_arguments,NULL,ECL_NIL,ecl_make_fixnum(2840)},
+{0,0,2,0,ecl_make_fixnum(32),ecl_make_fixnum(19),(cl_objectfn)L8destructure,NULL,ECL_NIL,ecl_make_fixnum(3135)},
+{0,0,1,0,ecl_make_fixnum(33),ecl_make_fixnum(20),(cl_objectfn)L9find_documentation,NULL,ECL_NIL,ecl_make_fixnum(9705)},
+{0,0,1,0,ecl_make_fixnum(34),ecl_make_fixnum(21),(cl_objectfn)L10remove_documentation,NULL,ECL_NIL,ecl_make_fixnum(9784)},
+{0,0,-2,0,ecl_make_fixnum(35),ecl_make_fixnum(22),(cl_objectfn)L11find_declarations,NULL,ECL_NIL,ecl_make_fixnum(9968)},
+{0,0,-4,0,ecl_make_fixnum(36),ecl_make_fixnum(23),(cl_objectfn)L12expand_defmacro,NULL,ECL_NIL,ecl_make_fixnum(10259)},
+{0,0,2,0,ecl_make_fixnum(37),ecl_make_fixnum(24),(cl_objectfn)LC13destructuring_bind,NULL,ECL_NIL,ecl_make_fixnum(13539)},
+{0,0,2,0,ecl_make_fixnum(38),ecl_make_fixnum(27),(cl_objectfn)L21cmp_env_register_macrolet,NULL,ECL_NIL,ecl_make_fixnum(16283)},
+};

@@ -1,0 +1,25 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1291, (cl_index)1291,
+        (ecl_base_char*)
+"(quote . #1=#'lambda) #1# #2=(lambda) c::constant-function-expression #'eql c::s"
+ "eq-opt-test-function #'identity c::seq-opt-key-function 'eql \"Cannot specify :TE"
+ "ST and :TEST-NOT arguments to ~A\" \"Unexpected keyword argument ~A in a call to f"
+ "unction ~A\" :from-end c::seq-opt-parse-args (:output :end :start) si::make-seq-i"
+ "terator :read-only si::seq-iterator-ref si::seq-iterator-next c::do-in-seq c::co"
+ "ns-cdr c::optional-type-check c::cons-car c::do-in-list :start-end 'eq 0 #'eq 0 "
+ "((:object :object) :object \"si_memq(#0,#1)\" :one-liner t :side-effects nil) 0 0 "
+ "((:object :object) :object \"ecl_memql(#0,#1)\" :one-liner t :side-effects nil) 'e"
+ "qual 0 #'equal 0 ((:object :object) :object \"ecl_member(#0,#1)\" :one-liner t :si"
+ "de-effects nil) c::expand-member ((:object :object) :object \"ecl_assq(#0,#1)\" :o"
+ "ne-liner t :side-effects nil) ((:object :object) :object \"ecl_assql(#0,#1)\" :one"
+ "-liner t :side-effects nil) ((:object :object) :object \"ecl_assoc(#0,#1)\" :one-l"
+ "iner t :side-effects nil) 'equalp 0 #'equalp 0 ((:object :object) :object \"ecl_a"
+ "ssqlp(#0,#1)\" :one-liner t :side-effects nil) c::expand-assoc c::expand-find 0 0"
+ " 0 0 c::cmpwarn 0 si::dm-too-few-arguments si::search-keyword si::check-keyword "
+ "0 0 c::constant-expression-p c::cmp-eval c::policy-inline-sequence-functions 0 0"
+ " \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

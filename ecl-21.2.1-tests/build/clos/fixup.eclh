@@ -1,0 +1,65 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1reader_method_class(cl_narg, cl_object , cl_object , ...);
+static cl_object LC2writer_method_class(cl_narg, cl_object , cl_object , ...);
+static cl_object L3register_method_with_specializers(cl_object );
+static cl_object L4method_p(cl_object );
+static cl_object L5make_method(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L6all_keywords(cl_object );
+static cl_object L7congruent_lambda_p(cl_object , cl_object );
+static cl_object L8add_method(cl_object , cl_object );
+static cl_object L9function_to_method(cl_object , cl_object );
+static cl_object L10remove_method(cl_object , cl_object );
+static cl_object LC11aux_compute_applicable_methods(cl_object , cl_object );
+static cl_object LC12compute_applicable_methods_using_classes(cl_object , cl_object );
+static cl_object LC13no_applicable_method(cl_narg, cl_object , ...);
+static cl_object LC14no_next_method(cl_narg, cl_object , cl_object , ...);
+static cl_object L15no_primary_method(cl_narg, cl_object , ...);
+static cl_object L16setf_find_class(cl_narg, cl_object , cl_object , ...);
+static cl_object LC17add_dependent(cl_object , cl_object );
+static cl_object LC18add_dependent(cl_object , cl_object );
+static cl_object LC19remove_dependent(cl_object , cl_object );
+static cl_object LC20remove_dependent(cl_object , cl_object );
+static cl_object LC21map_dependents(cl_object , cl_object );
+static cl_object LC22map_dependents(cl_object , cl_object );
+static cl_object L23recursively_update_classes(cl_object );
+static cl_object LC24update_dependent(cl_narg, cl_object , cl_object , ...);
+#define LC24update_dependentkeys (&VV[60])
+static cl_object Cblock;
+#define VM 62
+#define VMtemp 26
+#define ECL_DEFINE_SETF_FUNCTIONS \
+VV[58]=ecl_setf_definition(VV[57],ECL_T);\
+VV[56]=ecl_setf_definition(VV[55],ECL_T);\
+VV[50]=ecl_setf_definition(ECL_SYM("GENERIC-FUNCTION-NAME",1586),ECL_T);\
+VV[49]=ecl_setf_definition(ECL_SYM("METHOD-FUNCTION",1592),ECL_T);\
+VV[43]=ecl_setf_definition(ECL_SYM("METHOD-GENERIC-FUNCTION",1593),ECL_T);\
+VV[42]=ecl_setf_definition(ECL_SYM("GENERIC-FUNCTION-METHODS",1585),ECL_T);\
+VV[36]=ecl_setf_definition(ECL_SYM("SLOT-VALUE",973),ECL_T);
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 9
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(37),ecl_make_fixnum(5),(cl_objectfn)L4method_p,NULL,ECL_NIL,ecl_make_fixnum(3893)},
+{0,0,6,0,ecl_make_fixnum(38),ecl_make_fixnum(9),(cl_objectfn)L5make_method,NULL,ECL_NIL,ecl_make_fixnum(3942)},
+{0,0,2,0,ecl_make_fixnum(39),ecl_make_fixnum(10),(cl_objectfn)L7congruent_lambda_p,NULL,ECL_NIL,ecl_make_fixnum(4479)},
+{0,0,2,0,ecl_make_fixnum(40),ecl_make_fixnum(14),(cl_objectfn)L8add_method,NULL,ECL_NIL,ecl_make_fixnum(5636)},
+{0,0,2,0,ecl_make_fixnum(47),ecl_make_fixnum(16),(cl_objectfn)L9function_to_method,NULL,ECL_NIL,ecl_make_fixnum(8194)},
+{0,0,2,0,ecl_make_fixnum(51),ecl_make_fixnum(17),(cl_objectfn)L10remove_method,NULL,ECL_NIL,ecl_make_fixnum(8606)},
+{0,0,-2,0,ecl_make_fixnum(52),ecl_make_fixnum(22),(cl_objectfn)L15no_primary_method,NULL,ECL_NIL,ecl_make_fixnum(10959)},
+{0,0,-3,0,ecl_make_fixnum(53),ecl_make_fixnum(28),(cl_objectfn)L16setf_find_class,NULL,ECL_NIL,ecl_make_fixnum(11163)},
+{0,0,1,0,ecl_make_fixnum(59),ecl_make_fixnum(33),(cl_objectfn)L23recursively_update_classes,NULL,ECL_NIL,ecl_make_fixnum(12844)},
+};

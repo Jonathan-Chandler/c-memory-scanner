@@ -1,0 +1,26 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1414, (cl_index)1414,
+        (ecl_base_char*)
+"with-open-stream :index (:end :start :index) with-input-from-string (:element-ty"
+ "pe) with-output-to-string (:abort t) with-open-file \"~&~?  (Y or N) \" \"Y\" \"N\" \"~"
+ "&~?  (Yes or No) \" \"YES\" \"NO\" si::sharp-a-reader \"~S is an extra argument for th"
+ "e #s readmacro.\" si::is-a-structure \"~S is not a structure.\" si::structure-const"
+ "ructors \"The structure ~S has no structure constructor.\" si::sharp-s-reader si::"
+ "*dribble-closure* \"DRIBBLE.LOG\" \"Not in dribble.\" \"Already in dribble (to ~A)\" \""
+ "Stream variables rebound while DRIBBLE is on.~%Some output may be lost.\" \"~&Fini"
+ "shed dribbling to ~A.\" \"~&Starts dribbling to ~A (~d/~d/~d, ~2,'0d:~2,'0d:~2,'0d"
+ ").\" ((#1=#:%progv-list si::+io-syntax-progv-list+)) (si::cons-car #1#) (si::cons"
+ "-cdr #1#) with-standard-io-syntax ((#2=#:%progv-list si::+ecl-syntax-progv-list+"
+ ")) (si::cons-car #2#) (si::cons-cdr #2#) si::with-ecl-io-syntax :identity (:iden"
+ "tity :type) si::.print-unreadable-object-body. #'si::.print-unreadable-object-bo"
+ "dy. print-unreadable-object \"sys:encodings;*\" \"KEYWORD\" \"sys:encodings;\" \"BIN\" ("
+ "unsigned-byte 16) \"Unable to find mapping file ~A for encoding ~A\" \"EXT\" \"Not a "
+ "valid external format ~A\" 0 si::dm-too-few-arguments si::dm-too-many-arguments s"
+ "i::find-declarations 0 si::search-keyword si::check-keyword 0 :start :end :prese"
+ "rve-whitespace 0 0 0 0 0 0 \"SYSTEM\" (:utf-8 :ucs-2 :ucs-2be :ucs-2le :ucs-4 :ucs"
+ "-4be :ucs-4le :iso-8859-1 :latin-1 :us-ascii :default)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

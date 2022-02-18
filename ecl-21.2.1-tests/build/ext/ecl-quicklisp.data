@@ -1,0 +1,22 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1105, (cl_index)1105,
+        (ecl_base_char*)
+":ecl-curl ecl-quicklisp::*quicklisp-url* ecl-quicklisp::*quicklisp-directory* ec"
+ "l-quicklisp::*quicklisp-setup* ecl-curl::download-error \"~&;;;~%;;; Unable to do"
+ "wnload quicklisp. Aborting. ~%;;;\" ecl-quicklisp::safe-download \"_installer.lisp"
+ "\" \"(quicklisp-quickstart:install :path ~S)\" ecl-quicklisp::install-quicklisp #:e"
+ "cl-quicklisp si::dodefpackage 0 ecl-curl::download-url-to-file 0 (\"CL\") \"http://"
+ "beta.quicklisp.org/quicklisp.lisp\" \"SYS:QUICKLISP;\" \"SYS:QUICKLISP;SETUP.LISP\" \""
+ "QL\" \"\n       (pushnew #'(ext:lambda-block quicklisp-require (module)\n           "
+ "                         (let* ((module (string-downcase module)))\n             "
+ "                         (when (find module (ql:provided-systems t)\n            "
+ "                                      :test #'string-equal\n                     "
+ "                             :key #'ql-dist:name)\n                              "
+ "          (and (ql:quickload module)\n                                           "
+ "  (provide module)))))\n                sys::*module-provider-functions*)\n\" \"~%;;"
+ "; Unable to load / install quicklisp. Error message follows:~%~A\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

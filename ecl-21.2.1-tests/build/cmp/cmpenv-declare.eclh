@@ -1,0 +1,42 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1valid_form_p(cl_narg, cl_object , ...);
+static cl_object L2type_name_p(cl_object );
+static cl_object L3validate_alien_declaration(cl_object , cl_object );
+static cl_object L4alien_declaration_p(cl_narg, cl_object , ...);
+static cl_object L5parse_ignore_declaration(cl_object , cl_object , cl_object );
+static cl_object L6collect_declared(cl_object , cl_object , cl_object );
+static cl_object L7c1body(cl_object , cl_object );
+static cl_object L8add_one_declaration(cl_object , cl_object );
+static cl_object L9symbol_macro_declaration_p(cl_object , cl_object );
+static cl_object L10check_vdecl(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 64
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 8
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(38),ecl_make_fixnum(0),(cl_objectfn)L1valid_form_p,NULL,ECL_NIL,ecl_make_fixnum(849)},
+{0,0,1,0,ecl_make_fixnum(39),ecl_make_fixnum(3),(cl_objectfn)L2type_name_p,NULL,ECL_NIL,ecl_make_fixnum(970)},
+{0,0,2,0,ecl_make_fixnum(40),ecl_make_fixnum(6),(cl_objectfn)L3validate_alien_declaration,NULL,ECL_NIL,ecl_make_fixnum(1127)},
+{0,0,-2,0,ecl_make_fixnum(41),ecl_make_fixnum(9),(cl_objectfn)L4alien_declaration_p,NULL,ECL_NIL,ecl_make_fixnum(1502)},
+{0,0,2,0,ecl_make_fixnum(44),ecl_make_fixnum(14),(cl_objectfn)L7c1body,NULL,ECL_NIL,ecl_make_fixnum(2444)},
+{0,0,2,0,ecl_make_fixnum(49),ecl_make_fixnum(32),(cl_objectfn)L8add_one_declaration,NULL,ECL_NIL,ecl_make_fixnum(5232)},
+{0,0,2,0,ecl_make_fixnum(59),ecl_make_fixnum(33),(cl_objectfn)L9symbol_macro_declaration_p,NULL,ECL_NIL,ecl_make_fixnum(7119)},
+{0,0,3,0,ecl_make_fixnum(62),ecl_make_fixnum(37),(cl_objectfn)L10check_vdecl,NULL,ECL_NIL,ecl_make_fixnum(7397)},
+};

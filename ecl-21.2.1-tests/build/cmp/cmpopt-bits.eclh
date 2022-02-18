@@ -1,0 +1,33 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1inline_bytespec(cl_object );
+static cl_object LC2__lambda3(cl_object , cl_object );
+static cl_object LC3__lambda9(cl_object , cl_object );
+static cl_object LC4__lambda15(cl_object , cl_object );
+static cl_object LC5__lambda21(cl_object , cl_object );
+static cl_object LC6__lambda28(cl_object , cl_object );
+static cl_object LC7__lambda32(cl_object , cl_object , cl_object );
+static cl_object LC8__lambda33(cl_object , cl_object , cl_object );
+static cl_object LC9__lambda37(cl_object , cl_object );
+static cl_object LC10__lambda43(cl_object , cl_object , cl_object );
+static cl_object LC11__lambda47(cl_narg, cl_object , ...);
+static cl_object Cblock;
+#define VM 36
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 0
+#define compiler_cfuns NULL

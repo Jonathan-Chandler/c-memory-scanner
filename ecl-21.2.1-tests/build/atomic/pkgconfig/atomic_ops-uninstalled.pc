@@ -1,0 +1,10 @@
+prefix=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build
+exec_prefix=${prefix}
+top_builddir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/atomic
+top_srcdir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops
+
+Name: The atomic_ops library (uninstalled)
+Description: Atomic memory update operations
+Version: 7.6.6
+Libs: ${top_builddir}/src/libatomic_ops.la
+Cflags: -I${top_builddir}/src -I${top_srcdir}/src

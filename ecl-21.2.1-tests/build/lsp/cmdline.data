@@ -1,0 +1,53 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)3562, (cl_index)3562,
+        (ecl_base_char*)
+"si::*command-break-enable* ext::command-args \"*DEFAULT*\" \"Unknown command line o"
+ "ption ~A.~%\" :noloadrc :loadrc :stop \"Missing argument after command line option"
+ " ~A.~%\" ((si::output-file t) (si::c-file nil) (si::h-file nil) (si::data-file ni"
+ "l) (si::verbose t) (si::system-p nil) (ext::quit nil) (si::*command-break-enable"
+ "* nil)) ((when ext::quit (ext::quit 0))) si::produce-init-code :report-function "
+ "\"Ignore initialization errors and continue.\" \"Quit ECL unsafely, ignoring all ex"
+ "isting threads.\" \"An error occurred during initialization:~%~A.~%\" ext::process-"
+ "command-args 0 0 0 :args :rules si::make-restart \"SYSTEM\" (\"~/.ecl\" \"~/.eclrc\") "
+ "\"\nUsage: ecl [-? | --help]\n           [--dir dir] [--load file] [--shell file] ["
+ "--eval expr] [--rc | --norc]\n           [--c-stack size] [--lisp-stack size] [--"
+ "heap-size size] [--frame-stack size]\n           [[-o ofile] [-c [cfile]] [-h [hf"
+ "ile]] [--data [datafile]] [-s] [-q]\n            --compile file]\n           [[-o "
+ "ofile] --link file+]\n           [--input-encoding external-format] [--output-enc"
+ "oding external-format]\n           [--error-encoding external-format] [--encoding"
+ " external-format]\n           [--trap-fpe | --no-trap-fpe]\n\" (((\"-?\" \"--help\") 0 "
+ "(progn (princ ext::*help-message* *standard-output*) (ext::quit)) :noloadrc) ((\""
+ "-norc\" \"--norc\") 0 nil :noloadrc) ((\"-v\" \"--version\") 0 (progn (setf ext::quit 0"
+ ") (format *standard-output* \"ECL ~A~%\" (lisp-implementation-version))) :noloadrc"
+ ") ((\"-debug\" \"--debug\") 0 (setf si::*command-break-enable* t)) ((\"-nodebug\" \"--n"
+ "odebug\") 0 (setf si::*command-break-enable* nil)) ((\"-eval\" \"--eval\") 1 (eval (r"
+ "ead-from-string 1))) ((\"-shell\" \"--shell\") 1 (progn (setq ext::quit 0) (setq ext"
+ "::*unprocessed-ecl-command-args* (rest 1)) (load (first (rest 1)) :verbose nil))"
+ " :stop) ((\"-load\" \"--load\") 1 (load 1 :verbose si::verbose)) ((\"-dir\" \"--dir\") 1"
+ " (setf (logical-pathname-translations \"SYS\") `((\"**;*.*\" ,(merge-pathnames \"**/*"
+ ".*\" (truename 1)))))) (\"--heap-size\" 1 (ext::set-limit 'ext::heap-size (read-fro"
+ "m-string 1))) (\"--lisp-stack\" 1 (ext::set-limit 'ext::lisp-stack (read-from-stri"
+ "ng 1))) (\"--frame-stack\" 1 (ext::set-limit 'ext::frame-stack (read-from-string 1"
+ "))) (\"--c-stack\" 1 (ext::set-limit 'ext::c-stack (read-from-string 1))) (\"--trap"
+ "-fpe\" 0 (ext::trap-fpe t t)) (\"--no-trap-fpe\" 0 (ext::trap-fpe t nil)) (\"--encod"
+ "ing\" 1 (dolist (si::i (list *standard-input* *standard-output* *error-output* *t"
+ "race-output*)) (setf (stream-external-format si::i) (read-from-string 1)))) (\"--"
+ "input-encoding\" 1 (setf (stream-external-format *standard-input*) (read-from-str"
+ "ing 1))) (\"--output-encoding\" 1 (setf (stream-external-format *standard-output*)"
+ " (read-from-string 1))) (\"--error-encoding\" 1 (setf (stream-external-format *err"
+ "or-output*) (read-from-string 1))) ((\"-compile\" \"--compile\") 1 (progn (setq ext:"
+ ":quit (if (nth-value 3 (compile-file 1 :output-file si::output-file :c-file si::"
+ "c-file :h-file si::h-file :data-file si::data-file :verbose si::verbose :system-"
+ "p si::system-p)) 1 0) si::output-file t si::c-file nil si::h-file nil si::data-f"
+ "ile nil si::system-p nil))) ((\"-link\" \"--link\") &rest (progn (require 'si::cmp) "
+ "(funcall (read-from-string \"c::build-program\") (or si::output-file \"lisp.exe\") :"
+ "lisp-files '&rest) (setq si::output-file t ext::quit t))) (\"-o\" &optional (setq "
+ "si::output-file 1)) (\"-c\" &optional (setq si::c-file 1)) (\"-h\" &optional (setq s"
+ "i::h-file 1)) ((\"-data\" \"--data\") 1 (setq si::data-file 1)) ((\"-q\" \"--quiet\") 0 "
+ "(setq si::verbose nil)) (\"-s\" 0 (setq si::system-p t)) (\"--\" 1 (setf ext::*unpro"
+ "cessed-ecl-command-args* (rest 1)) :stop))" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

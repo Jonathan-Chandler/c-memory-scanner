@@ -1,0 +1,29 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1621, (cl_index)1621,
+        (ecl_base_char*)
+":safe \"\" c::c1form \"~?, the type of the form ~s is ~s, not ~s.\" c::and-form-type"
+ " ((fixnum . 0) (character . #\\ ) (long-float . 0.0l0) (double-float . 0.0d0) (si"
+ "ngle-float . 0.0) (si::complex-single-float . #C(0.0 0.0)) (si::complex-double-f"
+ "loat . #C(0.0d0 0.0d0)) (si::complex-single-float . #C(0.0l0 0.0l0))) :only-smal"
+ "l-values c::default-init c::*cmp-env* c::lambda-type-check-associate c::lambda-t"
+ "ype-check-precise si::no-check-type c::var c::type-assertion c::lambda-type-chec"
+ "k-expand (si::c-global) \"In ~:[an anonymous function~;function ~:*~A~], checking"
+ " types of argument~@[s~]~{ ~A~}.\" c::*current-function* c::extract-lambda-type-c"
+ "hecks ((:object) :void \"@0;if (ecl_unlikely(ECL_ATOM(#0))) FEtype_error_cons(#0)"
+ ";\" :one-liner nil) ((:object) :void \"if (ecl_unlikely(!ECL_ARRAYP(#0))) FEtype_e"
+ "rror_array(#0);\" :one-liner nil) ((:object) :void \"if (ecl_unlikely(!ECL_LISTP(#"
+ "0))) FEtype_error_list(#0);\" :one-liner nil) ((:object) :void \"if (ecl_unlikely("
+ "!(ECL_LISTP(#0) || ECL_VECTORP(#0))))\n           FEtype_error_sequence(#0);\" :on"
+ "e-liner nil) ((:bool :object :object) :void \"if (ecl_unlikely(!(#0)))\n         F"
+ "Ewrong_type_argument(#1,#2);\" :one-liner nil) c::type-error-check #:%value c::as"
+ "sert-type-if-known 0 0 0 0 c::replace-invalid-types c::optional-type-check :read"
+ "-only c::with-let*-type-check 0 c::c1form-primary-type c::type-and c::cmperr c::"
+ "cmpwarn 0 c::var-type c::c1constant-value c::c1nil 0 c::get-arg-types 0 c::var-n"
+ "ame 0 0 c::policy-check-arguments-type c::fun-name c::cmpnote 0 0 si::dm-too-few"
+ "-arguments si::dm-too-many-arguments c::constant-value-p 0 0 c::policy-assume-ri"
+ "ght-type 0 \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

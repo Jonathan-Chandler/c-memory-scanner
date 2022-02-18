@@ -1,0 +1,39 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)2442, (cl_index)2442,
+        (ecl_base_char*)
+"\"Malformed effective method form:~%~A\" (clos::.combined-method-args. clos::*next"
+ "-methods*) (declare (special clos::.combined-method-args. clos::*next-methods*))"
+ " (clos::.combined-method-args. clos::no-next-methods) (declare (ignorable clos::"
+ "no-next-methods)) clos::effective-method-function call-method \"No next method.\" "
+ "call-next-method next-method-p (car clos::*next-methods*) (rest clos::*next-meth"
+ "ods*) (error \"No next method.\") \"Standard method combination allows only one qua"
+ "lifier ~\n          per method, either :BEFORE, :AFTER, or :AROUND; while ~\n     "
+ "     a method with ~S was found.\" :before :after :around clos::no-primary-method"
+ " clos::standard-compute-effective-method clos::*method-combinations-lock* clos::"
+ "*method-combinations* \"~A does not name a method combination\" clos::search-metho"
+ "d-combination clos::install-method-combination clos::make-method-combination clo"
+ "s::find-method-combination (&optional (clos::order :most-specific-first)) (clos:"
+ ":around (:around)) clos::principal (:required t) clos::main-effective-method (ma"
+ "pcar #'(lambda (clos::x) `(call-method ,clos::x nil)) (if (eql clos::order :most"
+ "-specific-last) (reverse clos::principal) clos::principal)) (clos::around `(call"
+ "-method ,(first clos::around) (,@(rest clos::around) (make-method ,clos::main-ef"
+ "fective-method)))) (rest clos::principal) (t (second clos::main-effective-method"
+ ")) clos::define-simple-method-combination \"~S is not a valid DEFINE-METHOD-COMBI"
+ "NATION form\" clos::.generic-function. :arguments \"Option :ARGUMENTS is not suppo"
+ "rted in DEFINE-METHOD-COMBINATION.\" :generic-function :most-specific-first (:req"
+ "uired :order :description) clos::.method-qualifiers. #'equal clos::.method. \"Met"
+ "hod combination: ~S. No methods ~\n                            in required group "
+ "~S.\" :most-specific-last clos::.methods-list. (clos::.method. clos::.methods-lis"
+ "t.) ((clos::.method-qualifiers. (method-qualifiers clos::.method.))) \"Method qua"
+ "lifiers ~S are not allowed in the method~\n                                  comb"
+ "ination ~S.\" define-method-combination \"Method-combination error:~%~S\" \"Invalid "
+ "method error for ~A~%~S\" clos::compute-effective-method (:around) (progn) (and) "
+ "(max) (+) (nconc) (append) (list) (min) (or) 0 clos::method-p 0 si::dm-too-few-a"
+ "rguments si::dm-too-many-arguments 0 0 0 0 0 0 0 0 :documentation :identity-with"
+ "-one-argument :operator si::find-declarations si::search-keyword si::check-keywo"
+ "rd si::expand-set-documentation 0 0 \"CLOS\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

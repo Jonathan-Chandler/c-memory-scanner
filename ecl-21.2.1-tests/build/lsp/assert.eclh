@@ -1,0 +1,58 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1read_evaluated_form();
+ECL_DLLEXPORT cl_object si_wrong_type_argument(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC2__lambda4(cl_narg, ...);
+static cl_object LC3__lambda5(cl_narg, cl_object , ...);
+static cl_object LC4check_type(cl_object , cl_object );
+ECL_DLLEXPORT cl_object si_do_check_type(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC5__lambda23(cl_narg, ...);
+static cl_object LC6__lambda24(cl_narg, cl_object , ...);
+static cl_object LC7assert(cl_object , cl_object );
+static cl_object L8accumulate_cases(cl_object , cl_object );
+ECL_DLLEXPORT cl_object si_ecase_error(cl_object , cl_object );
+static cl_object LC9ecase(cl_object , cl_object );
+ECL_DLLEXPORT cl_object si_ccase_error(cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC10__lambda54(cl_narg, ...);
+static cl_object LC11__lambda55(cl_narg, cl_object , ...);
+static cl_object L13remove_otherwise_from_clauses(cl_object );
+static cl_object LC12__lambda64(cl_object );
+static cl_object LC14ccase(cl_object , cl_object );
+static cl_object LC15typecase(cl_object , cl_object );
+ECL_DLLEXPORT cl_object si_etypecase_error(cl_object , cl_object );
+static cl_object LC16etypecase(cl_object , cl_object );
+ECL_DLLEXPORT cl_object si_ctypecase_error(cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC17__lambda102(cl_narg, ...);
+static cl_object LC18__lambda103(cl_narg, cl_object , ...);
+static cl_object LC20ctypecase(cl_object , cl_object );
+static cl_object LC19__lambda119(cl_narg, cl_object , ...);
+static cl_object Cblock;
+#define VM 34
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 8
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,0,0,ecl_make_fixnum(22),ecl_make_fixnum(1),(cl_objectfn)L1read_evaluated_form,NULL,ECL_NIL,ecl_make_fixnum(669)},
+{0,0,2,0,ecl_make_fixnum(26),ecl_make_fixnum(8),(cl_objectfn)LC4check_type,NULL,ECL_NIL,ecl_make_fixnum(1629)},
+{0,0,2,0,ecl_make_fixnum(28),ecl_make_fixnum(11),(cl_objectfn)LC7assert,NULL,ECL_NIL,ecl_make_fixnum(2969)},
+{0,0,2,0,ecl_make_fixnum(29),ecl_make_fixnum(14),(cl_objectfn)LC9ecase,NULL,ECL_NIL,ecl_make_fixnum(4268)},
+{0,0,2,0,ecl_make_fixnum(30),ecl_make_fixnum(17),(cl_objectfn)LC14ccase,NULL,ECL_NIL,ecl_make_fixnum(5583)},
+{0,0,2,0,ecl_make_fixnum(31),ecl_make_fixnum(18),(cl_objectfn)LC15typecase,NULL,ECL_NIL,ecl_make_fixnum(6577)},
+{0,0,2,0,ecl_make_fixnum(32),ecl_make_fixnum(19),(cl_objectfn)LC16etypecase,NULL,ECL_NIL,ecl_make_fixnum(7488)},
+{0,0,2,0,ecl_make_fixnum(33),ecl_make_fixnum(21),(cl_objectfn)LC20ctypecase,NULL,ECL_NIL,ecl_make_fixnum(8630)},
+};

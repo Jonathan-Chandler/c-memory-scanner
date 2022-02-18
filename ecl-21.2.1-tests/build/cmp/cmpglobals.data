@@ -1,0 +1,45 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)2893, (cl_index)2893,
+        (ecl_base_char*)
+"c::*inline-blocks* c::*opened-c-braces* c::*inline-max-depth* c::*inline-informa"
+ "tion* c::*current-form* c::|compiler preprocess| c::*current-toplevel-form* c::*"
+ "compile-file-position* c::*first-error* c::*active-protection* c::*pending-actio"
+ "ns* c::*compiler-conditions* c::*compiler-features* c::*suppress-compiler-messag"
+ "es* c::compiler-note c::*compiler-break-enable* c::*compiler-in-use* c::*compile"
+ "r-output1* c::*compiler-output2* c::*callbacks* c::*machine* c::*compile-to-link"
+ "ing-call* c::*compiler-declared-globals* c::*safety* c::*speed* c::*space* c::*d"
+ "ebug* c::*automatic-check-type-in-lambda* c::*lcl* c::*temp* c::*max-temp* c::*l"
+ "evel* c::*lex* c::*max-lex* c::*env* c::*max-env* c::*env-lvl* c::*aux-closure* "
+ "c::*ihs-used-p* c::*next-cmacro* c::*next-cfun* c::*tail-recursion-info* c::*all"
+ "ow-c-local-declaration* c::*last-label* c::*exit* c::*unwind-exit* c::*current-f"
+ "unction* c::*cmp-env* c::*cmp-env-root* #:no-macro c::*destination* c::*debug-co"
+ "mpiler* c::*delete-files* c::*files-to-be-deleted* c::*user-ld-flags* c::*user-c"
+ "c-flags* c::*use-precompiled-headers* c::*precompiled-header-flags* c::*precompi"
+ "led-header-cc-config* c::*do-type-propagation* c::*compiler-phase* c::*volatile*"
+ " c::*setjmps* c::*compile-toplevel* c::*clines-string-list* c::*compile-time-too"
+ "* c::*not-compile-time* c::*permanent-data* c::*permanent-objects* c::*temporary"
+ "-objects* c::*load-objects* c::*load-time-values* c::*setf-definitions* c::*opti"
+ "mizable-constants* c::*use-static-constants-p* c::*static-constants* c::*proclai"
+ "m-fixed-args* c::*global-vars* c::*global-funs* c::*use-c-global* c::*global-cfu"
+ "ns-array* c::*local-funs* c::*top-level-forms* c::*make-forms* c::*objects-being"
+ "-created* c::*objects-init-deferred* c::*self-destructing-fasl* c::*undefined-va"
+ "rs* c::+init-env-form+ \"COMPILER\" (:gcc :gcc-compiler :i386 :ilp32) ((*gensym-co"
+ "unter* 0) (c::*compiler-in-use* t) (c::*compiler-phase* 'c::t1) (c::*callbacks* "
+ "nil) (c::*cmp-env-root* (copy-tree c::*cmp-env-root*)) (c::*cmp-env* nil) (c::*m"
+ "ax-temp* 0) (c::*temp* 0) (c::*next-cmacro* 0) (c::*next-cfun* 0) (c::*last-labe"
+ "l* 0) (c::*load-objects* (make-hash-table :size 128 :test #'equal)) (c::*setf-de"
+ "finitions* nil) (c::*make-forms* nil) (c::*static-constants* nil) (c::*permanent"
+ "-objects* nil) (c::*temporary-objects* nil) (c::*local-funs* nil) (c::*global-va"
+ "rs* nil) (c::*global-funs* nil) (c::*global-cfuns-array* nil) (c::*undefined-var"
+ "s* nil) (c::*top-level-forms* nil) (c::*compile-time-too* nil) (c::*clines-strin"
+ "g-list* 'nil) (c::*inline-blocks* 0) (c::*open-c-braces* 0) (si::*defun-inline-h"
+ "ook* 'c::maybe-install-inline-function) (c::*machine* (or c::*machine* c::*defau"
+ "lt-machine*)) (c::*optimizable-constants* (c::make-optimizable-constants c::*mac"
+ "hine*)) (c::*inline-information* (let ((c::r (c::machine-inline-information c::*"
+ "machine*))) (if c::r (si::copy-hash-table c::r) (c::make-inline-information c::*"
+ "machine*)))))" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

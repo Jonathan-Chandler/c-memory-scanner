@@ -1,0 +1,15 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)511, (cl_index)511,
+        (ecl_base_char*)
+"\"Wrong number of elements in :DEFAULT-INITARGS option.\" \"~S is duplicated in :DE"
+ "FAULT-INITARGS form ~S\" \"Illegal defclass form: the class name, the superclasses"
+ " and the slots should always be provided\" \"Illegal defclass form: superclasses a"
+ "nd slots should be lists\" \"Illegal defclass form: superclasses and class name ar"
+ "e not valid\" defclass clos::uncompress-slot-forms \"Option ~s for DEFCLASS specif"
+ "ied more than once\" 0 0 clos::process-class-options clos::make-function-initform"
+ " 0 clos::parse-slots 0 0 \"CLOS\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

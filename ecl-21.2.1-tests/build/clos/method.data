@@ -1,0 +1,30 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1725, (cl_index)1725,
+        (ecl_base_char*)
+"clos::*method-size* clos::*early-methods* clos::*add-method-argument-declaration"
+ "s* clos::*clos-booted* clos::method-class clos::generic-function-method-class cl"
+ "os::prototypes-for-make-method-lambda clos::install-method defmethod clos::maybe"
+ "-remove-block (clos::.combined-method-args. clos::*next-methods*) (declare (spec"
+ "ial clos::.combined-method-args. clos::*next-methods*)) \"Unable to unwrap functi"
+ "on\" clos::simplify-lambda (&allow-other-keys) si::no-check-type clos::make-metho"
+ "d-lambda ((clos::.closed-combined-method-args. (if (listp clos::.combined-method"
+ "-args.) clos::.combined-method-args. (apply #'list clos::.combined-method-args.)"
+ ")) (clos::.next-methods. clos::*next-methods*)) ((call-next-method (&rest clos::"
+ "args) (unless clos::.next-methods. (error \"No next method\")) (funcall (car clos:"
+ ":.next-methods.) (or clos::args clos::.closed-combined-method-args.) (rest clos:"
+ ":.next-methods.))) (next-method-p nil clos::.next-methods.)) clos::add-call-next"
+ "-method-closure clos::environment-contains-closure clos::legal-generic-function-"
+ "name-p clos::implicit-generic-lambda \"Syntax error in method specializer ~A\" \"NI"
+ "L is not a valid specializer in a method lambda list\" (&optional &rest &key &all"
+ "ow-other-keys &aux) clos::compute-method-keywords make-method clos::method-p add"
+ "-method \"~A is not a valid specializer name\" \"The specializers list~%~A~%does no"
+ "t match the number of required arguments in ~A\" \"There is no method on the gener"
+ "ic function ~S that agrees on qualifiers ~S and specializers ~S\" find-method wit"
+ "h-accessors clos::slot-index 0 0 0 si::dm-too-few-arguments 0 si::find-declarati"
+ "ons 0 0 0 0 0 0 0 0 0 0 clos::compute-g-f-spec-list clos::set-generic-function-d"
+ "ispatch 0 clos::eql-specializer-flag 0 \"CLOS\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

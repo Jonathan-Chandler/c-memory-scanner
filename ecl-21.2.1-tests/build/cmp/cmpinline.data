@@ -1,0 +1,26 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1400, (cl_index)1400,
+        (ecl_base_char*)
+":rep-type \" \" \";\" c::make-inline-temp-var c::*destination* c::save-inline-loc c:"
+ ":var-type c::with-inlined-loc c::emit-inlined-variable c::var c::emit-inlined-se"
+ "tq c::*global-funs* c::emit-inlined-call-global c::trash c::emit-inlined-progn c"
+ "::emit-inlined-values c::emit-inlined-structure-ref c::emit-inlined-instance-ref"
+ " c::*compile-file-position* c::*current-toplevel-form* c::*current-form* c::*cmp"
+ "-env* c::call-global c::emit-inline-form c::inline-args c::destination-type c::*"
+ "inline-blocks* c::maybe-open-inline-block c::open-inline-block c::close-inline-b"
+ "locks c::form-causes-side-effect c::args-cause-side-effect c::no-side-effects c:"
+ ":function-may-have-side-effects c::no-sp-change c::function-may-change-sp 0 c::l"
+ "isp-type->rep-type c::make-temp-var c::make-lcl-var c::rep-type->c-name c::wt-nl"
+ " 0 c::loc-representation-type c::set-loc 0 si::dm-too-few-arguments si::dm-too-m"
+ "any-arguments 0 c::c1form-args c::c1form-primary-type c::var-changed-in-form-lis"
+ "t c::var-rep-type 0 c::c2expr* c::c1form-name c::make-c1form 0 si::make-seq-iter"
+ "ator si::seq-iterator-ref c::fun-name c::same-fname-p si::seq-iterator-next c::c"
+ "all-global-loc c::loc-type c::type-and 0 0 c::c1nil 0 c::coerce-locs 0 0 c::c1fo"
+ "rm-file c::c1form-file-position c::c1form-toplevel-form c::c1form-form c::c1form"
+ "-env 0 0 c::rep-type->lisp-type 0 0 c::wt-nl-open-brace 0 c::wt-nl-close-brace 0"
+ " c::c1form-side-effects 0 0 0 \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

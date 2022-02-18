@@ -1,0 +1,32 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1constant_expression_p(cl_narg, cl_object , ...);
+static cl_object L3extract_constant_value(volatile cl_narg, cl_object volatile , ...);
+static cl_object LC2__lambda6(cl_narg, cl_object , ...);
+static cl_object L5constant_value_p(volatile cl_narg, cl_object volatile , ...);
+static cl_object LC4__lambda10(cl_narg, cl_object , ...);
+static cl_object Cblock;
+#define VM 11
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 3
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(6),ecl_make_fixnum(3),(cl_objectfn)L1constant_expression_p,NULL,ECL_NIL,ecl_make_fixnum(618)},
+{0,0,-2,0,ecl_make_fixnum(8),ecl_make_fixnum(4),(cl_objectfn)L3extract_constant_value,NULL,ECL_NIL,ecl_make_fixnum(1018)},
+{0,0,-2,0,ecl_make_fixnum(10),ecl_make_fixnum(5),(cl_objectfn)L5constant_value_p,NULL,ECL_NIL,ecl_make_fixnum(1214)},
+};

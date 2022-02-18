@@ -1,0 +1,56 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1function_arg_types(cl_object );
+static cl_object L2proclaim_function(cl_object , cl_object );
+static cl_object L3add_function_declaration(cl_narg, cl_object , cl_object , ...);
+static cl_object L4get_arg_types(cl_narg, cl_object , ...);
+static cl_object L5get_return_type(cl_narg, cl_object , ...);
+static cl_object L6get_local_arg_types(cl_narg, cl_object , ...);
+static cl_object L7get_local_return_type(cl_narg, cl_object , ...);
+static cl_object L8get_proclaimed_narg(cl_narg, cl_object , ...);
+static cl_object L9declare_inline(cl_narg, cl_object , ...);
+static cl_object L10declare_notinline(cl_narg, cl_object , ...);
+static cl_object L11proclaim_inline(cl_object );
+static cl_object L12proclaim_notinline(cl_object );
+static cl_object L13declared_inline_p(cl_narg, cl_object , ...);
+static cl_object L14declared_notinline_p(cl_narg, cl_object , ...);
+static cl_object L15inline_possible(cl_narg, cl_object , ...);
+static cl_object L16maybe_install_inline_function(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 67
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 16
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(41),ecl_make_fixnum(3),(cl_objectfn)L1function_arg_types,NULL,ECL_NIL,ecl_make_fixnum(639)},
+{0,0,2,0,ecl_make_fixnum(42),ecl_make_fixnum(11),(cl_objectfn)L2proclaim_function,NULL,ECL_NIL,ecl_make_fixnum(972)},
+{0,0,-3,0,ecl_make_fixnum(43),ecl_make_fixnum(15),(cl_objectfn)L3add_function_declaration,NULL,ECL_NIL,ecl_make_fixnum(2087)},
+{0,0,-2,0,ecl_make_fixnum(46),ecl_make_fixnum(16),(cl_objectfn)L4get_arg_types,NULL,ECL_NIL,ecl_make_fixnum(2494)},
+{0,0,-2,0,ecl_make_fixnum(50),ecl_make_fixnum(17),(cl_objectfn)L5get_return_type,NULL,ECL_NIL,ecl_make_fixnum(2954)},
+{0,0,-2,0,ecl_make_fixnum(51),ecl_make_fixnum(18),(cl_objectfn)L6get_local_arg_types,NULL,ECL_NIL,ecl_make_fixnum(3375)},
+{0,0,-2,0,ecl_make_fixnum(53),ecl_make_fixnum(19),(cl_objectfn)L7get_local_return_type,NULL,ECL_NIL,ecl_make_fixnum(3557)},
+{0,0,-2,0,ecl_make_fixnum(54),ecl_make_fixnum(24),(cl_objectfn)L8get_proclaimed_narg,NULL,ECL_NIL,ecl_make_fixnum(3742)},
+{0,0,-2,0,ecl_make_fixnum(55),ecl_make_fixnum(26),(cl_objectfn)L9declare_inline,NULL,ECL_NIL,ecl_make_fixnum(4579)},
+{0,0,-2,0,ecl_make_fixnum(58),ecl_make_fixnum(27),(cl_objectfn)L10declare_notinline,NULL,ECL_NIL,ecl_make_fixnum(4853)},
+{0,0,1,0,ecl_make_fixnum(59),ecl_make_fixnum(29),(cl_objectfn)L11proclaim_inline,NULL,ECL_NIL,ecl_make_fixnum(4947)},
+{0,0,1,0,ecl_make_fixnum(60),ecl_make_fixnum(31),(cl_objectfn)L12proclaim_notinline,NULL,ECL_NIL,ecl_make_fixnum(5250)},
+{0,0,-2,0,ecl_make_fixnum(61),ecl_make_fixnum(32),(cl_objectfn)L13declared_inline_p,NULL,ECL_NIL,ecl_make_fixnum(5512)},
+{0,0,-2,0,ecl_make_fixnum(64),ecl_make_fixnum(33),(cl_objectfn)L14declared_notinline_p,NULL,ECL_NIL,ecl_make_fixnum(5755)},
+{0,0,-2,0,ecl_make_fixnum(65),ecl_make_fixnum(34),(cl_objectfn)L15inline_possible,NULL,ECL_NIL,ecl_make_fixnum(6011)},
+{0,0,3,0,ecl_make_fixnum(66),ecl_make_fixnum(40),(cl_objectfn)L16maybe_install_inline_function,NULL,ECL_NIL,ecl_make_fixnum(6458)},
+};

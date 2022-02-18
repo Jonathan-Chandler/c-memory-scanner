@@ -1,0 +1,21 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1037, (cl_index)1037,
+        (ecl_base_char*)
+"c::inlined-arg-loc c::inlined-arg-type c::inlined-arg-rep-type c::*cinline-dispa"
+ "tch-table* c::define-c-inliner c::apply-inliner c::default-c-inliner c::any c::*"
+ "c2-dispatch-table* c::*destination* c::inline-function c::apply-inline-info :boo"
+ "l c::choose-inline-info :inline-unsafe :inline-safe :inline-always c::should-be-"
+ "inlined \"Could not inline call to ~S ~S - performance may be degraded.\" (fixnum "
+ "double-float single-float long-float) c::to-fixnum-float-type c::maximum-float-t"
+ "ype 0 0 c::fixnum-float c::inline-info c::inline-type-matches 0 0 0 c::loc-repre"
+ "sentation-type 0 si::dm-too-few-arguments 0 0 0 c::inline-possible 0 c::inline-i"
+ "nfo-arg-types c::inline-info-return-rep-type c::inline-info-return-type c::inlin"
+ "e-info-name c::function-may-have-side-effects c::inline-info-expansion c::inline"
+ "-info-one-liner c::produce-inline-loc 0 c::type>= c::safe-compile c::inline-info"
+ "rmation c::cmp-env-optimization c::cmpwarn-style 0 0 0 c::inline-info-multiple-v"
+ "alues c::inline-info-exact-return-type c::policy-assume-right-type \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

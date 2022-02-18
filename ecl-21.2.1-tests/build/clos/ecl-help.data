@@ -1,0 +1,12 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)270, (cl_index)270,
+        (ecl_base_char*)
+"\"CL\" si::to-cdb-vector si::from-cdb-vector si::search-help-file \"DUMP-HELP-FILE "
+ "does not suport yet the third argument\" \"Symbol ~A not found in database ~A\" si:"
+ ":dump-help-file 0 0 0 ecl-cdb::lookup-cdb 0 ecl-cdb::%make-cdb ecl-cdb::add-reco"
+ "rd ecl-cdb::close-cdb \"SYSTEM\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

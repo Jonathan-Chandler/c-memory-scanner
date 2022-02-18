@@ -1,0 +1,62 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1with_process_lock(cl_object , cl_object );
+static cl_object L2make_external_process();
+static cl_object LC3__lambda14(cl_object , cl_object );
+static cl_object LC4__lambda18(cl_object , cl_object );
+static cl_object LC5__lambda22(cl_object , cl_object );
+static cl_object LC6__lambda26(cl_object , cl_object );
+static cl_object LC7__lambda30(cl_object , cl_object );
+static cl_object LC8__lambda34(cl_object , cl_object );
+static cl_object LC9__lambda38(cl_object , cl_object );
+static cl_object LC10__lambda42(cl_object , cl_object );
+static cl_object L11external_process_status(cl_object );
+static cl_object L12external_process_wait(volatile cl_narg, cl_object volatile , ...);
+ECL_DLLEXPORT cl_object si_terminate_process(volatile cl_narg, cl_object volatile , ...);
+static cl_object L13finalize_external_process(cl_object );
+ECL_DLLEXPORT cl_object si_run_program(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+#define si_run_programkeys (&VV[37])
+static cl_object LC18verify_stream(volatile cl_object  *, cl_object , cl_object );
+static cl_object LC17null_stream(cl_object );
+static cl_object LC16prepare_args(volatile cl_object  *, cl_object volatile );
+static cl_object LC14process_stream(cl_narg, volatile cl_object  *, cl_object , ...);
+static cl_object LC15__lambda105(cl_object );
+static cl_object L19escape_arg(cl_object , cl_object );
+static cl_object L21pipe_streams(cl_object , cl_object );
+static cl_object LC20thunk(volatile cl_object  *);
+static cl_object Cblock;
+#define VM 52
+#define VMtemp 14
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_single_float(_ecl_static_3,0.001,static,const);
+ecl_def_ct_base_string(_ecl_static_2,"EXTERNAL-PROCESS-",17,static,const);
+ecl_def_ct_base_string(_ecl_static_1,"WAIT-P",6,static,const);
+ecl_def_ct_base_string(_ecl_static_0,"LOCK",4,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 7
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(29),ecl_make_fixnum(1),(cl_objectfn)LC1with_process_lock,NULL,ECL_NIL,ecl_make_fixnum(216)},
+{0,0,0,0,ecl_make_fixnum(33),ecl_make_fixnum(5),(cl_objectfn)L2make_external_process,NULL,ECL_NIL,ecl_make_fixnum(730)},
+{0,0,1,0,ecl_make_fixnum(34),ecl_make_fixnum(13),(cl_objectfn)L11external_process_status,NULL,ECL_NIL,ecl_make_fixnum(948)},
+{0,0,-2,0,ecl_make_fixnum(35),ecl_make_fixnum(20),(cl_objectfn)L12external_process_wait,NULL,ECL_NIL,ecl_make_fixnum(1835)},
+{0,0,1,0,ecl_make_fixnum(36),ecl_make_fixnum(21),(cl_objectfn)L13finalize_external_process,NULL,ECL_NIL,ecl_make_fixnum(4076)},
+{0,0,2,0,ecl_make_fixnum(50),ecl_make_fixnum(27),(cl_objectfn)L19escape_arg,NULL,ECL_NIL,ecl_make_fixnum(10644)},
+{0,0,2,0,ecl_make_fixnum(51),ecl_make_fixnum(28),(cl_objectfn)L21pipe_streams,NULL,ECL_NIL,ecl_make_fixnum(11593)},
+};

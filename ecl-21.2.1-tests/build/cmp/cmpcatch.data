@@ -1,0 +1,23 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1181, (cl_index)1181,
+        (ecl_base_char*)
+"c::*setjmps* :sp-change :args c::c1catch c::*destination* c::*last-label* c::val"
+ "ue0 c::*unwind-exit* c::frame c::trash 0 0 \"ecl_frs_push(cl_env_copy,\" \");\" \"if "
+ "(__ecl_frs_push_result==0) {\" \"BEGIN CATCH ~A\" c::*opened-c-braces* \"if (__ecl_f"
+ "rs_push_result) {\" c::*exit* \"} else {\" \"}\" \"ecl_frs_pop(cl_env_copy);\" \"END CAT"
+ "CH ~A\" c::c2catch \"UNWIND-PROTECT without CLEANUP-FORMS was replaced by its FORM"
+ ".\" c::*cmp-env* c::c1unwind-protect :rep-type :cl-index c::stack \"volatile bool "
+ "unwinding = FALSE;\" \"cl_index \" \"=ECL_STACK_INDEX(cl_env_copy),\" \";\" \"ecl_frame_"
+ "ptr next_fr;\" \"ecl_frs_push(cl_env_copy,ECL_PROTECT_TAG);\" \"  unwinding = TRUE; "
+ "next_fr=cl_env_copy->nlj_fr;\" \"=ecl_stack_push_values(cl_env_copy);\" \"ecl_stack_"
+ "pop_values(cl_env_copy,\" \"if (unwinding) ecl_unwind(cl_env_copy,next_fr);\" c::c2"
+ "unwind-protect c::c1throw c::var 0 0 \"cl_throw(\" c::c2throw 0 c::check-args-numb"
+ "er c::c1expr c::c1progn c::make-c1form* 0 c::tmp-destination c::c2expr* c::wt-nl"
+ "-open-brace c::wt-nl c::wt-comment c::next-label c::unwind-exit c::wt-label c::w"
+ "t-nl-close-brace 0 c::cmpdebug c::cmp-env-mark c::c1form-type 0 c::make-lcl-var "
+ "0 0 c::c1form-name c::c1form-args c::make-temp-var \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

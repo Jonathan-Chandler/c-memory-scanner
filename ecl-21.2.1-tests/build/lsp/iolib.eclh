@@ -1,0 +1,60 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1with_open_stream(cl_object , cl_object );
+static cl_object LC2with_input_from_string(cl_object , cl_object );
+static cl_object LC3with_output_to_string(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_read_from_string(cl_narg, cl_object , ...);
+#define cl_read_from_stringkeys (&VV[57])
+ECL_DLLEXPORT cl_object si_string_to_object(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_write_to_string(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_prin1_to_string(cl_object );
+ECL_DLLEXPORT cl_object cl_princ_to_string(cl_object );
+static cl_object LC4with_open_file(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_y_or_n_p(cl_narg, ...);
+ECL_DLLEXPORT cl_object cl_yes_or_no_p(cl_narg, ...);
+static cl_object L5sharp_a_reader(cl_object , cl_object , cl_object );
+static cl_object L6sharp_s_reader(cl_object , cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_dribble(cl_narg, ...);
+static cl_object LC7__lambda72(cl_narg, cl_object , ...);
+static cl_object LC8with_standard_io_syntax(cl_object , cl_object );
+static cl_object LC9with_ecl_io_syntax(cl_object , cl_object );
+static cl_object LC10print_unreadable_object(cl_object , cl_object );
+static cl_object LC11all_encodings(cl_narg, ...);
+ECL_DLLEXPORT cl_object si_load_encoding(cl_object volatile );
+ECL_DLLEXPORT cl_object si_make_encoding(cl_object );
+static cl_object Cblock;
+#define VM 66
+#define VMtemp 2
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_single_float(_ecl_static_1,1.5,static,const);
+ecl_def_ct_base_string(_ecl_static_0,"ELT-TYPE-VAR",12,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 9
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(49),ecl_make_fixnum(0),(cl_objectfn)LC1with_open_stream,NULL,ECL_NIL,ecl_make_fixnum(697)},
+{0,0,2,0,ecl_make_fixnum(53),ecl_make_fixnum(3),(cl_objectfn)LC2with_input_from_string,NULL,ECL_NIL,ecl_make_fixnum(1091)},
+{0,0,2,0,ecl_make_fixnum(56),ecl_make_fixnum(5),(cl_objectfn)LC3with_output_to_string,NULL,ECL_NIL,ecl_make_fixnum(1846)},
+{0,0,2,0,ecl_make_fixnum(60),ecl_make_fixnum(7),(cl_objectfn)LC4with_open_file,NULL,ECL_NIL,ecl_make_fixnum(5251)},
+{0,0,3,0,ecl_make_fixnum(61),ecl_make_fixnum(14),(cl_objectfn)L5sharp_a_reader,NULL,ECL_NIL,ecl_make_fixnum(7088)},
+{0,0,3,0,ecl_make_fixnum(62),ecl_make_fixnum(20),(cl_objectfn)L6sharp_s_reader,NULL,ECL_NIL,ecl_make_fixnum(7983)},
+{0,0,2,0,ecl_make_fixnum(63),ecl_make_fixnum(31),(cl_objectfn)LC8with_standard_io_syntax,NULL,ECL_NIL,ecl_make_fixnum(11166)},
+{0,0,2,0,ecl_make_fixnum(64),ecl_make_fixnum(35),(cl_objectfn)LC9with_ecl_io_syntax,NULL,ECL_NIL,ecl_make_fixnum(11605)},
+{0,0,2,0,ecl_make_fixnum(65),ecl_make_fixnum(40),(cl_objectfn)LC10print_unreadable_object,NULL,ECL_NIL,ecl_make_fixnum(12141)},
+};

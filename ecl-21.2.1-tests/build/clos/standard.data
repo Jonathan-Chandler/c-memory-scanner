@@ -1,0 +1,47 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)3087, (cl_index)3087,
+        (ecl_base_char*)
+"\"Wrong number of keyword arguments for SHARED-INITIALIZE, ~A\" \"Not a valid inita"
+ "rg: ~A\" clos::compute-instance-size clos::valid-initargs clos::delete-keyword cl"
+ "os::+initform-unsupplied+ clos::has-forward-referenced-parents clos::finalize-un"
+ "less-forward \"No next method\" clos::direct-superclasses clos::precompute-valid-i"
+ "nitarg-keywords clos::*clos-booted* clos::update-dependents clos::optimize-slot-"
+ "access clos::sealedp \"No next method.\" \"Class ~A is not a valid superclass for ~"
+ "A\" \"No :DIRECT-SUPERCLASS ~\nargument was supplied for metaclass ~S.\" clos::check"
+ "-direct-superclasses clos::forward-referenced-class-p \"Cannot finish building th"
+ "e class~%  ~A~%~\nbecause it contains a reference to the undefined class~%  ~A\" :"
+ "from-end clos::slots clos::slot-definition-to-plist clos::safe-slot-definition-l"
+ "ocation \"You have specified two conflicting slot locations:~%~D and ~F~%for slot"
+ " ~A\" :initial-value \"When redefining a class, the metaclass can not change.\" \"~a"
+ " is not a valid class specifier.\" si::simple-style-warning \"Class ~A has been fo"
+ "rward referenced.\" clos::coerce-to-class clos::help-ensure-class \"Slots ~A and ~"
+ "A are said to have the same location in class ~A.\" :format-ars clos::class-compu"
+ "te-slots :class \"~%~S is an instance of class ~A\" \"~%it has the following instan"
+ "ce slots\" \"~%~A:~24,8T~A\" \"Unbound\" \"~%it has the following class slots\" clos::v"
+ "alid-keywords-from-methods \"No value supplied for the init-name ~S.\" \"Unknown in"
+ "itialization options ~S for class ~A.\" clos::check-initargs \"~%~A is an instance"
+ " of class ~A\" \": \" clos::superiors 0 clos::inferiors 0 clos::precedence-list 0 c"
+ "los::install-method 0 0 clos::class-size clos::class-valid-initargs 0 si::search"
+ "-keyword 0 0 :direct-slots :direct-superclasses clos::canonical-slot-to-direct-s"
+ "lot 0 0 clos::method-keywords 0 0 :optimize-slot-access :sealedp 0 0 0 0 0 0 0 0"
+ " clos::class-sealedp si::make-seq-iterator si::seq-iterator-ref si::seq-iterator"
+ "-next 0 clos::direct-slot-to-canonical-slot 0 clos::slot-definitions-compatible-"
+ "p si::subtypep-clear-cache clos::std-create-slots-table clos::std-class-generate"
+ "-accessors clos::compute-clos-class-precedence-list 0 clos::slot-definition-docu"
+ "mentation 0 0 0 0 0 0 0 :direct-slots :direct-default-initargs clos::setf-find-c"
+ "lass 0 0 :metaclass :direct-superclasses 0 0 0 \"CLOS\" (t) (ext::instance &rest c"
+ "los::initargs) (t t) (ext::instance clos::slot-names &rest clos::initargs) (clas"
+ "s) (class &rest clos::initargs) (class &rest clos::canonicalized-slot) (class &r"
+ "est clos::initargs &key clos::direct-slots clos::direct-superclasses) (class t) "
+ "(class clos::slot-names &rest clos::initargs &key (clos::direct-superclasses nil"
+ " clos::direct-superclasses-p)) (clos::std-class t) (class clos::slot-names &rest"
+ " clos::initargs &key (clos::optimize-slot-access (list clos::*optimize-slot-acce"
+ "ss*)) clos::sealedp) (clos::parent clos::child) (class class) (class clos::super"
+ "class) (clos::std-class) (class t t) (class clos::name clos::direct-slots) (clas"
+ "s clos::name &rest rest &key clos::direct-slots clos::direct-default-initargs) ("
+ ":around) (standard-object t) (clos::obj stream)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

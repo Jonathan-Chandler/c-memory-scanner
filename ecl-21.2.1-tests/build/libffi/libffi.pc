@@ -1,0 +1,11 @@
+prefix=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build
+exec_prefix=${prefix}
+libdir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build
+toolexeclibdir=${libdir}
+includedir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/ecl
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.3
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}

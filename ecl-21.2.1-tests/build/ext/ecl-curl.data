@@ -1,0 +1,29 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1623, (cl_index)1623,
+        (ecl_base_char*)
+":sockets ecl-curl::http-transfer-error ecl-curl::download-error #1=\"Server respo"
+ "nded ~A for GET ~A\" ecl-curl::*stream-buffer-size* \"Incompatible streams ~A and "
+ "~A.\" ecl-curl::copy-stream sb-bsd-sockets::inet-socket :protocol :tcp :buffering"
+ " ecl-curl::make-stream-from-url (string-equal ecl-curl::url #2=\"http://\" :end1 7"
+ ") #2# ecl-curl::url-host ecl-curl::url-port ecl-curl::*encode-table* ecl-curl::b"
+ "ase64-encode ecl-curl::*proxy* ecl-curl::*proxy-user* ecl-curl::*proxy-passwd* \""
+ "/index.html\" ecl-curl::request-uri ecl-curl::header-pair ecl-curl::header-value "
+ "\"GET ~A HTTP/1.0~C~CHost: ~A~C~C\" \"Proxy-Authorization: Basic ~A~C~C\" \"~A:~A\" \"~"
+ "C~C\" :keyword ecl-curl::url-connection 0 0 :url :response :content-length \"\" \"~&"
+ ";;; Downloading ~A bytes from ~A to ~A ...~%\" \"some unknown number of\" ecl-curl:"
+ ":download-url-to-file #:ecl-curl si::dodefpackage ecl-curl::download-response ec"
+ "l-curl::download-url 0 0 sb-bsd-sockets::get-host-by-name sb-bsd-sockets::host-e"
+ "nt-addresses sb-bsd-sockets::socket-connect sb-bsd-sockets::socket-make-stream 0"
+ " 0 0 0 0 0 0 0 :quiet (\"SB-BSD-SOCKETS\" \"CL\") (\"DOWNLOAD-URL-TO-FILE\" \"DOWNLOAD-"
+ "ERROR\" \"DOWNLOAD-URL\" \"DOWNLOAD-RESPONSE\") (error) ((:readers (ecl-curl::downloa"
+ "d-url) :initargs (:url) :name ecl-curl::url)) (ecl-curl::http-transfer-error) (:"
+ "initform (lambda (ecl-curl::c ecl-curl::s) (format ecl-curl::s #1# (ecl-curl::do"
+ "wnload-response ecl-curl::c) (ecl-curl::download-url ecl-curl::c))) :name si::re"
+ "port-function) (:readers (ecl-curl::download-response) :initargs (:response) :na"
+ "me ecl-curl::response) \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123"
+ "456789+/=\" \"http_proxy\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

@@ -1,0 +1,25 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1325, (cl_index)1325,
+        (ecl_base_char*)
+"\"The proclamation specification ~s is not a list\" \"Syntax error in proclamation "
+ "~s\" \"The OPTIMIZE proclamation ~s is illegal.\" c::*debug* c::*safety* c::*space*"
+ " c::*speed* \"The OPTIMIZE quality ~s is unknown.\" \"Syntax error in proclamation "
+ "~a\" \"In an FTYPE proclamation, found ~A which is not a function type.\" 0 0 0 0 \""
+ "Not a valid function name ~s in ~s proclamation\" si::c-export-fname \"The functio"
+ "n ~s is already in the runtime.~%C-EXPORT-FNAME declaration ignored.\" c::lfun (a"
+ "rray atom base-char bignum bit bit-vector character compiled-function complex co"
+ "ns double-float extended-char fixnum float hash-table integer keyword list long-"
+ "float nil null number package pathname random-state ratio rational readtable seq"
+ "uence short-float simple-array simple-bit-vector simple-string simple-vector sin"
+ "gle-float standard-char stream string symbol t vector signed-byte unsigned-byte "
+ "function) c::*cmp-env-root* :proclaim \"Unknown declaration specifier ~s\" proclai"
+ "m c::cmp-type \"Inconsistent type declaration was found for the variable ~s.\" \"Th"
+ "e variable name ~s is not a symbol.\" c::proclaim-var 0 si::normalize-type c::pro"
+ "claim-function c::proclaim-inline c::proclaim-notinline c::validate-alien-declar"
+ "ation si::dm-too-few-arguments si::dm-too-many-arguments c::valid-type-specifier"
+ " c::maybe-add-policy 0 c::type-and \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

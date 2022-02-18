@@ -1,0 +1,29 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1608, (cl_index)1608,
+        (ecl_base_char*)
+"(&body mp::allow-forms) 'let 'si::*allow-with-interrupts* mp::allow-forms (&body"
+ " mp::with-forms) 'ext::*interrupts-enabled* mp::with-forms 'let* 'when '(si::che"
+ "ck-pending-interrupts) (list* 'locally mp::with-forms) (ext::*interrupts-enabled"
+ "* nil) (si::*allow-with-interrupts* nil) (when ext::*interrupts-enabled* (si::ch"
+ "eck-pending-interrupts)) mp::without-interrupts (si::check-pending-interrupts) m"
+ "p::with-interrupts (declare (optimize (speed 3) (safety 0) (debug 0))) mp::with-"
+ "lock (:compile-toplevel :load-toplevel :execute) (and package (ext::package-lock"
+ "ed-p package) (null si::*ignore-package-locks*)) 'package-error \"Ignore lock and"
+ " proceed.\" \"Attempt to define CAS accessor ~S in locked package.\" (:package pack"
+ "age) 'mp::cas-expander mp::define-cas-expander (&rest mp::args) ((mp::old (gensy"
+ "m)) (mp::new (gensym))) mp::old mp::new (append mp::args (list mp::old mp::new))"
+ " mp::args mp::defcas c::special-variable-p mp::cas-expander mp::remcas \"Cannot g"
+ "et the compare-and-swap expansion of ~S.\" mp::get-cas-expansion mp::compare-and-"
+ "swap mp::compare-and-swap-slot-value mp::compare-and-swap-standard-instance mp::"
+ "for mp::until mp::finally mp::atomic-update mp::atomic-push mp::atomic-pop 0 0 0"
+ " 0 mp::atomic-incf-slot-value 0 0 mp::atomic-incf-standard-instance \"No ATOMIC-I"
+ "NCF expansion defined for place ~S.\" mp::atomic-incf mp::atomic-decf 0 0 0 si::d"
+ "m-too-few-arguments 0 si::find-declarations 0 si::dm-too-many-arguments 0 0 0 0 "
+ "0 0 0 0 \"MP\" (car) (first) (cdr) (rest) (symbol-value) (symbol-plist) (svref) (s"
+ "lot-value) (clos::standard-instance-access) (clos::funcallable-standard-instance"
+ "-access)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

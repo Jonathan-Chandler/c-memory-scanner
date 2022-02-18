@@ -1,0 +1,23 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1162, (cl_index)1162,
+        (ecl_base_char*)
+"\"*\" \"-CACHE*\" \"-EMPTY-CACHE\" si::hash-eq (:compile-toplevel :load-toplevel :exec"
+ "ute) (make-array 1024 :element-type t :adjustable nil) (nil (make-array 1024 :el"
+ "ement-type t :adjustable nil)) c::hash (type #1=(integer 0 1023) c::hash) (array"
+ " t (*)) (pop (ext::truly-the cons elt)) (first (ext::truly-the cons elt)) c::out"
+ "put (c::output) c::defun-cached c::defun-equal-cached c::*env-var-name-cache* c:"
+ ":env-var-name-empty-cache \"env~D\" #1# c::env-var-name c::*lex-env-var-name-cache"
+ "* c::lex-env-var-name-empty-cache \"lex~D\" c::lex-env-var-name c::same-fname-p (i"
+ "ncf c::*next-cmacro*) c::next-cmacro c::*last-label* c::next-label c::next-label"
+ "* c::labelp c::*exit* c::maybe-next-label c::maybe-wt-label (c::next-label) c::*"
+ "unwind-exit* c::wt-label c::with-exit-label (c::maybe-next-label) c::with-option"
+ "al-exit-label c::lcl c::*lcl* \"\" c::next-lcl \"L~D~A\" c::*next-cfun* c::next-cfun"
+ " c::*temp* c::*max-temp* c::next-temp c::*level* c::*lex* c::*max-lex* c::next-l"
+ "ex c::*env* c::*max-env* c::next-env (declare (optimize (safety 0))) c::reckless"
+ " 0 si::dm-too-few-arguments 0 0 0 0 0 0 0 si::dm-too-many-arguments 0 0 0 0 0 0 "
+ "0 0 c::lisp-to-c-name 0 0 0 0 0 \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

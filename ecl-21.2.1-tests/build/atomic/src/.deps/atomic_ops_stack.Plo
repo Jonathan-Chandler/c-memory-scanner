@@ -1,0 +1,69 @@
+atomic_ops_stack.lo: \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops_stack.c \
+ ../src/config.h C:/msys64/mingw32/i686-w64-mingw32/include/string.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/crtdefs.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/corecrt.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/_mingw.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_mac.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_secapi.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/vadefs.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/sdks/_mingw_ddk.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/sec_api/string_s.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/stdlib.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/corecrt_wstdlib.h \
+ C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include-fixed/limits.h \
+ C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include-fixed/syslimits.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/limits.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/sec_api/stdlib_s.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/malloc.h \
+ C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include/mm_malloc.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/errno.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/assert.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops_stack.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/ao_version.h \
+ C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include/stddef.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/stddef.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/x86.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/standard_ao_double_t.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/generic.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/test_and_set_t_is_char.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/generic-small.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/generic-arithm.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/generalize.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/generalize-small.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/generalize-arithm.h
+../src/config.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/string.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/crtdefs.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/corecrt.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/_mingw.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_mac.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_secapi.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/vadefs.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/sdks/_mingw_ddk.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/sec_api/string_s.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/stdlib.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/corecrt_wstdlib.h:
+C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include-fixed/limits.h:
+C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include-fixed/syslimits.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/limits.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/sec_api/stdlib_s.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/malloc.h:
+C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include/mm_malloc.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/errno.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/assert.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops_stack.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/ao_version.h:
+C:/msys64/mingw32/lib/gcc/i686-w64-mingw32/11.2.0/include/stddef.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/stddef.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/x86.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/standard_ao_double_t.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/generic.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/test_and_set_t_is_char.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/generic-small.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/sysdeps/gcc/generic-arithm.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/generalize.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/generalize-small.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/bdwgc/libatomic_ops/src/atomic_ops/generalize-arithm.h:

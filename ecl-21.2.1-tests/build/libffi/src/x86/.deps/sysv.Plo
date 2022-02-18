@@ -1,0 +1,8 @@
+src/x86/sysv.lo: \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/libffi/src/x86/sysv.S \
+ fficonfig.h include/ffi.h include/ffitarget.h \
+ C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/libffi/src/x86/internal.h
+fficonfig.h:
+include/ffi.h:
+include/ffitarget.h:
+C:/work/c/memscan-dll/lisp/ecl-21.2.1/src/libffi/src/x86/internal.h:

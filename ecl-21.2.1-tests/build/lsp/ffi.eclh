@@ -1,0 +1,158 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+#include <string.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1def_constant(cl_object , cl_object );
+static cl_object LC2def_foreign_type(cl_object , cl_object );
+static cl_object LC3def_type(cl_object , cl_object );
+static cl_object L4_convert_to_ffi_type(cl_narg, cl_object , ...);
+static cl_object LC5_align_data(cl_object , cl_object );
+static cl_object L7size_of_foreign_type(cl_object );
+static cl_object LC6__lambda44(cl_object );
+static cl_object L8allocate_foreign_object(cl_narg, cl_object , ...);
+static cl_object L9free_foreign_object(cl_object );
+static cl_object LC10def_enum(cl_object , cl_object );
+static cl_object LC11def_struct(cl_object , cl_object );
+static cl_object L12slot_position(cl_object , cl_object );
+static cl_object L13get_slot_value(cl_object , cl_object , cl_object );
+static cl_object L14_setf_get_slot_value_(cl_object , cl_object , cl_object , cl_object );
+static cl_object L15get_slot_pointer(cl_object , cl_object , cl_object );
+static cl_object LC16def_array_pointer(cl_object , cl_object );
+static cl_object L17deref_array(cl_object , cl_object , cl_object );
+static cl_object L18_setf_deref_array_(cl_object , cl_object , cl_object , cl_object );
+static cl_object L19_foreign_data_set(cl_object , cl_object , cl_object , cl_object );
+static cl_object L20_foreign_data_ref(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC21def_union(cl_object , cl_object );
+static cl_object L22pointer_address(cl_object );
+static cl_object L23deref_pointer(cl_object , cl_object );
+static cl_object L24_setf_deref_pointer_(cl_object , cl_object , cl_object );
+static cl_object L25make_null_pointer(cl_object );
+static cl_object L26make_pointer(cl_object , cl_object );
+static cl_object L27null_char_p(cl_object );
+static cl_object L28ensure_char_character(cl_object );
+static cl_object L29ensure_char_integer(cl_object );
+static cl_object L30ensure_char_storable(cl_object );
+static cl_object L31char_array_to_pointer(cl_object );
+static cl_object LC32convert_from_cstring(cl_object , cl_object );
+static cl_object LC33convert_to_cstring(cl_object , cl_object );
+static cl_object LC34free_cstring(cl_object , cl_object );
+static cl_object LC35with_cstring(cl_object , cl_object );
+static cl_object LC36with_cstrings(cl_object , cl_object );
+static cl_object L37foreign_string_length(cl_object );
+static cl_object L38convert_from_foreign_string(cl_narg, cl_object , ...);
+#define L38convert_from_foreign_stringkeys (&VV[184])
+static cl_object L39convert_to_foreign_string(cl_object );
+static cl_object L40allocate_foreign_string(cl_narg, cl_object , ...);
+#define L40allocate_foreign_stringkeys (&VV[189])
+static cl_object LC41with_foreign_string(cl_object , cl_object );
+static cl_object LC42with_foreign_strings(cl_object , cl_object );
+static cl_object LC43with_foreign_object(cl_object , cl_object );
+static cl_object LC44with_foreign_objects(cl_object , cl_object );
+static cl_object LC45with_cast_pointer(cl_object , cl_object );
+static cl_object L46lisp_to_c_name(cl_object );
+static cl_object L47_convert_to_arg_type(cl_object );
+static cl_object L48_convert_to_return_type(cl_object );
+static cl_object L49produce_function_call(cl_object , cl_object );
+static cl_object LC51def_lib_function(cl_object , cl_object );
+static cl_object LC50__lambda380(cl_object );
+static cl_object LC53def_function(cl_object , cl_object );
+static cl_object LC52__lambda425(cl_object );
+static cl_object LC54def_foreign_var(cl_object , cl_object );
+static cl_object L55find_foreign_library(cl_narg, cl_object , cl_object , ...);
+#define L55find_foreign_librarykeys (&VV[202])
+static cl_object L56do_load_foreign_library(cl_narg, cl_object , ...);
+static cl_object LC57load_foreign_library(cl_object , cl_object );
+static cl_object LC58defcallback(cl_object , cl_object );
+static cl_object L59callback(cl_object );
+static cl_object L60clines(cl_narg, ...);
+static cl_object LC61c_inline(cl_object , cl_object );
+static cl_object LC62c_progn(cl_object , cl_object );
+static cl_object LC63definline(cl_object , cl_object );
+static cl_object LC64defla(cl_object , cl_object );
+static cl_object LC66defcbody(cl_object , cl_object );
+static cl_object LC65__lambda570(cl_object );
+static cl_object LC68defentry(cl_object , cl_object );
+static cl_object LC67__lambda599(cl_object );
+static cl_object Cblock;
+#define VM 218
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 62
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(143),ecl_make_fixnum(2),(cl_objectfn)LC1def_constant,NULL,ECL_NIL,ecl_make_fixnum(725)},
+{0,0,2,0,ecl_make_fixnum(147),ecl_make_fixnum(4),(cl_objectfn)LC2def_foreign_type,NULL,ECL_NIL,ecl_make_fixnum(1163)},
+{0,0,2,0,ecl_make_fixnum(149),ecl_make_fixnum(6),(cl_objectfn)LC3def_type,NULL,ECL_NIL,ecl_make_fixnum(1404)},
+{0,0,-2,0,ecl_make_fixnum(150),ecl_make_fixnum(7),(cl_objectfn)L4_convert_to_ffi_type,NULL,ECL_NIL,ecl_make_fixnum(1499)},
+{0,0,2,0,ecl_make_fixnum(151),ecl_make_fixnum(8),(cl_objectfn)LC5_align_data,NULL,ECL_NIL,ecl_make_fixnum(1899)},
+{0,0,1,0,ecl_make_fixnum(152),ecl_make_fixnum(13),(cl_objectfn)L7size_of_foreign_type,NULL,ECL_NIL,ecl_make_fixnum(1990)},
+{0,0,-2,0,ecl_make_fixnum(153),ecl_make_fixnum(15),(cl_objectfn)L8allocate_foreign_object,NULL,ECL_NIL,ecl_make_fixnum(4245)},
+{0,0,1,0,ecl_make_fixnum(154),ecl_make_fixnum(16),(cl_objectfn)L9free_foreign_object,NULL,ECL_NIL,ecl_make_fixnum(4836)},
+{0,0,2,0,ecl_make_fixnum(155),ecl_make_fixnum(21),(cl_objectfn)LC10def_enum,NULL,ECL_NIL,ecl_make_fixnum(5096)},
+{0,0,2,0,ecl_make_fixnum(156),ecl_make_fixnum(23),(cl_objectfn)LC11def_struct,NULL,ECL_NIL,ecl_make_fixnum(6437)},
+{0,0,2,0,ecl_make_fixnum(157),ecl_make_fixnum(25),(cl_objectfn)L12slot_position,NULL,ECL_NIL,ecl_make_fixnum(7019)},
+{0,0,3,0,ecl_make_fixnum(158),ecl_make_fixnum(27),(cl_objectfn)L13get_slot_value,NULL,ECL_NIL,ecl_make_fixnum(7854)},
+{0,0,4,0,ecl_make_fixnum(159),ecl_make_fixnum(28),(cl_objectfn)L14_setf_get_slot_value_,NULL,ECL_NIL,ecl_make_fixnum(8263)},
+{0,0,3,0,ecl_make_fixnum(160),ecl_make_fixnum(29),(cl_objectfn)L15get_slot_pointer,NULL,ECL_NIL,ecl_make_fixnum(8568)},
+{0,0,2,0,ecl_make_fixnum(161),ecl_make_fixnum(30),(cl_objectfn)LC16def_array_pointer,NULL,ECL_NIL,ecl_make_fixnum(9088)},
+{0,0,3,0,ecl_make_fixnum(162),ecl_make_fixnum(32),(cl_objectfn)L17deref_array,NULL,ECL_NIL,ecl_make_fixnum(9183)},
+{0,0,4,0,ecl_make_fixnum(163),ecl_make_fixnum(33),(cl_objectfn)L18_setf_deref_array_,NULL,ECL_NIL,ecl_make_fixnum(9857)},
+{0,0,4,0,ecl_make_fixnum(164),ecl_make_fixnum(35),(cl_objectfn)L19_foreign_data_set,NULL,ECL_NIL,ecl_make_fixnum(10409)},
+{0,0,-4,0,ecl_make_fixnum(165),ecl_make_fixnum(36),(cl_objectfn)L20_foreign_data_ref,NULL,ECL_NIL,ecl_make_fixnum(10783)},
+{0,0,2,0,ecl_make_fixnum(166),ecl_make_fixnum(38),(cl_objectfn)LC21def_union,NULL,ECL_NIL,ecl_make_fixnum(11436)},
+{0,0,1,0,ecl_make_fixnum(167),ecl_make_fixnum(39),(cl_objectfn)L22pointer_address,NULL,ECL_NIL,ecl_make_fixnum(12176)},
+{0,0,2,0,ecl_make_fixnum(168),ecl_make_fixnum(41),(cl_objectfn)L23deref_pointer,NULL,ECL_NIL,ecl_make_fixnum(12323)},
+{0,0,3,0,ecl_make_fixnum(169),ecl_make_fixnum(42),(cl_objectfn)L24_setf_deref_pointer_,NULL,ECL_NIL,ecl_make_fixnum(13001)},
+{0,0,1,0,ecl_make_fixnum(170),ecl_make_fixnum(43),(cl_objectfn)L25make_null_pointer,NULL,ECL_NIL,ecl_make_fixnum(13239)},
+{0,0,2,0,ecl_make_fixnum(171),ecl_make_fixnum(44),(cl_objectfn)L26make_pointer,NULL,ECL_NIL,ecl_make_fixnum(13440)},
+{0,0,1,0,ecl_make_fixnum(172),ecl_make_fixnum(45),(cl_objectfn)L27null_char_p,NULL,ECL_NIL,ecl_make_fixnum(13962)},
+{0,0,1,0,ecl_make_fixnum(173),ecl_make_fixnum(47),(cl_objectfn)L28ensure_char_character,NULL,ECL_NIL,ecl_make_fixnum(14083)},
+{0,0,1,0,ecl_make_fixnum(174),ecl_make_fixnum(49),(cl_objectfn)L29ensure_char_integer,NULL,ECL_NIL,ecl_make_fixnum(14373)},
+{0,0,1,0,ecl_make_fixnum(175),ecl_make_fixnum(50),(cl_objectfn)L30ensure_char_storable,NULL,ECL_NIL,ecl_make_fixnum(14657)},
+{0,0,1,0,ecl_make_fixnum(176),ecl_make_fixnum(52),(cl_objectfn)L31char_array_to_pointer,NULL,ECL_NIL,ecl_make_fixnum(14701)},
+{0,0,2,0,ecl_make_fixnum(177),ecl_make_fixnum(53),(cl_objectfn)LC32convert_from_cstring,NULL,ECL_NIL,ecl_make_fixnum(14795)},
+{0,0,2,0,ecl_make_fixnum(178),ecl_make_fixnum(54),(cl_objectfn)LC33convert_to_cstring,NULL,ECL_NIL,ecl_make_fixnum(15024)},
+{0,0,2,0,ecl_make_fixnum(179),ecl_make_fixnum(55),(cl_objectfn)LC34free_cstring,NULL,ECL_NIL,ecl_make_fixnum(15436)},
+{0,0,2,0,ecl_make_fixnum(180),ecl_make_fixnum(56),(cl_objectfn)LC35with_cstring,NULL,ECL_NIL,ecl_make_fixnum(15546)},
+{0,0,2,0,ecl_make_fixnum(181),ecl_make_fixnum(57),(cl_objectfn)LC36with_cstrings,NULL,ECL_NIL,ecl_make_fixnum(15835)},
+{0,0,1,0,ecl_make_fixnum(182),ecl_make_fixnum(58),(cl_objectfn)L37foreign_string_length,NULL,ECL_NIL,ecl_make_fixnum(16110)},
+{0,0,-2,0,ecl_make_fixnum(183),ecl_make_fixnum(60),(cl_objectfn)L38convert_from_foreign_string,NULL,ECL_NIL,ecl_make_fixnum(16293)},
+{0,0,1,0,ecl_make_fixnum(186),ecl_make_fixnum(61),(cl_objectfn)L39convert_to_foreign_string,NULL,ECL_NIL,ecl_make_fixnum(17133)},
+{0,0,-2,0,ecl_make_fixnum(188),ecl_make_fixnum(62),(cl_objectfn)L40allocate_foreign_string,NULL,ECL_NIL,ecl_make_fixnum(17812)},
+{0,0,2,0,ecl_make_fixnum(190),ecl_make_fixnum(63),(cl_objectfn)LC41with_foreign_string,NULL,ECL_NIL,ecl_make_fixnum(18175)},
+{0,0,2,0,ecl_make_fixnum(191),ecl_make_fixnum(64),(cl_objectfn)LC42with_foreign_strings,NULL,ECL_NIL,ecl_make_fixnum(18692)},
+{0,0,2,0,ecl_make_fixnum(192),ecl_make_fixnum(65),(cl_objectfn)LC43with_foreign_object,NULL,ECL_NIL,ecl_make_fixnum(19103)},
+{0,0,2,0,ecl_make_fixnum(193),ecl_make_fixnum(66),(cl_objectfn)LC44with_foreign_objects,NULL,ECL_NIL,ecl_make_fixnum(19497)},
+{0,0,2,0,ecl_make_fixnum(194),ecl_make_fixnum(68),(cl_objectfn)LC45with_cast_pointer,NULL,ECL_NIL,ecl_make_fixnum(19691)},
+{0,0,1,0,ecl_make_fixnum(195),ecl_make_fixnum(69),(cl_objectfn)L46lisp_to_c_name,NULL,ECL_NIL,ecl_make_fixnum(20665)},
+{0,0,1,0,ecl_make_fixnum(196),ecl_make_fixnum(71),(cl_objectfn)L47_convert_to_arg_type,NULL,ECL_NIL,ecl_make_fixnum(20945)},
+{0,0,1,0,ecl_make_fixnum(197),ecl_make_fixnum(72),(cl_objectfn)L48_convert_to_return_type,NULL,ECL_NIL,ecl_make_fixnum(21219)},
+{0,0,2,0,ecl_make_fixnum(198),ecl_make_fixnum(81),(cl_objectfn)LC51def_lib_function,NULL,ECL_NIL,ecl_make_fixnum(21758)},
+{0,0,2,0,ecl_make_fixnum(199),ecl_make_fixnum(87),(cl_objectfn)LC53def_function,NULL,ECL_NIL,ecl_make_fixnum(22349)},
+{0,0,2,0,ecl_make_fixnum(200),ecl_make_fixnum(93),(cl_objectfn)LC54def_foreign_var,NULL,ECL_NIL,ecl_make_fixnum(23977)},
+{0,0,-3,0,ecl_make_fixnum(201),ecl_make_fixnum(97),(cl_objectfn)L55find_foreign_library,NULL,ECL_NIL,ecl_make_fixnum(25448)},
+{0,0,-2,0,ecl_make_fixnum(204),ecl_make_fixnum(106),(cl_objectfn)L56do_load_foreign_library,NULL,ECL_NIL,ecl_make_fixnum(26965)},
+{0,0,2,0,ecl_make_fixnum(208),ecl_make_fixnum(113),(cl_objectfn)LC57load_foreign_library,NULL,ECL_NIL,ecl_make_fixnum(28041)},
+{0,0,2,0,ecl_make_fixnum(209),ecl_make_fixnum(118),(cl_objectfn)LC58defcallback,NULL,ECL_NIL,ecl_make_fixnum(29197)},
+{0,0,1,0,ecl_make_fixnum(210),ecl_make_fixnum(120),(cl_objectfn)L59callback,NULL,ECL_NIL,ecl_make_fixnum(30057)},
+{0,0,-1,0,ecl_make_fixnum(211),ecl_make_fixnum(122),(cl_objectfn)L60clines,NULL,ECL_NIL,ecl_make_fixnum(30318)},
+{0,0,2,0,ecl_make_fixnum(212),ecl_make_fixnum(127),(cl_objectfn)LC61c_inline,NULL,ECL_NIL,ecl_make_fixnum(30662)},
+{0,0,2,0,ecl_make_fixnum(213),ecl_make_fixnum(129),(cl_objectfn)LC62c_progn,NULL,ECL_NIL,ecl_make_fixnum(30662)},
+{0,0,2,0,ecl_make_fixnum(214),ecl_make_fixnum(133),(cl_objectfn)LC63definline,NULL,ECL_NIL,ecl_make_fixnum(31231)},
+{0,0,2,0,ecl_make_fixnum(215),ecl_make_fixnum(135),(cl_objectfn)LC64defla,NULL,ECL_NIL,ecl_make_fixnum(31937)},
+{0,0,2,0,ecl_make_fixnum(216),ecl_make_fixnum(137),(cl_objectfn)LC66defcbody,NULL,ECL_NIL,ecl_make_fixnum(32199)},
+{0,0,2,0,ecl_make_fixnum(217),ecl_make_fixnum(142),(cl_objectfn)LC68defentry,NULL,ECL_NIL,ecl_make_fixnum(32876)},
+};

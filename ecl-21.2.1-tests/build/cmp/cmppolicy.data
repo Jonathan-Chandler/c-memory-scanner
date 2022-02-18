@@ -1,0 +1,48 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)3163, (cl_index)3163,
+        (ecl_base_char*)
+"c::policy-to-debug-level c::policy-to-safety-level c::policy-to-speed-level c::p"
+ "olicy-to-space-level c::*optimization-quality-switches* c::optimization-quality-"
+ "switches \"Illegal or unknown OPTIMIZE proclamation ~s\" c::compute-policy c::*spa"
+ "ce* c::*safety* c::*debug* c::*speed* c::default-policy c::optimization c::cmp-e"
+ "nv-policy c::*cmp-env* c::cmp-env-add-optimizations c::policy-declaration-name-p"
+ " c::maybe-add-policy c::add-default-optimizations c::cmp-env-all-optimizations c"
+ "::cmp-env-optimization c::policy-assume-no-errors c::policy-assume-right-type c:"
+ ":policy-type-assertions c::policy-check-stack-overflow c::policy-check-arguments"
+ "-type c::policy-array-bounds-check c::policy-global-var-checking c::policy-globa"
+ "l-function-checking c::policy-check-nargs c::policy-the-is-checked c::policy-ass"
+ "ume-types-dont-change c::policy-inline-slot-access c::policy-inline-accessors c:"
+ ":policy-inline-bit-operations c::policy-open-code-aref/aset #1=536870912 c::poli"
+ "cy-evaluate-forms #2=1073741824 c::policy-use-direct-c-call #3=2147483648 c::pol"
+ "icy-inline-type-checks #4=4294967296 c::policy-inline-sequence-functions #5=8589"
+ "934592 c::policy-debug-variable-bindings #6=17179869184 c::policy-debug-ihs-fram"
+ "e c::safe-compile c::compiler-push-events 0 0 0 0 0 0 c::cmpwarn 0 0 c::cmp-env-"
+ "search-declaration 0 c::cmp-env-add-declaration 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+ "0 0 0 0 0 0 0 0 0 0 0 0 \"COMPILER\" 0 ((ext::inline-slot-access (0 . 67108864) . "
+ "#7=((67108864 . 0) . #7#)) (ext::check-stack-overflow (0 . 262144) . #8=((262144"
+ " . 0) . #8#)) (space (6845108224 . 57344) (6845112320 . 53248) (16384 . 68451491"
+ "84) (32768 . 6845132800)) (ext::inline-bit-operations (0 . 268435456) . #9=((268"
+ "435456 . 0) . #9#)) (ext::type-assertions #10=(131072 . 0) . #11=(#12=(0 . 13107"
+ "2) . #11#)) (ext::evaluate-forms (0 . #1#) . #13=((#1# . 0) . #13#)) (ext::open-"
+ "code-aref/aset . #14=((0 . 134217728) . #15=((134217728 . 0) . #15#))) (ext::inl"
+ "ine-type-checks (0 . #3#) . #16=((#3# . 0) . #16#)) (ext::use-direct-c-call (0 ."
+ " #2#) . #17=((#2# . 0) . #17#)) (ext::inline-sequence-functions (0 . #4#) . #18="
+ "((#4# . 0) . #18#)) (ext::inline-accessors . #14#) (ext::global-var-checking (0 "
+ ". 2097152) . #19=((2097152 . 0) . #19#)) (compilation-speed . #20=((0 . 0) . #20"
+ "#)) (ext::debug-variable-bindings (0 . #5#) . #21=((#5# . 0) . #21#)) (ext::glob"
+ "al-function-checking (0 . 4194304) . #22=((4194304 . 0) . #22#)) (ext::check-arg"
+ "uments-type (0 . 524288) . #23=((8912896 . 0) . #23#)) (speed (256 . 67112448) ("
+ "67109376 . 3328) (67109888 . 2816) (67110912 . 1792)) (ext::debug-ihs-frame (0 ."
+ " #6#) . #24=((#6# . 0) . #24#)) (ext::assume-types-dont-change (0 . 33554432) . "
+ "#25=((33554432 . 0) . #25#)) (ext::check-nargs (0 . 8388608) . #26=((8388608 . 0"
+ ") . #26#)) (ext::assume-right-type . #27=(#12# . #28=(#10# . #28#))) (safety (10"
+ "0794384 . 33292512) (93847584 . 40239312) (27000896 . 107086000) (33292416 . 100"
+ "794480)) (debug (1811939329 . 25769803790) (1275068418 . 26306674701) (4 . 27581"
+ "743115) (25769803784 . 1811939335)) (ext::the-is-checked (0 . 16777216) . #29=(("
+ "16777216 . 0) . #29#)) (ext::array-bounds-check (0 . 1048576) . #30=((1048576 . "
+ "0) . #30#)) (ext::assume-no-errors . #27#))" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

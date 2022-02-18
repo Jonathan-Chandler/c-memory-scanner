@@ -1,0 +1,62 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+ECL_DLLEXPORT cl_object cl_union(cl_narg, cl_object , cl_object , ...);
+#define cl_unionkeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_nunion(cl_narg, cl_object , cl_object , ...);
+#define cl_nunionkeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_intersection(cl_narg, cl_object , cl_object , ...);
+#define cl_intersectionkeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_nintersection(cl_narg, cl_object , cl_object , ...);
+#define cl_nintersectionkeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_set_difference(cl_narg, cl_object , cl_object , ...);
+#define cl_set_differencekeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_nset_difference(cl_narg, cl_object , cl_object , ...);
+#define cl_nset_differencekeys (&VV[0])
+static cl_object L2swap_args(cl_object );
+static cl_object LC1__lambda30(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object cl_set_exclusive_or(cl_narg, cl_object , cl_object , ...);
+#define cl_set_exclusive_orkeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_nset_exclusive_or(cl_narg, cl_object , cl_object , ...);
+#define cl_nset_exclusive_orkeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_subsetp(cl_narg, cl_object , cl_object , ...);
+#define cl_subsetpkeys (&VV[0])
+ECL_DLLEXPORT cl_object cl_rassoc_if(cl_narg, cl_object , cl_object , ...);
+#define cl_rassoc_ifkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_rassoc_if_not(cl_narg, cl_object , cl_object , ...);
+#define cl_rassoc_if_notkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_assoc_if(cl_narg, cl_object , cl_object , ...);
+#define cl_assoc_ifkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_assoc_if_not(cl_narg, cl_object , cl_object , ...);
+#define cl_assoc_if_notkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_member_if(cl_narg, cl_object , cl_object , ...);
+#define cl_member_ifkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_member_if_not(cl_narg, cl_object , cl_object , ...);
+#define cl_member_if_notkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_subst_if(cl_narg, cl_object , cl_object , cl_object , ...);
+#define cl_subst_ifkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_subst_if_not(cl_narg, cl_object , cl_object , cl_object , ...);
+#define cl_subst_if_notkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_nsubst_if(cl_narg, cl_object , cl_object , cl_object , ...);
+#define cl_nsubst_ifkeys (&VV[2])
+ECL_DLLEXPORT cl_object cl_nsubst_if_not(cl_narg, cl_object , cl_object , cl_object , ...);
+#define cl_nsubst_if_notkeys (&VV[2])
+static cl_object Cblock;
+#define VM 3
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 0
+#define compiler_cfuns NULL

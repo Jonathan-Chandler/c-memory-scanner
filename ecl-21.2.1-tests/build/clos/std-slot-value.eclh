@@ -1,0 +1,51 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1with_slots(cl_object , cl_object );
+static cl_object L2std_create_slots_table(cl_object );
+static cl_object L3find_slot_definition(cl_object , cl_object );
+static cl_object L4update_instance(cl_object );
+ECL_DLLEXPORT cl_object clos_standard_instance_access(cl_object , cl_object );
+ECL_DLLEXPORT cl_object clos_standard_instance_set(cl_object , cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_slot_value(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_slot_exists_p(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_slot_boundp(cl_object , cl_object );
+ECL_DLLEXPORT cl_object clos_slot_value_set(cl_object , cl_object , cl_object );
+static cl_object L5invalid_slot_location(cl_object , cl_object );
+static cl_object L6std_slot_location(cl_object , cl_object , cl_object );
+static cl_object L7mp__compare_and_swap_standard_instance(cl_object , cl_object , cl_object , cl_object );
+static cl_object L8mp__compare_and_swap_slot_value(cl_object , cl_object , cl_object , cl_object );
+static cl_object L9mp__atomic_incf_standard_instance(cl_object , cl_object , cl_object );
+static cl_object L10mp__atomic_incf_slot_value(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 27
+#define VMtemp 3
+#define ECL_DEFINE_SETF_FUNCTIONS \
+VV[20]=ecl_setf_definition(ECL_SYM("SLOT-VALUE-USING-CLASS",1614),ECL_T);\
+VV[14]=ecl_setf_definition(ECL_SYM("SLOT-VALUE",973),ECL_T);
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 9
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(11),ecl_make_fixnum(0),(cl_objectfn)LC1with_slots,NULL,ECL_NIL,ecl_make_fixnum(1755)},
+{0,0,1,0,ecl_make_fixnum(13),ecl_make_fixnum(2),(cl_objectfn)L2std_create_slots_table,NULL,ECL_NIL,ecl_make_fixnum(4794)},
+{0,0,2,0,ecl_make_fixnum(15),ecl_make_fixnum(3),(cl_objectfn)L3find_slot_definition,NULL,ECL_NIL,ecl_make_fixnum(5731)},
+{0,0,1,0,ecl_make_fixnum(19),ecl_make_fixnum(4),(cl_objectfn)L4update_instance,NULL,ECL_NIL,ecl_make_fixnum(6378)},
+{0,0,3,0,ecl_make_fixnum(21),ecl_make_fixnum(6),(cl_objectfn)L6std_slot_location,NULL,ECL_NIL,ecl_make_fixnum(10574)},
+{0,0,4,0,ecl_make_fixnum(23),ecl_make_fixnum(7),(cl_objectfn)L7mp__compare_and_swap_standard_instance,NULL,ECL_NIL,ecl_make_fixnum(11326)},
+{0,0,4,0,ecl_make_fixnum(24),ecl_make_fixnum(8),(cl_objectfn)L8mp__compare_and_swap_slot_value,NULL,ECL_NIL,ecl_make_fixnum(11879)},
+{0,0,3,0,ecl_make_fixnum(25),ecl_make_fixnum(9),(cl_objectfn)L9mp__atomic_incf_standard_instance,NULL,ECL_NIL,ecl_make_fixnum(12390)},
+{0,0,3,0,ecl_make_fixnum(26),ecl_make_fixnum(10),(cl_objectfn)L10mp__atomic_incf_slot_value,NULL,ECL_NIL,ecl_make_fixnum(12934)},
+};

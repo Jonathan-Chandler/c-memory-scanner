@@ -1,0 +1,30 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1bind(cl_object , cl_object );
+static cl_object L2bind_init(cl_object , cl_object );
+static cl_object L3bds_bind(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 52
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 3
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(32),ecl_make_fixnum(18),(cl_objectfn)L1bind,NULL,ECL_NIL,ecl_make_fixnum(812)},
+{0,0,2,0,ecl_make_fixnum(45),ecl_make_fixnum(24),(cl_objectfn)L2bind_init,NULL,ECL_NIL,ecl_make_fixnum(2518)},
+{0,0,2,0,ecl_make_fixnum(50),ecl_make_fixnum(31),(cl_objectfn)L3bds_bind,NULL,ECL_NIL,ecl_make_fixnum(3302)},
+};

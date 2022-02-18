@@ -1,0 +1,10 @@
+prefix=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build
+exec_prefix=${prefix}
+libdir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build
+includedir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/ecl
+
+Name: The atomic_ops library
+Description: Atomic memory update operations portable implementation
+Version: 7.6.6
+Libs: -L${libdir} -latomic_ops
+Cflags: -I${includedir}

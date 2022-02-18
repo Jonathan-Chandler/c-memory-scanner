@@ -25,10 +25,6 @@
 (mem-mgr-load-proc (cffi:mem-aref pp-mem-mgr :pointer) (cffi:mem-aref pp-proc-info :pointer))
 (mem-mgr-load-proc (cffi:mem-aref pp-mem-mgr :pointer) (cffi:mem-aref pp-proc-info :pointer))
 
-(defparameter p-magic-number (cffi:make-pointer #x00dff950))
-(print p-magic-number)
-(print (cffi:mem-aref p-magic-number :int32))
-
 
 ; change amount of gold held in cursor to max
 (defparameter item-stat 'GOLD)
@@ -63,4 +59,8 @@
 ;(write-skill-level pp-proc-info skill-name skill-level)
 
 (print "test")
+
+(defparameter p-magic-number (cffi:make-pointer #x00dff950))
+(print p-magic-number)
+(print (cffi:mem-aref p-magic-number :int32))
 
