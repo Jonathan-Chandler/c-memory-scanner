@@ -1,0 +1,54 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1new_documentation_pool(cl_narg, ...);
+static cl_object L2record_cons(cl_object , cl_object , cl_object );
+static cl_object L3record_field(cl_object , cl_object , cl_object );
+static cl_object L4set_record_field(cl_object , cl_object , cl_object , cl_object );
+static cl_object L5rem_record_field(cl_object , cl_object , cl_object );
+static cl_object L6annotate(cl_object , cl_object , cl_object , cl_object );
+static cl_object L7remove_annotation(cl_object , cl_object , cl_object );
+static cl_object L8get_annotation(cl_narg, cl_object , cl_object , ...);
+static cl_object L9dump_documentation(cl_narg, cl_object , ...);
+static cl_object L10get_documentation(cl_object , cl_object );
+static cl_object L11set_documentation(cl_object , cl_object , cl_object );
+static cl_object L12expand_set_documentation(cl_object , cl_object , cl_object );
+static cl_object L13make_dspec(cl_object );
+static cl_object LC14optional_annotation(cl_object , cl_object );
+static cl_object L15default_annotation_logic(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object Cblock;
+#define VM 40
+#define VMtemp 2
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 15
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-1,0,ecl_make_fixnum(23),ecl_make_fixnum(1),(cl_objectfn)L1new_documentation_pool,NULL,ECL_NIL,ecl_make_fixnum(1017)},
+{0,0,3,0,ecl_make_fixnum(24),ecl_make_fixnum(2),(cl_objectfn)L2record_cons,NULL,ECL_NIL,ecl_make_fixnum(1244)},
+{0,0,3,0,ecl_make_fixnum(25),ecl_make_fixnum(3),(cl_objectfn)L3record_field,NULL,ECL_NIL,ecl_make_fixnum(1402)},
+{0,0,4,0,ecl_make_fixnum(26),ecl_make_fixnum(4),(cl_objectfn)L4set_record_field,NULL,ECL_NIL,ecl_make_fixnum(1486)},
+{0,0,3,0,ecl_make_fixnum(27),ecl_make_fixnum(5),(cl_objectfn)L5rem_record_field,NULL,ECL_NIL,ecl_make_fixnum(1714)},
+{0,0,4,0,ecl_make_fixnum(28),ecl_make_fixnum(6),(cl_objectfn)L6annotate,NULL,ECL_NIL,ecl_make_fixnum(1978)},
+{0,0,3,0,ecl_make_fixnum(29),ecl_make_fixnum(7),(cl_objectfn)L7remove_annotation,NULL,ECL_NIL,ecl_make_fixnum(2262)},
+{0,0,-3,0,ecl_make_fixnum(30),ecl_make_fixnum(9),(cl_objectfn)L8get_annotation,NULL,ECL_NIL,ecl_make_fixnum(2601)},
+{0,0,-2,0,ecl_make_fixnum(32),ecl_make_fixnum(10),(cl_objectfn)L9dump_documentation,NULL,ECL_NIL,ecl_make_fixnum(3321)},
+{0,0,2,0,ecl_make_fixnum(34),ecl_make_fixnum(12),(cl_objectfn)L10get_documentation,NULL,ECL_NIL,ecl_make_fixnum(3752)},
+{0,0,3,0,ecl_make_fixnum(35),ecl_make_fixnum(14),(cl_objectfn)L11set_documentation,NULL,ECL_NIL,ecl_make_fixnum(4123)},
+{0,0,3,0,ecl_make_fixnum(36),ecl_make_fixnum(15),(cl_objectfn)L12expand_set_documentation,NULL,ECL_NIL,ecl_make_fixnum(4570)},
+{0,0,1,0,ecl_make_fixnum(37),ecl_make_fixnum(16),(cl_objectfn)L13make_dspec,NULL,ECL_NIL,ecl_make_fixnum(5534)},
+{0,0,2,0,ecl_make_fixnum(38),ecl_make_fixnum(17),(cl_objectfn)LC14optional_annotation,NULL,ECL_NIL,ecl_make_fixnum(5991)},
+{0,0,-4,0,ecl_make_fixnum(39),ecl_make_fixnum(22),(cl_objectfn)L15default_annotation_logic,NULL,ECL_NIL,ecl_make_fixnum(6189)},
+};

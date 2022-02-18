@@ -1,0 +1,1885 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1find_package_(cl_narg, cl_object , ...);
+static cl_object L2find_symbol_(cl_narg, cl_object , cl_object , ...);
+static cl_object L3symbol_call(cl_narg, cl_object , cl_object , ...);
+static cl_object L4intern_(cl_narg, cl_object , cl_object , ...);
+static cl_object L5export_(cl_object , cl_object );
+static cl_object L6import_(cl_object , cl_object );
+static cl_object L7shadowing_import_(cl_object , cl_object );
+static cl_object L8shadow_(cl_object , cl_object );
+static cl_object L9make_symbol_(cl_object );
+static cl_object L10unintern_(cl_narg, cl_object , cl_object , ...);
+static cl_object L11symbol_shadowing_p(cl_object , cl_object );
+static cl_object L12home_package_p(cl_object , cl_object );
+static cl_object L13symbol_package_name(cl_object );
+static cl_object L14standard_common_lisp_symbol_p(cl_object );
+static cl_object L15reify_package(cl_narg, cl_object , ...);
+static cl_object L16unreify_package(cl_narg, cl_object , ...);
+static cl_object L17reify_symbol(cl_narg, cl_object , ...);
+static cl_object L18unreify_symbol(cl_narg, cl_object , ...);
+static cl_object L19record_fishy(cl_object );
+static cl_object LC20when_package_fishiness(cl_object , cl_object );
+static cl_object LC21note_package_fishiness(cl_object , cl_object );
+static cl_object L22set_dummy_symbol(cl_object , cl_object , cl_object );
+static cl_object L23make_dummy_symbol(cl_object );
+static cl_object L24dummy_symbol(cl_object );
+static cl_object L25get_dummy_symbol(cl_object );
+static cl_object L26nuke_symbol_in_package(cl_object , cl_object );
+static cl_object L27nuke_symbol(cl_narg, cl_object , ...);
+static cl_object L28rehome_symbol(cl_object , cl_object );
+static cl_object L29ensure_package_unused(cl_object );
+static cl_object L30delete_package_(cl_narg, cl_object , ...);
+#define L30delete_package_keys (&VV[1759])
+static cl_object L31package_names(cl_object );
+static cl_object L32packages_from_names(cl_object );
+static cl_object L33fresh_package_name(cl_narg, ...);
+#define L33fresh_package_namekeys (&VV[1761])
+static cl_object L34rename_package_away(cl_narg, cl_object , ...);
+#define L34rename_package_awaykeys (&VV[58])
+static cl_object L39package_definition_form(cl_narg, cl_object , ...);
+#define L39package_definition_formkeys (&VV[1765])
+static cl_object LC38import_options(cl_object , cl_object );
+static cl_object LC37when_relevant(cl_object , cl_object );
+static cl_object LC36table_keys(cl_object );
+static cl_object LC35sort_names(cl_object );
+static cl_object L40ensure_shadowing_import(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L41ensure_imported(cl_narg, cl_object , cl_object , ...);
+static cl_object L42ensure_import(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L43ensure_inherited(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L44ensure_mix(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L45recycle_symbol(cl_object , cl_object , cl_object );
+static cl_object L46symbol_recycled_p(cl_object , cl_object );
+static cl_object L47ensure_symbol(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L48ensure_exported_to_user(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object L49ensure_exported(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object L50ensure_export(cl_narg, cl_object , cl_object , ...);
+static cl_object L52ensure_package(cl_narg, cl_object , ...);
+#define L52ensure_packagekeys (&VV[1785])
+static cl_object LC51__lambda699(cl_narg, cl_object , ...);
+static cl_object L53parse_define_package_form(cl_object , cl_object );
+static cl_object LC54define_package(cl_object , cl_object );
+static cl_object L55use_ecl_byte_compiler_p();
+static cl_object LC56loop_(cl_object , cl_object );
+static cl_object L60frob_substrings(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC61compatfmt(cl_object , cl_object );
+static cl_object LC59recurse(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC58emit_substring(cl_narg, cl_object , cl_object , ...);
+static cl_object LC57emit_string(cl_narg, cl_object , ...);
+static cl_object L62undefine_function(cl_object );
+static cl_object L63undefine_functions(cl_object );
+static cl_object LC64defgeneric_(cl_object , cl_object );
+static cl_object LC65defun_(cl_object , cl_object );
+static cl_object LC66with_upgradability(cl_object , cl_object );
+static cl_object LC67uiop_debug(cl_object , cl_object );
+static cl_object L69load_uiop_debug_utility(volatile cl_narg, ...);
+#define L69load_uiop_debug_utilitykeys (&VV[1818])
+static cl_object LC68__lambda1087(cl_narg, cl_object , ...);
+static cl_object LC71nest(cl_object , cl_object );
+static cl_object LC72if_let(cl_object , cl_object );
+static cl_object LC70__lambda1094(cl_object , cl_object );
+static cl_object LC76while_collecting(cl_object , cl_object );
+static cl_object LC78appendf(cl_object , cl_object );
+static cl_object L79length_n_p(cl_object , cl_object );
+static cl_object L80ensure_list(cl_object );
+static cl_object LC73__lambda1133(cl_object );
+static cl_object LC74__lambda1161(cl_object , cl_object );
+static cl_object LC75__lambda1171(cl_object );
+static cl_object LC77__lambda1179(cl_object );
+static cl_object L81remove_plist_key(cl_object , cl_object );
+static cl_object L82remove_plist_keys(cl_object , cl_object );
+static cl_object L83emptyp(cl_object );
+static cl_object L84character_type_index(cl_object );
+static cl_object L85base_string_p(cl_object );
+static cl_object L87strings_common_element_type(cl_object volatile );
+static cl_object L88reduce_strcat(cl_narg, cl_object , ...);
+#define L88reduce_strcatkeys (&VV[1844])
+static cl_object L89strcat(cl_narg, ...);
+static cl_object L90first_char(cl_object );
+static cl_object L91last_char(cl_object );
+static cl_object L94split_string(volatile cl_narg, cl_object volatile , ...);
+#define L94split_stringkeys (&VV[1847])
+static cl_object L95string_prefix_p(cl_object , cl_object );
+static cl_object L96string_suffix_p(cl_object , cl_object );
+static cl_object L97string_enclosed_p(cl_object , cl_object , cl_object );
+static cl_object L99stripln(cl_object volatile );
+static cl_object L100standard_case_symbol_name(cl_object );
+static cl_object L101find_standard_case_symbol(cl_narg, cl_object , cl_object , ...);
+static cl_object LC86consider(volatile cl_object  *, cl_object );
+static cl_object LC93done(volatile cl_object  *);
+static cl_object LC92separatorp(cl_narg, cl_object , ...);
+static cl_object LC98c(volatile cl_object  *, cl_object );
+static cl_object L102stamp_(cl_object , cl_object );
+static cl_object L103stamps_(cl_object );
+static cl_object L104stamp__(cl_narg, ...);
+static cl_object L105stamp__(cl_object , cl_object );
+static cl_object L106earlier_stamp(cl_object , cl_object );
+static cl_object L107stamps_earliest(cl_object );
+static cl_object L108earliest_stamp(cl_narg, ...);
+static cl_object L109later_stamp(cl_object , cl_object );
+static cl_object L110stamps_latest(cl_object );
+static cl_object L111latest_stamp(cl_narg, ...);
+static cl_object LC113latest_stamp_f(cl_object , cl_object );
+static cl_object LC112__lambda1375(cl_object );
+static cl_object L116ensure_function(cl_narg, cl_object , ...);
+#define L116ensure_functionkeys (&VV[1818])
+static cl_object L118access_at(cl_object , cl_object );
+static cl_object L119access_at_count(cl_object );
+static cl_object L120call_function(cl_narg, cl_object , ...);
+static cl_object L121call_functions(cl_object );
+static cl_object L122register_hook_function(cl_narg, cl_object , cl_object , ...);
+static cl_object LC114__lambda1386(cl_narg, cl_object , ...);
+static cl_object LC115__lambda1387(cl_narg, ...);
+static cl_object LC117access(cl_object , cl_object );
+static cl_object L123coerce_class(cl_narg, cl_object , ...);
+#define L123coerce_classkeys (&VV[1870])
+static cl_object L124ensure_gethash(cl_object , cl_object , cl_object );
+static cl_object L125list_to_hash_set(cl_object );
+static cl_object L126unparse_version(cl_object );
+static cl_object L127parse_version(cl_narg, cl_object , ...);
+static cl_object L128lexicographic_(cl_object , cl_object , cl_object );
+static cl_object L129lexicographic__(cl_object , cl_object , cl_object );
+static cl_object L130version_(cl_object , cl_object );
+static cl_object L131version__(cl_object , cl_object );
+static cl_object L132version_compatible_p(cl_object , cl_object );
+static cl_object L135match_condition_p(cl_object volatile , cl_object volatile );
+static cl_object L136match_any_condition_p(cl_object , cl_object );
+static cl_object L138call_with_muffled_conditions(cl_object , cl_object );
+static cl_object LC139with_muffled_conditions(cl_object , cl_object );
+static cl_object LC133__lambda1487(cl_narg, cl_object , ...);
+static cl_object LC134__lambda1491(cl_narg, cl_object , ...);
+static cl_object LC137__lambda1500(cl_narg, cl_object , ...);
+static cl_object LC141__lambda1513();
+static cl_object L142not_implemented_error(cl_narg, cl_object , ...);
+static cl_object LC144__lambda1515();
+static cl_object L145parameter_error(cl_narg, cl_object , cl_object , ...);
+static cl_object LC140__lambda1514(cl_object , cl_object );
+static cl_object LC143__lambda1516(cl_object , cl_object );
+static cl_object L146featurep(cl_narg, cl_object , ...);
+static cl_object L147os_macosx_p();
+static cl_object L148os_unix_p();
+static cl_object L149os_windows_p();
+static cl_object L150os_genera_p();
+static cl_object L151os_oldmac_p();
+static cl_object L152os_haiku_p();
+static cl_object L153detect_os();
+static cl_object LC154os_cond(cl_object , cl_object );
+static cl_object L155getenv(cl_object );
+static cl_object LC156__lambda1548(cl_object , cl_object );
+static cl_object L157getenvp(cl_object );
+static cl_object L158first_feature(cl_object );
+static cl_object L159implementation_type();
+static cl_object L160operating_system();
+static cl_object L161architecture();
+static cl_object L162lisp_version_string();
+static cl_object L164implementation_identifier();
+static cl_object LC163__lambda1552(cl_object );
+static cl_object L165hostname();
+static cl_object L166getcwd();
+static cl_object L167chdir(cl_object );
+static cl_object L168read_null_terminated_string(cl_object volatile );
+static cl_object L169read_little_endian(cl_narg, cl_object , ...);
+static cl_object L170parse_file_location_info(cl_object );
+static cl_object L172parse_windows_shortcut(cl_object volatile );
+static cl_object LC171__lambda1587(cl_narg, cl_object , ...);
+static cl_object L173normalize_pathname_directory_component(cl_object );
+static cl_object L174denormalize_pathname_directory_component(cl_object );
+static cl_object L175merge_pathname_directory_components(cl_object , cl_object );
+static cl_object L176make_pathname_(cl_narg, ...);
+#define L176make_pathname_keys (&VV[1924])
+static cl_object L177make_pathname_component_logical(cl_object );
+static cl_object L178make_pathname_logical(cl_object , cl_object );
+static cl_object L180merge_pathnames_(cl_narg, cl_object , ...);
+static cl_object L181logical_pathname_p(cl_object );
+static cl_object L182physical_pathname_p(cl_object );
+static cl_object L183physicalize_pathname(cl_object );
+static cl_object L184nil_pathname(cl_narg, ...);
+static cl_object LC185with_pathname_defaults(cl_object , cl_object );
+static cl_object LC179unspecific_handler(cl_object );
+static cl_object L187pathname_equal(cl_object , cl_object );
+static cl_object L188absolute_pathname_p(cl_object );
+static cl_object L189relative_pathname_p(cl_object );
+static cl_object L190hidden_pathname_p(cl_object );
+static cl_object L191file_pathname_p(cl_object );
+static cl_object LC186normalize_component(cl_object );
+static cl_object L192pathname_directory_pathname(cl_object );
+static cl_object L193pathname_parent_directory_pathname(cl_object );
+static cl_object L195directory_pathname_p(cl_object );
+static cl_object L197ensure_directory_pathname(volatile cl_narg, cl_object volatile , ...);
+static cl_object LC194check_one(cl_object );
+static cl_object LC196__lambda1654(cl_narg, cl_object , ...);
+static cl_object L199split_unix_namestring_directory_components(cl_narg, cl_object , ...);
+#define L199split_unix_namestring_directory_componentskeys (&VV[1944])
+static cl_object L200split_name_type(cl_object );
+static cl_object L201parse_unix_namestring(cl_narg, cl_object , ...);
+#define L201parse_unix_namestringkeys (&VV[1946])
+static cl_object L203unix_namestring(cl_object volatile );
+static cl_object LC198__lambda1681(cl_object );
+static cl_object LC202err(volatile cl_object  *);
+static cl_object L204subpathname(cl_narg, cl_object , cl_object , ...);
+#define L204subpathnamekeys (&VV[1928])
+static cl_object L205subpathname_(cl_narg, cl_object , cl_object , ...);
+#define L205subpathname_keys (&VV[1928])
+static cl_object L206pathname_root(cl_object );
+static cl_object L207pathname_host_pathname(cl_object );
+static cl_object L208ensure_absolute_pathname(cl_narg, cl_object , ...);
+static cl_object L209subpathp(cl_object , cl_object );
+static cl_object L210enough_pathname(cl_object , cl_object );
+static cl_object L211call_with_enough_pathname(cl_object , cl_object , cl_object );
+static cl_object LC212with_enough_pathname(cl_object , cl_object );
+static cl_object L213wilden(cl_object );
+static cl_object L214relativize_directory_component(cl_object );
+static cl_object L215relativize_pathname_directory(cl_object );
+static cl_object L216directory_separator_for_host(cl_narg, ...);
+static cl_object L218directorize_pathname_host_device(cl_object );
+static cl_object L219translate_pathname_(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC217__lambda1759(cl_narg, cl_object , ...);
+static cl_object L220native_namestring(cl_object );
+static cl_object L221parse_native_namestring(cl_narg, cl_object , ...);
+#define L221parse_native_namestringkeys (&VV[363])
+static cl_object L223truename_(cl_object volatile );
+static cl_object L225safe_file_write_date(cl_object volatile );
+static cl_object L227probe_file_(volatile cl_narg, cl_object volatile , ...);
+#define L227probe_file_keys (&VV[419])
+static cl_object L228directory_exists_p(cl_object );
+static cl_object L229file_exists_p(cl_object );
+static cl_object L230directory_(cl_narg, cl_object , ...);
+static cl_object L232filter_logical_directory_results(cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object L235directory_files(volatile cl_narg, cl_object volatile , ...);
+static cl_object L238subdirectories(cl_object volatile );
+static cl_object L239collect_sub_directories(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC222__lambda1779(cl_narg, cl_object , ...);
+static cl_object LC224__lambda1789(cl_narg, cl_object , ...);
+static cl_object LC226__lambda1801(cl_narg, cl_object , ...);
+static cl_object LC231__lambda1823(cl_narg, cl_object , ...);
+static cl_object LC233__lambda1837(cl_narg, cl_object , ...);
+static cl_object LC234__lambda1838(cl_narg, cl_object , ...);
+static cl_object LC236__lambda1848(cl_narg, cl_object , ...);
+static cl_object LC237__lambda1849(cl_narg, cl_object , ...);
+static cl_object L242truenamize(cl_object volatile );
+static cl_object L243resolve_symlinks(cl_object );
+static cl_object L244resolve_symlinks_(cl_object );
+static cl_object LC240__lambda1878(cl_narg, cl_object , ...);
+static cl_object LC241__lambda1882(cl_narg, cl_object , ...);
+static cl_object L246ensure_pathname(cl_narg, cl_object , ...);
+#define L246ensure_pathnamekeys (&VV[1981])
+static cl_object LC245report_error(cl_narg, cl_object , cl_object , ...);
+static cl_object L247get_pathname_defaults(cl_narg, ...);
+static cl_object L248call_with_current_directory(cl_object volatile , cl_object volatile );
+static cl_object LC249with_current_directory(cl_object , cl_object );
+static cl_object L250inter_directory_separator();
+static cl_object L251split_native_pathnames_string(cl_narg, cl_object , ...);
+static cl_object L252getenv_pathname(cl_narg, cl_object , ...);
+#define L252getenv_pathnamekeys (&VV[2017])
+static cl_object L253getenv_pathnames(cl_narg, cl_object , ...);
+#define L253getenv_pathnameskeys (&VV[417])
+static cl_object L254getenv_absolute_directory(cl_object );
+static cl_object L255getenv_absolute_directories(cl_object );
+static cl_object L256lisp_implementation_directory(cl_narg, ...);
+#define L256lisp_implementation_directorykeys (&VV[419])
+static cl_object L257lisp_implementation_pathname_p(cl_object );
+static cl_object L258ensure_all_directories_exist(cl_object );
+static cl_object L260delete_file_if_exists(cl_object volatile );
+static cl_object L261rename_file_overwriting_target(cl_object , cl_object );
+static cl_object L262delete_empty_directory(cl_object );
+static cl_object L264delete_directory_tree(cl_narg, cl_object , ...);
+#define L264delete_directory_treekeys (&VV[2025])
+static cl_object LC259__lambda1962(cl_narg, cl_object , ...);
+static cl_object LC263c(cl_narg, cl_object , ...);
+static cl_object L265setup_stdin();
+static cl_object L266setup_stdout();
+static cl_object L267setup_stderr();
+static cl_object L268always_default_encoding(cl_object );
+static cl_object L269detect_encoding(cl_object );
+static cl_object L270default_encoding_external_format(cl_object );
+static cl_object L271encoding_external_format(cl_object );
+static cl_object LC272with_safe_io_syntax(cl_object , cl_object );
+static cl_object L273call_with_safe_io_syntax(cl_narg, cl_object , ...);
+#define L273call_with_safe_io_syntaxkeys (&VV[1818])
+static cl_object L275safe_read_from_string(cl_narg, cl_object , ...);
+#define L275safe_read_from_stringkeys (&VV[2037])
+static cl_object LC274__lambda2014(cl_narg, ...);
+static cl_object L276call_with_output_file(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+#define L276call_with_output_filekeys (&VV[2048])
+static cl_object LC277with_output_file(cl_object , cl_object );
+static cl_object L278call_with_output(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+#define L278call_with_outputkeys (&VV[765])
+static cl_object LC279with_output(cl_object , cl_object );
+static cl_object L281output_string(cl_narg, cl_object , ...);
+static cl_object LC280__lambda2060(cl_narg, cl_object , ...);
+static cl_object L282call_with_input_file(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+#define L282call_with_input_filekeys (&VV[2057])
+static cl_object LC283with_input_file(cl_object , cl_object );
+static cl_object L284call_with_input(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+#define L284call_with_inputkeys (&VV[765])
+static cl_object LC285with_input(cl_object , cl_object );
+static cl_object L287input_string(cl_narg, ...);
+static cl_object LC286__lambda2097(cl_object );
+static cl_object L288null_device_pathname();
+static cl_object L289call_with_null_input(cl_narg, cl_object , ...);
+#define L289call_with_null_inputkeys (&VV[2057])
+static cl_object LC290with_null_input(cl_object , cl_object );
+static cl_object L291call_with_null_output(cl_narg, cl_object , ...);
+#define L291call_with_null_outputkeys (&VV[2048])
+static cl_object LC292with_null_output(cl_object , cl_object );
+static cl_object L294finish_outputs(volatile cl_narg, ...);
+static cl_object L295format_(cl_narg, cl_object , cl_object , ...);
+static cl_object L298safe_format_(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC293__lambda2154(cl_narg, cl_object , ...);
+static cl_object LC297__lambda2161(volatile cl_narg, ...);
+static cl_object LC296__lambda2165(cl_narg, cl_object , ...);
+static cl_object L299copy_stream_to_stream(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+#define L299copy_stream_to_streamkeys (&VV[2086])
+static cl_object L300concatenate_files(cl_object volatile , cl_object volatile );
+static cl_object L301copy_file(cl_object , cl_object );
+static cl_object L302slurp_stream_string(volatile cl_narg, cl_object volatile , ...);
+#define L302slurp_stream_stringkeys (&VV[2090])
+static cl_object L303slurp_stream_lines(volatile cl_narg, cl_object volatile , ...);
+#define L303slurp_stream_lineskeys (&VV[2092])
+static cl_object L304slurp_stream_line(cl_narg, cl_object , ...);
+#define L304slurp_stream_linekeys (&VV[556])
+static cl_object L305slurp_stream_forms(cl_narg, cl_object , ...);
+#define L305slurp_stream_formskeys (&VV[2092])
+static cl_object L306slurp_stream_form(cl_narg, cl_object , ...);
+#define L306slurp_stream_formkeys (&VV[556])
+static cl_object L307read_file_string(cl_narg, cl_object , ...);
+static cl_object L308read_file_lines(cl_narg, cl_object , ...);
+static cl_object L310read_file_line(cl_narg, cl_object , ...);
+#define L310read_file_linekeys (&VV[556])
+static cl_object L312read_file_forms(cl_narg, cl_object , ...);
+#define L312read_file_formskeys (&VV[2092])
+static cl_object L314read_file_form(cl_narg, cl_object , ...);
+#define L314read_file_formkeys (&VV[556])
+static cl_object L316safe_read_file_line(cl_narg, cl_object , ...);
+#define L316safe_read_file_linekeys (&VV[1818])
+static cl_object L318safe_read_file_form(cl_narg, cl_object , ...);
+#define L318safe_read_file_formkeys (&VV[1818])
+static cl_object L320eval_input(cl_object );
+static cl_object L321eval_thunk(cl_object );
+static cl_object L323standard_eval_thunk(cl_narg, cl_object , ...);
+#define L323standard_eval_thunkkeys (&VV[1818])
+static cl_object LC309__lambda2201(cl_narg, cl_object , ...);
+static cl_object LC311__lambda2202(cl_narg, cl_object , ...);
+static cl_object LC313__lambda2203(cl_narg, cl_object , ...);
+static cl_object LC315__lambda2204(cl_narg, ...);
+static cl_object LC317__lambda2205(cl_narg, ...);
+static cl_object LC319__lambda2208(cl_object );
+static cl_object LC322__lambda2218(cl_narg, ...);
+static cl_object L324println(cl_narg, cl_object , ...);
+static cl_object L325writeln(cl_narg, cl_object , ...);
+#define L325writelnkeys (&VV[2095])
+static cl_object L326default_temporary_directory();
+static cl_object L327temporary_directory();
+static cl_object L328setup_temporary_directory();
+static cl_object L330call_with_temporary_file(volatile cl_narg, cl_object volatile , ...);
+#define L330call_with_temporary_filekeys (&VV[2106])
+static cl_object LC331with_temporary_file(cl_object , cl_object );
+static cl_object L333get_temporary_file(cl_narg, ...);
+#define L333get_temporary_filekeys (&VV[2117])
+static cl_object L334add_pathname_suffix(cl_narg, cl_object , cl_object , ...);
+static cl_object L335tmpize_pathname(cl_object );
+static cl_object L336call_with_staging_pathname(cl_object volatile , cl_object volatile );
+static cl_object LC337with_staging_pathname(cl_object , cl_object );
+static cl_object LC329__lambda2249(cl_narg, cl_object , ...);
+static cl_object LC332__before2312(cl_object );
+static cl_object L338file_stream_p(cl_object );
+static cl_object L339file_or_synonym_stream_p(cl_object );
+static cl_object LC340__lambda2330(cl_object );
+static cl_object L341quit(cl_narg, ...);
+static cl_object L344die(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object L345raw_print_backtrace(cl_narg, ...);
+#define L345raw_print_backtracekeys (&VV[2133])
+static cl_object L348print_backtrace(volatile cl_narg, ...);
+#define L348print_backtracekeys (&VV[2133])
+static cl_object L349print_condition_backtrace(cl_narg, cl_object , ...);
+#define L349print_condition_backtracekeys (&VV[2133])
+static cl_object L350fatal_condition_p(cl_object );
+static cl_object L351handle_fatal_condition(cl_object );
+static cl_object L352call_with_fatal_condition_handler(cl_object );
+static cl_object LC353with_fatal_condition_handler(cl_object , cl_object );
+static cl_object L354shell_boolean_exit(cl_object );
+static cl_object LC343__lambda2337(volatile cl_narg, ...);
+static cl_object LC347__lambda2369(volatile cl_narg, ...);
+static cl_object LC342__lambda2341(cl_narg, cl_object , ...);
+static cl_object LC346__lambda2379(cl_narg, cl_object , ...);
+static cl_object L355register_image_restore_hook(cl_narg, cl_object , ...);
+static cl_object L356register_image_dump_hook(cl_narg, cl_object , ...);
+static cl_object L357call_image_restore_hook();
+static cl_object L358call_image_dump_hook();
+static cl_object L359raw_command_line_arguments();
+static cl_object L360command_line_arguments(cl_narg, ...);
+static cl_object L361argv0();
+static cl_object L362setup_command_line_arguments();
+static cl_object L364restore_image(cl_narg, ...);
+#define L364restore_imagekeys (&VV[2145])
+static cl_object LC363__lambda2424(cl_narg, ...);
+static cl_object L365dump_image(cl_narg, cl_object , ...);
+#define L365dump_imagekeys (&VV[2152])
+static cl_object L366create_image(cl_narg, cl_object , cl_object , ...);
+#define L366create_imagekeys (&VV[2156])
+static cl_object L369requires_escaping_p(cl_narg, cl_object , ...);
+#define L369requires_escaping_pkeys (&VV[667])
+static cl_object L371escape_token(cl_narg, cl_object , ...);
+#define L371escape_tokenkeys (&VV[2179])
+static cl_object L375escape_windows_token_within_double_quotes(cl_narg, cl_object , ...);
+static cl_object L376easy_windows_character_p(cl_object );
+static cl_object L377escape_windows_token(cl_narg, cl_object , ...);
+static cl_object L378escape_sh_token_within_double_quotes(cl_narg, cl_object , cl_object , ...);
+#define L378escape_sh_token_within_double_quoteskeys (&VV[669])
+static cl_object L379easy_sh_character_p(cl_object );
+static cl_object L380escape_sh_token(cl_narg, cl_object , ...);
+static cl_object L381escape_shell_token(cl_narg, cl_object , ...);
+static cl_object L383escape_command(cl_narg, cl_object , ...);
+static cl_object L384escape_windows_command(cl_narg, cl_object , ...);
+static cl_object L385escape_sh_command(cl_narg, cl_object , ...);
+static cl_object L386escape_shell_command(cl_narg, cl_object , ...);
+static cl_object LC367__lambda2465(cl_narg, cl_object , ...);
+static cl_object LC368__lambda2475(cl_narg, cl_object , ...);
+static cl_object LC370__lambda2484(cl_narg, cl_object , ...);
+static cl_object LC373issue_backslash(volatile cl_object  *, cl_object );
+static cl_object LC372issue(volatile cl_object  *, cl_object );
+static cl_object LC374__lambda2532(cl_object );
+static cl_object LC382__lambda2579(cl_narg, cl_object , ...);
+static cl_object L387call_stream_processor(cl_object , cl_object , cl_object );
+static cl_object LC388slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC389slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC390slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC390slurp_input_streamkeys (&VV[2186])
+static cl_object LC391slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC391slurp_input_streamkeys (&VV[693])
+static cl_object LC392slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC392slurp_input_streamkeys (&VV[693])
+static cl_object LC393slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC393slurp_input_streamkeys (&VV[2092])
+static cl_object LC394slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC394slurp_input_streamkeys (&VV[556])
+static cl_object LC395slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC395slurp_input_streamkeys (&VV[2092])
+static cl_object LC396slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC396slurp_input_streamkeys (&VV[556])
+static cl_object LC397slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC398slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC400slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC400slurp_input_streamkeys (&VV[2190])
+static cl_object LC401slurp_input_stream(cl_narg, cl_object , cl_object , ...);
+#define LC401slurp_input_streamkeys (&VV[2186])
+static cl_object LC399__lambda2583(cl_narg, cl_object , ...);
+static cl_object LC402vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC403vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC404vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+#define LC404vomit_output_streamkeys (&VV[2186])
+static cl_object LC405vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+#define LC405vomit_output_streamkeys (&VV[2196])
+static cl_object LC406vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC407vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+static cl_object LC409vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+#define LC409vomit_output_streamkeys (&VV[2190])
+static cl_object LC410vomit_output_stream(cl_narg, cl_object , cl_object , ...);
+#define LC410vomit_output_streamkeys (&VV[2186])
+static cl_object LC408__lambda2584(cl_narg, cl_object , ...);
+static cl_object LC412__lambda2585();
+static cl_object L413_cmd_shell_pathname();
+static cl_object L414_normalize_command(cl_object );
+static cl_object L415_active_io_specifier_p(cl_object );
+static cl_object L416_normalize_io_specifier(cl_narg, cl_object , ...);
+static cl_object L417_normalize_if_exists(cl_object );
+static cl_object L418_interactivep(cl_object , cl_object , cl_object );
+static cl_object L419_signal_to_exit_code(cl_object );
+static cl_object L424_run_program(cl_narg, cl_object , ...);
+#define L424_run_programkeys (&VV[2229])
+static cl_object L425process_info_error_output(cl_object );
+static cl_object L426process_info_input(cl_object );
+static cl_object L427process_info_output(cl_object );
+static cl_object L428process_info_pid(cl_object );
+static cl_object L429_process_status(cl_object );
+static cl_object L430process_alive_p(cl_object );
+static cl_object L431wait_process(cl_object );
+static cl_object L432_check_result(cl_narg, cl_object , ...);
+#define L432_check_resultkeys (&VV[2238])
+static cl_object L433close_streams(cl_object );
+static cl_object L434_posix_send_signal(cl_object , cl_object );
+static cl_object L435terminate_process(cl_narg, cl_object , ...);
+#define L435terminate_processkeys (&VV[2241])
+static cl_object L442_call_with_program_io(cl_narg, cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , ...);
+#define L442_call_with_program_iokeys (&VV[2048])
+static cl_object LC443place_setter(cl_object , cl_object );
+static cl_object LC444with_program_input(cl_object , cl_object );
+static cl_object LC445with_program_output(cl_object , cl_object );
+static cl_object LC446with_program_error_output(cl_object , cl_object );
+static cl_object L454_use_run_program(volatile cl_narg, cl_object volatile , ...);
+#define L454_use_run_programkeys (&VV[2242])
+static cl_object L455_normalize_system_command(cl_object );
+static cl_object L457_redirected_system_command(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L459_system(cl_narg, cl_object , ...);
+#define L459_systemkeys (&VV[2246])
+static cl_object L465_use_system(cl_narg, cl_object , ...);
+#define L465_use_systemkeys (&VV[2242])
+static cl_object L466launch_program(cl_narg, cl_object , ...);
+#define L466launch_programkeys (&VV[2250])
+static cl_object L468run_program(cl_narg, cl_object , ...);
+#define L468run_programkeys (&VV[2258])
+static cl_object LC411__lambda2586(cl_object , cl_object );
+static cl_object LC420__lambda2616(cl_object );
+static cl_object LC421__lambda2617(cl_narg, ...);
+static cl_object LC423store_codes(cl_narg, volatile cl_object  *, cl_object , ...);
+static cl_object LC422prop(volatile cl_object  *, cl_object , cl_object );
+static cl_object LC441hard_case(cl_narg, ...);
+static cl_object LC437easy_case(cl_narg, ...);
+static cl_object LC436activity(cl_narg, cl_object , ...);
+static cl_object LC452__lambda2820(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC453__lambda2832(cl_narg, cl_object , ...);
+static cl_object LC456redirect(cl_object , cl_object );
+static cl_object LC458__lambda2842(cl_narg, ...);
+static cl_object LC463__lambda2863(cl_narg, cl_object , cl_object , ...);
+static cl_object LC464__lambda2873(cl_narg, cl_object , ...);
+static cl_object LC467default(cl_object , cl_object , cl_object );
+static cl_object LC440__before2709(cl_narg, cl_object , ...);
+static cl_object LC450__lambda2821(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC451__lambda2829(cl_narg, cl_object , ...);
+static cl_object LC461__lambda2865(cl_narg, cl_object , cl_object , ...);
+static cl_object LC462__lambda2870(cl_narg, cl_object , ...);
+static cl_object LC438__lambda2713(cl_narg, cl_object , ...);
+static cl_object LC439__lambda2716(cl_narg, cl_object , ...);
+static cl_object LC449__lambda2822(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC460__lambda2867(cl_narg, cl_object , cl_object , ...);
+static cl_object LC448run_activity(cl_narg, cl_object , cl_object , ...);
+static cl_object LC447get_stream(cl_narg, cl_object , ...);
+static cl_object L469get_optimization_settings();
+static cl_object L470proclaim_optimization_settings();
+static cl_object LC471with_optimization_settings(cl_object , cl_object );
+static cl_object L472call_with_muffled_compiler_conditions(cl_object );
+static cl_object LC473with_muffled_compiler_conditions(cl_object , cl_object );
+static cl_object L474call_with_muffled_loader_conditions(cl_object );
+static cl_object LC475with_muffled_loader_conditions(cl_object , cl_object );
+static cl_object LC477__lambda2948();
+static cl_object L478check_lisp_compile_warnings(cl_narg, cl_object , cl_object , ...);
+static cl_object L479check_lisp_compile_results(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC476__lambda2949(cl_object , cl_object );
+static cl_object L480reify_simple_sexp(cl_object );
+static cl_object L481unreify_simple_sexp(cl_object );
+static cl_object L482reify_deferred_warnings();
+static cl_object L483unreify_deferred_warnings(cl_object );
+static cl_object L484reset_deferred_warnings();
+static cl_object L486save_deferred_warnings(cl_object volatile );
+static cl_object L487warnings_file_type(cl_narg, ...);
+static cl_object L488enable_deferred_warnings_check();
+static cl_object L489disable_deferred_warnings_check();
+static cl_object L490warnings_file_p(cl_narg, cl_object , ...);
+static cl_object L493check_deferred_warnings(volatile cl_narg, cl_object volatile , ...);
+static cl_object L494call_with_saved_deferred_warnings(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+#define L494call_with_saved_deferred_warningskeys (&VV[864])
+static cl_object LC495with_saved_deferred_warnings(cl_object , cl_object );
+static cl_object LC485__lambda2975(cl_narg, ...);
+static cl_object LC491__lambda3011(cl_narg, cl_object , ...);
+static cl_object LC492__lambda3020(cl_narg, cl_object , ...);
+static cl_object L496current_lisp_file_pathname();
+static cl_object L497load_pathname();
+static cl_object L498lispize_pathname(cl_object );
+static cl_object L499compile_file_type(cl_narg, ...);
+static cl_object L500call_around_hook(cl_object , cl_object );
+static cl_object L501compile_file_pathname_(cl_narg, cl_object , ...);
+#define L501compile_file_pathname_keys (&VV[880])
+static cl_object L506compile_file_(cl_narg, cl_object , ...);
+#define L506compile_file_keys (&VV[2306])
+static cl_object L508load_(cl_narg, cl_object , ...);
+static cl_object L509load_from_string(cl_object volatile );
+static cl_object LC504__lambda3052(cl_narg, cl_object , ...);
+static cl_object LC505check_flag(cl_object , cl_object );
+static cl_object LC507__lambda3061(cl_narg, ...);
+static cl_object LC503__lambda3053(cl_narg, ...);
+static cl_object LC502__lambda3054(cl_narg, ...);
+static cl_object L510combine_fasls(cl_object , cl_object );
+static cl_object LC512__lambda3064();
+static cl_object L513configuration_inheritance_directive_p(cl_object );
+static cl_object L514report_invalid_form(cl_narg, cl_object , ...);
+static cl_object L515validate_configuration_form(cl_narg, cl_object , cl_object , cl_object , ...);
+#define L515validate_configuration_formkeys (&VV[2340])
+static cl_object L516validate_configuration_file(cl_narg, cl_object , cl_object , ...);
+#define L516validate_configuration_filekeys (&VV[2342])
+static cl_object L518validate_configuration_directory(volatile cl_narg, cl_object volatile , cl_object volatile , cl_object volatile , ...);
+#define L518validate_configuration_directorykeys (&VV[1370])
+static cl_object L519resolve_relative_location(cl_narg, cl_object , ...);
+#define L519resolve_relative_locationkeys (&VV[2343])
+static cl_object L520resolve_absolute_location(cl_narg, cl_object , ...);
+#define L520resolve_absolute_locationkeys (&VV[2343])
+static cl_object L521resolve_location(cl_narg, cl_object , ...);
+#define L521resolve_locationkeys (&VV[2345])
+static cl_object L524location_designator_p(cl_object );
+static cl_object L525location_function_p(cl_object );
+static cl_object L526register_clear_configuration_hook(cl_narg, cl_object , ...);
+static cl_object L527clear_configuration();
+static cl_object L528upgrade_configuration();
+static cl_object L529get_folder_path(cl_object );
+static cl_object L530xdg_data_home(cl_narg, ...);
+static cl_object L531xdg_config_home(cl_narg, ...);
+static cl_object L533xdg_data_dirs(cl_narg, ...);
+static cl_object L535xdg_config_dirs(cl_narg, ...);
+static cl_object L536xdg_cache_home(cl_narg, ...);
+static cl_object L537xdg_runtime_dir(cl_narg, ...);
+static cl_object L538system_config_pathnames(cl_narg, ...);
+static cl_object L539filter_pathname_set(cl_object );
+static cl_object L540xdg_data_pathnames(cl_narg, ...);
+static cl_object L541xdg_config_pathnames(cl_narg, ...);
+static cl_object L542find_preferred_file(cl_narg, cl_object , ...);
+#define L542find_preferred_filekeys (&VV[2108])
+static cl_object L543xdg_data_pathname(cl_narg, ...);
+static cl_object L544xdg_config_pathname(cl_narg, ...);
+static cl_object L545compute_user_cache();
+static cl_object LC511__lambda3065(cl_object , cl_object );
+static cl_object LC517__lambda3115(cl_narg, cl_object , ...);
+static cl_object LC523relative_component_p(cl_object );
+static cl_object LC522absolute_component_p(cl_object );
+static cl_object LC532__lambda3171(cl_narg, cl_object , ...);
+static cl_object LC534__lambda3186(cl_narg, cl_object , ...);
+static cl_object L546coerce_pathname(cl_narg, cl_object , ...);
+#define L546coerce_pathnamekeys (&VV[1946])
+static cl_object L547user_configuration_directories();
+static cl_object L548system_configuration_directories();
+static cl_object L550in_first_directory(cl_narg, cl_object , cl_object , ...);
+#define L550in_first_directorykeys (&VV[2108])
+static cl_object L551in_user_configuration_directory(cl_narg, cl_object , ...);
+#define L551in_user_configuration_directorykeys (&VV[2108])
+static cl_object L552in_system_configuration_directory(cl_narg, cl_object , ...);
+#define L552in_system_configuration_directorykeys (&VV[2108])
+static cl_object LC549__lambda3203(cl_narg, cl_object , ...);
+static cl_object L553asdf_version();
+static cl_object L554asdf_message(cl_narg, cl_object , ...);
+static cl_object L555upgrading_p(cl_narg, ...);
+static cl_object LC556defparameter_(cl_object , cl_object );
+static cl_object LC557when_upgrading(cl_object , cl_object );
+static cl_object L558cleanup_upgraded_asdf(cl_narg, ...);
+static cl_object L559upgrade_asdf();
+static cl_object LC560component_parent(cl_object );
+static cl_object LC562__lambda3247();
+static cl_object LC561__lambda3248(cl_object , cl_object );
+static cl_object LC563__lambda3249();
+static cl_object L564component_find_path(cl_object );
+static cl_object LC566print_object(cl_object , cl_object );
+static cl_object LC567component_system(cl_object );
+static cl_object LC565si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object L568compute_children_by_name(cl_narg, cl_object , ...);
+#define L568compute_children_by_namekeys (&VV[1163])
+static cl_object LC569component_parent_pathname(cl_object );
+static cl_object LC570component_pathname(cl_object );
+static cl_object LC571component_relative_pathname(cl_object );
+static cl_object LC572source_file_type(cl_object , cl_object );
+static cl_object LC573source_file_type(cl_object , cl_object );
+static cl_object LC574component_encoding(cl_object );
+static cl_object LC575component_external_format(cl_object );
+static cl_object LC576around_compile_hook(cl_object );
+static cl_object LC577version_satisfies(cl_object , cl_object );
+static cl_object LC578version_satisfies(cl_object , cl_object );
+static cl_object LC579version_satisfies(cl_object , cl_object );
+static cl_object L582sub_components(cl_narg, cl_object , ...);
+#define L582sub_componentskeys (&VV[1928])
+static cl_object LC580c(cl_narg, cl_object , ...);
+static cl_object LC581recurse(cl_narg, cl_object , ...);
+static cl_object LC583component_entry_point(cl_object );
+static cl_object L584reset_system(cl_narg, cl_object , ...);
+static cl_object LC585system_source_file(cl_object );
+static cl_object LC586system_source_file(cl_object );
+static cl_object L587system_source_directory(cl_object );
+static cl_object L588system_relative_pathname(cl_narg, cl_object , cl_object , ...);
+#define L588system_relative_pathnamekeys (&VV[1928])
+static cl_object LC589component_pathname(cl_object );
+static cl_object LC590component_relative_pathname(cl_object );
+static cl_object LC591component_parent_pathname(cl_object );
+static cl_object LC592component_build_pathname(cl_object );
+static cl_object L593set_asdf_cache_entry(cl_object , cl_object );
+static cl_object L594unset_asdf_cache_entry(cl_object );
+static cl_object L595consult_asdf_cache(cl_narg, cl_object , ...);
+static cl_object LC596do_asdf_cache(cl_object , cl_object );
+static cl_object L602call_with_asdf_cache(volatile cl_narg, cl_object volatile , ...);
+#define L602call_with_asdf_cachekeys (&VV[2387])
+static cl_object LC603with_asdf_cache(cl_object , cl_object );
+static cl_object L604normalize_namestring(cl_object );
+static cl_object L605compute_file_stamp(cl_object );
+static cl_object L606register_file_stamp(cl_narg, cl_object , ...);
+static cl_object L608get_file_stamp(cl_object );
+static cl_object LC597__lambda3362(cl_narg, ...);
+static cl_object LC598__lambda3369(cl_narg, ...);
+static cl_object LC599__lambda3370(cl_object );
+static cl_object LC600__lambda3371(cl_narg, ...);
+static cl_object LC601__lambda3372(cl_object );
+static cl_object LC607__lambda3390(cl_narg, ...);
+static cl_object LC610__lambda3391();
+static cl_object LC612__lambda3393();
+static cl_object L613sysdef_error(cl_narg, cl_object , ...);
+static cl_object L614coerce_name(cl_object );
+static cl_object L615primary_system_name(cl_object );
+static cl_object L616coerce_filename(cl_object );
+static cl_object L617system_registered_p(cl_object );
+static cl_object L618registered_system(cl_object );
+static cl_object L619registered_systems_();
+static cl_object L620registered_systems();
+static cl_object L622register_system(cl_object volatile );
+static cl_object L623make_preloaded_system(cl_object , cl_object );
+static cl_object L624sysdef_preloaded_system_search(cl_object );
+static cl_object L625ensure_preloaded_system_registered(cl_object );
+static cl_object L626ensure_all_preloaded_systems_registered();
+static cl_object L627register_preloaded_system(cl_narg, cl_object , ...);
+#define L627register_preloaded_systemkeys (&VV[1929])
+static cl_object L628sysdef_immutable_system_search(cl_object );
+static cl_object L629register_immutable_system(cl_narg, cl_object , ...);
+static cl_object L630clear_system(cl_object );
+static cl_object L631clear_defined_systems();
+static cl_object L632map_systems(cl_object );
+static cl_object L635cleanup_system_definition_search_functions();
+static cl_object L637search_for_system_definition(cl_object volatile );
+static cl_object L639probe_asd(cl_narg, cl_object , cl_object , ...);
+#define L639probe_asdkeys (&VV[419])
+static cl_object L645sysdef_central_registry_search(cl_object volatile );
+static cl_object LC646find_system(cl_narg, cl_object , ...);
+static cl_object LC647find_system(cl_narg, cl_object , ...);
+static cl_object L648find_system_if_being_defined(cl_object );
+static cl_object L651load_asd(cl_narg, cl_object , ...);
+#define L651load_asdkeys (&VV[2417])
+static cl_object L653check_not_old_asdf_system(cl_object , cl_object );
+static cl_object L655locate_system(cl_object );
+static cl_object LC657find_system(volatile cl_narg, cl_object volatile , ...);
+static cl_object LC609__lambda3392(cl_object , cl_object );
+static cl_object LC611__lambda3394(cl_object , cl_object );
+static cl_object LC621__lambda3475(cl_narg, cl_object , ...);
+static cl_object LC633__lambda3632(cl_narg, cl_object , ...);
+static cl_object LC634__lambda3633(cl_object );
+static cl_object LC636try(cl_narg, cl_object , ...);
+static cl_object LC638__lambda3634(cl_narg, ...);
+static cl_object LC640__lambda3695(cl_narg, ...);
+static cl_object LC641__lambda3696(cl_object );
+static cl_object LC642__lambda3697(cl_narg, ...);
+static cl_object LC643__lambda3698(cl_narg, cl_object , ...);
+static cl_object LC644__lambda3699(cl_narg, cl_object , ...);
+static cl_object LC650__lambda3713(cl_narg, ...);
+static cl_object LC652__lambda3720(cl_narg, ...);
+static cl_object LC654__lambda3733(cl_narg, ...);
+static cl_object LC656__lambda3750(cl_narg, ...);
+static cl_object LC649__lambda3719(cl_narg, cl_object , ...);
+static cl_object LC658print_object(cl_object , cl_object );
+static cl_object LC659print_object(cl_object , cl_object );
+static cl_object LC660print_object(cl_object , cl_object );
+static cl_object LC661find_component(cl_narg, cl_object , cl_object , ...);
+#define LC661find_componentkeys (&VV[1162])
+static cl_object LC662find_component(cl_narg, cl_object , cl_object , ...);
+#define LC662find_componentkeys (&VV[1162])
+static cl_object LC663find_component(cl_narg, cl_object , cl_object , ...);
+#define LC663find_componentkeys (&VV[1162])
+static cl_object LC664find_component(cl_narg, cl_object , cl_object , ...);
+#define LC664find_componentkeys (&VV[1162])
+static cl_object LC665find_component(cl_narg, cl_object , cl_object , ...);
+#define LC665find_componentkeys (&VV[1162])
+static cl_object LC666find_component(cl_narg, cl_object , cl_object , ...);
+#define LC666find_componentkeys (&VV[1162])
+static cl_object LC667find_component(cl_narg, cl_object , cl_object , ...);
+#define LC667find_componentkeys (&VV[1162])
+static cl_object L671resolve_dependency_name(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object L672resolve_dependency_spec(cl_object , cl_object );
+static cl_object LC673resolve_dependency_combination(cl_object , cl_object , cl_object );
+static cl_object LC674resolve_dependency_combination(cl_object , cl_object , cl_object );
+static cl_object LC675resolve_dependency_combination(cl_object , cl_object , cl_object );
+static cl_object LC668__lambda3774(cl_narg, ...);
+static cl_object LC669__lambda3775(cl_narg, cl_object , ...);
+static cl_object LC670__lambda3776(cl_narg, cl_object , ...);
+static cl_object LC676initialize_instance(cl_narg, cl_object , ...);
+#define LC676initialize_instancekeys (&VV[2432])
+static cl_object LC679print_object(cl_object volatile , cl_object volatile );
+static cl_object LC678si___print_unreadable_object_body_(volatile cl_narg, ...);
+static cl_object LC677__lambda3815(cl_narg, cl_object , ...);
+static cl_object L680_compute_operations_value();
+static cl_object L681make_operation(cl_narg, cl_object , ...);
+static cl_object LC682find_operation(cl_object , cl_object );
+static cl_object LC683find_operation(cl_object , cl_object );
+static cl_object LC684find_operation(cl_object , cl_object );
+static cl_object LC685operation_original_initargs(cl_object );
+static cl_object L686action_path(cl_object );
+static cl_object L687find_action(cl_object );
+static cl_object LC689define_convenience_action_methods(cl_object , cl_object );
+static cl_object LC688next_method(volatile cl_object  *, cl_object , cl_object );
+static cl_object LC690action_description(cl_object , cl_object );
+static cl_object LC691explain(cl_object , cl_object );
+static cl_object LC692explain(cl_object , cl_object );
+static cl_object LC693explain(cl_object , cl_object );
+static cl_object LC694explain(cl_object , cl_object );
+static cl_object L695format_action(cl_narg, cl_object , cl_object , ...);
+static cl_object LC696component_depends_on(cl_object , cl_object );
+static cl_object LC697component_depends_on(cl_object , cl_object );
+static cl_object LC698component_depends_on(cl_object , cl_object );
+static cl_object LC702component_depends_on(cl_object , cl_object );
+static cl_object LC699call_next_method(cl_narg, ...);
+static cl_object LC701__lambda3867(cl_narg, ...);
+static cl_object L703downward_operation_depends_on(cl_object , cl_object );
+static cl_object LC704component_depends_on(cl_object , cl_object );
+static cl_object L705upward_operation_depends_on(cl_object , cl_object );
+static cl_object LC706component_depends_on(cl_object , cl_object );
+static cl_object L707sideway_operation_depends_on(cl_object , cl_object );
+static cl_object LC708component_depends_on(cl_object , cl_object );
+static cl_object L709selfward_operation_depends_on(cl_object , cl_object );
+static cl_object LC710component_depends_on(cl_object , cl_object );
+static cl_object LC711initialize_instance(cl_narg, cl_object , ...);
+static cl_object LC712initialize_instance(cl_narg, cl_object , ...);
+static cl_object LC713component_depends_on(cl_object , cl_object );
+static cl_object LC714downward_operation(cl_object );
+static cl_object LC715sideway_operation(cl_object );
+static cl_object LC716output_files(cl_object , cl_object );
+static cl_object LC717output_files(cl_object , cl_object );
+static cl_object LC718output_files(cl_object , cl_object );
+static cl_object LC719input_files(cl_object , cl_object );
+static cl_object LC720input_files(cl_object , cl_object );
+static cl_object LC721input_files(cl_object , cl_object );
+static cl_object LC722operation_done_p(cl_object , cl_object );
+static cl_object LC723operation_done_p(cl_object , cl_object );
+static cl_object LC724operation_done_p(cl_object , cl_object );
+static cl_object LC725operation_done_p(cl_object , cl_object );
+static cl_object LC729output_files(cl_object , cl_object );
+static cl_object LC730output_files(cl_object , cl_object );
+static cl_object L731output_file(cl_object , cl_object );
+static cl_object LC735input_files(cl_object , cl_object );
+static cl_object LC736input_files(cl_object , cl_object );
+static cl_object LC737input_files(cl_object , cl_object );
+static cl_object LC726call_next_method(cl_narg, ...);
+static cl_object LC728__lambda3900(cl_narg, ...);
+static cl_object LC732call_next_method(cl_narg, ...);
+static cl_object LC734__lambda3915(cl_narg, ...);
+static cl_object LC738component_operation_time(cl_object , cl_object );
+static cl_object LC739component_operation_time(cl_object , cl_object );
+static cl_object LC740component_operation_time(cl_object , cl_object );
+static cl_object LC742print_object(cl_object , cl_object );
+static cl_object LC743component_operation_time(cl_object , cl_object );
+static cl_object LC744_setf_component_operation_time_(cl_object , cl_object , cl_object );
+static cl_object LC745mark_operation_done(cl_object , cl_object );
+static cl_object LC741si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object LC746perform(cl_object , cl_object );
+static cl_object LC747perform(cl_object , cl_object );
+static cl_object LC748perform(cl_object , cl_object );
+static cl_object LC749perform(cl_object , cl_object );
+static cl_object LC750perform(cl_object , cl_object );
+static cl_object LC751perform(cl_object , cl_object );
+static cl_object LC752perform(cl_object , cl_object );
+static cl_object LC753perform_with_restarts(cl_object , cl_object );
+static cl_object LC758perform_with_restarts(cl_object volatile , cl_object volatile );
+static cl_object LC754__lambda4049(cl_narg, ...);
+static cl_object LC755__lambda4050(cl_narg, cl_object , ...);
+static cl_object LC756__lambda4051(cl_narg, ...);
+static cl_object LC757__lambda4052(cl_narg, cl_object , ...);
+static cl_object LC759action_description(cl_object , cl_object );
+static cl_object LC760perform(cl_object , cl_object );
+static cl_object LC761input_files(cl_object , cl_object );
+static cl_object LC762action_description(cl_object , cl_object );
+static cl_object LC763action_description(cl_object , cl_object );
+static cl_object LC764call_with_around_compile_hook(cl_object , cl_object );
+static cl_object L766perform_lisp_compilation(cl_object , cl_object );
+static cl_object L767report_file_p(cl_object );
+static cl_object L768perform_lisp_warnings_check(cl_object volatile , cl_object volatile );
+static cl_object LC769perform(cl_object , cl_object );
+static cl_object L770lisp_compilation_output_files(cl_object , cl_object );
+static cl_object LC771output_files(cl_object , cl_object );
+static cl_object LC772perform(cl_object , cl_object );
+static cl_object LC773perform(cl_object , cl_object );
+static cl_object LC774input_files(cl_object , cl_object );
+static cl_object LC775output_files(cl_object , cl_object );
+static cl_object LC765__lambda4069(cl_narg, ...);
+static cl_object LC776action_description(cl_object , cl_object );
+static cl_object LC777action_description(cl_object , cl_object );
+static cl_object LC778action_description(cl_object , cl_object );
+static cl_object LC781perform_with_restarts(cl_object volatile , cl_object volatile );
+static cl_object L782perform_lisp_load_fasl(cl_object , cl_object );
+static cl_object LC783perform(cl_object , cl_object );
+static cl_object LC784perform(cl_object , cl_object );
+static cl_object LC779__lambda4134(cl_narg, ...);
+static cl_object LC780__lambda4135(cl_narg, cl_object , ...);
+static cl_object LC785action_description(cl_object , cl_object );
+static cl_object LC786input_files(cl_object , cl_object );
+static cl_object LC787perform(cl_object , cl_object );
+static cl_object LC788action_description(cl_object , cl_object );
+static cl_object LC789action_description(cl_object , cl_object );
+static cl_object L791perform_lisp_load_source(cl_object , cl_object );
+static cl_object LC792perform(cl_object , cl_object );
+static cl_object LC793perform(cl_object , cl_object );
+static cl_object LC790__lambda4137(cl_narg, ...);
+static cl_object LC794perform(cl_object , cl_object );
+static cl_object LC795operation_done_p(cl_object , cl_object );
+static cl_object LC796__lambda4138();
+static cl_object LC797__lambda4139();
+static cl_object LC799print_object(cl_object , cl_object );
+static cl_object LC800action_planned_p(cl_object );
+static cl_object L801node_for(cl_object , cl_object );
+static cl_object L802action_already_done_p(cl_object , cl_object , cl_object );
+static cl_object LC803plan_action_status(cl_object , cl_object , cl_object );
+static cl_object LC804_setf_plan_action_status_(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC798si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object L805normalize_forced_systems(cl_object , cl_object );
+static cl_object L808normalize_forced_not_systems(cl_object , cl_object );
+static cl_object L809action_override_p(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC810action_forced_p(cl_object , cl_object , cl_object );
+static cl_object LC811action_forced_not_p(cl_object , cl_object , cl_object );
+static cl_object LC812action_forced_p(cl_object , cl_object , cl_object );
+static cl_object LC813action_forced_not_p(cl_object , cl_object , cl_object );
+static cl_object LC806__lambda4254(cl_narg, cl_object , ...);
+static cl_object LC807__lambda4255(cl_narg, cl_object , ...);
+static cl_object L814action_valid_p(cl_object , cl_object );
+static cl_object LC815needed_in_image_p(cl_object , cl_object );
+static cl_object L816map_direct_dependencies(cl_object , cl_object , cl_object , cl_object );
+static cl_object L818reduce_direct_dependencies(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L819direct_dependencies(cl_object , cl_object , cl_object );
+static cl_object LC821compute_action_stamp(cl_narg, cl_object , cl_object , cl_object , ...);
+#define LC821compute_action_stampkeys (&VV[1237])
+static cl_object LC817__lambda4271(cl_narg, cl_object , cl_object , ...);
+static cl_object LC820__lambda4305(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC822initialize_instance(cl_narg, cl_object , ...);
+#define LC822initialize_instancekeys (&VV[2432])
+static cl_object LC823plan_actions(cl_object );
+static cl_object LC824_setf_plan_action_status_(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC825plan_action_status(cl_object , cl_object , cl_object );
+static cl_object LC827__lambda4402();
+static cl_object LC828call_while_visiting_action(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC829while_visiting_action(cl_object , cl_object );
+static cl_object LC826__lambda4403(cl_object , cl_object );
+static cl_object LC833traverse_action(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC831visit_action(cl_narg, cl_object , ...);
+static cl_object LC832__lambda4640(cl_narg, ...);
+static cl_object LC830__lambda4623(cl_narg, cl_object , cl_object , ...);
+static cl_object LC834plan_actions(cl_object );
+static cl_object LC835plan_record_dependency(cl_object , cl_object , cl_object );
+static cl_object LC836_setf_plan_action_status_(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC837make_plan(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC838make_plan(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC839make_plan(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC840make_plan(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC841perform_plan(cl_narg, cl_object , ...);
+static cl_object LC842perform_plan(cl_narg, cl_object , ...);
+static cl_object LC843perform_plan(cl_narg, cl_object , ...);
+#define LC843perform_plankeys (&VV[1703])
+static cl_object LC844plan_operates_on_p(cl_object , cl_object );
+static cl_object LC845plan_operates_on_p(cl_object , cl_object );
+static cl_object LC846initialize_instance(cl_narg, cl_object , ...);
+#define LC846initialize_instancekeys (&VV[2487])
+static cl_object LC847traverse_actions(cl_narg, cl_object , ...);
+#define LC847traverse_actionskeys (&VV[2490])
+static cl_object LC848traverse_sub_actions(cl_narg, cl_object , cl_object , ...);
+static cl_object LC849traverse_sub_actions(cl_narg, cl_object , cl_object , ...);
+static cl_object LC850traverse_sub_actions(cl_narg, cl_object , cl_object , ...);
+static cl_object LC851traverse_sub_actions(cl_narg, cl_object , cl_object , ...);
+static cl_object LC852plan_actions(cl_object );
+static cl_object LC853required_components(cl_narg, cl_object , ...);
+#define LC853required_componentskeys (&VV[1328])
+static cl_object LC854operate(cl_narg, cl_object , cl_object , ...);
+static cl_object LC855operate(cl_narg, cl_object , cl_object , ...);
+static cl_object LC856operate(cl_narg, cl_object , cl_object , ...);
+static cl_object LC861operate(cl_narg, cl_object , cl_object , ...);
+#define LC861operatekeys (&VV[2492])
+static cl_object LC862operate(cl_narg, cl_object , cl_object , ...);
+#define LC862operatekeys (&VV[1929])
+static cl_object LC863operate(cl_narg, cl_object , cl_object , ...);
+#define LC863operatekeys (&VV[2490])
+static cl_object L864oos(cl_narg, cl_object , cl_object , ...);
+static cl_object LC857call_next_method(cl_narg, ...);
+static cl_object LC859__lambda4832(cl_narg, ...);
+static cl_object LC860__lambda4835(cl_narg, ...);
+static cl_object LC865component_depends_on(cl_object , cl_object );
+static cl_object LC866component_depends_on(cl_object , cl_object );
+static cl_object L867make(cl_narg, cl_object , ...);
+static cl_object L868load_system(cl_narg, cl_object , ...);
+#define L868load_systemkeys (&VV[2502])
+static cl_object L869load_systems_(cl_narg, cl_object , ...);
+static cl_object L870load_systems(cl_narg, ...);
+static cl_object L871compile_system(cl_narg, cl_object , ...);
+#define L871compile_systemkeys (&VV[2502])
+static cl_object L872test_system(cl_narg, cl_object , ...);
+#define L872test_systemkeys (&VV[2502])
+static cl_object L873component_loaded_p(cl_object );
+static cl_object L874already_loaded_systems();
+static cl_object L875require_system(cl_narg, cl_object , ...);
+static cl_object LC876perform(cl_object , cl_object );
+static cl_object LC877perform(cl_object , cl_object );
+static cl_object LC878resolve_dependency_combination(cl_object , cl_object , cl_object );
+static cl_object L880module_provide_asdf(cl_object );
+static cl_object LC879__lambda4886(cl_narg, cl_object , ...);
+static cl_object L881restart_upgraded_asdf();
+static cl_object L882mark_component_preloaded(cl_object );
+static cl_object LC883__lambda4948();
+static cl_object L884output_translations();
+static cl_object L886set_output_translations(cl_object );
+static cl_object L887_setf_output_translations_(cl_object );
+static cl_object L888output_translations_initialized_p();
+static cl_object L889clear_output_translations();
+static cl_object L890validate_output_translations_directive(cl_object );
+static cl_object L891validate_output_translations_form(cl_narg, cl_object , ...);
+#define L891validate_output_translations_formkeys (&VV[2340])
+static cl_object L892validate_output_translations_file(cl_object );
+static cl_object L893validate_output_translations_directory(cl_object );
+static cl_object L894parse_output_translations_string(cl_narg, cl_object , ...);
+#define L894parse_output_translations_stringkeys (&VV[2340])
+static cl_object L895_compute_default_output_translations_value();
+static cl_object L896wrapping_output_translations();
+static cl_object L897user_output_translations_pathname(cl_narg, ...);
+#define L897user_output_translations_pathnamekeys (&VV[2108])
+static cl_object L898system_output_translations_pathname(cl_narg, ...);
+#define L898system_output_translations_pathnamekeys (&VV[2108])
+static cl_object L899user_output_translations_directory_pathname(cl_narg, ...);
+#define L899user_output_translations_directory_pathnamekeys (&VV[2108])
+static cl_object L900system_output_translations_directory_pathname(cl_narg, ...);
+#define L900system_output_translations_directory_pathnamekeys (&VV[2108])
+static cl_object L901environment_output_translations();
+static cl_object L902inherit_output_translations(cl_narg, cl_object , ...);
+#define L902inherit_output_translationskeys (&VV[1396])
+static cl_object L903process_output_translations_directive(cl_narg, cl_object , ...);
+#define L903process_output_translations_directivekeys (&VV[2537])
+static cl_object LC904process_output_translations(cl_narg, cl_object , ...);
+#define LC904process_output_translationskeys (&VV[2537])
+static cl_object LC905process_output_translations(cl_narg, cl_object , ...);
+#define LC905process_output_translationskeys (&VV[2537])
+static cl_object LC906process_output_translations(cl_narg, cl_object , ...);
+#define LC906process_output_translationskeys (&VV[2537])
+static cl_object LC907process_output_translations(cl_narg, cl_object , ...);
+#define LC907process_output_translationskeys (&VV[2537])
+static cl_object LC908process_output_translations(cl_narg, cl_object , ...);
+#define LC908process_output_translationskeys (&VV[2537])
+static cl_object L910compute_output_translations(cl_narg, ...);
+static cl_object L911initialize_output_translations(cl_narg, ...);
+static cl_object L912disable_output_translations();
+static cl_object L913ensure_output_translations();
+static cl_object L914apply_output_translations(cl_object );
+static cl_object LC885__lambda4954(cl_object );
+static cl_object LC909c(cl_narg, cl_object , ...);
+static cl_object LC915__lambda5023();
+static cl_object L916source_registry_initialized_p();
+static cl_object L917clear_source_registry();
+static cl_object L918directory_asd_files(cl_object );
+static cl_object L919collect_asds_in_directory(cl_object , cl_object );
+static cl_object L921process_source_registry_cache(cl_object volatile , cl_object volatile );
+static cl_object L925collect_sub_directories_asd_files(cl_narg, cl_object , ...);
+#define L925collect_sub_directories_asd_fileskeys (&VV[2567])
+static cl_object L926validate_source_registry_directive(cl_object );
+static cl_object L927validate_source_registry_form(cl_narg, cl_object , ...);
+#define L927validate_source_registry_formkeys (&VV[2340])
+static cl_object L928validate_source_registry_file(cl_object );
+static cl_object L929validate_source_registry_directory(cl_object );
+static cl_object L931parse_source_registry_string(cl_narg, cl_object , ...);
+#define L931parse_source_registry_stringkeys (&VV[2340])
+static cl_object L932register_asd_directory(cl_narg, cl_object , ...);
+#define L932register_asd_directorykeys (&VV[2571])
+static cl_object L933_compute_default_source_registries_value();
+static cl_object L934wrapping_source_registry();
+static cl_object L935default_user_source_registry();
+static cl_object L936default_system_source_registry();
+static cl_object L937user_source_registry(cl_narg, ...);
+#define L937user_source_registrykeys (&VV[2108])
+static cl_object L938system_source_registry(cl_narg, ...);
+#define L938system_source_registrykeys (&VV[2108])
+static cl_object L939user_source_registry_directory(cl_narg, ...);
+#define L939user_source_registry_directorykeys (&VV[2108])
+static cl_object L940system_source_registry_directory(cl_narg, ...);
+#define L940system_source_registry_directorykeys (&VV[2108])
+static cl_object L941environment_source_registry();
+static cl_object L942inherit_source_registry(cl_narg, cl_object , ...);
+#define L942inherit_source_registrykeys (&VV[1475])
+static cl_object L943process_source_registry_directive(cl_narg, cl_object , ...);
+#define L943process_source_registry_directivekeys (&VV[2574])
+static cl_object LC944process_source_registry(cl_narg, cl_object , ...);
+#define LC944process_source_registrykeys (&VV[2574])
+static cl_object LC945process_source_registry(cl_narg, cl_object , ...);
+#define LC945process_source_registrykeys (&VV[2574])
+static cl_object LC946process_source_registry(cl_narg, cl_object , ...);
+#define LC946process_source_registrykeys (&VV[2574])
+static cl_object LC947process_source_registry(cl_narg, cl_object , ...);
+#define LC947process_source_registrykeys (&VV[2574])
+static cl_object LC948process_source_registry(cl_narg, cl_object , ...);
+#define LC948process_source_registrykeys (&VV[2574])
+static cl_object L951flatten_source_registry(cl_narg, ...);
+static cl_object L953compute_source_registry(cl_narg, ...);
+static cl_object L954initialize_source_registry(cl_narg, ...);
+static cl_object L955ensure_source_registry(cl_narg, ...);
+static cl_object L956sysdef_source_registry_search(cl_object );
+static cl_object LC920__lambda5038(cl_narg, cl_object , ...);
+static cl_object LC924recursep(cl_narg, cl_object , ...);
+static cl_object LC922collectp(cl_narg, cl_object , ...);
+static cl_object LC930check(volatile cl_object  *, cl_object );
+static cl_object LC949collect(cl_narg, cl_object , ...);
+static cl_object LC950__lambda5161(cl_narg, cl_object , ...);
+#define LC950__lambda5161keys (&VV[2571])
+static cl_object LC952__lambda5210(cl_narg, cl_object , ...);
+static cl_object LC923pathname_key(cl_object );
+static cl_object L958determine_system_directory(cl_object );
+static cl_object LC957__lambda5230();
+static cl_object L959class_for_type(cl_object , cl_object );
+static cl_object LC961__lambda5234();
+static cl_object LC963__lambda5236();
+static cl_object L964sysdef_error_component(cl_object , cl_object , cl_object , cl_object );
+static cl_object L965check_component_input(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L968normalize_version(cl_narg, cl_object , ...);
+#define L968normalize_versionkeys (&VV[2582])
+static cl_object LC960__lambda5235(cl_object , cl_object );
+static cl_object LC962__lambda5237(cl_object , cl_object );
+static cl_object LC967invalid_parse(cl_narg, cl_object , ...);
+static cl_object LC966invalid(cl_narg, ...);
+static cl_object L969_compute__asdf_methods__value();
+static cl_object L971_remove_component_inline_methods(cl_object );
+static cl_object L972_define_component_inline_methods(cl_object , cl_object );
+static cl_object L973_refresh_component_inline_methods(cl_object , cl_object );
+static cl_object LC970__lambda5270(cl_narg, cl_object , ...);
+static cl_object L974parse_dependency_def(cl_object );
+static cl_object L975parse_dependency_defs(cl_object );
+static cl_object L977parse_component_form(cl_narg, cl_object , cl_object , ...);
+#define L977parse_component_formkeys (&VV[1548])
+static cl_object L979register_system_definition(cl_narg, cl_object , ...);
+#define L979register_system_definitionkeys (&VV[2603])
+static cl_object LC980defsystem(cl_object , cl_object );
+static cl_object LC976__lambda5497(cl_object );
+static cl_object LC978__lambda5508(cl_narg, ...);
+static cl_object LC981prologue_code(cl_object );
+static cl_object LC982epilogue_code(cl_object );
+static cl_object LC983no_uiop(cl_object );
+static cl_object LC984prefix_lisp_object_files(cl_object );
+static cl_object LC985postfix_lisp_object_files(cl_object );
+static cl_object LC986extra_object_files(cl_object );
+static cl_object LC987extra_build_args(cl_object );
+static cl_object L988operation_monolithic_p(cl_object );
+static cl_object LC989component_depends_on(cl_object , cl_object );
+static cl_object L990bundle_pathname_type(cl_object );
+static cl_object L991bundle_output_files(cl_object , cl_object );
+static cl_object LC992output_files(cl_object , cl_object );
+static cl_object LC993initialize_instance(cl_narg, cl_object , ...);
+#define LC993initialize_instancekeys (&VV[2612])
+static cl_object L994user_system_p(cl_object );
+static cl_object L997direct_dependency_files(cl_narg, cl_object , cl_object , ...);
+#define L997direct_dependency_fileskeys (&VV[2622])
+static cl_object L999pathname_type_equal_function(cl_object );
+static cl_object LC1000input_files(cl_object , cl_object );
+static cl_object L1001select_bundle_operation(cl_narg, cl_object , ...);
+static cl_object L1003make_build(volatile cl_narg, cl_object volatile , ...);
+#define L1003make_buildkeys (&VV[2625])
+static cl_object L1004bundle_system(cl_narg, cl_object , ...);
+#define L1004bundle_systemkeys (&VV[2629])
+static cl_object LC995collect(cl_narg, cl_object , ...);
+static cl_object LC996__lambda5624(cl_narg, cl_object , cl_object , ...);
+static cl_object LC998__lambda5628(cl_narg, cl_object , ...);
+static cl_object LC1002__lambda5660(cl_narg, cl_object , ...);
+static cl_object LC1005component_depends_on(cl_object , cl_object );
+static cl_object LC1006input_files(cl_object , cl_object );
+static cl_object LC1007perform(cl_object , cl_object );
+static cl_object LC1008mark_operation_done(cl_object , cl_object );
+static cl_object LC1010trivial_system_p(cl_object );
+static cl_object LC1011input_files(cl_object , cl_object );
+static cl_object LC1012perform(cl_object , cl_object );
+static cl_object LC1013perform(cl_object , cl_object );
+static cl_object LC1014perform(cl_object , cl_object );
+static cl_object LC1009__lambda5661(cl_object );
+static cl_object LC1015trivial_system_p(cl_object );
+static cl_object LC1016perform(cl_object , cl_object );
+static cl_object LC1017perform(cl_object , cl_object );
+static cl_object LC1018perform(cl_object , cl_object );
+static cl_object LC1019perform(cl_object , cl_object );
+static cl_object LC1020component_depends_on(cl_object , cl_object );
+static cl_object LC1021output_files(cl_object , cl_object );
+static cl_object LC1022output_files(cl_object , cl_object );
+static cl_object LC1025perform(cl_object volatile , cl_object volatile );
+static cl_object LC1026input_files(cl_object , cl_object );
+static cl_object LC1027perform(cl_object , cl_object );
+static cl_object LC1028component_depends_on(cl_object , cl_object );
+static cl_object LC1023x(cl_narg, cl_object , ...);
+static cl_object LC1024__lambda5670(cl_narg, cl_object , cl_object , ...);
+static cl_object L1029system_module_pathname(cl_object );
+static cl_object L1030make_prebuilt_system(cl_narg, cl_object , ...);
+static cl_object LC1032component_depends_on(cl_object , cl_object );
+static cl_object LC1033perform(cl_object , cl_object );
+static cl_object LC1031ensure_linkable_system(cl_object );
+static cl_object LC1035input_files(cl_object , cl_object );
+static cl_object LC1036output_files(cl_object , cl_object );
+static cl_object LC1037perform(cl_object , cl_object );
+static cl_object LC1038perform(cl_object , cl_object );
+static cl_object LC1039perform(cl_object , cl_object );
+static cl_object LC1040perform(cl_object , cl_object );
+static cl_object LC1034__lambda5765(cl_object );
+static cl_object L1041initial_package_inferred_systems_table();
+static cl_object L1042defpackage_form_p(cl_object );
+static cl_object L1043stream_defpackage_form(cl_object );
+static cl_object L1045file_defpackage_form(cl_object );
+static cl_object LC1047__lambda5802();
+static cl_object L1049package_dependencies(cl_object );
+static cl_object L1050package_designator_name(cl_object );
+static cl_object L1051register_system_packages(cl_object , cl_object );
+static cl_object L1052package_name_system(cl_object );
+static cl_object L1053package_inferred_system_file_dependencies(cl_narg, cl_object , ...);
+static cl_object L1054same_package_inferred_system_p(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L1055sysdef_package_inferred_system_search(cl_object );
+static cl_object LC1044__lambda5801(cl_object );
+static cl_object LC1046__lambda5803(cl_object , cl_object );
+static cl_object LC1048dep(volatile cl_object  *, cl_object );
+static cl_object L1056load_sysdef(cl_object , cl_object );
+static cl_object LC1058__lambda5869();
+static cl_object L1059component_load_dependencies(cl_object );
+static cl_object LC1060operation_forced(cl_object );
+static cl_object LC1061operation_on_warnings(cl_object );
+static cl_object LC1062operation_on_failure(cl_object );
+static cl_object LC1063_setf_operation_on_warnings_(cl_object , cl_object );
+static cl_object LC1064_setf_operation_on_failure_(cl_object , cl_object );
+static cl_object L1065system_definition_pathname(cl_object );
+static cl_object LC1066traverse(cl_narg, cl_object , cl_object , ...);
+static cl_object LC1067traverse(cl_narg, cl_object , cl_object , ...);
+static cl_object LC1068traverse(cl_narg, cl_object , cl_object , ...);
+static cl_object LC1069traverse(cl_narg, cl_object , cl_object , ...);
+#define LC1069traversekeys (&VV[2490])
+static cl_object LC1057__lambda5870(cl_object , cl_object );
+static cl_object L1070enable_asdf_binary_locations_compatibility(cl_narg, ...);
+#define L1070enable_asdf_binary_locations_compatibilitykeys (&VV[2653])
+static cl_object LC1071operate(cl_narg, cl_object , cl_object , ...);
+static cl_object L1073run_shell_command(volatile cl_narg, cl_object volatile , ...);
+static cl_object LC1072__lambda5916(cl_narg, cl_object , ...);
+static cl_object LC1074component_property(cl_object , cl_object );
+static cl_object LC1075_setf_component_property_(cl_object , cl_object , cl_object );
+static cl_object L1076wrap_module_provider(cl_object , cl_object );
+static cl_object L1078wrap_module_provider_function(cl_object );
+static cl_object LC1077__lambda5964(cl_narg, cl_object , ...);
+static cl_object Cblock;
+#define VM 2662
+#define VMtemp 1152
+#define ECL_DEFINE_SETF_FUNCTIONS \
+VV[2237]=ecl_setf_definition(ECL_SYM("SLOT-VALUE",973),ECL_T);\
+VV[1797]=ecl_setf_definition(ECL_SYM("DOCUMENTATION",314),ECL_T);
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_base_string(_ecl_static_35,"ASDF/FOOTER",11,static,const);
+ecl_def_ct_base_string(_ecl_static_34,"ASDF/USER",9,static,const);
+ecl_def_ct_base_string(_ecl_static_33,"ASDF/INTERFACE",14,static,const);
+ecl_def_ct_base_string(_ecl_static_32,"ASDF/BACKWARD-INTERFACE",23,static,const);
+ecl_def_ct_base_string(_ecl_static_31,"ASDF/BACKWARD-INTERNALS",23,static,const);
+ecl_def_ct_base_string(_ecl_static_30,"ASDF/PACKAGE-INFERRED-SYSTEM",28,static,const);
+ecl_def_ct_base_string(_ecl_static_29,"ASDF/CONCATENATE-SOURCE",23,static,const);
+ecl_def_ct_base_string(_ecl_static_28,"ASDF/BUNDLE",11,static,const);
+ecl_def_ct_base_string(_ecl_static_27,"ASDF/PARSE-DEFSYSTEM",20,static,const);
+ecl_def_ct_base_string(_ecl_static_26,"ASDF/SOURCE-REGISTRY",20,static,const);
+ecl_def_ct_base_string(_ecl_static_25,"ASDF/OUTPUT-TRANSLATIONS",24,static,const);
+ecl_def_ct_base_string(_ecl_static_24,"ASDF/OPERATE",12,static,const);
+ecl_def_ct_base_string(_ecl_static_23,"ASDF/PLAN",9,static,const);
+ecl_def_ct_base_string(_ecl_static_22,"ASDF/LISP-ACTION",16,static,const);
+ecl_def_ct_base_string(_ecl_static_21,"ASDF/ACTION",11,static,const);
+ecl_def_ct_base_string(_ecl_static_20,"ASDF/OPERATION",14,static,const);
+ecl_def_ct_base_string(_ecl_static_19,"ASDF/FIND-COMPONENT",19,static,const);
+ecl_def_ct_base_string(_ecl_static_18,"ASDF/FIND-SYSTEM",16,static,const);
+ecl_def_ct_base_string(_ecl_static_17,"ASDF/CACHE",10,static,const);
+ecl_def_ct_base_string(_ecl_static_16,"ASDF/SYSTEM",11,static,const);
+ecl_def_ct_base_string(_ecl_static_15,"ASDF/COMPONENT",14,static,const);
+ecl_def_ct_base_string(_ecl_static_14,"ASDF/UPGRADE",12,static,const);
+ecl_def_ct_base_string(_ecl_static_13,"UIOP/DRIVER",11,static,const);
+ecl_def_ct_base_string(_ecl_static_12,"UIOP/BACKWARD-DRIVER",20,static,const);
+ecl_def_ct_base_string(_ecl_static_11,"UIOP/CONFIGURATION",18,static,const);
+ecl_def_ct_base_string(_ecl_static_10,"UIOP/LISP-BUILD",15,static,const);
+ecl_def_ct_base_string(_ecl_static_9,"UIOP/RUN-PROGRAM",16,static,const);
+ecl_def_ct_base_string(_ecl_static_8,"UIOP/IMAGE",10,static,const);
+ecl_def_ct_base_string(_ecl_static_7,"UIOP/STREAM",11,static,const);
+ecl_def_ct_base_string(_ecl_static_6,"UIOP/FILESYSTEM",15,static,const);
+ecl_def_ct_base_string(_ecl_static_5,"UIOP/PATHNAME",13,static,const);
+ecl_def_ct_base_string(_ecl_static_4,"UIOP/OS",7,static,const);
+ecl_def_ct_base_string(_ecl_static_3,"UIOP/UTILITY",12,static,const);
+ecl_def_ct_base_string(_ecl_static_2,"UIOP/COMMON-LISP",16,static,const);
+ecl_def_ct_base_string(_ecl_static_1,"ASDF/PACKAGE",12,static,const);
+ecl_def_ct_base_string(_ecl_static_0,"UIOP/PACKAGE",12,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 591
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(1725),ecl_make_fixnum(1),(cl_objectfn)L1find_package_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,-3,0,ecl_make_fixnum(1726),ecl_make_fixnum(3),(cl_objectfn)L2find_symbol_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,-3,0,ecl_make_fixnum(1727),ecl_make_fixnum(4),(cl_objectfn)L3symbol_call,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,-3,0,ecl_make_fixnum(1728),ecl_make_fixnum(5),(cl_objectfn)L4intern_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,2,0,ecl_make_fixnum(1729),ecl_make_fixnum(6),(cl_objectfn)L5export_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,2,0,ecl_make_fixnum(1730),ecl_make_fixnum(7),(cl_objectfn)L6import_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,2,0,ecl_make_fixnum(1731),ecl_make_fixnum(8),(cl_objectfn)L7shadowing_import_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,2,0,ecl_make_fixnum(1732),ecl_make_fixnum(9),(cl_objectfn)L8shadow_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,1,0,ecl_make_fixnum(1733),ecl_make_fixnum(11),(cl_objectfn)L9make_symbol_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,-3,0,ecl_make_fixnum(1734),ecl_make_fixnum(13),(cl_objectfn)L10unintern_,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,2,0,ecl_make_fixnum(1735),ecl_make_fixnum(14),(cl_objectfn)L11symbol_shadowing_p,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,2,0,ecl_make_fixnum(1736),ecl_make_fixnum(15),(cl_objectfn)L12home_package_p,NULL,ECL_NIL,ecl_make_fixnum(3705)},
+{0,0,1,0,ecl_make_fixnum(1737),ecl_make_fixnum(16),(cl_objectfn)L13symbol_package_name,NULL,ECL_NIL,ecl_make_fixnum(6804)},
+{0,0,1,0,ecl_make_fixnum(1738),ecl_make_fixnum(18),(cl_objectfn)L14standard_common_lisp_symbol_p,NULL,ECL_NIL,ecl_make_fixnum(6804)},
+{0,0,-2,0,ecl_make_fixnum(1739),ecl_make_fixnum(22),(cl_objectfn)L15reify_package,NULL,ECL_NIL,ecl_make_fixnum(6804)},
+{0,0,-2,0,ecl_make_fixnum(1740),ecl_make_fixnum(25),(cl_objectfn)L16unreify_package,NULL,ECL_NIL,ecl_make_fixnum(6804)},
+{0,0,-2,0,ecl_make_fixnum(1741),ecl_make_fixnum(27),(cl_objectfn)L17reify_symbol,NULL,ECL_NIL,ecl_make_fixnum(6804)},
+{0,0,-2,0,ecl_make_fixnum(1742),ecl_make_fixnum(30),(cl_objectfn)L18unreify_symbol,NULL,ECL_NIL,ecl_make_fixnum(6804)},
+{0,0,1,0,ecl_make_fixnum(1743),ecl_make_fixnum(33),(cl_objectfn)L19record_fishy,NULL,ECL_NIL,ecl_make_fixnum(8244)},
+{0,0,2,0,ecl_make_fixnum(1744),ecl_make_fixnum(34),(cl_objectfn)LC20when_package_fishiness,NULL,ECL_NIL,ecl_make_fixnum(8244)},
+{0,0,2,0,ecl_make_fixnum(1745),ecl_make_fixnum(35),(cl_objectfn)LC21note_package_fishiness,NULL,ECL_NIL,ecl_make_fixnum(8244)},
+{0,0,3,0,ecl_make_fixnum(1746),ecl_make_fixnum(37),(cl_objectfn)L22set_dummy_symbol,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,1,0,ecl_make_fixnum(1747),ecl_make_fixnum(40),(cl_objectfn)L23make_dummy_symbol,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,1,0,ecl_make_fixnum(1748),ecl_make_fixnum(36),(cl_objectfn)L24dummy_symbol,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,1,0,ecl_make_fixnum(1749),ecl_make_fixnum(41),(cl_objectfn)L25get_dummy_symbol,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,2,0,ecl_make_fixnum(1750),ecl_make_fixnum(44),(cl_objectfn)L26nuke_symbol_in_package,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,-2,0,ecl_make_fixnum(1751),ecl_make_fixnum(45),(cl_objectfn)L27nuke_symbol,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,2,0,ecl_make_fixnum(1752),ecl_make_fixnum(47),(cl_objectfn)L28rehome_symbol,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,1,0,ecl_make_fixnum(1753),ecl_make_fixnum(48),(cl_objectfn)L29ensure_package_unused,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,-2,0,ecl_make_fixnum(1754),ecl_make_fixnum(50),(cl_objectfn)L30delete_package_,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,1,0,ecl_make_fixnum(1755),ecl_make_fixnum(51),(cl_objectfn)L31package_names,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,1,0,ecl_make_fixnum(1756),ecl_make_fixnum(53),(cl_objectfn)L32packages_from_names,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,-1,0,ecl_make_fixnum(1757),ecl_make_fixnum(57),(cl_objectfn)L33fresh_package_name,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,-2,0,ecl_make_fixnum(1758),ecl_make_fixnum(61),(cl_objectfn)L34rename_package_away,NULL,ECL_NIL,ecl_make_fixnum(8692)},
+{0,0,-2,0,ecl_make_fixnum(1764),ecl_make_fixnum(67),(cl_objectfn)L39package_definition_form,NULL,ECL_NIL,ecl_make_fixnum(15739)},
+{0,0,5,0,ecl_make_fixnum(1773),ecl_make_fixnum(74),(cl_objectfn)L40ensure_shadowing_import,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,-3,0,ecl_make_fixnum(1774),ecl_make_fixnum(79),(cl_objectfn)L41ensure_imported,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,5,0,ecl_make_fixnum(1775),ecl_make_fixnum(83),(cl_objectfn)L42ensure_import,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,8,0,ecl_make_fixnum(1776),ecl_make_fixnum(91),(cl_objectfn)L43ensure_inherited,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,7,0,ecl_make_fixnum(1777),ecl_make_fixnum(93),(cl_objectfn)L44ensure_mix,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,3,0,ecl_make_fixnum(1778),ecl_make_fixnum(97),(cl_objectfn)L45recycle_symbol,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,2,0,ecl_make_fixnum(1779),ecl_make_fixnum(99),(cl_objectfn)L46symbol_recycled_p,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,8,0,ecl_make_fixnum(1780),ecl_make_fixnum(101),(cl_objectfn)L47ensure_symbol,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,-4,0,ecl_make_fixnum(1781),ecl_make_fixnum(104),(cl_objectfn)L48ensure_exported_to_user,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,-4,0,ecl_make_fixnum(1782),ecl_make_fixnum(105),(cl_objectfn)L49ensure_exported,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,-3,0,ecl_make_fixnum(1783),ecl_make_fixnum(106),(cl_objectfn)L50ensure_export,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,-2,0,ecl_make_fixnum(1784),ecl_make_fixnum(112),(cl_objectfn)L52ensure_package,NULL,ECL_NIL,ecl_make_fixnum(18751)},
+{0,0,2,0,ecl_make_fixnum(1798),ecl_make_fixnum(122),(cl_objectfn)L53parse_define_package_form,NULL,ECL_NIL,ecl_make_fixnum(35814)},
+{0,0,2,0,ecl_make_fixnum(1799),ecl_make_fixnum(126),(cl_objectfn)LC54define_package,NULL,ECL_NIL,ecl_make_fixnum(37917)},
+{0,0,0,0,ecl_make_fixnum(1801),ecl_make_fixnum(130),(cl_objectfn)L55use_ecl_byte_compiler_p,NULL,ECL_NIL,ecl_make_fixnum(44188)},
+{0,0,2,0,ecl_make_fixnum(1802),ecl_make_fixnum(132),(cl_objectfn)LC56loop_,NULL,ECL_NIL,ecl_make_fixnum(47576)},
+{0,0,-3,0,ecl_make_fixnum(1803),ecl_make_fixnum(134),(cl_objectfn)L60frob_substrings,NULL,ECL_NIL,ecl_make_fixnum(47854)},
+{0,0,2,0,ecl_make_fixnum(1804),ecl_make_fixnum(135),(cl_objectfn)LC61compatfmt,NULL,ECL_NIL,ecl_make_fixnum(47854)},
+{0,0,1,0,ecl_make_fixnum(1809),ecl_make_fixnum(137),(cl_objectfn)L62undefine_function,NULL,ECL_NIL,ecl_make_fixnum(52732)},
+{0,0,1,0,ecl_make_fixnum(1810),ecl_make_fixnum(138),(cl_objectfn)L63undefine_functions,NULL,ECL_NIL,ecl_make_fixnum(52732)},
+{0,0,2,0,ecl_make_fixnum(1811),ecl_make_fixnum(140),(cl_objectfn)LC64defgeneric_,NULL,ECL_NIL,ecl_make_fixnum(52732)},
+{0,0,2,0,ecl_make_fixnum(1812),ecl_make_fixnum(141),(cl_objectfn)LC65defun_,NULL,ECL_NIL,ecl_make_fixnum(52732)},
+{0,0,2,0,ecl_make_fixnum(1813),ecl_make_fixnum(144),(cl_objectfn)LC66with_upgradability,NULL,ECL_NIL,ecl_make_fixnum(52732)},
+{0,0,2,0,ecl_make_fixnum(1816),ecl_make_fixnum(147),(cl_objectfn)LC67uiop_debug,NULL,ECL_NIL,ecl_make_fixnum(55474)},
+{0,0,-1,0,ecl_make_fixnum(1817),ecl_make_fixnum(146),(cl_objectfn)L69load_uiop_debug_utility,NULL,ECL_NIL,ecl_make_fixnum(55474)},
+{0,0,2,0,ecl_make_fixnum(1820),ecl_make_fixnum(150),(cl_objectfn)LC71nest,NULL,ECL_NIL,ecl_make_fixnum(56524)},
+{0,0,2,0,ecl_make_fixnum(1821),ecl_make_fixnum(151),(cl_objectfn)LC72if_let,NULL,ECL_NIL,ecl_make_fixnum(56524)},
+{0,0,2,0,ecl_make_fixnum(1822),ecl_make_fixnum(155),(cl_objectfn)LC76while_collecting,NULL,ECL_NIL,ecl_make_fixnum(57248)},
+{0,0,2,0,ecl_make_fixnum(1823),ecl_make_fixnum(157),(cl_objectfn)LC78appendf,NULL,ECL_NIL,ecl_make_fixnum(57248)},
+{0,0,2,0,ecl_make_fixnum(1824),ecl_make_fixnum(158),(cl_objectfn)L79length_n_p,NULL,ECL_NIL,ecl_make_fixnum(57248)},
+{0,0,1,0,ecl_make_fixnum(1825),ecl_make_fixnum(161),(cl_objectfn)L80ensure_list,NULL,ECL_NIL,ecl_make_fixnum(57248)},
+{0,0,2,0,ecl_make_fixnum(1826),ecl_make_fixnum(162),(cl_objectfn)L81remove_plist_key,NULL,ECL_NIL,ecl_make_fixnum(58663)},
+{0,0,2,0,ecl_make_fixnum(1827),ecl_make_fixnum(163),(cl_objectfn)L82remove_plist_keys,NULL,ECL_NIL,ecl_make_fixnum(58663)},
+{0,0,1,0,ecl_make_fixnum(1828),ecl_make_fixnum(164),(cl_objectfn)L83emptyp,NULL,ECL_NIL,ecl_make_fixnum(59077)},
+{0,0,1,0,ecl_make_fixnum(1829),ecl_make_fixnum(169),(cl_objectfn)L84character_type_index,NULL,ECL_NIL,ecl_make_fixnum(60365)},
+{0,0,1,0,ecl_make_fixnum(1830),ecl_make_fixnum(171),(cl_objectfn)L85base_string_p,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,1,0,ecl_make_fixnum(1831),ecl_make_fixnum(172),(cl_objectfn)L87strings_common_element_type,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,-2,0,ecl_make_fixnum(1832),ecl_make_fixnum(174),(cl_objectfn)L88reduce_strcat,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,-1,0,ecl_make_fixnum(1833),ecl_make_fixnum(176),(cl_objectfn)L89strcat,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,1,0,ecl_make_fixnum(1834),ecl_make_fixnum(177),(cl_objectfn)L90first_char,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,1,0,ecl_make_fixnum(1835),ecl_make_fixnum(178),(cl_objectfn)L91last_char,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,-2,0,ecl_make_fixnum(1836),ecl_make_fixnum(179),(cl_objectfn)L94split_string,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,2,0,ecl_make_fixnum(1837),ecl_make_fixnum(181),(cl_objectfn)L95string_prefix_p,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,2,0,ecl_make_fixnum(1838),ecl_make_fixnum(182),(cl_objectfn)L96string_suffix_p,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,3,0,ecl_make_fixnum(1839),ecl_make_fixnum(183),(cl_objectfn)L97string_enclosed_p,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,1,0,ecl_make_fixnum(1841),ecl_make_fixnum(187),(cl_objectfn)L99stripln,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,1,0,ecl_make_fixnum(1842),ecl_make_fixnum(188),(cl_objectfn)L100standard_case_symbol_name,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,-3,0,ecl_make_fixnum(1843),ecl_make_fixnum(191),(cl_objectfn)L101find_standard_case_symbol,NULL,ECL_NIL,ecl_make_fixnum(60964)},
+{0,0,2,0,ecl_make_fixnum(1852),ecl_make_fixnum(194),(cl_objectfn)L102stamp_,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,1,0,ecl_make_fixnum(1853),ecl_make_fixnum(196),(cl_objectfn)L103stamps_,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,-1,0,ecl_make_fixnum(1854),ecl_make_fixnum(197),(cl_objectfn)L104stamp__,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,2,0,ecl_make_fixnum(1855),ecl_make_fixnum(198),(cl_objectfn)L105stamp__,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,2,0,ecl_make_fixnum(1856),ecl_make_fixnum(199),(cl_objectfn)L106earlier_stamp,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,1,0,ecl_make_fixnum(1857),ecl_make_fixnum(200),(cl_objectfn)L107stamps_earliest,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,-1,0,ecl_make_fixnum(1858),ecl_make_fixnum(202),(cl_objectfn)L108earliest_stamp,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,2,0,ecl_make_fixnum(1859),ecl_make_fixnum(203),(cl_objectfn)L109later_stamp,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,1,0,ecl_make_fixnum(1860),ecl_make_fixnum(204),(cl_objectfn)L110stamps_latest,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,-1,0,ecl_make_fixnum(1861),ecl_make_fixnum(205),(cl_objectfn)L111latest_stamp,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,2,0,ecl_make_fixnum(1862),ecl_make_fixnum(206),(cl_objectfn)LC113latest_stamp_f,NULL,ECL_NIL,ecl_make_fixnum(67743)},
+{0,0,-2,0,ecl_make_fixnum(1863),ecl_make_fixnum(207),(cl_objectfn)L116ensure_function,NULL,ECL_NIL,ecl_make_fixnum(68608)},
+{0,0,2,0,ecl_make_fixnum(1864),ecl_make_fixnum(209),(cl_objectfn)L118access_at,NULL,ECL_NIL,ecl_make_fixnum(68608)},
+{0,0,1,0,ecl_make_fixnum(1865),ecl_make_fixnum(211),(cl_objectfn)L119access_at_count,NULL,ECL_NIL,ecl_make_fixnum(68608)},
+{0,0,-2,0,ecl_make_fixnum(1866),ecl_make_fixnum(212),(cl_objectfn)L120call_function,NULL,ECL_NIL,ecl_make_fixnum(68608)},
+{0,0,1,0,ecl_make_fixnum(1867),ecl_make_fixnum(213),(cl_objectfn)L121call_functions,NULL,ECL_NIL,ecl_make_fixnum(68608)},
+{0,0,-3,0,ecl_make_fixnum(1868),ecl_make_fixnum(214),(cl_objectfn)L122register_hook_function,NULL,ECL_NIL,ecl_make_fixnum(68608)},
+{0,0,-2,0,ecl_make_fixnum(1869),ecl_make_fixnum(215),(cl_objectfn)L123coerce_class,NULL,ECL_NIL,ecl_make_fixnum(71822)},
+{0,0,3,0,ecl_make_fixnum(1873),ecl_make_fixnum(220),(cl_objectfn)L124ensure_gethash,NULL,ECL_NIL,ecl_make_fixnum(73187)},
+{0,0,1,0,ecl_make_fixnum(1874),ecl_make_fixnum(221),(cl_objectfn)L125list_to_hash_set,NULL,ECL_NIL,ecl_make_fixnum(73187)},
+{0,0,1,0,ecl_make_fixnum(1875),ecl_make_fixnum(222),(cl_objectfn)L126unparse_version,NULL,ECL_NIL,ecl_make_fixnum(73997)},
+{0,0,-2,0,ecl_make_fixnum(1876),ecl_make_fixnum(224),(cl_objectfn)L127parse_version,NULL,ECL_NIL,ecl_make_fixnum(73997)},
+{0,0,3,0,ecl_make_fixnum(1877),ecl_make_fixnum(230),(cl_objectfn)L128lexicographic_,NULL,ECL_NIL,ecl_make_fixnum(73997)},
+{0,0,3,0,ecl_make_fixnum(1878),ecl_make_fixnum(231),(cl_objectfn)L129lexicographic__,NULL,ECL_NIL,ecl_make_fixnum(73997)},
+{0,0,2,0,ecl_make_fixnum(1879),ecl_make_fixnum(232),(cl_objectfn)L130version_,NULL,ECL_NIL,ecl_make_fixnum(73997)},
+{0,0,2,0,ecl_make_fixnum(1880),ecl_make_fixnum(233),(cl_objectfn)L131version__,NULL,ECL_NIL,ecl_make_fixnum(73997)},
+{0,0,2,0,ecl_make_fixnum(1881),ecl_make_fixnum(234),(cl_objectfn)L132version_compatible_p,NULL,ECL_NIL,ecl_make_fixnum(73997)},
+{0,0,2,0,ecl_make_fixnum(1882),ecl_make_fixnum(237),(cl_objectfn)L135match_condition_p,NULL,ECL_NIL,ecl_make_fixnum(77167)},
+{0,0,2,0,ecl_make_fixnum(1883),ecl_make_fixnum(239),(cl_objectfn)L136match_any_condition_p,NULL,ECL_NIL,ecl_make_fixnum(77167)},
+{0,0,2,0,ecl_make_fixnum(1884),ecl_make_fixnum(240),(cl_objectfn)L138call_with_muffled_conditions,NULL,ECL_NIL,ecl_make_fixnum(77167)},
+{0,0,2,0,ecl_make_fixnum(1885),ecl_make_fixnum(241),(cl_objectfn)LC139with_muffled_conditions,NULL,ECL_NIL,ecl_make_fixnum(77167)},
+{0,0,-2,0,ecl_make_fixnum(1886),ecl_make_fixnum(242),(cl_objectfn)L142not_implemented_error,NULL,ECL_NIL,ecl_make_fixnum(79265)},
+{0,0,-3,0,ecl_make_fixnum(1887),ecl_make_fixnum(248),(cl_objectfn)L145parameter_error,NULL,ECL_NIL,ecl_make_fixnum(79265)},
+{0,0,-2,0,ecl_make_fixnum(1888),ecl_make_fixnum(249),(cl_objectfn)L146featurep,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,0,0,ecl_make_fixnum(1889),ecl_make_fixnum(255),(cl_objectfn)L147os_macosx_p,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,0,0,ecl_make_fixnum(1890),ecl_make_fixnum(257),(cl_objectfn)L148os_unix_p,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,0,0,ecl_make_fixnum(1891),ecl_make_fixnum(259),(cl_objectfn)L149os_windows_p,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,0,0,ecl_make_fixnum(1892),ecl_make_fixnum(261),(cl_objectfn)L150os_genera_p,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,0,0,ecl_make_fixnum(1893),ecl_make_fixnum(263),(cl_objectfn)L151os_oldmac_p,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,0,0,ecl_make_fixnum(1894),ecl_make_fixnum(265),(cl_objectfn)L152os_haiku_p,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,0,0,ecl_make_fixnum(1895),ecl_make_fixnum(267),(cl_objectfn)L153detect_os,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,2,0,ecl_make_fixnum(1896),ecl_make_fixnum(271),(cl_objectfn)LC154os_cond,NULL,ECL_NIL,ecl_make_fixnum(82367)},
+{0,0,1,0,ecl_make_fixnum(1897),ecl_make_fixnum(272),(cl_objectfn)L155getenv,NULL,ECL_NIL,ecl_make_fixnum(85329)},
+{0,0,1,0,ecl_make_fixnum(1898),ecl_make_fixnum(273),(cl_objectfn)L157getenvp,NULL,ECL_NIL,ecl_make_fixnum(85329)},
+{0,0,1,0,ecl_make_fixnum(1899),ecl_make_fixnum(274),(cl_objectfn)L158first_feature,NULL,ECL_NIL,ecl_make_fixnum(87779)},
+{0,0,0,0,ecl_make_fixnum(1900),ecl_make_fixnum(275),(cl_objectfn)L159implementation_type,NULL,ECL_NIL,ecl_make_fixnum(87779)},
+{0,0,0,0,ecl_make_fixnum(1901),ecl_make_fixnum(278),(cl_objectfn)L160operating_system,NULL,ECL_NIL,ecl_make_fixnum(87779)},
+{0,0,0,0,ecl_make_fixnum(1902),ecl_make_fixnum(280),(cl_objectfn)L161architecture,NULL,ECL_NIL,ecl_make_fixnum(87779)},
+{0,0,0,0,ecl_make_fixnum(1903),ecl_make_fixnum(282),(cl_objectfn)L162lisp_version_string,NULL,ECL_NIL,ecl_make_fixnum(87779)},
+{0,0,0,0,ecl_make_fixnum(1904),ecl_make_fixnum(284),(cl_objectfn)L164implementation_identifier,NULL,ECL_NIL,ecl_make_fixnum(87779)},
+{0,0,0,0,ecl_make_fixnum(1905),ecl_make_fixnum(287),(cl_objectfn)L165hostname,NULL,ECL_NIL,ecl_make_fixnum(92824)},
+{0,0,0,0,ecl_make_fixnum(1906),ecl_make_fixnum(288),(cl_objectfn)L166getcwd,NULL,ECL_NIL,ecl_make_fixnum(93291)},
+{0,0,1,0,ecl_make_fixnum(1907),ecl_make_fixnum(290),(cl_objectfn)L167chdir,NULL,ECL_NIL,ecl_make_fixnum(93291)},
+{0,0,1,0,ecl_make_fixnum(1908),ecl_make_fixnum(293),(cl_objectfn)L168read_null_terminated_string,NULL,ECL_NIL,ecl_make_fixnum(95874)},
+{0,0,-2,0,ecl_make_fixnum(1909),ecl_make_fixnum(294),(cl_objectfn)L169read_little_endian,NULL,ECL_NIL,ecl_make_fixnum(95874)},
+{0,0,1,0,ecl_make_fixnum(1910),ecl_make_fixnum(295),(cl_objectfn)L170parse_file_location_info,NULL,ECL_NIL,ecl_make_fixnum(95874)},
+{0,0,1,0,ecl_make_fixnum(1911),ecl_make_fixnum(296),(cl_objectfn)L172parse_windows_shortcut,NULL,ECL_NIL,ecl_make_fixnum(95874)},
+{0,0,1,0,ecl_make_fixnum(1912),ecl_make_fixnum(298),(cl_objectfn)L173normalize_pathname_directory_component,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,1,0,ecl_make_fixnum(1913),ecl_make_fixnum(302),(cl_objectfn)L174denormalize_pathname_directory_component,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,2,0,ecl_make_fixnum(1914),ecl_make_fixnum(303),(cl_objectfn)L175merge_pathname_directory_components,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,-1,0,ecl_make_fixnum(1915),ecl_make_fixnum(307),(cl_objectfn)L176make_pathname_,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,1,0,ecl_make_fixnum(1916),ecl_make_fixnum(308),(cl_objectfn)L177make_pathname_component_logical,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,2,0,ecl_make_fixnum(1917),ecl_make_fixnum(310),(cl_objectfn)L178make_pathname_logical,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,-2,0,ecl_make_fixnum(1918),ecl_make_fixnum(311),(cl_objectfn)L180merge_pathnames_,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,1,0,ecl_make_fixnum(1919),ecl_make_fixnum(315),(cl_objectfn)L181logical_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,1,0,ecl_make_fixnum(1920),ecl_make_fixnum(316),(cl_objectfn)L182physical_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,1,0,ecl_make_fixnum(1921),ecl_make_fixnum(317),(cl_objectfn)L183physicalize_pathname,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,-1,0,ecl_make_fixnum(1922),ecl_make_fixnum(318),(cl_objectfn)L184nil_pathname,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,2,0,ecl_make_fixnum(1923),ecl_make_fixnum(320),(cl_objectfn)LC185with_pathname_defaults,NULL,ECL_NIL,ecl_make_fixnum(101415)},
+{0,0,2,0,ecl_make_fixnum(1931),ecl_make_fixnum(321),(cl_objectfn)L187pathname_equal,NULL,ECL_NIL,ecl_make_fixnum(109945)},
+{0,0,1,0,ecl_make_fixnum(1932),ecl_make_fixnum(326),(cl_objectfn)L188absolute_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(109945)},
+{0,0,1,0,ecl_make_fixnum(1933),ecl_make_fixnum(327),(cl_objectfn)L189relative_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(109945)},
+{0,0,1,0,ecl_make_fixnum(1934),ecl_make_fixnum(328),(cl_objectfn)L190hidden_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(109945)},
+{0,0,1,0,ecl_make_fixnum(1935),ecl_make_fixnum(329),(cl_objectfn)L191file_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(109945)},
+{0,0,1,0,ecl_make_fixnum(1936),ecl_make_fixnum(333),(cl_objectfn)L192pathname_directory_pathname,NULL,ECL_NIL,ecl_make_fixnum(112914)},
+{0,0,1,0,ecl_make_fixnum(1937),ecl_make_fixnum(334),(cl_objectfn)L193pathname_parent_directory_pathname,NULL,ECL_NIL,ecl_make_fixnum(112914)},
+{0,0,1,0,ecl_make_fixnum(1938),ecl_make_fixnum(336),(cl_objectfn)L195directory_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(112914)},
+{0,0,-2,0,ecl_make_fixnum(1939),ecl_make_fixnum(339),(cl_objectfn)L197ensure_directory_pathname,NULL,ECL_NIL,ecl_make_fixnum(112914)},
+{0,0,-2,0,ecl_make_fixnum(1940),ecl_make_fixnum(343),(cl_objectfn)L199split_unix_namestring_directory_components,NULL,ECL_NIL,ecl_make_fixnum(115781)},
+{0,0,1,0,ecl_make_fixnum(1941),ecl_make_fixnum(354),(cl_objectfn)L200split_name_type,NULL,ECL_NIL,ecl_make_fixnum(115781)},
+{0,0,-2,0,ecl_make_fixnum(1942),ecl_make_fixnum(358),(cl_objectfn)L201parse_unix_namestring,NULL,ECL_NIL,ecl_make_fixnum(115781)},
+{0,0,1,0,ecl_make_fixnum(1943),ecl_make_fixnum(344),(cl_objectfn)L203unix_namestring,NULL,ECL_NIL,ecl_make_fixnum(115781)},
+{0,0,-3,0,ecl_make_fixnum(1950),ecl_make_fixnum(373),(cl_objectfn)L204subpathname,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,-3,0,ecl_make_fixnum(1951),ecl_make_fixnum(375),(cl_objectfn)L205subpathname_,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,1,0,ecl_make_fixnum(1952),ecl_make_fixnum(376),(cl_objectfn)L206pathname_root,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,1,0,ecl_make_fixnum(1953),ecl_make_fixnum(377),(cl_objectfn)L207pathname_host_pathname,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,-2,0,ecl_make_fixnum(1954),ecl_make_fixnum(378),(cl_objectfn)L208ensure_absolute_pathname,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,2,0,ecl_make_fixnum(1955),ecl_make_fixnum(383),(cl_objectfn)L209subpathp,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,2,0,ecl_make_fixnum(1956),ecl_make_fixnum(384),(cl_objectfn)L210enough_pathname,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,3,0,ecl_make_fixnum(1957),ecl_make_fixnum(385),(cl_objectfn)L211call_with_enough_pathname,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,2,0,ecl_make_fixnum(1958),ecl_make_fixnum(387),(cl_objectfn)LC212with_enough_pathname,NULL,ECL_NIL,ecl_make_fixnum(124570)},
+{0,0,1,0,ecl_make_fixnum(1959),ecl_make_fixnum(396),(cl_objectfn)L213wilden,NULL,ECL_NIL,ecl_make_fixnum(129664)},
+{0,0,1,0,ecl_make_fixnum(1960),ecl_make_fixnum(397),(cl_objectfn)L214relativize_directory_component,NULL,ECL_NIL,ecl_make_fixnum(131395)},
+{0,0,1,0,ecl_make_fixnum(1961),ecl_make_fixnum(398),(cl_objectfn)L215relativize_pathname_directory,NULL,ECL_NIL,ecl_make_fixnum(131395)},
+{0,0,-1,0,ecl_make_fixnum(1962),ecl_make_fixnum(399),(cl_objectfn)L216directory_separator_for_host,NULL,ECL_NIL,ecl_make_fixnum(131395)},
+{0,0,1,0,ecl_make_fixnum(1963),ecl_make_fixnum(401),(cl_objectfn)L218directorize_pathname_host_device,NULL,ECL_NIL,ecl_make_fixnum(131395)},
+{0,0,-4,0,ecl_make_fixnum(1964),ecl_make_fixnum(402),(cl_objectfn)L219translate_pathname_,NULL,ECL_NIL,ecl_make_fixnum(131395)},
+{0,0,1,0,ecl_make_fixnum(1965),ecl_make_fixnum(405),(cl_objectfn)L220native_namestring,NULL,ECL_NIL,ecl_make_fixnum(137757)},
+{0,0,-2,0,ecl_make_fixnum(1966),ecl_make_fixnum(406),(cl_objectfn)L221parse_native_namestring,NULL,ECL_NIL,ecl_make_fixnum(137757)},
+{0,0,1,0,ecl_make_fixnum(1967),ecl_make_fixnum(408),(cl_objectfn)L223truename_,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,1,0,ecl_make_fixnum(1968),ecl_make_fixnum(409),(cl_objectfn)L225safe_file_write_date,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,-2,0,ecl_make_fixnum(1969),ecl_make_fixnum(410),(cl_objectfn)L227probe_file_,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,1,0,ecl_make_fixnum(1970),ecl_make_fixnum(418),(cl_objectfn)L228directory_exists_p,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,1,0,ecl_make_fixnum(1971),ecl_make_fixnum(420),(cl_objectfn)L229file_exists_p,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,-2,0,ecl_make_fixnum(1972),ecl_make_fixnum(421),(cl_objectfn)L230directory_,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,3,0,ecl_make_fixnum(1973),ecl_make_fixnum(422),(cl_objectfn)L232filter_logical_directory_results,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,-2,0,ecl_make_fixnum(1974),ecl_make_fixnum(423),(cl_objectfn)L235directory_files,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,1,0,ecl_make_fixnum(1975),ecl_make_fixnum(427),(cl_objectfn)L238subdirectories,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,4,0,ecl_make_fixnum(1976),ecl_make_fixnum(428),(cl_objectfn)L239collect_sub_directories,NULL,ECL_NIL,ecl_make_fixnum(139383)},
+{0,0,1,0,ecl_make_fixnum(1977),ecl_make_fixnum(429),(cl_objectfn)L242truenamize,NULL,ECL_NIL,ecl_make_fixnum(150887)},
+{0,0,1,0,ecl_make_fixnum(1978),ecl_make_fixnum(431),(cl_objectfn)L243resolve_symlinks,NULL,ECL_NIL,ecl_make_fixnum(150887)},
+{0,0,1,0,ecl_make_fixnum(1979),ecl_make_fixnum(433),(cl_objectfn)L244resolve_symlinks_,NULL,ECL_NIL,ecl_make_fixnum(150887)},
+{0,0,-2,0,ecl_make_fixnum(1980),ecl_make_fixnum(364),(cl_objectfn)L246ensure_pathname,NULL,ECL_NIL,ecl_make_fixnum(153068)},
+{0,0,-1,0,ecl_make_fixnum(2006),ecl_make_fixnum(415),(cl_objectfn)L247get_pathname_defaults,NULL,ECL_NIL,ecl_make_fixnum(161100)},
+{0,0,2,0,ecl_make_fixnum(2007),ecl_make_fixnum(466),(cl_objectfn)L248call_with_current_directory,NULL,ECL_NIL,ecl_make_fixnum(161100)},
+{0,0,2,0,ecl_make_fixnum(2008),ecl_make_fixnum(467),(cl_objectfn)LC249with_current_directory,NULL,ECL_NIL,ecl_make_fixnum(161100)},
+{0,0,0,0,ecl_make_fixnum(2009),ecl_make_fixnum(468),(cl_objectfn)L250inter_directory_separator,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,-2,0,ecl_make_fixnum(2010),ecl_make_fixnum(469),(cl_objectfn)L251split_native_pathnames_string,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,-2,0,ecl_make_fixnum(2011),ecl_make_fixnum(470),(cl_objectfn)L252getenv_pathname,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,-2,0,ecl_make_fixnum(2012),ecl_make_fixnum(472),(cl_objectfn)L253getenv_pathnames,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,1,0,ecl_make_fixnum(2013),ecl_make_fixnum(475),(cl_objectfn)L254getenv_absolute_directory,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,1,0,ecl_make_fixnum(2014),ecl_make_fixnum(476),(cl_objectfn)L255getenv_absolute_directories,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,-1,0,ecl_make_fixnum(2015),ecl_make_fixnum(477),(cl_objectfn)L256lisp_implementation_directory,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,1,0,ecl_make_fixnum(2016),ecl_make_fixnum(479),(cl_objectfn)L257lisp_implementation_pathname_p,NULL,ECL_NIL,ecl_make_fixnum(162169)},
+{0,0,1,0,ecl_make_fixnum(2020),ecl_make_fixnum(480),(cl_objectfn)L258ensure_all_directories_exist,NULL,ECL_NIL,ecl_make_fixnum(166185)},
+{0,0,1,0,ecl_make_fixnum(2021),ecl_make_fixnum(481),(cl_objectfn)L260delete_file_if_exists,NULL,ECL_NIL,ecl_make_fixnum(166185)},
+{0,0,2,0,ecl_make_fixnum(2022),ecl_make_fixnum(482),(cl_objectfn)L261rename_file_overwriting_target,NULL,ECL_NIL,ecl_make_fixnum(166185)},
+{0,0,1,0,ecl_make_fixnum(2023),ecl_make_fixnum(483),(cl_objectfn)L262delete_empty_directory,NULL,ECL_NIL,ecl_make_fixnum(166185)},
+{0,0,-2,0,ecl_make_fixnum(2024),ecl_make_fixnum(484),(cl_objectfn)L264delete_directory_tree,NULL,ECL_NIL,ecl_make_fixnum(166185)},
+{0,0,0,0,ecl_make_fixnum(2027),ecl_make_fixnum(498),(cl_objectfn)L265setup_stdin,NULL,ECL_NIL,ecl_make_fixnum(174183)},
+{0,0,0,0,ecl_make_fixnum(2028),ecl_make_fixnum(500),(cl_objectfn)L266setup_stdout,NULL,ECL_NIL,ecl_make_fixnum(174183)},
+{0,0,0,0,ecl_make_fixnum(2029),ecl_make_fixnum(502),(cl_objectfn)L267setup_stderr,NULL,ECL_NIL,ecl_make_fixnum(174183)},
+{0,0,1,0,ecl_make_fixnum(2030),ecl_make_fixnum(505),(cl_objectfn)L268always_default_encoding,NULL,ECL_NIL,ecl_make_fixnum(175775)},
+{0,0,1,0,ecl_make_fixnum(2031),ecl_make_fixnum(507),(cl_objectfn)L269detect_encoding,NULL,ECL_NIL,ecl_make_fixnum(175775)},
+{0,0,1,0,ecl_make_fixnum(2032),ecl_make_fixnum(508),(cl_objectfn)L270default_encoding_external_format,NULL,ECL_NIL,ecl_make_fixnum(175775)},
+{0,0,1,0,ecl_make_fixnum(2033),ecl_make_fixnum(512),(cl_objectfn)L271encoding_external_format,NULL,ECL_NIL,ecl_make_fixnum(175775)},
+{0,0,2,0,ecl_make_fixnum(2034),ecl_make_fixnum(516),(cl_objectfn)LC272with_safe_io_syntax,NULL,ECL_NIL,ecl_make_fixnum(178810)},
+{0,0,-2,0,ecl_make_fixnum(2035),ecl_make_fixnum(515),(cl_objectfn)L273call_with_safe_io_syntax,NULL,ECL_NIL,ecl_make_fixnum(178810)},
+{0,0,-2,0,ecl_make_fixnum(2036),ecl_make_fixnum(517),(cl_objectfn)L275safe_read_from_string,NULL,ECL_NIL,ecl_make_fixnum(178810)},
+{0,0,-3,0,ecl_make_fixnum(2043),ecl_make_fixnum(519),(cl_objectfn)L276call_with_output_file,NULL,ECL_NIL,ecl_make_fixnum(179960)},
+{0,0,2,0,ecl_make_fixnum(2044),ecl_make_fixnum(521),(cl_objectfn)LC277with_output_file,NULL,ECL_NIL,ecl_make_fixnum(179960)},
+{0,0,-3,0,ecl_make_fixnum(2045),ecl_make_fixnum(522),(cl_objectfn)L278call_with_output,NULL,ECL_NIL,ecl_make_fixnum(179960)},
+{0,0,2,0,ecl_make_fixnum(2046),ecl_make_fixnum(525),(cl_objectfn)LC279with_output,NULL,ECL_NIL,ecl_make_fixnum(179960)},
+{0,0,-2,0,ecl_make_fixnum(2047),ecl_make_fixnum(526),(cl_objectfn)L281output_string,NULL,ECL_NIL,ecl_make_fixnum(179960)},
+{0,0,-3,0,ecl_make_fixnum(2052),ecl_make_fixnum(527),(cl_objectfn)L282call_with_input_file,NULL,ECL_NIL,ecl_make_fixnum(182737)},
+{0,0,2,0,ecl_make_fixnum(2053),ecl_make_fixnum(529),(cl_objectfn)LC283with_input_file,NULL,ECL_NIL,ecl_make_fixnum(182737)},
+{0,0,-3,0,ecl_make_fixnum(2054),ecl_make_fixnum(530),(cl_objectfn)L284call_with_input,NULL,ECL_NIL,ecl_make_fixnum(182737)},
+{0,0,2,0,ecl_make_fixnum(2055),ecl_make_fixnum(531),(cl_objectfn)LC285with_input,NULL,ECL_NIL,ecl_make_fixnum(182737)},
+{0,0,-1,0,ecl_make_fixnum(2056),ecl_make_fixnum(532),(cl_objectfn)L287input_string,NULL,ECL_NIL,ecl_make_fixnum(182737)},
+{0,0,0,0,ecl_make_fixnum(2060),ecl_make_fixnum(534),(cl_objectfn)L288null_device_pathname,NULL,ECL_NIL,ecl_make_fixnum(185251)},
+{0,0,-2,0,ecl_make_fixnum(2061),ecl_make_fixnum(536),(cl_objectfn)L289call_with_null_input,NULL,ECL_NIL,ecl_make_fixnum(185251)},
+{0,0,2,0,ecl_make_fixnum(2062),ecl_make_fixnum(537),(cl_objectfn)LC290with_null_input,NULL,ECL_NIL,ecl_make_fixnum(185251)},
+{0,0,-2,0,ecl_make_fixnum(2063),ecl_make_fixnum(538),(cl_objectfn)L291call_with_null_output,NULL,ECL_NIL,ecl_make_fixnum(185251)},
+{0,0,2,0,ecl_make_fixnum(2064),ecl_make_fixnum(540),(cl_objectfn)LC292with_null_output,NULL,ECL_NIL,ecl_make_fixnum(185251)},
+{0,0,-1,0,ecl_make_fixnum(2065),ecl_make_fixnum(541),(cl_objectfn)L294finish_outputs,NULL,ECL_NIL,ecl_make_fixnum(187439)},
+{0,0,-3,0,ecl_make_fixnum(2066),ecl_make_fixnum(542),(cl_objectfn)L295format_,NULL,ECL_NIL,ecl_make_fixnum(187439)},
+{0,0,-3,0,ecl_make_fixnum(2067),ecl_make_fixnum(543),(cl_objectfn)L298safe_format_,NULL,ECL_NIL,ecl_make_fixnum(187439)},
+{0,0,-3,0,ecl_make_fixnum(2068),ecl_make_fixnum(544),(cl_objectfn)L299copy_stream_to_stream,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,2,0,ecl_make_fixnum(2069),ecl_make_fixnum(545),(cl_objectfn)L300concatenate_files,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,2,0,ecl_make_fixnum(2070),ecl_make_fixnum(546),(cl_objectfn)L301copy_file,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2071),ecl_make_fixnum(533),(cl_objectfn)L302slurp_stream_string,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2072),ecl_make_fixnum(547),(cl_objectfn)L303slurp_stream_lines,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2073),ecl_make_fixnum(549),(cl_objectfn)L304slurp_stream_line,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2074),ecl_make_fixnum(550),(cl_objectfn)L305slurp_stream_forms,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2075),ecl_make_fixnum(552),(cl_objectfn)L306slurp_stream_form,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2076),ecl_make_fixnum(553),(cl_objectfn)L307read_file_string,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2077),ecl_make_fixnum(554),(cl_objectfn)L308read_file_lines,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2078),ecl_make_fixnum(555),(cl_objectfn)L310read_file_line,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2079),ecl_make_fixnum(557),(cl_objectfn)L312read_file_forms,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2080),ecl_make_fixnum(558),(cl_objectfn)L314read_file_form,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2081),ecl_make_fixnum(559),(cl_objectfn)L316safe_read_file_line,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2082),ecl_make_fixnum(560),(cl_objectfn)L318safe_read_file_form,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,1,0,ecl_make_fixnum(2083),ecl_make_fixnum(561),(cl_objectfn)L320eval_input,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,1,0,ecl_make_fixnum(2084),ecl_make_fixnum(563),(cl_objectfn)L321eval_thunk,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2085),ecl_make_fixnum(565),(cl_objectfn)L323standard_eval_thunk,NULL,ECL_NIL,ecl_make_fixnum(188514)},
+{0,0,-2,0,ecl_make_fixnum(2093),ecl_make_fixnum(566),(cl_objectfn)L324println,NULL,ECL_NIL,ecl_make_fixnum(196923)},
+{0,0,-2,0,ecl_make_fixnum(2094),ecl_make_fixnum(567),(cl_objectfn)L325writeln,NULL,ECL_NIL,ecl_make_fixnum(196923)},
+{0,0,0,0,ecl_make_fixnum(2096),ecl_make_fixnum(568),(cl_objectfn)L326default_temporary_directory,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,0,0,ecl_make_fixnum(2097),ecl_make_fixnum(571),(cl_objectfn)L327temporary_directory,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,0,0,ecl_make_fixnum(2098),ecl_make_fixnum(572),(cl_objectfn)L328setup_temporary_directory,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,-2,0,ecl_make_fixnum(2099),ecl_make_fixnum(573),(cl_objectfn)L330call_with_temporary_file,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,2,0,ecl_make_fixnum(2100),ecl_make_fixnum(594),(cl_objectfn)LC331with_temporary_file,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,-1,0,ecl_make_fixnum(2101),ecl_make_fixnum(595),(cl_objectfn)L333get_temporary_file,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,-3,0,ecl_make_fixnum(2102),ecl_make_fixnum(596),(cl_objectfn)L334add_pathname_suffix,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,1,0,ecl_make_fixnum(2103),ecl_make_fixnum(597),(cl_objectfn)L335tmpize_pathname,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,2,0,ecl_make_fixnum(2104),ecl_make_fixnum(598),(cl_objectfn)L336call_with_staging_pathname,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,2,0,ecl_make_fixnum(2105),ecl_make_fixnum(599),(cl_objectfn)LC337with_staging_pathname,NULL,ECL_NIL,ecl_make_fixnum(197377)},
+{0,0,1,0,ecl_make_fixnum(2121),ecl_make_fixnum(600),(cl_objectfn)L338file_stream_p,NULL,ECL_NIL,ecl_make_fixnum(206873)},
+{0,0,1,0,ecl_make_fixnum(2122),ecl_make_fixnum(601),(cl_objectfn)L339file_or_synonym_stream_p,NULL,ECL_NIL,ecl_make_fixnum(206873)},
+{0,0,-1,0,ecl_make_fixnum(2123),ecl_make_fixnum(613),(cl_objectfn)L341quit,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,-3,0,ecl_make_fixnum(2124),ecl_make_fixnum(614),(cl_objectfn)L344die,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,-1,0,ecl_make_fixnum(2125),ecl_make_fixnum(616),(cl_objectfn)L345raw_print_backtrace,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,-1,0,ecl_make_fixnum(2126),ecl_make_fixnum(618),(cl_objectfn)L348print_backtrace,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,-2,0,ecl_make_fixnum(2127),ecl_make_fixnum(619),(cl_objectfn)L349print_condition_backtrace,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,1,0,ecl_make_fixnum(2128),ecl_make_fixnum(622),(cl_objectfn)L350fatal_condition_p,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,1,0,ecl_make_fixnum(2129),ecl_make_fixnum(623),(cl_objectfn)L351handle_fatal_condition,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,1,0,ecl_make_fixnum(2130),ecl_make_fixnum(626),(cl_objectfn)L352call_with_fatal_condition_handler,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,2,0,ecl_make_fixnum(2131),ecl_make_fixnum(627),(cl_objectfn)LC353with_fatal_condition_handler,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,1,0,ecl_make_fixnum(2132),ecl_make_fixnum(628),(cl_objectfn)L354shell_boolean_exit,NULL,ECL_NIL,ecl_make_fixnum(209570)},
+{0,0,-2,0,ecl_make_fixnum(2136),ecl_make_fixnum(629),(cl_objectfn)L355register_image_restore_hook,NULL,ECL_NIL,ecl_make_fixnum(215665)},
+{0,0,-2,0,ecl_make_fixnum(2137),ecl_make_fixnum(630),(cl_objectfn)L356register_image_dump_hook,NULL,ECL_NIL,ecl_make_fixnum(215665)},
+{0,0,0,0,ecl_make_fixnum(2138),ecl_make_fixnum(631),(cl_objectfn)L357call_image_restore_hook,NULL,ECL_NIL,ecl_make_fixnum(215665)},
+{0,0,0,0,ecl_make_fixnum(2139),ecl_make_fixnum(632),(cl_objectfn)L358call_image_dump_hook,NULL,ECL_NIL,ecl_make_fixnum(215665)},
+{0,0,0,0,ecl_make_fixnum(2140),ecl_make_fixnum(633),(cl_objectfn)L359raw_command_line_arguments,NULL,ECL_NIL,ecl_make_fixnum(216455)},
+{0,0,-1,0,ecl_make_fixnum(2141),ecl_make_fixnum(634),(cl_objectfn)L360command_line_arguments,NULL,ECL_NIL,ecl_make_fixnum(216455)},
+{0,0,0,0,ecl_make_fixnum(2142),ecl_make_fixnum(637),(cl_objectfn)L361argv0,NULL,ECL_NIL,ecl_make_fixnum(216455)},
+{0,0,0,0,ecl_make_fixnum(2143),ecl_make_fixnum(639),(cl_objectfn)L362setup_command_line_arguments,NULL,ECL_NIL,ecl_make_fixnum(216455)},
+{0,0,-1,0,ecl_make_fixnum(2144),ecl_make_fixnum(640),(cl_objectfn)L364restore_image,NULL,ECL_NIL,ecl_make_fixnum(216455)},
+{0,0,-2,0,ecl_make_fixnum(2150),ecl_make_fixnum(644),(cl_objectfn)L365dump_image,NULL,ECL_NIL,ecl_make_fixnum(221988)},
+{0,0,-3,0,ecl_make_fixnum(2151),ecl_make_fixnum(648),(cl_objectfn)L366create_image,NULL,ECL_NIL,ecl_make_fixnum(221988)},
+{0,0,-2,0,ecl_make_fixnum(2166),ecl_make_fixnum(663),(cl_objectfn)L369requires_escaping_p,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2167),ecl_make_fixnum(666),(cl_objectfn)L371escape_token,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2168),ecl_make_fixnum(670),(cl_objectfn)L375escape_windows_token_within_double_quotes,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,1,0,ecl_make_fixnum(2169),ecl_make_fixnum(673),(cl_objectfn)L376easy_windows_character_p,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2170),ecl_make_fixnum(675),(cl_objectfn)L377escape_windows_token,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-3,0,ecl_make_fixnum(2171),ecl_make_fixnum(677),(cl_objectfn)L378escape_sh_token_within_double_quotes,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,1,0,ecl_make_fixnum(2172),ecl_make_fixnum(679),(cl_objectfn)L379easy_sh_character_p,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2173),ecl_make_fixnum(681),(cl_objectfn)L380escape_sh_token,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2174),ecl_make_fixnum(682),(cl_objectfn)L381escape_shell_token,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2175),ecl_make_fixnum(683),(cl_objectfn)L383escape_command,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2176),ecl_make_fixnum(685),(cl_objectfn)L384escape_windows_command,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2177),ecl_make_fixnum(686),(cl_objectfn)L385escape_sh_command,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,-2,0,ecl_make_fixnum(2178),ecl_make_fixnum(687),(cl_objectfn)L386escape_shell_command,NULL,ECL_NIL,ecl_make_fixnum(230800)},
+{0,0,3,0,ecl_make_fixnum(2184),ecl_make_fixnum(688),(cl_objectfn)L387call_stream_processor,NULL,ECL_NIL,ecl_make_fixnum(236116)},
+{0,0,0,0,ecl_make_fixnum(2198),ecl_make_fixnum(702),(cl_objectfn)L413_cmd_shell_pathname,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2199),ecl_make_fixnum(705),(cl_objectfn)L414_normalize_command,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2200),ecl_make_fixnum(708),(cl_objectfn)L415_active_io_specifier_p,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2201),ecl_make_fixnum(711),(cl_objectfn)L416_normalize_io_specifier,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2202),ecl_make_fixnum(718),(cl_objectfn)L417_normalize_if_exists,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,3,0,ecl_make_fixnum(2203),ecl_make_fixnum(722),(cl_objectfn)L418_interactivep,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2204),ecl_make_fixnum(723),(cl_objectfn)L419_signal_to_exit_code,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2205),ecl_make_fixnum(725),(cl_objectfn)L424_run_program,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2206),ecl_make_fixnum(734),(cl_objectfn)L425process_info_error_output,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2207),ecl_make_fixnum(736),(cl_objectfn)L426process_info_input,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2208),ecl_make_fixnum(737),(cl_objectfn)L427process_info_output,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2209),ecl_make_fixnum(738),(cl_objectfn)L428process_info_pid,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2210),ecl_make_fixnum(739),(cl_objectfn)L429_process_status,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2211),ecl_make_fixnum(740),(cl_objectfn)L430process_alive_p,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2212),ecl_make_fixnum(744),(cl_objectfn)L431wait_process,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2213),ecl_make_fixnum(745),(cl_objectfn)L432_check_result,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2214),ecl_make_fixnum(748),(cl_objectfn)L433close_streams,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,2,0,ecl_make_fixnum(2215),ecl_make_fixnum(749),(cl_objectfn)L434_posix_send_signal,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2216),ecl_make_fixnum(750),(cl_objectfn)L435terminate_process,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-9,0,ecl_make_fixnum(2217),ecl_make_fixnum(753),(cl_objectfn)L442_call_with_program_io,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,2,0,ecl_make_fixnum(2218),ecl_make_fixnum(761),(cl_objectfn)LC443place_setter,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,2,0,ecl_make_fixnum(2219),ecl_make_fixnum(769),(cl_objectfn)LC444with_program_input,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,2,0,ecl_make_fixnum(2220),ecl_make_fixnum(771),(cl_objectfn)LC445with_program_output,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,2,0,ecl_make_fixnum(2221),ecl_make_fixnum(772),(cl_objectfn)LC446with_program_error_output,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2222),ecl_make_fixnum(773),(cl_objectfn)L454_use_run_program,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,1,0,ecl_make_fixnum(2223),ecl_make_fixnum(778),(cl_objectfn)L455_normalize_system_command,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,5,0,ecl_make_fixnum(2224),ecl_make_fixnum(779),(cl_objectfn)L457_redirected_system_command,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2225),ecl_make_fixnum(788),(cl_objectfn)L459_system,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2226),ecl_make_fixnum(789),(cl_objectfn)L465_use_system,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2227),ecl_make_fixnum(790),(cl_objectfn)L466launch_program,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,-2,0,ecl_make_fixnum(2228),ecl_make_fixnum(756),(cl_objectfn)L468run_program,NULL,ECL_NIL,ecl_make_fixnum(244701)},
+{0,0,0,0,ecl_make_fixnum(2271),ecl_make_fixnum(799),(cl_objectfn)L469get_optimization_settings,NULL,ECL_NIL,ecl_make_fixnum(293053)},
+{0,0,0,0,ecl_make_fixnum(2272),ecl_make_fixnum(801),(cl_objectfn)L470proclaim_optimization_settings,NULL,ECL_NIL,ecl_make_fixnum(293053)},
+{0,0,2,0,ecl_make_fixnum(2273),ecl_make_fixnum(803),(cl_objectfn)LC471with_optimization_settings,NULL,ECL_NIL,ecl_make_fixnum(293053)},
+{0,0,1,0,ecl_make_fixnum(2274),ecl_make_fixnum(808),(cl_objectfn)L472call_with_muffled_compiler_conditions,NULL,ECL_NIL,ecl_make_fixnum(299001)},
+{0,0,2,0,ecl_make_fixnum(2275),ecl_make_fixnum(809),(cl_objectfn)LC473with_muffled_compiler_conditions,NULL,ECL_NIL,ecl_make_fixnum(299001)},
+{0,0,1,0,ecl_make_fixnum(2276),ecl_make_fixnum(810),(cl_objectfn)L474call_with_muffled_loader_conditions,NULL,ECL_NIL,ecl_make_fixnum(299001)},
+{0,0,2,0,ecl_make_fixnum(2277),ecl_make_fixnum(811),(cl_objectfn)LC475with_muffled_loader_conditions,NULL,ECL_NIL,ecl_make_fixnum(299001)},
+{0,0,-3,0,ecl_make_fixnum(2278),ecl_make_fixnum(819),(cl_objectfn)L478check_lisp_compile_warnings,NULL,ECL_NIL,ecl_make_fixnum(300003)},
+{0,0,-4,0,ecl_make_fixnum(2279),ecl_make_fixnum(824),(cl_objectfn)L479check_lisp_compile_results,NULL,ECL_NIL,ecl_make_fixnum(300003)},
+{0,0,1,0,ecl_make_fixnum(2283),ecl_make_fixnum(825),(cl_objectfn)L480reify_simple_sexp,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,1,0,ecl_make_fixnum(2284),ecl_make_fixnum(827),(cl_objectfn)L481unreify_simple_sexp,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,0,0,ecl_make_fixnum(2285),ecl_make_fixnum(830),(cl_objectfn)L482reify_deferred_warnings,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,1,0,ecl_make_fixnum(2286),ecl_make_fixnum(832),(cl_objectfn)L483unreify_deferred_warnings,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,0,0,ecl_make_fixnum(2287),ecl_make_fixnum(833),(cl_objectfn)L484reset_deferred_warnings,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,1,0,ecl_make_fixnum(2288),ecl_make_fixnum(835),(cl_objectfn)L486save_deferred_warnings,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,-1,0,ecl_make_fixnum(2289),ecl_make_fixnum(836),(cl_objectfn)L487warnings_file_type,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,0,0,ecl_make_fixnum(2290),ecl_make_fixnum(859),(cl_objectfn)L488enable_deferred_warnings_check,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,0,0,ecl_make_fixnum(2291),ecl_make_fixnum(860),(cl_objectfn)L489disable_deferred_warnings_check,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,-2,0,ecl_make_fixnum(2292),ecl_make_fixnum(861),(cl_objectfn)L490warnings_file_p,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,-2,0,ecl_make_fixnum(2293),ecl_make_fixnum(862),(cl_objectfn)L493check_deferred_warnings,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,-3,0,ecl_make_fixnum(2294),ecl_make_fixnum(863),(cl_objectfn)L494call_with_saved_deferred_warnings,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,2,0,ecl_make_fixnum(2295),ecl_make_fixnum(866),(cl_objectfn)LC495with_saved_deferred_warnings,NULL,ECL_NIL,ecl_make_fixnum(303149)},
+{0,0,0,0,ecl_make_fixnum(2297),ecl_make_fixnum(867),(cl_objectfn)L496current_lisp_file_pathname,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,0,0,ecl_make_fixnum(2298),ecl_make_fixnum(868),(cl_objectfn)L497load_pathname,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,1,0,ecl_make_fixnum(2299),ecl_make_fixnum(869),(cl_objectfn)L498lispize_pathname,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,-1,0,ecl_make_fixnum(2300),ecl_make_fixnum(871),(cl_objectfn)L499compile_file_type,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,2,0,ecl_make_fixnum(2301),ecl_make_fixnum(873),(cl_objectfn)L500call_around_hook,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,-2,0,ecl_make_fixnum(2302),ecl_make_fixnum(874),(cl_objectfn)L501compile_file_pathname_,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,-2,0,ecl_make_fixnum(2303),ecl_make_fixnum(877),(cl_objectfn)L506compile_file_,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,-2,0,ecl_make_fixnum(2304),ecl_make_fixnum(885),(cl_objectfn)L508load_,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,1,0,ecl_make_fixnum(2305),ecl_make_fixnum(887),(cl_objectfn)L509load_from_string,NULL,ECL_NIL,ecl_make_fixnum(320553)},
+{0,0,2,0,ecl_make_fixnum(2311),ecl_make_fixnum(888),(cl_objectfn)L510combine_fasls,NULL,ECL_NIL,ecl_make_fixnum(330010)},
+{0,0,1,0,ecl_make_fixnum(2312),ecl_make_fixnum(892),(cl_objectfn)L513configuration_inheritance_directive_p,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-2,0,ecl_make_fixnum(2313),ecl_make_fixnum(894),(cl_objectfn)L514report_invalid_form,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-4,0,ecl_make_fixnum(2314),ecl_make_fixnum(897),(cl_objectfn)L515validate_configuration_form,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-3,0,ecl_make_fixnum(2315),ecl_make_fixnum(902),(cl_objectfn)L516validate_configuration_file,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-4,0,ecl_make_fixnum(2316),ecl_make_fixnum(904),(cl_objectfn)L518validate_configuration_directory,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-2,0,ecl_make_fixnum(2317),ecl_make_fixnum(907),(cl_objectfn)L519resolve_relative_location,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-2,0,ecl_make_fixnum(2318),ecl_make_fixnum(924),(cl_objectfn)L520resolve_absolute_location,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-2,0,ecl_make_fixnum(2319),ecl_make_fixnum(930),(cl_objectfn)L521resolve_location,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,1,0,ecl_make_fixnum(2320),ecl_make_fixnum(931),(cl_objectfn)L524location_designator_p,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,1,0,ecl_make_fixnum(2321),ecl_make_fixnum(941),(cl_objectfn)L525location_function_p,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-2,0,ecl_make_fixnum(2322),ecl_make_fixnum(943),(cl_objectfn)L526register_clear_configuration_hook,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,0,0,ecl_make_fixnum(2323),ecl_make_fixnum(944),(cl_objectfn)L527clear_configuration,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,0,0,ecl_make_fixnum(2324),ecl_make_fixnum(945),(cl_objectfn)L528upgrade_configuration,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,1,0,ecl_make_fixnum(2325),ecl_make_fixnum(946),(cl_objectfn)L529get_folder_path,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2326),ecl_make_fixnum(957),(cl_objectfn)L530xdg_data_home,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2327),ecl_make_fixnum(959),(cl_objectfn)L531xdg_config_home,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2328),ecl_make_fixnum(962),(cl_objectfn)L533xdg_data_dirs,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2329),ecl_make_fixnum(965),(cl_objectfn)L535xdg_config_dirs,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2330),ecl_make_fixnum(967),(cl_objectfn)L536xdg_cache_home,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2331),ecl_make_fixnum(970),(cl_objectfn)L537xdg_runtime_dir,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2332),ecl_make_fixnum(972),(cl_objectfn)L538system_config_pathnames,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,1,0,ecl_make_fixnum(2333),ecl_make_fixnum(973),(cl_objectfn)L539filter_pathname_set,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2334),ecl_make_fixnum(974),(cl_objectfn)L540xdg_data_pathnames,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2335),ecl_make_fixnum(975),(cl_objectfn)L541xdg_config_pathnames,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-2,0,ecl_make_fixnum(2336),ecl_make_fixnum(976),(cl_objectfn)L542find_preferred_file,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2337),ecl_make_fixnum(980),(cl_objectfn)L543xdg_data_pathname,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-1,0,ecl_make_fixnum(2338),ecl_make_fixnum(981),(cl_objectfn)L544xdg_config_pathname,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,0,0,ecl_make_fixnum(2339),ecl_make_fixnum(982),(cl_objectfn)L545compute_user_cache,NULL,ECL_NIL,ecl_make_fixnum(332921)},
+{0,0,-2,0,ecl_make_fixnum(2352),ecl_make_fixnum(985),(cl_objectfn)L546coerce_pathname,NULL,ECL_NIL,ecl_make_fixnum(353534)},
+{0,0,0,0,ecl_make_fixnum(2353),ecl_make_fixnum(986),(cl_objectfn)L547user_configuration_directories,NULL,ECL_NIL,ecl_make_fixnum(353534)},
+{0,0,0,0,ecl_make_fixnum(2354),ecl_make_fixnum(987),(cl_objectfn)L548system_configuration_directories,NULL,ECL_NIL,ecl_make_fixnum(353534)},
+{0,0,-3,0,ecl_make_fixnum(2355),ecl_make_fixnum(988),(cl_objectfn)L550in_first_directory,NULL,ECL_NIL,ecl_make_fixnum(353534)},
+{0,0,-2,0,ecl_make_fixnum(2356),ecl_make_fixnum(989),(cl_objectfn)L551in_user_configuration_directory,NULL,ECL_NIL,ecl_make_fixnum(353534)},
+{0,0,-2,0,ecl_make_fixnum(2357),ecl_make_fixnum(990),(cl_objectfn)L552in_system_configuration_directory,NULL,ECL_NIL,ecl_make_fixnum(353534)},
+{0,0,0,0,ecl_make_fixnum(2358),ecl_make_fixnum(991),(cl_objectfn)L553asdf_version,NULL,ECL_NIL,ecl_make_fixnum(357102)},
+{0,0,-2,0,ecl_make_fixnum(2359),ecl_make_fixnum(1001),(cl_objectfn)L554asdf_message,NULL,ECL_NIL,ecl_make_fixnum(357102)},
+{0,0,-1,0,ecl_make_fixnum(2360),ecl_make_fixnum(1004),(cl_objectfn)L555upgrading_p,NULL,ECL_NIL,ecl_make_fixnum(357102)},
+{0,0,2,0,ecl_make_fixnum(2361),ecl_make_fixnum(1008),(cl_objectfn)LC556defparameter_,NULL,ECL_NIL,ecl_make_fixnum(357102)},
+{0,0,2,0,ecl_make_fixnum(2362),ecl_make_fixnum(1013),(cl_objectfn)LC557when_upgrading,NULL,ECL_NIL,ecl_make_fixnum(357102)},
+{0,0,-1,0,ecl_make_fixnum(2363),ecl_make_fixnum(1014),(cl_objectfn)L558cleanup_upgraded_asdf,NULL,ECL_NIL,ecl_make_fixnum(364174)},
+{0,0,0,0,ecl_make_fixnum(2364),ecl_make_fixnum(1017),(cl_objectfn)L559upgrade_asdf,NULL,ECL_NIL,ecl_make_fixnum(364174)},
+{0,0,1,0,ecl_make_fixnum(2366),ecl_make_fixnum(1034),(cl_objectfn)L564component_find_path,NULL,ECL_NIL,ecl_make_fixnum(371327)},
+{0,0,-2,0,ecl_make_fixnum(2367),ecl_make_fixnum(1046),(cl_objectfn)L568compute_children_by_name,NULL,ECL_NIL,ecl_make_fixnum(377387)},
+{0,0,-2,0,ecl_make_fixnum(2372),ecl_make_fixnum(1057),(cl_objectfn)L582sub_components,NULL,ECL_NIL,ecl_make_fixnum(382727)},
+{0,0,-2,0,ecl_make_fixnum(2374),ecl_make_fixnum(1064),(cl_objectfn)L584reset_system,NULL,ECL_NIL,ecl_make_fixnum(386184)},
+{0,0,1,0,ecl_make_fixnum(2375),ecl_make_fixnum(1065),(cl_objectfn)L587system_source_directory,NULL,ECL_NIL,ecl_make_fixnum(388995)},
+{0,0,-3,0,ecl_make_fixnum(2376),ecl_make_fixnum(1066),(cl_objectfn)L588system_relative_pathname,NULL,ECL_NIL,ecl_make_fixnum(388995)},
+{0,0,2,0,ecl_make_fixnum(2377),ecl_make_fixnum(1069),(cl_objectfn)L593set_asdf_cache_entry,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,1,0,ecl_make_fixnum(2378),ecl_make_fixnum(1070),(cl_objectfn)L594unset_asdf_cache_entry,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,-2,0,ecl_make_fixnum(2379),ecl_make_fixnum(1071),(cl_objectfn)L595consult_asdf_cache,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,2,0,ecl_make_fixnum(2380),ecl_make_fixnum(1072),(cl_objectfn)LC596do_asdf_cache,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,-2,0,ecl_make_fixnum(2381),ecl_make_fixnum(1073),(cl_objectfn)L602call_with_asdf_cache,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,2,0,ecl_make_fixnum(2382),ecl_make_fixnum(1081),(cl_objectfn)LC603with_asdf_cache,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,1,0,ecl_make_fixnum(2383),ecl_make_fixnum(1082),(cl_objectfn)L604normalize_namestring,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,1,0,ecl_make_fixnum(2384),ecl_make_fixnum(1083),(cl_objectfn)L605compute_file_stamp,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,-2,0,ecl_make_fixnum(2385),ecl_make_fixnum(1084),(cl_objectfn)L606register_file_stamp,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,1,0,ecl_make_fixnum(2386),ecl_make_fixnum(1085),(cl_objectfn)L608get_file_stamp,NULL,ECL_NIL,ecl_make_fixnum(392859)},
+{0,0,-2,0,ecl_make_fixnum(2390),ecl_make_fixnum(1090),(cl_objectfn)L613sysdef_error,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2391),ecl_make_fixnum(1091),(cl_objectfn)L614coerce_name,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2392),ecl_make_fixnum(1093),(cl_objectfn)L615primary_system_name,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2393),ecl_make_fixnum(1094),(cl_objectfn)L616coerce_filename,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2394),ecl_make_fixnum(1097),(cl_objectfn)L617system_registered_p,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2395),ecl_make_fixnum(1098),(cl_objectfn)L618registered_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,0,0,ecl_make_fixnum(2396),ecl_make_fixnum(1099),(cl_objectfn)L619registered_systems_,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,0,0,ecl_make_fixnum(2397),ecl_make_fixnum(1100),(cl_objectfn)L620registered_systems,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2398),ecl_make_fixnum(1101),(cl_objectfn)L622register_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,2,0,ecl_make_fixnum(2399),ecl_make_fixnum(1105),(cl_objectfn)L623make_preloaded_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2400),ecl_make_fixnum(1109),(cl_objectfn)L624sysdef_preloaded_system_search,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2401),ecl_make_fixnum(1110),(cl_objectfn)L625ensure_preloaded_system_registered,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,0,0,ecl_make_fixnum(2402),ecl_make_fixnum(1111),(cl_objectfn)L626ensure_all_preloaded_systems_registered,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,-2,0,ecl_make_fixnum(2403),ecl_make_fixnum(1112),(cl_objectfn)L627register_preloaded_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2404),ecl_make_fixnum(1114),(cl_objectfn)L628sysdef_immutable_system_search,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,-2,0,ecl_make_fixnum(2405),ecl_make_fixnum(1116),(cl_objectfn)L629register_immutable_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2406),ecl_make_fixnum(1117),(cl_objectfn)L630clear_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,0,0,ecl_make_fixnum(2407),ecl_make_fixnum(1118),(cl_objectfn)L631clear_defined_systems,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2408),ecl_make_fixnum(1120),(cl_objectfn)L632map_systems,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,0,0,ecl_make_fixnum(2409),ecl_make_fixnum(1122),(cl_objectfn)L635cleanup_system_definition_search_functions,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2410),ecl_make_fixnum(1125),(cl_objectfn)L637search_for_system_definition,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,-3,0,ecl_make_fixnum(2411),ecl_make_fixnum(1128),(cl_objectfn)L639probe_asd,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2412),ecl_make_fixnum(1132),(cl_objectfn)L645sysdef_central_registry_search,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2413),ecl_make_fixnum(1126),(cl_objectfn)L648find_system_if_being_defined,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,-2,0,ecl_make_fixnum(2414),ecl_make_fixnum(1140),(cl_objectfn)L651load_asd,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,2,0,ecl_make_fixnum(2415),ecl_make_fixnum(1145),(cl_objectfn)L653check_not_old_asdf_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,1,0,ecl_make_fixnum(2416),ecl_make_fixnum(1148),(cl_objectfn)L655locate_system,NULL,ECL_NIL,ecl_make_fixnum(398468)},
+{0,0,-3,0,ecl_make_fixnum(2429),ecl_make_fixnum(1164),(cl_objectfn)L671resolve_dependency_name,NULL,ECL_NIL,ecl_make_fixnum(428881)},
+{0,0,2,0,ecl_make_fixnum(2430),ecl_make_fixnum(1167),(cl_objectfn)L672resolve_dependency_spec,NULL,ECL_NIL,ecl_make_fixnum(428881)},
+{0,0,0,0,ecl_make_fixnum(2437),ecl_make_fixnum(1172),(cl_objectfn)L680_compute_operations_value,NULL,ECL_NIL,ecl_make_fixnum(436293)},
+{0,0,-2,0,ecl_make_fixnum(2438),ecl_make_fixnum(1174),(cl_objectfn)L681make_operation,NULL,ECL_NIL,ecl_make_fixnum(436293)},
+{0,0,1,0,ecl_make_fixnum(2439),ecl_make_fixnum(1184),(cl_objectfn)L686action_path,NULL,ECL_NIL,ecl_make_fixnum(439884)},
+{0,0,1,0,ecl_make_fixnum(2440),ecl_make_fixnum(1185),(cl_objectfn)L687find_action,NULL,ECL_NIL,ecl_make_fixnum(439884)},
+{0,0,2,0,ecl_make_fixnum(2441),ecl_make_fixnum(1200),(cl_objectfn)LC689define_convenience_action_methods,NULL,ECL_NIL,ecl_make_fixnum(440274)},
+{0,0,-3,0,ecl_make_fixnum(2442),ecl_make_fixnum(1205),(cl_objectfn)L695format_action,NULL,ECL_NIL,ecl_make_fixnum(443493)},
+{0,0,2,0,ecl_make_fixnum(2443),ecl_make_fixnum(1211),(cl_objectfn)L703downward_operation_depends_on,NULL,ECL_NIL,ecl_make_fixnum(446223)},
+{0,0,2,0,ecl_make_fixnum(2444),ecl_make_fixnum(1213),(cl_objectfn)L705upward_operation_depends_on,NULL,ECL_NIL,ecl_make_fixnum(446223)},
+{0,0,2,0,ecl_make_fixnum(2445),ecl_make_fixnum(1215),(cl_objectfn)L707sideway_operation_depends_on,NULL,ECL_NIL,ecl_make_fixnum(446223)},
+{0,0,2,0,ecl_make_fixnum(2446),ecl_make_fixnum(1217),(cl_objectfn)L709selfward_operation_depends_on,NULL,ECL_NIL,ecl_make_fixnum(446223)},
+{0,0,2,0,ecl_make_fixnum(2449),ecl_make_fixnum(1226),(cl_objectfn)L731output_file,NULL,ECL_NIL,ecl_make_fixnum(453525)},
+{0,0,2,0,ecl_make_fixnum(2452),ecl_make_fixnum(1259),(cl_objectfn)L766perform_lisp_compilation,NULL,ECL_NIL,ecl_make_fixnum(465776)},
+{0,0,1,0,ecl_make_fixnum(2453),ecl_make_fixnum(1263),(cl_objectfn)L767report_file_p,NULL,ECL_NIL,ecl_make_fixnum(465776)},
+{0,0,2,0,ecl_make_fixnum(2454),ecl_make_fixnum(1265),(cl_objectfn)L768perform_lisp_warnings_check,NULL,ECL_NIL,ecl_make_fixnum(465776)},
+{0,0,2,0,ecl_make_fixnum(2455),ecl_make_fixnum(1268),(cl_objectfn)L770lisp_compilation_output_files,NULL,ECL_NIL,ecl_make_fixnum(465776)},
+{0,0,2,0,ecl_make_fixnum(2457),ecl_make_fixnum(1275),(cl_objectfn)L782perform_lisp_load_fasl,NULL,ECL_NIL,ecl_make_fixnum(471771)},
+{0,0,2,0,ecl_make_fixnum(2458),ecl_make_fixnum(1279),(cl_objectfn)L791perform_lisp_load_source,NULL,ECL_NIL,ecl_make_fixnum(473349)},
+{0,0,2,0,ecl_make_fixnum(2459),ecl_make_fixnum(1289),(cl_objectfn)L801node_for,NULL,ECL_NIL,ecl_make_fixnum(477444)},
+{0,0,3,0,ecl_make_fixnum(2460),ecl_make_fixnum(1290),(cl_objectfn)L802action_already_done_p,NULL,ECL_NIL,ecl_make_fixnum(477444)},
+{0,0,2,0,ecl_make_fixnum(2463),ecl_make_fixnum(1293),(cl_objectfn)L805normalize_forced_systems,NULL,ECL_NIL,ecl_make_fixnum(479769)},
+{0,0,2,0,ecl_make_fixnum(2464),ecl_make_fixnum(1298),(cl_objectfn)L808normalize_forced_not_systems,NULL,ECL_NIL,ecl_make_fixnum(479769)},
+{0,0,4,0,ecl_make_fixnum(2465),ecl_make_fixnum(1299),(cl_objectfn)L809action_override_p,NULL,ECL_NIL,ecl_make_fixnum(479769)},
+{0,0,2,0,ecl_make_fixnum(2467),ecl_make_fixnum(1302),(cl_objectfn)L814action_valid_p,NULL,ECL_NIL,ecl_make_fixnum(482944)},
+{0,0,4,0,ecl_make_fixnum(2468),ecl_make_fixnum(1304),(cl_objectfn)L816map_direct_dependencies,NULL,ECL_NIL,ecl_make_fixnum(484102)},
+{0,0,5,0,ecl_make_fixnum(2469),ecl_make_fixnum(1305),(cl_objectfn)L818reduce_direct_dependencies,NULL,ECL_NIL,ecl_make_fixnum(484102)},
+{0,0,3,0,ecl_make_fixnum(2470),ecl_make_fixnum(1306),(cl_objectfn)L819direct_dependencies,NULL,ECL_NIL,ecl_make_fixnum(484102)},
+{0,0,2,0,ecl_make_fixnum(2472),ecl_make_fixnum(1316),(cl_objectfn)LC829while_visiting_action,NULL,ECL_NIL,ecl_make_fixnum(491480)},
+{0,0,-3,0,ecl_make_fixnum(2491),ecl_make_fixnum(1332),(cl_objectfn)L864oos,NULL,ECL_NIL,ecl_make_fixnum(503668)},
+{0,0,-2,0,ecl_make_fixnum(2495),ecl_make_fixnum(1335),(cl_objectfn)L867make,NULL,ECL_NIL,ecl_make_fixnum(508990)},
+{0,0,-2,0,ecl_make_fixnum(2496),ecl_make_fixnum(1336),(cl_objectfn)L868load_system,NULL,ECL_NIL,ecl_make_fixnum(508990)},
+{0,0,-2,0,ecl_make_fixnum(2497),ecl_make_fixnum(1337),(cl_objectfn)L869load_systems_,NULL,ECL_NIL,ecl_make_fixnum(508990)},
+{0,0,-1,0,ecl_make_fixnum(2498),ecl_make_fixnum(1338),(cl_objectfn)L870load_systems,NULL,ECL_NIL,ecl_make_fixnum(508990)},
+{0,0,-2,0,ecl_make_fixnum(2499),ecl_make_fixnum(1339),(cl_objectfn)L871compile_system,NULL,ECL_NIL,ecl_make_fixnum(508990)},
+{0,0,-2,0,ecl_make_fixnum(2500),ecl_make_fixnum(1340),(cl_objectfn)L872test_system,NULL,ECL_NIL,ecl_make_fixnum(508990)},
+{0,0,1,0,ecl_make_fixnum(2506),ecl_make_fixnum(1341),(cl_objectfn)L873component_loaded_p,NULL,ECL_NIL,ecl_make_fixnum(512071)},
+{0,0,0,0,ecl_make_fixnum(2507),ecl_make_fixnum(1342),(cl_objectfn)L874already_loaded_systems,NULL,ECL_NIL,ecl_make_fixnum(512071)},
+{0,0,-2,0,ecl_make_fixnum(2508),ecl_make_fixnum(1343),(cl_objectfn)L875require_system,NULL,ECL_NIL,ecl_make_fixnum(512071)},
+{0,0,1,0,ecl_make_fixnum(2509),ecl_make_fixnum(1349),(cl_objectfn)L880module_provide_asdf,NULL,ECL_NIL,ecl_make_fixnum(513298)},
+{0,0,0,0,ecl_make_fixnum(2511),ecl_make_fixnum(1351),(cl_objectfn)L881restart_upgraded_asdf,NULL,ECL_NIL,ecl_make_fixnum(516856)},
+{0,0,1,0,ecl_make_fixnum(2512),ecl_make_fixnum(1352),(cl_objectfn)L882mark_component_preloaded,NULL,ECL_NIL,ecl_make_fixnum(516856)},
+{0,0,0,0,ecl_make_fixnum(2513),ecl_make_fixnum(1357),(cl_objectfn)L884output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,1,0,ecl_make_fixnum(2514),ecl_make_fixnum(1358),(cl_objectfn)L886set_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,1,0,ecl_make_fixnum(2515),ecl_make_fixnum(1360),(cl_objectfn)L887_setf_output_translations_,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2516),ecl_make_fixnum(1361),(cl_objectfn)L888output_translations_initialized_p,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2517),ecl_make_fixnum(1362),(cl_objectfn)L889clear_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,1,0,ecl_make_fixnum(2518),ecl_make_fixnum(1363),(cl_objectfn)L890validate_output_translations_directive,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-2,0,ecl_make_fixnum(2519),ecl_make_fixnum(1368),(cl_objectfn)L891validate_output_translations_form,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,1,0,ecl_make_fixnum(2520),ecl_make_fixnum(1371),(cl_objectfn)L892validate_output_translations_file,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,1,0,ecl_make_fixnum(2521),ecl_make_fixnum(1373),(cl_objectfn)L893validate_output_translations_directory,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-2,0,ecl_make_fixnum(2522),ecl_make_fixnum(1374),(cl_objectfn)L894parse_output_translations_string,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2523),ecl_make_fixnum(1382),(cl_objectfn)L895_compute_default_output_translations_value,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2524),ecl_make_fixnum(1384),(cl_objectfn)L896wrapping_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-1,0,ecl_make_fixnum(2525),ecl_make_fixnum(1388),(cl_objectfn)L897user_output_translations_pathname,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-1,0,ecl_make_fixnum(2526),ecl_make_fixnum(1389),(cl_objectfn)L898system_output_translations_pathname,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-1,0,ecl_make_fixnum(2527),ecl_make_fixnum(1390),(cl_objectfn)L899user_output_translations_directory_pathname,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-1,0,ecl_make_fixnum(2528),ecl_make_fixnum(1391),(cl_objectfn)L900system_output_translations_directory_pathname,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2529),ecl_make_fixnum(1392),(cl_objectfn)L901environment_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-2,0,ecl_make_fixnum(2530),ecl_make_fixnum(1395),(cl_objectfn)L902inherit_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-2,0,ecl_make_fixnum(2531),ecl_make_fixnum(1398),(cl_objectfn)L903process_output_translations_directive,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-1,0,ecl_make_fixnum(2532),ecl_make_fixnum(1406),(cl_objectfn)L910compute_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,-1,0,ecl_make_fixnum(2533),ecl_make_fixnum(1408),(cl_objectfn)L911initialize_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2534),ecl_make_fixnum(1409),(cl_objectfn)L912disable_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2535),ecl_make_fixnum(1411),(cl_objectfn)L913ensure_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,1,0,ecl_make_fixnum(2536),ecl_make_fixnum(1412),(cl_objectfn)L914apply_output_translations,NULL,ECL_NIL,ecl_make_fixnum(519349)},
+{0,0,0,0,ecl_make_fixnum(2539),ecl_make_fixnum(1420),(cl_objectfn)L916source_registry_initialized_p,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,0,0,ecl_make_fixnum(2540),ecl_make_fixnum(1421),(cl_objectfn)L917clear_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,1,0,ecl_make_fixnum(2541),ecl_make_fixnum(1423),(cl_objectfn)L918directory_asd_files,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,2,0,ecl_make_fixnum(2542),ecl_make_fixnum(1424),(cl_objectfn)L919collect_asds_in_directory,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,2,0,ecl_make_fixnum(2543),ecl_make_fixnum(1426),(cl_objectfn)L921process_source_registry_cache,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-2,0,ecl_make_fixnum(2544),ecl_make_fixnum(1429),(cl_objectfn)L925collect_sub_directories_asd_files,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,1,0,ecl_make_fixnum(2545),ecl_make_fixnum(1430),(cl_objectfn)L926validate_source_registry_directive,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-2,0,ecl_make_fixnum(2546),ecl_make_fixnum(1441),(cl_objectfn)L927validate_source_registry_form,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,1,0,ecl_make_fixnum(2547),ecl_make_fixnum(1443),(cl_objectfn)L928validate_source_registry_file,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,1,0,ecl_make_fixnum(2548),ecl_make_fixnum(1445),(cl_objectfn)L929validate_source_registry_directory,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-2,0,ecl_make_fixnum(2549),ecl_make_fixnum(1446),(cl_objectfn)L931parse_source_registry_string,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-2,0,ecl_make_fixnum(2550),ecl_make_fixnum(1452),(cl_objectfn)L932register_asd_directory,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,0,0,ecl_make_fixnum(2551),ecl_make_fixnum(1454),(cl_objectfn)L933_compute_default_source_registries_value,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,0,0,ecl_make_fixnum(2552),ecl_make_fixnum(1458),(cl_objectfn)L934wrapping_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,0,0,ecl_make_fixnum(2553),ecl_make_fixnum(1459),(cl_objectfn)L935default_user_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,0,0,ecl_make_fixnum(2554),ecl_make_fixnum(1463),(cl_objectfn)L936default_system_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2555),ecl_make_fixnum(1467),(cl_objectfn)L937user_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2556),ecl_make_fixnum(1468),(cl_objectfn)L938system_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2557),ecl_make_fixnum(1469),(cl_objectfn)L939user_source_registry_directory,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2558),ecl_make_fixnum(1470),(cl_objectfn)L940system_source_registry_directory,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,0,0,ecl_make_fixnum(2559),ecl_make_fixnum(1471),(cl_objectfn)L941environment_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-2,0,ecl_make_fixnum(2560),ecl_make_fixnum(1474),(cl_objectfn)L942inherit_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-2,0,ecl_make_fixnum(2561),ecl_make_fixnum(1476),(cl_objectfn)L943process_source_registry_directive,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2562),ecl_make_fixnum(1483),(cl_objectfn)L951flatten_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2563),ecl_make_fixnum(1484),(cl_objectfn)L953compute_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2564),ecl_make_fixnum(1487),(cl_objectfn)L954initialize_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,-1,0,ecl_make_fixnum(2565),ecl_make_fixnum(1488),(cl_objectfn)L955ensure_source_registry,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,1,0,ecl_make_fixnum(2566),ecl_make_fixnum(1489),(cl_objectfn)L956sysdef_source_registry_search,NULL,ECL_NIL,ecl_make_fixnum(535618)},
+{0,0,1,0,ecl_make_fixnum(2576),ecl_make_fixnum(1490),(cl_objectfn)L958determine_system_directory,NULL,ECL_NIL,ecl_make_fixnum(552132)},
+{0,0,2,0,ecl_make_fixnum(2577),ecl_make_fixnum(1493),(cl_objectfn)L959class_for_type,NULL,ECL_NIL,ecl_make_fixnum(553388)},
+{0,0,4,0,ecl_make_fixnum(2579),ecl_make_fixnum(1499),(cl_objectfn)L964sysdef_error_component,NULL,ECL_NIL,ecl_make_fixnum(554084)},
+{0,0,5,0,ecl_make_fixnum(2580),ecl_make_fixnum(1501),(cl_objectfn)L965check_component_input,NULL,ECL_NIL,ecl_make_fixnum(554084)},
+{0,0,-2,0,ecl_make_fixnum(2581),ecl_make_fixnum(1505),(cl_objectfn)L968normalize_version,NULL,ECL_NIL,ecl_make_fixnum(554084)},
+{0,0,0,0,ecl_make_fixnum(2589),ecl_make_fixnum(1516),(cl_objectfn)L969_compute__asdf_methods__value,NULL,ECL_NIL,ecl_make_fixnum(557640)},
+{0,0,1,0,ecl_make_fixnum(2590),ecl_make_fixnum(1518),(cl_objectfn)L971_remove_component_inline_methods,NULL,ECL_NIL,ecl_make_fixnum(557640)},
+{0,0,2,0,ecl_make_fixnum(2591),ecl_make_fixnum(1519),(cl_objectfn)L972_define_component_inline_methods,NULL,ECL_NIL,ecl_make_fixnum(557640)},
+{0,0,2,0,ecl_make_fixnum(2592),ecl_make_fixnum(1520),(cl_objectfn)L973_refresh_component_inline_methods,NULL,ECL_NIL,ecl_make_fixnum(557640)},
+{0,0,1,0,ecl_make_fixnum(2595),ecl_make_fixnum(1521),(cl_objectfn)L974parse_dependency_def,NULL,ECL_NIL,ecl_make_fixnum(559123)},
+{0,0,1,0,ecl_make_fixnum(2596),ecl_make_fixnum(1528),(cl_objectfn)L975parse_dependency_defs,NULL,ECL_NIL,ecl_make_fixnum(559123)},
+{0,0,-3,0,ecl_make_fixnum(2597),ecl_make_fixnum(1529),(cl_objectfn)L977parse_component_form,NULL,ECL_NIL,ecl_make_fixnum(559123)},
+{0,0,-2,0,ecl_make_fixnum(2598),ecl_make_fixnum(1550),(cl_objectfn)L979register_system_definition,NULL,ECL_NIL,ecl_make_fixnum(559123)},
+{0,0,2,0,ecl_make_fixnum(2599),ecl_make_fixnum(1556),(cl_objectfn)LC980defsystem,NULL,ECL_NIL,ecl_make_fixnum(559123)},
+{0,0,1,0,ecl_make_fixnum(2607),ecl_make_fixnum(1570),(cl_objectfn)L988operation_monolithic_p,NULL,ECL_NIL,ecl_make_fixnum(568673)},
+{0,0,1,0,ecl_make_fixnum(2608),ecl_make_fixnum(1590),(cl_objectfn)L990bundle_pathname_type,NULL,ECL_NIL,ecl_make_fixnum(568673)},
+{0,0,2,0,ecl_make_fixnum(2609),ecl_make_fixnum(1614),(cl_objectfn)L991bundle_output_files,NULL,ECL_NIL,ecl_make_fixnum(568673)},
+{0,0,1,0,ecl_make_fixnum(2611),ecl_make_fixnum(1626),(cl_objectfn)L994user_system_p,NULL,ECL_NIL,ecl_make_fixnum(582971)},
+{0,0,-3,0,ecl_make_fixnum(2617),ecl_make_fixnum(1628),(cl_objectfn)L997direct_dependency_files,NULL,ECL_NIL,ecl_make_fixnum(585007)},
+{0,0,1,0,ecl_make_fixnum(2618),ecl_make_fixnum(1629),(cl_objectfn)L999pathname_type_equal_function,NULL,ECL_NIL,ecl_make_fixnum(585007)},
+{0,0,-2,0,ecl_make_fixnum(2619),ecl_make_fixnum(1630),(cl_objectfn)L1001select_bundle_operation,NULL,ECL_NIL,ecl_make_fixnum(585007)},
+{0,0,-2,0,ecl_make_fixnum(2620),ecl_make_fixnum(1633),(cl_objectfn)L1003make_build,NULL,ECL_NIL,ecl_make_fixnum(585007)},
+{0,0,-2,0,ecl_make_fixnum(2621),ecl_make_fixnum(1637),(cl_objectfn)L1004bundle_system,NULL,ECL_NIL,ecl_make_fixnum(585007)},
+{0,0,1,0,ecl_make_fixnum(2633),ecl_make_fixnum(1644),(cl_objectfn)L1029system_module_pathname,NULL,ECL_NIL,ecl_make_fixnum(594881)},
+{0,0,-2,0,ecl_make_fixnum(2634),ecl_make_fixnum(1646),(cl_objectfn)L1030make_prebuilt_system,NULL,ECL_NIL,ecl_make_fixnum(594881)},
+{0,0,0,0,ecl_make_fixnum(2635),ecl_make_fixnum(1668),(cl_objectfn)L1041initial_package_inferred_systems_table,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,1,0,ecl_make_fixnum(2636),ecl_make_fixnum(1672),(cl_objectfn)L1042defpackage_form_p,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,1,0,ecl_make_fixnum(2637),ecl_make_fixnum(1673),(cl_objectfn)L1043stream_defpackage_form,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,1,0,ecl_make_fixnum(2638),ecl_make_fixnum(1674),(cl_objectfn)L1045file_defpackage_form,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,1,0,ecl_make_fixnum(2639),ecl_make_fixnum(1677),(cl_objectfn)L1049package_dependencies,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,1,0,ecl_make_fixnum(2640),ecl_make_fixnum(1684),(cl_objectfn)L1050package_designator_name,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,2,0,ecl_make_fixnum(2641),ecl_make_fixnum(1686),(cl_objectfn)L1051register_system_packages,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,1,0,ecl_make_fixnum(2642),ecl_make_fixnum(1687),(cl_objectfn)L1052package_name_system,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,-2,0,ecl_make_fixnum(2643),ecl_make_fixnum(1688),(cl_objectfn)L1053package_inferred_system_file_dependencies,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,6,0,ecl_make_fixnum(2644),ecl_make_fixnum(1689),(cl_objectfn)L1054same_package_inferred_system_p,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,1,0,ecl_make_fixnum(2645),ecl_make_fixnum(1690),(cl_objectfn)L1055sysdef_package_inferred_system_search,NULL,ECL_NIL,ecl_make_fixnum(604216)},
+{0,0,2,0,ecl_make_fixnum(2647),ecl_make_fixnum(1694),(cl_objectfn)L1056load_sysdef,NULL,ECL_NIL,ecl_make_fixnum(611279)},
+{0,0,1,0,ecl_make_fixnum(2648),ecl_make_fixnum(1701),(cl_objectfn)L1059component_load_dependencies,NULL,ECL_NIL,ecl_make_fixnum(612391)},
+{0,0,1,0,ecl_make_fixnum(2649),ecl_make_fixnum(1706),(cl_objectfn)L1065system_definition_pathname,NULL,ECL_NIL,ecl_make_fixnum(612391)},
+{0,0,-1,0,ecl_make_fixnum(2652),ecl_make_fixnum(1708),(cl_objectfn)L1070enable_asdf_binary_locations_compatibility,NULL,ECL_NIL,ecl_make_fixnum(617142)},
+{0,0,-2,0,ecl_make_fixnum(2659),ecl_make_fixnum(1715),(cl_objectfn)L1073run_shell_command,NULL,ECL_NIL,ecl_make_fixnum(620225)},
+{0,0,2,0,ecl_make_fixnum(2660),ecl_make_fixnum(1722),(cl_objectfn)L1076wrap_module_provider,NULL,ECL_NIL,ecl_make_fixnum(630336)},
+{0,0,1,0,ecl_make_fixnum(2661),ecl_make_fixnum(1723),(cl_objectfn)L1078wrap_module_provider_function,NULL,ECL_NIL,ecl_make_fixnum(630336)},
+};

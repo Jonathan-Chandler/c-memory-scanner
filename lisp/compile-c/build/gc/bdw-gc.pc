@@ -1,0 +1,10 @@
+prefix=/c/work/lisp/ecl-21.2.1/ecl-21.2.1/build
+exec_prefix=${prefix}
+libdir=/c/work/lisp/ecl-21.2.1/ecl-21.2.1/build
+includedir=/c/work/lisp/ecl-21.2.1/ecl-21.2.1/build/ecl
+
+Name: Boehm-Demers-Weiser Conservative Garbage Collector
+Description: A garbage collector for C and C++
+Version: 7.6.8
+Libs: -L${libdir} -lgc
+Cflags: -I${includedir}

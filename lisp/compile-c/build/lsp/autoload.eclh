@@ -1,0 +1,37 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+ECL_DLLEXPORT cl_object cl_lisp_implementation_type();
+static cl_object L2autoload(cl_narg, cl_object , ...);
+static cl_object LC1__lambda3(cl_narg, ...);
+static cl_object LC3proclaim(cl_object );
+static cl_object LC4with_compilation_unit(cl_object , cl_object );
+static cl_object L5ed(cl_narg, ...);
+static cl_object L6room(cl_narg, ...);
+static cl_object L7help(cl_narg, ...);
+static cl_object Cblock;
+#define VM 19
+#define VMtemp 4
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 5
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(12),ecl_make_fixnum(1),(cl_objectfn)L2autoload,NULL,ECL_NIL,ecl_make_fixnum(820)},
+{0,0,2,0,ecl_make_fixnum(13),ecl_make_fixnum(2),(cl_objectfn)LC4with_compilation_unit,NULL,ECL_NIL,ecl_make_fixnum(1261)},
+{0,0,-1,0,ecl_make_fixnum(15),ecl_make_fixnum(6),(cl_objectfn)L5ed,NULL,ECL_NIL,ecl_make_fixnum(1377)},
+{0,0,-1,0,ecl_make_fixnum(16),ecl_make_fixnum(8),(cl_objectfn)L6room,NULL,ECL_NIL,ecl_make_fixnum(1631)},
+{0,0,-1,0,ecl_make_fixnum(17),ecl_make_fixnum(11),(cl_objectfn)L7help,NULL,ECL_NIL,ecl_make_fixnum(5735)},
+};

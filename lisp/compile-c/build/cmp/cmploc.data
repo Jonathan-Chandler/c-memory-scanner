@@ -1,0 +1,31 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1769, (cl_index)1769,
+        (ecl_base_char*)
+"c::trash c::tmp-destination c::precise-loc-type 0 0 c::value0 0 0 c::va-arg 0 c:"
+ ":cl-va-arg 0 \"Unknown location ~A found in C1FORM\" (c::vv c::vv-temp c::fixnum-v"
+ "alue c::character-value c::double-float-value c::single-float-value c::long-floa"
+ "t-value c::csfloat-value c::cdfloat-value c::clfloat-value c::keyvars) c::loc-in"
+ "-c1form-movable-p c::call (c::call . #1=(c::call-normal . #2=(c::call-indirect))"
+ ") c::call-normal #1# c::call-indirect #2# c::uses-values (c::fixnum-value c::lon"
+ "g-float-value c::double-float-value c::single-float-value c::csfloat-value c::cd"
+ "float-value c::clfloat-value) c::character-value c::loc-immediate-value-p c::loc"
+ "-immediate-value \"Unknown location found in ~A~%~S\" c::unknown-location c::*wt-l"
+ "oc-dispatch-table* c::wt-loc :not-found c::*exit* (return c::return-fixnum c::re"
+ "turn-character c::return-single-float c::return-double-float c::return-long-floa"
+ "t c::return-object) c::last-call-p \"wt-lcl: ~s NaN\" \"v\" c::wt-lcl \"wt-lcl-loc: ~"
+ "s NaN\" c::wt-lcl-loc \"T\" c::wt-temp c::wt-number c::wt-character \"cl_env_copy->v"
+ "alues[\" \"]\" c::wt-value \"keyvars[\" c::wt-keyvars c::wt-the (special . #3=(c::glo"
+ "bal)) c::global #3# c::bind c::loc-refers-to-special c::value c::values-loc c::s"
+ "et-loc c::*destination* c::set-unknown-loc c::*set-loc-dispatch-table* \" = \" \";\""
+ " c::set-the-loc \"cl_env_copy->values[0] = \" \"cl_env_copy->nvalues = 1;\" c::set-v"
+ "alues-loc \"value0 = \" c::set-value0-loc c::set-return-loc c::loc-with-side-effec"
+ "ts-p c::set-trash-loc 0 0 c::loc-type 0 c::vv-p c::baboon 0 0 c::vv-value 0 0 0 "
+ "c::wt c::var-p c::wt-var c::wt-vv 0 0 0 0 0 0 0 0 0 0 c::var-kind 0 0 0 c::set-v"
+ "ar c::set-vv c::wt-nl c::loc-representation-type c::wt-coerce-loc 0 0 0 0 0 c::g"
+ "lobal-var-p c::policy-global-var-checking c::policy-global-function-checking 0 \""
+ "COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

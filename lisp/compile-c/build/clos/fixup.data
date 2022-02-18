@@ -1,0 +1,39 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)2451, (cl_index)2451,
+        (ecl_base_char*)
+"0 0 0 clos::*early-methods* clos::method-class clos::method-p :generic-function "
+ ":qualifiers :specializers make-method clos::congruent-lambda-p \"The method ~A be"
+ "longs to the generic function ~A ~\nand cannot be added to ~A.\" clos::lambda-list"
+ " \"Cannot add the method ~A to the generic function ~A because ~\ntheir lambda lis"
+ "ts ~A and ~A are not congruent.\" add-method clos::temp-method clos::function-to-"
+ "method remove-method clos::aux-compute-applicable-methods \"No applicable method "
+ "for ~S with ~\n          ~:[no arguments~;arguments of types ~:*~{~& ~A~}~].\" \"In"
+ " method ~A~%No next method given arguments ~A\" \"Generic function: ~A. No primary"
+ " method given arguments: ~S\" clos::no-primary-method \"The class associated to th"
+ "e CL specifier ~S cannot be changed.\" 0 0 \"The kernel CLOS class ~S cannot be ch"
+ "anged.\" \"~A is not a class.\" clos::setf-find-class :delete-methods clos::*clos-b"
+ "ooted* clos::initargs-updater clos::valid-initargs clos::recursively-update-clas"
+ "ses clos::install-method clos::class-id 0 0 0 0 0 clos::implicit-generic-lambda "
+ "0 0 clos::compute-g-f-spec-list clos::set-generic-function-dispatch clos::update"
+ "-dependents 0 clos::wrapped-method-function 0 0 0 0 0 clos::classp clos::class-d"
+ "ependents 0 clos::generic-function-dependents 0 0 add-method remove-method \"CLOS"
+ "\" (clos::std-class clos::direct-slot-definition) (class clos::direct-slot &rest "
+ "clos::initargs) ((clos::gf standard-generic-function) (method standard-method)) "
+ "((clos::gf standard-generic-function) clos::qualifiers clos::specializers &optio"
+ "nal error) (standard-generic-function t) (clos::gf clos::args) (clos::gf clos::c"
+ "lasses) ((clos::gf standard-generic-function) method-combination clos::applicabl"
+ "e-methods) (t) (clos::gf &rest clos::args) (t t) (clos::gf method &rest clos::ar"
+ "gs) (class t) (clos::c clos::dep) (generic-function t) (clos::c clos::dependent)"
+ " (clos::c function) (clos::object clos::dependent &rest clos::initargs) (generic"
+ "-function clos::initargs-updater) (clos::object clos::dep &rest clos::initargs &"
+ "key ((add-method clos::added-method) nil clos::am-p) ((remove-method clos::remov"
+ "ed-method) nil clos::rm-p) &allow-other-keys) ((clos::gf standard-generic-functi"
+ "on) (method standard-method) clos::lambda-form clos::environment) ((clos::gf sta"
+ "ndard-generic-function)) ((clos::gf standard-generic-function) clos::method-comb"
+ "ination-type-name clos::method-combination-options) (setf clos::generic-function"
+ "-name) ((clos::name t) (clos::gf generic-function))" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

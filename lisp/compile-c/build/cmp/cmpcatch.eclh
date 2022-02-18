@@ -1,0 +1,36 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1c1catch(cl_object );
+static cl_object L2c2catch(cl_object , cl_object , cl_object );
+static cl_object L3c1unwind_protect(cl_object );
+static cl_object L4c2unwind_protect(cl_object , cl_object , cl_object );
+static cl_object L5c1throw(cl_object );
+static cl_object L6c2throw(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 73
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 6
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(47),ecl_make_fixnum(3),(cl_objectfn)L1c1catch,NULL,ECL_NIL,ecl_make_fixnum(665)},
+{0,0,3,0,ecl_make_fixnum(52),ecl_make_fixnum(23),(cl_objectfn)L2c2catch,NULL,ECL_NIL,ecl_make_fixnum(855)},
+{0,0,1,0,ecl_make_fixnum(62),ecl_make_fixnum(26),(cl_objectfn)L3c1unwind_protect,NULL,ECL_NIL,ecl_make_fixnum(2067)},
+{0,0,3,0,ecl_make_fixnum(66),ecl_make_fixnum(40),(cl_objectfn)L4c2unwind_protect,NULL,ECL_NIL,ecl_make_fixnum(2571)},
+{0,0,1,0,ecl_make_fixnum(68),ecl_make_fixnum(41),(cl_objectfn)L5c1throw,NULL,ECL_NIL,ecl_make_fixnum(4108)},
+{0,0,3,0,ecl_make_fixnum(69),ecl_make_fixnum(46),(cl_objectfn)L6c2throw,NULL,ECL_NIL,ecl_make_fixnum(4245)},
+};

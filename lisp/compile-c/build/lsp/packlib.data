@@ -1,0 +1,16 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)584, (cl_index)584,
+        (ecl_base_char*)
+"si::packages-iterator (:external :internal :inherited) \"Clauses ~{~S~} are not a"
+ "llowed.\" \"Must supply at least one of :inherited, :external or :internal\" 'funca"
+ "ll with-package-iterator (nil) (:inherited :internal :external) do-symbols (:ext"
+ "ernal) do-external-symbols (list-all-packages) (:internal :external) do-all-symb"
+ "ols \"  Special form\" \"  Macro\" \"  Function\" \"  Constant: \" \"  has value: \" si::p"
+ "rint-symbol-apropos ext::add-package-local-nickname ext::remove-package-local-ni"
+ "ckname 0 0 si::dm-too-few-arguments si::find-declarations 0 si::dm-too-many-argu"
+ "ments 0 0 0 0 0 \"SYSTEM\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

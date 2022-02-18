@@ -1,0 +1,62 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1valid_array_index_p(cl_object );
+static cl_object L2guess_array_element_type(cl_object );
+static cl_object L3guess_array_dimensions_type(cl_object );
+static cl_object LC4__lambda15(cl_object , cl_object );
+static cl_object L5expand_vector_push(cl_object , cl_object , cl_object );
+static cl_object LC6__lambda25(cl_object , cl_object );
+static cl_object LC7__lambda28(cl_object , cl_object );
+static cl_object LC8__lambda31(cl_object , cl_object );
+static cl_object L9expand_aref(cl_object , cl_object , cl_object );
+static cl_object LC10__lambda35(cl_object , cl_object );
+static cl_object L11expand_aset(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC12__lambda39(cl_object , cl_object );
+static cl_object L13expand_zero_dim_index_check(cl_object , cl_object );
+static cl_object L15expand_vector_index_check(cl_object , cl_object , cl_object );
+static cl_object LC14expansion(cl_object , cl_object );
+static cl_object L16expand_row_major_index(cl_object , cl_object , cl_object );
+static cl_object LC17check_expected_rank(cl_object , cl_object );
+static cl_object LC18check_index_in_bounds(cl_object , cl_object );
+static cl_object LC19check_vector_in_bounds(cl_object , cl_object );
+static cl_object L20array_dimension_accessor(cl_object , cl_object );
+static cl_object LC21array_dimension_fast(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 72
+#define VMtemp 2
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_base_string(_ecl_static_0,"%ARRAY",6,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 13
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(48),ecl_make_fixnum(0),(cl_objectfn)L1valid_array_index_p,NULL,ECL_NIL,ecl_make_fixnum(610)},
+{0,0,1,0,ecl_make_fixnum(49),ecl_make_fixnum(1),(cl_objectfn)L2guess_array_element_type,NULL,ECL_NIL,ecl_make_fixnum(697)},
+{0,0,1,0,ecl_make_fixnum(52),ecl_make_fixnum(4),(cl_objectfn)L3guess_array_dimensions_type,NULL,ECL_NIL,ecl_make_fixnum(913)},
+{0,0,3,0,ecl_make_fixnum(59),ecl_make_fixnum(17),(cl_objectfn)L9expand_aref,NULL,ECL_NIL,ecl_make_fixnum(5808)},
+{0,0,4,0,ecl_make_fixnum(60),ecl_make_fixnum(21),(cl_objectfn)L11expand_aset,NULL,ECL_NIL,ecl_make_fixnum(6587)},
+{0,0,2,0,ecl_make_fixnum(61),ecl_make_fixnum(26),(cl_objectfn)L13expand_zero_dim_index_check,NULL,ECL_NIL,ecl_make_fixnum(7222)},
+{0,0,3,0,ecl_make_fixnum(63),ecl_make_fixnum(30),(cl_objectfn)L15expand_vector_index_check,NULL,ECL_NIL,ecl_make_fixnum(7417)},
+{0,0,3,0,ecl_make_fixnum(64),ecl_make_fixnum(40),(cl_objectfn)L16expand_row_major_index,NULL,ECL_NIL,ecl_make_fixnum(7867)},
+{0,0,2,0,ecl_make_fixnum(66),ecl_make_fixnum(25),(cl_objectfn)LC17check_expected_rank,NULL,ECL_NIL,ecl_make_fixnum(9515)},
+{0,0,2,0,ecl_make_fixnum(68),ecl_make_fixnum(37),(cl_objectfn)LC18check_index_in_bounds,NULL,ECL_NIL,ecl_make_fixnum(9734)},
+{0,0,2,0,ecl_make_fixnum(69),ecl_make_fixnum(27),(cl_objectfn)LC19check_vector_in_bounds,NULL,ECL_NIL,ecl_make_fixnum(9980)},
+{0,0,2,0,ecl_make_fixnum(70),ecl_make_fixnum(46),(cl_objectfn)L20array_dimension_accessor,NULL,ECL_NIL,ecl_make_fixnum(10377)},
+{0,0,2,0,ecl_make_fixnum(71),ecl_make_fixnum(32),(cl_objectfn)LC21array_dimension_fast,NULL,ECL_NIL,ecl_make_fixnum(10756)},
+};

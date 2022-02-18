@@ -1,0 +1,27 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1468, (cl_index)1468,
+        (ecl_base_char*)
+"#1=\"~@<encoding error on stream ~S (~S ~S): ~2I~_~\n                  the charact"
+ "er with code ~D cannot be encoded.~@:>\" #2=\"~@<decoding error on stream ~S (~S ~"
+ "S): ~2I~_~\n                  the octet sequence ~S cannot be decoded.~@:>\" :repo"
+ "rt-function \"Ignore character\" \"Store a different character code.\" si::*conditio"
+ "n-restarts* ext::encoding-error \"Read next character\" \"Replace the bogus sequenc"
+ "e with a character\" ext::decoding-error 0 si::make-restart si::coerce-to-conditi"
+ "on si::dm-too-few-arguments 0 \"SYSTEM\" (error) ((:readers (ext::character-coding"
+ "-error-external-format) :initargs (:external-format) :name si::external-format))"
+ " (ext::character-coding-error) ((:readers (ext::character-encoding-error-code) :"
+ "initargs (:code) :name si::code)) ((:readers (ext::character-decoding-error-octe"
+ "ts) :initargs (:octets) :name si::octets)) (stream-error ext::character-encoding"
+ "-error) (:initform (lambda (si::c si::s) (let ((stream (stream-error-stream si::"
+ "c)) (si::code (ext::character-encoding-error-code si::c))) (format si::s #1# str"
+ "eam ':external-format (ext::character-coding-error-external-format si::c) si::co"
+ "de))) :name si::report-function) (stream-error ext::character-decoding-error) (:"
+ "initform (lambda (si::c si::s) (let ((stream (stream-error-stream si::c)) (si::o"
+ "ctets (ext::character-decoding-error-octets si::c))) (format si::s #2# stream ':"
+ "external-format (ext::character-coding-error-external-format si::c) si::octets))"
+ ") :name si::report-function)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

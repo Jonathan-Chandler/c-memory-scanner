@@ -1,0 +1,31 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1make_dispatch_table(cl_object );
+static cl_object Cblock;
+#define VM 19
+#define VMtemp 10
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_single_float(_ecl_static_1,0.75,static,const);
+ecl_def_ct_double_float(_ecl_static_0,1.5,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 1
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(18),ecl_make_fixnum(8),(cl_objectfn)L1make_dispatch_table,NULL,ECL_NIL,ecl_make_fixnum(10295)},
+};

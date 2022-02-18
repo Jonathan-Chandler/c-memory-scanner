@@ -1,0 +1,10 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)159, (cl_index)159,
+        (ecl_base_char*)
+"#'apply c::c1form 0 0 c::c1apply 0 c::check-args-number c::macroexpand-lambda-bl"
+ "ock c::optimize-funcall/apply-lambda c::c1funcall c::get-return-type \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

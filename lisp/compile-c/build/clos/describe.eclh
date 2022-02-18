@@ -1,0 +1,71 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1inspect_read_line();
+static cl_object L2select_p(cl_object );
+static cl_object L3select_e();
+static cl_object L4select_u();
+static cl_object L5select__();
+static cl_object L8read_inspect_command(cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC6__lambda14(cl_narg, ...);
+static cl_object LC7__lambda15(cl_object );
+static cl_object L9inspect_indent();
+static cl_object L10inspect_indent_1();
+static cl_object L11inspect_symbol(cl_object );
+static cl_object L12inspect_package(cl_object );
+static cl_object L13inspect_character(cl_object );
+static cl_object L14inspect_number(cl_object );
+static cl_object L15inspect_cons(cl_object );
+static cl_object L16inspect_string(cl_object );
+static cl_object L17inspect_vector(cl_object );
+static cl_object L18inspect_array(cl_object );
+static cl_object L20select_ht_n(cl_object );
+static cl_object LC19__lambda74(cl_narg, cl_object , cl_object , ...);
+static cl_object L22select_ht_l(cl_object );
+static cl_object LC21__lambda80(cl_object , cl_object );
+static cl_object L23select_ht_j(cl_object );
+static cl_object L24select_ht__();
+static cl_object L26inspect_hashtable(cl_object );
+static cl_object LC25__lambda105(cl_object , cl_object );
+static cl_object L27inspect_instance(cl_object );
+static cl_object L28inspect_object(cl_object volatile );
+static cl_object L29default_inspector(cl_object volatile );
+ECL_DLLEXPORT cl_object cl_inspect(cl_object );
+ECL_DLLEXPORT cl_object cl_describe(volatile cl_narg, cl_object volatile , ...);
+static cl_object L32print_doc(cl_narg, cl_object , ...);
+static cl_object LC31good_package(volatile cl_object  *);
+static cl_object LC30doc1(volatile cl_object  *, cl_object , cl_object );
+static cl_object L33help_(cl_narg, cl_object , ...);
+static cl_object Cblock;
+#define VM 144
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 12
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,0,0,ecl_make_fixnum(129),ecl_make_fixnum(5),(cl_objectfn)L1inspect_read_line,NULL,ECL_NIL,ecl_make_fixnum(1119)},
+{0,0,1,0,ecl_make_fixnum(130),ecl_make_fixnum(6),(cl_objectfn)L2select_p,NULL,ECL_NIL,ecl_make_fixnum(1268)},
+{0,0,0,0,ecl_make_fixnum(131),ecl_make_fixnum(7),(cl_objectfn)L3select_e,NULL,ECL_NIL,ecl_make_fixnum(1404)},
+{0,0,0,0,ecl_make_fixnum(132),ecl_make_fixnum(8),(cl_objectfn)L4select_u,NULL,ECL_NIL,ecl_make_fixnum(1726)},
+{0,0,0,0,ecl_make_fixnum(133),ecl_make_fixnum(10),(cl_objectfn)L5select__,NULL,ECL_NIL,ecl_make_fixnum(1832)},
+{0,0,3,0,ecl_make_fixnum(134),ecl_make_fixnum(36),(cl_objectfn)L8read_inspect_command,NULL,ECL_NIL,ecl_make_fixnum(2576)},
+{0,0,0,0,ecl_make_fixnum(136),ecl_make_fixnum(38),(cl_objectfn)L9inspect_indent,NULL,ECL_NIL,ecl_make_fixnum(6205)},
+{0,0,0,0,ecl_make_fixnum(137),ecl_make_fixnum(39),(cl_objectfn)L10inspect_indent_1,NULL,ECL_NIL,ecl_make_fixnum(6328)},
+{0,0,1,0,ecl_make_fixnum(138),ecl_make_fixnum(99),(cl_objectfn)L27inspect_instance,NULL,ECL_NIL,ecl_make_fixnum(15936)},
+{0,0,1,0,ecl_make_fixnum(140),ecl_make_fixnum(101),(cl_objectfn)L28inspect_object,NULL,ECL_NIL,ecl_make_fixnum(16094)},
+{0,0,-2,0,ecl_make_fixnum(141),ecl_make_fixnum(126),(cl_objectfn)L32print_doc,NULL,ECL_NIL,ecl_make_fixnum(18932)},
+{0,0,-2,0,ecl_make_fixnum(143),ecl_make_fixnum(128),(cl_objectfn)L33help_,NULL,ECL_NIL,ecl_make_fixnum(21961)},
+};

@@ -1,0 +1,51 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)3363, (cl_index)3363,
+        (ecl_base_char*)
+"c::*machine* c::rep-type-record-unsafe \"Not a valid C type name ~A\" c::rep-type-"
+ "record \"Unknown representation type ~S\" c::rep-type->lisp-type c::lisp-type->rep"
+ "-type c::c-number-rep-type-p c::c-integer-rep-type-p c::c-integer-rep-type-bits "
+ "c::c-number-type-p c::c-integer-type-p c::c-integer-type-bits c::rep-type->c-nam"
+ "e c::lisp-type-p (c::single-float-value c::double-float-value c::long-float-valu"
+ "e c::csfloat-value c::cdfloat-value c::clfloat-value) \"Cannot coerce C variable "
+ "of type ~A to lisp object\" \"(\" \")\" c::wt-to-object-conversion \"Cannot coerce lis"
+ "p object to C type ~A\" c::wt-from-object-conversion c::call 0 c::call-local 0 0 "
+ "c::loc-movable-p c::fixnum-value c::character-value c::double-float-value c::sin"
+ "gle-float-value c::long-float-value c::csfloat-value c::cdfloat-value c::clfloat"
+ "-value c::bind c::lcl c::call-normal c::loc-type 0 0 c::trash :wchar c::jump-tru"
+ "e 0 c::jump-false 0 :bool c::loc-representation-type \"Unable to coerce lisp obje"
+ "ct from type (~S,~S)~%~\n                        to C/C++ type (~S,~S)\" 0 0 0 \")("
+ "\" 0 0 0 0 0 0 0 0 \"1\" \")!=ECL_NIL\" :int-sse-pack (:int-sse-pack . #1=(:float-sse"
+ "-pack :double-sse-pack)) :float-sse-pack #1# :double-sse-pack 0 \"Boxing a value "
+ "of type ~S - performance degraded.\" 0 0 \"(char *)(\" :char* 0 \"ecl_base_string_po"
+ "inter_safe(\" \"_mm_castps_si128\" \"_mm_castpd_si128\" \"_mm_castsi128_ps\" \"_mm_castp"
+ "d_ps\" (:int-sse-pack :double-sse-pack) \"_mm_castsi128_pd\" \"_mm_castps_pd\" (:int-"
+ "sse-pack :float-sse-pack) c::wt-coerce-loc \"The argument to CLINES, ~s, is not a"
+ " list of strings.\" c::*clines-string-list* (progn) c::c1clines \"Unable to parse "
+ "FFI:CLINES string~& ~S\" c::*compiler-output1* :permanent c::output-clines :side-"
+ "effects :one-liner (:one-liner :side-effects) \"In a C-INLINE form the number of "
+ "declare arguments and the number of supplied ones do not match:~%~S\" (values &re"
+ "st t) ((values &rest t)) \"C-INLINE: syntax error in ~S\" \"C-INLINE: wrong number "
+ "of arguments in ~S\" :args c::var c::c1c-inline c::c1c-progn c::*destination* c::"
+ "c2c-progn \";\" \"Ignoring form ~S\" \"value0 = ECL_NIL;\" \"cl_env_copy->nvalues = 0;\""
+ " :rep-type \" \" c::value \"cl_env_copy->nvalues = \" c::produce-inline-loc c::*temp"
+ "* c::*inline-blocks* c::c2c-inline #2=(:object . #2#) \"= \" c::coerce-loc c::coer"
+ "ce-locs \"User @(RETURN ...) in a C-INLINE form with no output values\" \"Used @(RE"
+ "TURN ~D) in a C-INLINE form with ~D output values\" \"C-INLINE: Variable code exce"
+ "eds number of arguments\" c::wt-c-inline-loc 0 0 c::c-inline-safe-string 0 c::mac"
+ "hine-rep-type-hash 0 c::cmperr 0 c::rep-type-lisp-type 0 c::rep-type-name c::mac"
+ "hine-sorted-types 0 c::rep-type-numberp 0 c::rep-type-integerp 0 c::rep-type-bit"
+ "s 0 0 0 c::c-number-rep-type-bits 0 c::rep-type-c-name 0 0 c::wt c::rep-type-to-"
+ "lisp 0 c::rep-type-from-lisp c::policy-assume-no-errors c::rep-type-from-lisp-un"
+ "safe 0 0 c::var-p c::var-type c::vv-p c::vv-type 0 c::var-rep-type 0 c::cmp-env-"
+ "optimization c::cmpwarn-style c::cmpwarn 0 0 si::make-seq-iterator si::seq-itera"
+ "tor-ref si::seq-iterator-next c::add-object 0 si::dm-too-few-arguments si::searc"
+ "h-keyword si::check-keyword c::c1expr c::make-c1form* c::c1form-name c::c1form-a"
+ "rgs c::add-to-set-nodes 0 c::c1vref c::add-to-set-nodes-of-var-list 0 c::wt-nl c"
+ "::c2expr* c::unwind-exit 0 c::cmpnote c::open-inline-block c::set-loc c::make-lc"
+ "l-var 0 c::inline-args c::close-inline-blocks 0 0 0 c::c-filtered-string \"COMPIL"
+ "ER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

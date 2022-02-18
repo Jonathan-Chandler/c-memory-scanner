@@ -1,0 +1,103 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1policy_to_debug_level(cl_object );
+static cl_object L2policy_to_safety_level(cl_object );
+static cl_object L3policy_to_speed_level(cl_object );
+static cl_object L4policy_to_space_level(cl_object );
+static cl_object L5optimization_quality_switches(cl_object , cl_object );
+static cl_object L6compute_policy(cl_object , cl_object );
+static cl_object L7default_policy();
+static cl_object L8cmp_env_policy(cl_object );
+static cl_object L9cmp_env_add_optimizations(cl_narg, cl_object , ...);
+static cl_object L10policy_declaration_name_p(cl_object );
+static cl_object L11maybe_add_policy(cl_narg, cl_object , ...);
+static cl_object L12add_default_optimizations(cl_object );
+static cl_object L13cmp_env_all_optimizations(cl_narg, ...);
+static cl_object L14cmp_env_optimization(cl_narg, cl_object , ...);
+static cl_object L15policy_assume_no_errors(cl_narg, ...);
+static cl_object L16policy_assume_right_type(cl_narg, ...);
+static cl_object L17policy_type_assertions(cl_narg, ...);
+static cl_object L18policy_check_stack_overflow(cl_narg, ...);
+static cl_object L19policy_check_arguments_type(cl_narg, ...);
+static cl_object L20policy_array_bounds_check(cl_narg, ...);
+static cl_object L21policy_global_var_checking(cl_narg, ...);
+static cl_object L22policy_global_function_checking(cl_narg, ...);
+static cl_object L23policy_check_nargs(cl_narg, ...);
+static cl_object L24policy_the_is_checked(cl_narg, ...);
+static cl_object L25policy_assume_types_dont_change(cl_narg, ...);
+static cl_object L26policy_inline_slot_access(cl_narg, ...);
+static cl_object L27policy_inline_accessors(cl_narg, ...);
+static cl_object L28policy_inline_bit_operations(cl_narg, ...);
+static cl_object L29policy_open_code_aref_aset(cl_narg, ...);
+static cl_object L30policy_evaluate_forms(cl_narg, ...);
+static cl_object L31policy_use_direct_c_call(cl_narg, ...);
+static cl_object L32policy_inline_type_checks(cl_narg, ...);
+static cl_object L33policy_inline_sequence_functions(cl_narg, ...);
+static cl_object L34policy_debug_variable_bindings(cl_narg, ...);
+static cl_object L35policy_debug_ihs_frame(cl_narg, ...);
+static cl_object L36safe_compile();
+static cl_object L37compiler_push_events();
+static cl_object Cblock;
+#define VM 91
+#define VMtemp 3
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_single_float(_ecl_static_1,0.75,static,const);
+ecl_def_ct_double_float(_ecl_static_0,1.5,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 37
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(51),ecl_make_fixnum(0),(cl_objectfn)L1policy_to_debug_level,NULL,ECL_NIL,ecl_make_fixnum(1332)},
+{0,0,1,0,ecl_make_fixnum(52),ecl_make_fixnum(1),(cl_objectfn)L2policy_to_safety_level,NULL,ECL_NIL,ecl_make_fixnum(1332)},
+{0,0,1,0,ecl_make_fixnum(53),ecl_make_fixnum(2),(cl_objectfn)L3policy_to_speed_level,NULL,ECL_NIL,ecl_make_fixnum(1332)},
+{0,0,1,0,ecl_make_fixnum(54),ecl_make_fixnum(3),(cl_objectfn)L4policy_to_space_level,NULL,ECL_NIL,ecl_make_fixnum(1332)},
+{0,0,2,0,ecl_make_fixnum(55),ecl_make_fixnum(5),(cl_objectfn)L5optimization_quality_switches,NULL,ECL_NIL,ecl_make_fixnum(1851)},
+{0,0,2,0,ecl_make_fixnum(56),ecl_make_fixnum(7),(cl_objectfn)L6compute_policy,NULL,ECL_NIL,ecl_make_fixnum(1964)},
+{0,0,0,0,ecl_make_fixnum(58),ecl_make_fixnum(12),(cl_objectfn)L7default_policy,NULL,ECL_NIL,ecl_make_fixnum(2932)},
+{0,0,1,0,ecl_make_fixnum(59),ecl_make_fixnum(14),(cl_objectfn)L8cmp_env_policy,NULL,ECL_NIL,ecl_make_fixnum(3131)},
+{0,0,-2,0,ecl_make_fixnum(61),ecl_make_fixnum(16),(cl_objectfn)L9cmp_env_add_optimizations,NULL,ECL_NIL,ecl_make_fixnum(3246)},
+{0,0,1,0,ecl_make_fixnum(63),ecl_make_fixnum(17),(cl_objectfn)L10policy_declaration_name_p,NULL,ECL_NIL,ecl_make_fixnum(3452)},
+{0,0,-2,0,ecl_make_fixnum(64),ecl_make_fixnum(18),(cl_objectfn)L11maybe_add_policy,NULL,ECL_NIL,ecl_make_fixnum(3551)},
+{0,0,1,0,ecl_make_fixnum(65),ecl_make_fixnum(19),(cl_objectfn)L12add_default_optimizations,NULL,ECL_NIL,ecl_make_fixnum(3981)},
+{0,0,-1,0,ecl_make_fixnum(66),ecl_make_fixnum(20),(cl_objectfn)L13cmp_env_all_optimizations,NULL,ECL_NIL,ecl_make_fixnum(4160)},
+{0,0,-2,0,ecl_make_fixnum(67),ecl_make_fixnum(21),(cl_objectfn)L14cmp_env_optimization,NULL,ECL_NIL,ecl_make_fixnum(4404)},
+{0,0,-1,0,ecl_make_fixnum(68),ecl_make_fixnum(22),(cl_objectfn)L15policy_assume_no_errors,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(69),ecl_make_fixnum(23),(cl_objectfn)L16policy_assume_right_type,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(70),ecl_make_fixnum(24),(cl_objectfn)L17policy_type_assertions,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(71),ecl_make_fixnum(25),(cl_objectfn)L18policy_check_stack_overflow,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(72),ecl_make_fixnum(26),(cl_objectfn)L19policy_check_arguments_type,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(73),ecl_make_fixnum(27),(cl_objectfn)L20policy_array_bounds_check,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(74),ecl_make_fixnum(28),(cl_objectfn)L21policy_global_var_checking,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(75),ecl_make_fixnum(29),(cl_objectfn)L22policy_global_function_checking,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(76),ecl_make_fixnum(30),(cl_objectfn)L23policy_check_nargs,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(77),ecl_make_fixnum(31),(cl_objectfn)L24policy_the_is_checked,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(78),ecl_make_fixnum(32),(cl_objectfn)L25policy_assume_types_dont_change,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(79),ecl_make_fixnum(33),(cl_objectfn)L26policy_inline_slot_access,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(80),ecl_make_fixnum(34),(cl_objectfn)L27policy_inline_accessors,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(81),ecl_make_fixnum(35),(cl_objectfn)L28policy_inline_bit_operations,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(82),ecl_make_fixnum(36),(cl_objectfn)L29policy_open_code_aref_aset,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(83),ecl_make_fixnum(38),(cl_objectfn)L30policy_evaluate_forms,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(84),ecl_make_fixnum(40),(cl_objectfn)L31policy_use_direct_c_call,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(85),ecl_make_fixnum(42),(cl_objectfn)L32policy_inline_type_checks,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(86),ecl_make_fixnum(44),(cl_objectfn)L33policy_inline_sequence_functions,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(87),ecl_make_fixnum(46),(cl_objectfn)L34policy_debug_variable_bindings,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,-1,0,ecl_make_fixnum(88),ecl_make_fixnum(48),(cl_objectfn)L35policy_debug_ihs_frame,NULL,ECL_NIL,ecl_make_fixnum(9566)},
+{0,0,0,0,ecl_make_fixnum(89),ecl_make_fixnum(49),(cl_objectfn)L36safe_compile,NULL,ECL_NIL,ecl_make_fixnum(12155)},
+{0,0,0,0,ecl_make_fixnum(90),ecl_make_fixnum(50),(cl_objectfn)L37compiler_push_events,NULL,ECL_NIL,ecl_make_fixnum(12219)},
+};

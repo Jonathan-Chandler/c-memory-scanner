@@ -1,0 +1,47 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1c1if(cl_object );
+static cl_object L2c1not(cl_object );
+static cl_object L3c1and(cl_object );
+static cl_object L4c1or(cl_object );
+static cl_object L5c2if(cl_object , cl_object , cl_object , cl_object );
+static cl_object L6negate_argument(cl_object , cl_object );
+static cl_object L7c2fmla_not(cl_object , cl_object );
+static cl_object L8jump_true_destination_p(cl_object );
+static cl_object L9jump_false_destination_p(cl_object );
+static cl_object L10c2fmla_and(cl_object , cl_object , cl_object );
+static cl_object L11c2fmla_or(cl_object , cl_object , cl_object );
+static cl_object L12set_jump_true(cl_object , cl_object );
+static cl_object L13set_jump_false(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 79
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 10
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(39),ecl_make_fixnum(1),(cl_objectfn)L1c1if,NULL,ECL_NIL,ecl_make_fixnum(642)},
+{0,0,1,0,ecl_make_fixnum(46),ecl_make_fixnum(4),(cl_objectfn)L2c1not,NULL,ECL_NIL,ecl_make_fixnum(1316)},
+{0,0,1,0,ecl_make_fixnum(47),ecl_make_fixnum(6),(cl_objectfn)L3c1and,NULL,ECL_NIL,ecl_make_fixnum(1741)},
+{0,0,1,0,ecl_make_fixnum(52),ecl_make_fixnum(9),(cl_objectfn)L4c1or,NULL,ECL_NIL,ecl_make_fixnum(2151)},
+{0,0,4,0,ecl_make_fixnum(54),ecl_make_fixnum(15),(cl_objectfn)L5c2if,NULL,ECL_NIL,ecl_make_fixnum(2687)},
+{0,0,2,0,ecl_make_fixnum(64),ecl_make_fixnum(23),(cl_objectfn)L7c2fmla_not,NULL,ECL_NIL,ecl_make_fixnum(4513)},
+{0,0,3,0,ecl_make_fixnum(68),ecl_make_fixnum(24),(cl_objectfn)L10c2fmla_and,NULL,ECL_NIL,ecl_make_fixnum(5366)},
+{0,0,3,0,ecl_make_fixnum(69),ecl_make_fixnum(26),(cl_objectfn)L11c2fmla_or,NULL,ECL_NIL,ecl_make_fixnum(5779)},
+{0,0,2,0,ecl_make_fixnum(70),ecl_make_fixnum(34),(cl_objectfn)L12set_jump_true,NULL,ECL_NIL,ecl_make_fixnum(6512)},
+{0,0,2,0,ecl_make_fixnum(78),ecl_make_fixnum(38),(cl_objectfn)L13set_jump_false,NULL,ECL_NIL,ecl_make_fixnum(7238)},
+};

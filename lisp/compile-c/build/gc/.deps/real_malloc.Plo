@@ -1,0 +1,4 @@
+real_malloc.lo: \
+ C:/work/lisp/ecl-21.2.1/ecl-21.2.1/src/bdwgc/real_malloc.c \
+ include/config.h
+include/config.h:

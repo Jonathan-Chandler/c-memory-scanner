@@ -1,0 +1,55 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1error_not_a_sequence(cl_object );
+static cl_object L2error_sequence_index(cl_object , cl_object );
+static cl_object L3error_sequence_type(cl_object );
+static cl_object L4error_sequence_length(cl_object , cl_object , cl_object );
+static cl_object L5closest_sequence_type(cl_object );
+ECL_DLLEXPORT cl_object cl_make_sequence(cl_narg, cl_object , cl_object , ...);
+#define cl_make_sequencekeys (&VV[27])
+static cl_object L6make_seq_iterator(cl_narg, cl_object , ...);
+static cl_object L7seq_iterator_ref(cl_object , cl_object );
+static cl_object L8seq_iterator_set(cl_object , cl_object , cl_object );
+static cl_object L9seq_iterator_next(cl_object , cl_object );
+static cl_object L10seq_iterator_list_pop(cl_object , cl_object , cl_object );
+static cl_object L11coerce_to_list(cl_object );
+static cl_object L12coerce_to_vector(cl_object , cl_object , cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_concatenate(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_map(cl_narg, cl_object , cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object cl_some(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object cl_every(cl_narg, cl_object , cl_object , ...);
+static cl_object L13every_(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_notany(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object cl_notevery(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object cl_map_into(cl_narg, cl_object , cl_object , ...);
+static cl_object Cblock;
+#define VM 37
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 9
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(26),ecl_make_fixnum(16),(cl_objectfn)L5closest_sequence_type,NULL,ECL_NIL,ecl_make_fixnum(1801)},
+{0,0,-2,0,ecl_make_fixnum(28),ecl_make_fixnum(17),(cl_objectfn)L6make_seq_iterator,NULL,ECL_NIL,ecl_make_fixnum(5769)},
+{0,0,2,0,ecl_make_fixnum(29),ecl_make_fixnum(18),(cl_objectfn)L7seq_iterator_ref,NULL,ECL_NIL,ecl_make_fixnum(6522)},
+{0,0,3,0,ecl_make_fixnum(30),ecl_make_fixnum(19),(cl_objectfn)L8seq_iterator_set,NULL,ECL_NIL,ecl_make_fixnum(6720)},
+{0,0,2,0,ecl_make_fixnum(31),ecl_make_fixnum(20),(cl_objectfn)L9seq_iterator_next,NULL,ECL_NIL,ecl_make_fixnum(6950)},
+{0,0,3,0,ecl_make_fixnum(32),ecl_make_fixnum(21),(cl_objectfn)L10seq_iterator_list_pop,NULL,ECL_NIL,ecl_make_fixnum(7446)},
+{0,0,1,0,ecl_make_fixnum(33),ecl_make_fixnum(22),(cl_objectfn)L11coerce_to_list,NULL,ECL_NIL,ecl_make_fixnum(8374)},
+{0,0,4,0,ecl_make_fixnum(34),ecl_make_fixnum(23),(cl_objectfn)L12coerce_to_vector,NULL,ECL_NIL,ecl_make_fixnum(8632)},
+{0,0,-2,0,ecl_make_fixnum(36),ecl_make_fixnum(25),(cl_objectfn)L13every_,NULL,ECL_NIL,ecl_make_fixnum(12092)},
+};

@@ -1,0 +1,16 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)614, (cl_index)614,
+        (ecl_base_char*)
+"ql-minitar::make-block-buffer ql-minitar::skip-n-blocks ql-minitar::ascii-subseq"
+ " ql-minitar::block-asciiz-string ql-minitar::prefix ql-minitar::name ql-minitar:"
+ ":payload-size (unsigned-byte 8) ql-minitar::nth-block :symlink :long-name :globa"
+ "l-header :unsupported ql-minitar::payload-type \"~A/~A\" ql-minitar::full-path ql-"
+ "minitar::save-file \"Bad size on tarfile\" 0 0 0 \"Unknown tar block payload code -"
+ "- ~D\" ql-minitar::unpack-tarball ql-minitar::contents si::dodefpackage 0 0 0 0 0"
+ " 0 0 0 0 0 0 0 :directory 0 \"A simple implementation of unpacking the 'tar' file"
+ " format.\" (\"CL\") (\"TARBALL-CONTENTS\" \"UNPACK-TARBALL\")" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

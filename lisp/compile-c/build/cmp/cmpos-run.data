@@ -1,0 +1,14 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)480, (cl_index)480,
+        (ecl_base_char*)
+"\"Invoking external command:~%  ~A~%\" \"Continues anyway.\" \"(SYSTEM ~S) returned n"
+ "on-zero value ~D\" c::safe-system c::save-directory c::with-current-directory \"In"
+ "voking external command:~%  ~A ~{~A ~}\" \"Unable to execute:~%(EXT:RUN-PROGRAM ~S"
+ " ~S)\" \"Error code ~D when executing~%(EXT:RUN-PROGRAM ~S ~S):~%~{~A~^~%~}\" c::sa"
+ "fe-run-program 0 0 0 0 0 0 0 \"In split-program-options, unterminated option list"
+ ":~%~S\" c::split-program-options 0 c::cmpnote 0 0 0 c::collect-lines 0 \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

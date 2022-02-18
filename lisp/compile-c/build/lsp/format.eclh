@@ -1,0 +1,213 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1float_to_digits_(cl_object , cl_object , cl_object , cl_object );
+static cl_object L2flonum_to_string(cl_narg, cl_object , ...);
+static cl_object L3exponent_in_base10(cl_object );
+static cl_object L4make_format_directive(cl_narg, ...);
+#define L4make_format_directivekeys (&VV[293])
+static cl_object L5tokenize_control_string(cl_object );
+static cl_object L7parse_directive(cl_object , cl_object );
+static cl_object LC6get_char(volatile cl_object  *);
+static cl_object L8formatter_aux(volatile cl_narg, cl_object volatile , cl_object volatile , cl_object volatile , ...);
+static cl_object L9interpret_directive_list(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC10formatter(cl_object , cl_object );
+static cl_object L11_formatter(cl_object volatile );
+static cl_object L12expand_control_string(cl_object );
+static cl_object L13expand_directive_list(cl_object );
+static cl_object L14expand_directive(cl_object , cl_object );
+static cl_object L15expand_next_arg(cl_narg, ...);
+static cl_object L16need_hairy_args();
+static cl_object LC17expander_next_arg(cl_object , cl_object );
+static cl_object LC18expander_pprint_next_arg(cl_object , cl_object );
+static cl_object L19_set_format_directive_expander(cl_object , cl_object );
+static cl_object L20_set_format_directive_interpreter(cl_object , cl_object );
+static cl_object L22find_directive(cl_object , cl_object , cl_object );
+static cl_object LC21after(volatile cl_object  *, cl_object );
+static cl_object L23format_write_field(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L24format_princ(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC25latin_capital_letter_a_format_directive_expander(cl_object , cl_object );
+static cl_object LC26__lambda307(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L27format_prin1(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC28latin_capital_letter_s_format_directive_expander(cl_object , cl_object );
+static cl_object LC29__lambda378(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC30latin_capital_letter_c_format_directive_expander(cl_object , cl_object );
+static cl_object LC31__lambda421(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L32char_printing_p(cl_object );
+static cl_object L33format_print_named_character(cl_object , cl_object );
+static cl_object LC34latin_capital_letter_w_format_directive_expander(cl_object , cl_object );
+static cl_object LC35__lambda440(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L36format_print_integer(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L37format_add_commas(cl_object , cl_object , cl_object );
+static cl_object L38expand_format_integer(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC39latin_capital_letter_d_format_directive_expander(cl_object , cl_object );
+static cl_object LC40__lambda500(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC41latin_capital_letter_b_format_directive_expander(cl_object , cl_object );
+static cl_object LC42__lambda540(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC43latin_capital_letter_o_format_directive_expander(cl_object , cl_object );
+static cl_object LC44__lambda580(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC45latin_capital_letter_x_format_directive_expander(cl_object , cl_object );
+static cl_object LC46__lambda620(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC47latin_capital_letter_r_format_directive_expander(cl_object , cl_object );
+static cl_object LC48__lambda696(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L49format_print_small_cardinal(cl_object , cl_object );
+static cl_object L50format_print_cardinal(cl_object , cl_object );
+static cl_object L51format_print_cardinal_aux(cl_object , cl_object , cl_object , cl_object );
+static cl_object L52format_print_ordinal(cl_object , cl_object );
+static cl_object L53format_print_old_roman(cl_object , cl_object );
+static cl_object L54format_print_roman(cl_object , cl_object );
+static cl_object LC55latin_capital_letter_p_format_directive_expander(cl_object , cl_object );
+static cl_object LC56__lambda772(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L57decimal_string(cl_object );
+static cl_object LC58latin_capital_letter_f_format_directive_expander(cl_object , cl_object );
+static cl_object LC59__lambda824(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L60format_fixed(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L61format_fixed_aux(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC62latin_capital_letter_e_format_directive_expander(cl_object , cl_object );
+static cl_object LC63__lambda936(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L64format_exponential(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L65format_exponent_marker(cl_object );
+static cl_object L66format_exp_aux(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC67latin_capital_letter_g_format_directive_expander(cl_object , cl_object );
+static cl_object LC68__lambda1067(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L69format_general(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L70format_general_aux(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC71dollar_sign_format_directive_expander(cl_object , cl_object );
+static cl_object LC72__lambda1157(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L73format_dollars(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC74percent_sign_format_directive_expander(cl_object , cl_object );
+static cl_object LC75__lambda1212(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC76ampersand_format_directive_expander(cl_object , cl_object );
+static cl_object LC77__lambda1242(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC78vertical_line_format_directive_expander(cl_object , cl_object );
+static cl_object LC79__lambda1272(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC80tilde_format_directive_expander(cl_object , cl_object );
+static cl_object LC81__lambda1302(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC82_newline_format_directive_expander_(cl_object , cl_object );
+static cl_object LC83__lambda1324(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC84_return_format_directive_expander_(cl_object , cl_object );
+static cl_object LC85__lambda1335(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC86latin_capital_letter_t_format_directive_expander(cl_object , cl_object );
+static cl_object LC87__lambda1392(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L88output_spaces(cl_object , cl_object );
+static cl_object L89format_relative_tab(cl_object , cl_object , cl_object );
+static cl_object L90format_absolute_tab(cl_object , cl_object , cl_object );
+static cl_object LC91low_line_format_directive_expander(cl_object , cl_object );
+static cl_object LC92__lambda1446(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC93latin_capital_letter_i_format_directive_expander(cl_object , cl_object );
+static cl_object LC94__lambda1465(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC95asterisk_format_directive_expander(cl_object , cl_object );
+static cl_object LC96__lambda1506(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC97question_mark_format_directive_expander(cl_object , cl_object );
+static cl_object LC99__lambda1556(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC98__lambda1563(cl_narg, cl_object , ...);
+static cl_object L100nstring_capitalize_first(cl_object );
+static cl_object LC101left_parenthesis_format_directive_expander(cl_object , cl_object );
+static cl_object LC102__lambda1577(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC103right_parenthesis_format_directive_expander(cl_object , cl_object );
+static cl_object LC104__lambda1590(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L105parse_conditional_directive(cl_object );
+static cl_object LC106left_square_bracket_format_directive_expander(cl_object , cl_object );
+static cl_object L108expand_maybe_conditional(cl_object );
+static cl_object LC107hairy(volatile cl_object  *);
+static cl_object L110expand_true_false_conditional(cl_object , cl_object );
+static cl_object LC109hairy(volatile cl_object  *);
+static cl_object LC111__lambda1636(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC112semicolon_format_directive_expander(cl_object , cl_object );
+static cl_object LC113__lambda1666(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC114__lambda1669(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC115right_square_bracket_format_directive_expander(cl_object , cl_object );
+static cl_object LC116circumflex_accent_format_directive_expander(cl_object , cl_object );
+static cl_object LC117__lambda1702(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC122left_curly_bracket_format_directive_expander(cl_object , cl_object );
+static cl_object LC121compute_bindings(volatile cl_object  *, cl_object );
+static cl_object LC120compute_block(volatile cl_object  *, cl_object );
+static cl_object LC119compute_loop(volatile cl_object  *, cl_object );
+static cl_object LC118compute_insides(volatile cl_object  *);
+static cl_object LC127__lambda1746(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC126do_loop(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC125bind_args(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC124do_guts(cl_narg, cl_object , cl_object , ...);
+static cl_object LC123__lambda1761(cl_narg, cl_object , ...);
+static cl_object LC128right_curly_bracket_format_directive_expander(cl_object , cl_object );
+static cl_object LC129__lambda1777(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC130__lambda1783(cl_object );
+static cl_object L131check_output_layout_mode(cl_object );
+static cl_object L132illegal_inside_justification_p(cl_object );
+static cl_object LC134less_than_sign_format_directive_expander(cl_object , cl_object );
+static cl_object LC133__lambda1808(cl_object );
+static cl_object LC136__lambda1812(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC135__lambda1824(cl_object );
+static cl_object L137parse_format_justification(cl_object );
+static cl_object L139expand_format_justification(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC138__lambda1894(cl_object );
+static cl_object L140interpret_format_justification(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object L142format_justification(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC141do_padding(volatile cl_object  *, cl_object );
+static cl_object L144parse_format_logical_block(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC143extract_string(cl_object , cl_object );
+static cl_object L145add_fill_style_newlines(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object L146add_fill_style_newlines_aux(cl_object , cl_object , cl_object );
+static cl_object L147expand_format_logical_block(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L152interpret_format_logical_block(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC149__pprint_logical_block_2006(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC151__pprint_logical_block_2020(volatile cl_narg, cl_object volatile , cl_object volatile , ...);
+static cl_object LC148__lambda2014(cl_narg, ...);
+static cl_object LC150__lambda2028(cl_narg, ...);
+static cl_object LC153greater_than_sign_format_directive_expander(cl_object , cl_object );
+static cl_object LC154solidus_format_directive_expander(cl_object , cl_object );
+static cl_object LC155__lambda2067(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L156extract_user_function_name(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 337
+#define VMtemp 13
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_base_string(_ecl_static_0,"FORMAT-DIRECTIVE-",17,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 28
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,4,0,ecl_make_fixnum(288),ecl_make_fixnum(3),(cl_objectfn)L1float_to_digits_,NULL,ECL_NIL,ecl_make_fixnum(4753)},
+{0,0,-2,0,ecl_make_fixnum(289),ecl_make_fixnum(6),(cl_objectfn)L2flonum_to_string,NULL,ECL_NIL,ecl_make_fixnum(5151)},
+{0,0,1,0,ecl_make_fixnum(290),ecl_make_fixnum(7),(cl_objectfn)L3exponent_in_base10,NULL,ECL_NIL,ecl_make_fixnum(8775)},
+{0,0,-1,0,ecl_make_fixnum(292),ecl_make_fixnum(12),(cl_objectfn)L4make_format_directive,NULL,ECL_NIL,ecl_make_fixnum(8866)},
+{0,0,-4,0,ecl_make_fixnum(301),ecl_make_fixnum(42),(cl_objectfn)L8formatter_aux,NULL,ECL_NIL,ecl_make_fixnum(17376)},
+{0,0,2,0,ecl_make_fixnum(304),ecl_make_fixnum(45),(cl_objectfn)LC10formatter,NULL,ECL_NIL,ecl_make_fixnum(19440)},
+{0,0,2,0,ecl_make_fixnum(305),ecl_make_fixnum(36),(cl_objectfn)LC17expander_next_arg,NULL,ECL_NIL,ecl_make_fixnum(19440)},
+{0,0,2,0,ecl_make_fixnum(306),ecl_make_fixnum(60),(cl_objectfn)LC18expander_pprint_next_arg,NULL,ECL_NIL,ecl_make_fixnum(19440)},
+{0,0,2,0,ecl_make_fixnum(309),ecl_make_fixnum(61),(cl_objectfn)L19_set_format_directive_expander,NULL,ECL_NIL,ecl_make_fixnum(31531)},
+{0,0,8,0,ecl_make_fixnum(310),ecl_make_fixnum(63),(cl_objectfn)L24format_princ,NULL,ECL_NIL,ecl_make_fixnum(33464)},
+{0,0,8,0,ecl_make_fixnum(314),ecl_make_fixnum(72),(cl_objectfn)L27format_prin1,NULL,ECL_NIL,ecl_make_fixnum(34753)},
+{0,0,2,0,ecl_make_fixnum(315),ecl_make_fixnum(80),(cl_objectfn)L33format_print_named_character,NULL,ECL_NIL,ecl_make_fixnum(37235)},
+{0,0,9,0,ecl_make_fixnum(316),ecl_make_fixnum(85),(cl_objectfn)L36format_print_integer,NULL,ECL_NIL,ecl_make_fixnum(38624)},
+{0,0,4,0,ecl_make_fixnum(317),ecl_make_fixnum(91),(cl_objectfn)L38expand_format_integer,NULL,ECL_NIL,ecl_make_fixnum(40210)},
+{0,0,2,0,ecl_make_fixnum(318),ecl_make_fixnum(100),(cl_objectfn)L50format_print_cardinal,NULL,ECL_NIL,ecl_make_fixnum(45250)},
+{0,0,2,0,ecl_make_fixnum(319),ecl_make_fixnum(99),(cl_objectfn)L52format_print_ordinal,NULL,ECL_NIL,ecl_make_fixnum(46092)},
+{0,0,2,0,ecl_make_fixnum(320),ecl_make_fixnum(97),(cl_objectfn)L53format_print_old_roman,NULL,ECL_NIL,ecl_make_fixnum(47335)},
+{0,0,2,0,ecl_make_fixnum(321),ecl_make_fixnum(98),(cl_objectfn)L54format_print_roman,NULL,ECL_NIL,ecl_make_fixnum(47912)},
+{0,0,8,0,ecl_make_fixnum(322),ecl_make_fixnum(133),(cl_objectfn)L60format_fixed,NULL,ECL_NIL,ecl_make_fixnum(52112)},
+{0,0,10,0,ecl_make_fixnum(323),ecl_make_fixnum(141),(cl_objectfn)L64format_exponential,NULL,ECL_NIL,ecl_make_fixnum(55525)},
+{0,0,10,0,ecl_make_fixnum(324),ecl_make_fixnum(149),(cl_objectfn)L69format_general,NULL,ECL_NIL,ecl_make_fixnum(60069)},
+{0,0,8,0,ecl_make_fixnum(325),ecl_make_fixnum(154),(cl_objectfn)L73format_dollars,NULL,ECL_NIL,ecl_make_fixnum(62579)},
+{0,0,3,0,ecl_make_fixnum(326),ecl_make_fixnum(175),(cl_objectfn)L89format_relative_tab,NULL,ECL_NIL,ecl_make_fixnum(70837)},
+{0,0,3,0,ecl_make_fixnum(328),ecl_make_fixnum(178),(cl_objectfn)L90format_absolute_tab,NULL,ECL_NIL,ecl_make_fixnum(71322)},
+{0,0,1,0,ecl_make_fixnum(330),ecl_make_fixnum(212),(cl_objectfn)L100nstring_capitalize_first,NULL,ECL_NIL,ecl_make_fixnum(80001)},
+{0,0,1,0,ecl_make_fixnum(331),ecl_make_fixnum(252),(cl_objectfn)L132illegal_inside_justification_p,NULL,ECL_NIL,ecl_make_fixnum(103871)},
+{0,0,11,0,ecl_make_fixnum(332),ecl_make_fixnum(268),(cl_objectfn)L142format_justification,NULL,ECL_NIL,ecl_make_fixnum(111302)},
+{0,0,5,0,ecl_make_fixnum(333),ecl_make_fixnum(283),(cl_objectfn)L147expand_format_logical_block,NULL,ECL_NIL,ecl_make_fixnum(116926)},
+};

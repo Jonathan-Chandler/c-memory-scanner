@@ -1,0 +1,30 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1691, (cl_index)1691,
+        (ecl_base_char*)
+"c::c1labels c::c1flet \"The local function definition ~s is illegal.\" \"~s: The fu"
+ "nction ~s was already defined.\" :kind :var c::*cmp-env* :fun c::locals :args c::"
+ "c1labels/flet c::child-function-p c::closure c::lexical c::update-fun-closure-ty"
+ "pe-many c::prepend-new \"Function ~A is global but is closed over some variables."
+ "~%~{~A ~}\" c::fun c::var c::update-fun-closure-type c::*env* c::*inline-blocks* "
+ "c::*env-lvl* 0 0 \"cl_object \" c::*volatile* \";\" \"env\" \" = env\" c::make-cclosure "
+ "c::c2locals :initial-value c::c1decl-body c::c1locally c::c1macrolet \"The symbol"
+ "-macro definition ~s is illegal.\" c::c1symbol-macrolet \"The name of a macro ~A w"
+ "as found in special form FUNCTION.\" c::*current-function* c::local-function-ref "
+ "c::*temp* c::c2call-local 0 0 0 c::check-args-number c::cmp-env-copy c::cmperr c"
+ "::make-var c::make-fun c::cmp-env-register-function c::c1compile-function c::fun"
+ "-referenced-vars c::fun-referenced-funs c::fun-referencing-funs c::add-to-fun-re"
+ "ferenced-vars c::add-to-fun-referenced-funs c::c1body c::cmp-env-declare-special"
+ " c::check-vdecl c::fun-ref c::c1form-type c::make-c1form* 0 c::fun-parent c::glo"
+ "bal-var-p c::ref-ref-ccb c::fun-closure c::fun-ref-ccb c::fun-var c::var-ref 0 0"
+ " 0 c::fun-global c::fun-name c::var-name c::cmpnote c::fun-child-funs c::var-kin"
+ "d c::var-functions-reading c::var-functions-setting 0 c::var-ref-ccb c::maybe-op"
+ "en-inline-block c::next-lcl c::bind c::wt-nl c::env-grows c::wt c::new-local c::"
+ "set-var c::c2expr c::close-inline-blocks 0 c::c1progn c::add-one-declaration 0 0"
+ " 0 c::cmp-env-register-symbol-macro 0 c::cmp-env-search-function 0 c::c2try-tail"
+ "-recursive-call c::inline-args c::c1form-primary-type c::call-loc c::unwind-exit"
+ " \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

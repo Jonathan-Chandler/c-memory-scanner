@@ -1,0 +1,82 @@
+Microsoft (R) COFF/PE Dumper Version 14.25.28610.4
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file ecl-darkstone-trainer--all-systems.dll
+
+File Type: DLL
+
+  Section contains the following exports for ecl-darkstone-trainer--all-systems.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          56 number of functions
+          56 number of names
+
+    ordinal hint RVA      name
+
+          1    0 0002BDA0 _ecl0qXmgfK1_SSHFlq51
+          2    1 0004B5D0 _ecl1AfaXDM1_PlLFlq51
+          3    2 0007D9E0 _ecl28wbW8L1_feOFlq51
+          4    3 0002C3F0 _ecl2A07vJK1_noHFlq51
+          5    4 0000CD80 _ecl2Ow5uhL1_eJFFlq51
+          6    5 000C3900 _ecl2b1XJRM1_rARFlq51
+          7    6 000195B0 _ecl5CmwS2L1_VWFFlq51
+          8    7 00091CF0 _ecl7XqHR5L1_mIPFlq51
+          9    8 00077E30 _ecl9RJUGFM1_yGOFlq51
+         10    9 000727F0 _eclBVz15BM1_vpNFlq51
+         11    A 0002BA20 _eclBsoLtBL1_OHHFlq51
+         12    B 00004C00 _eclDtUFTjK1_vdDFlq51
+         13    C 0004D010 _eclHELZwWK1_jxLFlq51
+         14    D 000995D0 _eclJWMu16L1_UgPFlq51
+         15    E 000C3FF0 _eclKUKuNSL1_oMRFlq51
+         16    F 00021ED0 _eclM7VLXbM1_kOGFlq51
+         17   10 0006ED70 _eclNfo6zTK1_OcMFlq51
+         18   11 0000A300 _eclQaKKpUM1_0pEFlq51
+         19   12 000038F0 _eclRYsTPNK1_NvbAlq51
+         20   13 00084A80 _eclS81uStL1_eBPFlq51
+         21   14 00032260 _eclTgEzNyL1_UnIFlq51
+         22   15 00012EC0 _eclUgtktGL1_YGFFlq51
+         23   16 0001DFE0 _eclXmjr72M1_EoFFlq51
+         24   17 00048BA0 _eclYTcx70L1_G9LFlq51
+         25   18 0002C0E0 _eclYnzI3QM1_ttHFlq51
+         26   19 0003A010 _eclZZbZ7BM1_RSJFlq51
+         27   1A 00007A30 _eclZrlNeaK1_YcEFlq51
+         28   1B 0002C500 _eclaeMVIXM1_yzHFlq51
+         29   1C 000BBE30 _eclcfwI8lK1_hiQFlq51
+         30   1D 0002C7D0 _ecleFpFWuK1_TBIFlq51
+         31   1E 000C1740 _ecleNuJzRM1_OvQFlq51
+         32   1F 000319F0 _ecleStwZyK1_fbIFlq51
+         33   20 00076460 _ecleZDfnML1_82OFlq51
+         34   21 000C4220 _eclfRDDVvL1_avbFlq51
+         35   22 00005E40 _eclfV2Q2tK1_73EFlq51
+         36   23 000488C0 _eclg3V4RKM1_yBKFlq51
+         37   24 000C4370 _eclj0xwibM1_u8cFlq51
+         38   25 000B7960 _eclj69PrkL1_I7QFlq51
+         39   26 0001F970 _eclja57sNM1_o0GFlq51
+         40   27 0004A1C0 _eclkmDIhrL1_nnLFlq51
+         41   28 000055E0 _eclmREFewL1_PrDFlq51
+         42   29 000269E0 _eclmqTJVQM1_qdGFlq51
+         43   2A 0004DFF0 _eclnRXjMWM1_FAMFlq51
+         44   2B 00045640 _eclongByHM1_oXJFlq51
+         45   2C 0002A8B0 _eclqajfa2L1_lsGFlq51
+         46   2D 0002FF00 _ecls07xo9L1_eNIFlq51
+         47   2E 00072250 _eclsXXgUcK1_cZNFlq51
+         48   2F 00021740 _eclsfGFrRL1_mCGFlq51
+         49   30 0002B910 _eclug3HVkK1_56HFlq51
+         50   31 00032D90 _ecluhtj3XM1_CzIFlq51
+         51   32 00078910 _eclyCboJ5L1_FSOFlq51
+         52   33 00047570 _eclyhwHoLK1_4pJFlq51
+         53   34 00006120 _eclzEJEdTM1_uEEFlq51
+         54   35 00006CC0 _eclzKRcOoL1_TQEFlq51
+         55   36 00047E60 _eclzvq81VK1_c0KFlq51
+         56   37 00001000 init_dll__ECLIJTR1FL1_DXSFLQ51
+
+  Summary
+
+        1000 .data
+       BE000 .rdata
+       12000 .reloc
+       C5000 .text

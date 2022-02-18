@@ -1,0 +1,33 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1929, (cl_index)1929,
+        (ecl_base_char*)
+"c::+foreign-elt-type-codes+ \"DEFCALLBACK: ~a is not a valid elementary FFI type."
+ "\" c::foreign-elt-type-code 0 0 \"ecl_callback_~d\" c::*callbacks* \"Syntax error in"
+ " CALLBACK form: C type is missing in argument ~A \" \"ecl_make_foreign_data(@':poi"
+ "nter-void,0,(void*)~a)\" (:one-liner t) c::c1-defcallback 0 0 \"\" \"__stdcall \" \"DE"
+ "FCALLBACK does not support ~A as calling convention\" \"static \" \" \" \"(\" \" var\" \","
+ "\" \")\" \");\" \" output;\" \"const cl_env_ptr cl_env_copy = ecl_process_env();\" \"cl_ob"
+ "ject aux;\" \"ECL_BUILD_STACK_FRAME(cl_env_copy, frame, helper)\" \"ecl_stack_frame_"
+ "push(\" \"frame,ecl_foreign_data_ref_elt(\" \"&var\" \"aux = ecl_apply_from_stack_fram"
+ "e(frame,\" \"ecl_fdefinition(\" \"));\" \"ecl_stack_frame_close(frame);\" \"ecl_foreign_"
+ "data_set_elt(&output,\" \",aux);\" \"return output;\" c::t3-defcallback 0 c::cmperr 0"
+ " si::dm-too-few-arguments c::add-object c::c1expr 0 ffi::%convert-to-arg-type c:"
+ ":rep-type->c-name c::wt-nl-h c::wt-nl1 c::wt-h c::wt c::wt-nl-open-brace c::wt-n"
+ "l c::wt-nl-close-brace \"COMPILER\" ((:char . \"ECL_FFI_CHAR\") (:unsigned-char . \"E"
+ "CL_FFI_UNSIGNED_CHAR\") (:byte . \"ECL_FFI_BYTE\") (:unsigned-byte . \"ECL_FFI_UNSIG"
+ "NED_BYTE\") (:short . \"ECL_FFI_SHORT\") (:unsigned-short . \"ECL_FFI_UNSIGNED_SHORT"
+ "\") (:int . \"ECL_FFI_INT\") (:unsigned-int . \"ECL_FFI_UNSIGNED_INT\") (:long . \"ECL"
+ "_FFI_LONG\") (:unsigned-long . \"ECL_FFI_UNSIGNED_LONG\") (:int16-t . \"ECL_FFI_INT1"
+ "6_T\") (:uint16-t . \"ECL_FFI_UINT16_T\") (:int32-t . \"ECL_FFI_INT32_T\") (:uint32-t"
+ " . \"ECL_FFI_UINT32_T\") (:int64-t . \"ECL_FFI_INT64_T\") (:uint64-t . \"ECL_FFI_UINT"
+ "64_T\") (:long-long . \"ECL_FFI_LONG_LONG\") (:unsigned-long-long . \"ECL_FFI_UNSIGN"
+ "ED_LONG_LONG\") (:pointer-void . \"ECL_FFI_POINTER_VOID\") (:cstring . \"ECL_FFI_CST"
+ "RING\") (:object . \"ECL_FFI_OBJECT\") (:float . \"ECL_FFI_FLOAT\") (:double . \"ECL_F"
+ "FI_DOUBLE\") (:long-double . \"ECL_FFI_LONG_DOUBLE\") (:csfloat . \"ECL_FFI_CSFLOAT\""
+ ") (:cdfloat . \"ECL_FFI_CDFLOAT\") (:clfloat . \"ECL_FFI_CLFLOAT\") (:void . \"ECL_FF"
+ "I_VOID\"))" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

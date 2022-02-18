@@ -1,0 +1,44 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)2848, (cl_index)2848,
+        (ecl_base_char*)
+":cdr-5 ext::ratiop si::dm-too-many-arguments 0 ext::short-floatp ext::single-flo"
+ "atp ext::double-floatp ext::long-floatp \"EXT\" (deftype ext::negative-fixnum nil "
+ "`(integer ,most-negative-fixnum -1)) (deftype ext::non-positive-fixnum nil `(int"
+ "eger ,most-negative-fixnum 0)) (deftype ext::non-negative-fixnum nil `(integer 0"
+ " ,most-positive-fixnum)) (deftype ext::positive-fixnum nil `(integer 1 ,most-pos"
+ "itive-fixnum)) (deftype ext::negative-integer nil '#1=(integer * -1)) #1# (defty"
+ "pe ext::non-positive-integer nil '#2=(integer * 0)) #2# (deftype ext::non-negati"
+ "ve-integer nil '#3=(integer 0 *)) #3# (deftype ext::positive-integer nil '#4=(in"
+ "teger 1 *)) #4# (deftype ext::negative-rational nil '#5=(rational * (0))) #5# (d"
+ "eftype ext::non-positive-rational nil '#6=(rational * 0)) #6# (deftype ext::non-"
+ "negative-rational nil '#7=(rational 0 *)) #7# (deftype ext::positive-rational ni"
+ "l '#8=(rational (0) *)) #8# (deftype ext::negative-ratio nil '#9=(satisfies ext:"
+ ":negative-ratio-p)) #9# (deftype ext::non-positive-ratio nil 'ext::negative-rati"
+ "o) (deftype ext::non-negative-ratio nil 'ext::positive-ratio) (deftype ext::posi"
+ "tive-ratio nil '#10=(satisfies ext::positive-ratio-p)) #10# (deftype ext::negati"
+ "ve-real nil '#11=(real * (0))) #11# (deftype ext::non-positive-real nil '#12=(re"
+ "al * 0)) #12# (deftype ext::non-negative-real nil '#13=(real 0 *)) #13# (deftype"
+ " ext::positive-real nil '#14=(real (0) *)) #14# (deftype ext::negative-float nil"
+ " '#15=(float * (0))) #15# (deftype ext::non-positive-float nil '#16=(float * 0))"
+ " #16# (deftype ext::non-negative-float nil '#17=(float 0 *)) #17# (deftype ext::"
+ "positive-float nil '#18=(float (0) *)) #18# (deftype ext::negative-short-float n"
+ "il '#19=(short-float * (#20=0.0))) #19# (deftype ext::non-positive-short-float n"
+ "il '#21=(short-float * #20#)) #21# (deftype ext::non-negative-short-float nil '#"
+ "22=(short-float #20# *)) #22# (deftype ext::positive-short-float nil '#23=(short"
+ "-float (#20#) *)) #23# (deftype ext::negative-single-float nil '#24=(single-floa"
+ "t * (#20#))) #24# (deftype ext::non-positive-single-float nil '#25=(single-float"
+ " * #20#)) #25# (deftype ext::non-negative-single-float nil '#26=(single-float #2"
+ "0# *)) #26# (deftype ext::positive-single-float nil '#27=(single-float (#20#) *)"
+ ") #27# (deftype ext::negative-double-float nil '#28=(double-float * (#29=0.0d0))"
+ ") #28# (deftype ext::non-positive-double-float nil '#30=(double-float * #29#)) #"
+ "30# (deftype ext::non-negative-double-float nil '#31=(double-float #29# *)) #31#"
+ " (deftype ext::positive-double-float nil '#32=(double-float (#29#) *)) #32# (def"
+ "type ext::negative-long-float nil '#33=(long-float * (#34=0.0l0))) #33# (deftype"
+ " ext::non-positive-long-float nil '#35=(long-float * #34#)) #35# (deftype ext::n"
+ "on-negative-long-float nil '#36=(long-float #34# *)) #36# (deftype ext::positive"
+ "-long-float nil '#37=(long-float (#34#) *)) #37#" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

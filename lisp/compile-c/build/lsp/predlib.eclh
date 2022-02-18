@@ -1,0 +1,130 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1constantly_t(cl_narg, ...);
+static cl_object L2constantly_nil(cl_narg, ...);
+ECL_DLLEXPORT cl_object cl_constantly(cl_object );
+static cl_object LC3__lambda3(cl_narg, ...);
+static cl_object L4subtypep_clear_cache();
+static cl_object L5create_type_name(cl_object );
+ECL_DLLEXPORT cl_object si_do_deftype(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC9deftype(cl_object , cl_object );
+static cl_object LC8maptree(cl_object , cl_object , cl_object );
+static cl_object LC7verify_tree(cl_object );
+static cl_object LC6set_default(cl_object );
+static cl_object LC10__lambda79(cl_object );
+static cl_object LC11__lambda97(cl_object );
+static cl_object LC12__lambda102(cl_object );
+static cl_object LC13__lambda106(cl_object );
+static cl_object LC14__lambda110(cl_object );
+static cl_object LC15__lambda126(cl_object );
+static cl_object LC16__lambda133(cl_object );
+static cl_object LC17__lambda137(cl_object );
+static cl_object LC18__lambda141(cl_object );
+static cl_object LC19__lambda145(cl_object );
+static cl_object LC20__lambda149(cl_object );
+static cl_object LC21__lambda153(cl_object );
+static cl_object LC22__lambda157(cl_object );
+static cl_object LC23__lambda161(cl_object );
+static cl_object L24simple_array_p(cl_object );
+static cl_object L25complex_array_p(cl_object );
+ECL_DLLEXPORT cl_object si_ratiop(cl_object );
+ECL_DLLEXPORT cl_object si_short_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_single_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_double_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_long_float_p(cl_object );
+static cl_object L26complex_single_float_p(cl_object );
+static cl_object L27complex_double_float_p(cl_object );
+static cl_object L28complex_long_float_p(cl_object );
+ECL_DLLEXPORT cl_object cl_upgraded_array_element_type(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_upgraded_complex_part_type(cl_narg, cl_object , ...);
+static cl_object L29in_interval_p(cl_object , cl_object );
+static cl_object L30error_type_specifier(cl_object );
+static cl_object L31match_dimensions(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_typep(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object si_subclassp(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object si_of_class_p(cl_narg, cl_object , cl_object , ...);
+static cl_object L32normalize_type(cl_object );
+static cl_object L33expand_deftype(cl_object );
+ECL_DLLEXPORT cl_object cl_coerce(cl_object , cl_object );
+static cl_object LC34fail(volatile cl_object  *);
+static cl_object L35new_type_tag();
+static cl_object L36find_registered_tag(cl_narg, cl_object , ...);
+static cl_object L37maybe_save_types();
+static cl_object L38update_types(cl_object , cl_object );
+static cl_object L39find_type_bounds(cl_object , cl_object , cl_object , cl_object );
+static cl_object L40register_type(cl_object , cl_object , cl_object );
+static cl_object L41register_member_type(cl_object );
+static cl_object L42simple_member_type(cl_object );
+static cl_object L43number_member_type(cl_object );
+static cl_object L44push_type(cl_object , cl_object );
+static cl_object L45register_satisfies_type(cl_object );
+static cl_object L48register_class(cl_object );
+static cl_object LC46__lambda260(cl_object );
+static cl_object LC47__lambda261(cl_object , cl_object );
+static cl_object L50register_array_type(cl_object );
+static cl_object LC49__lambda268(cl_narg, cl_object , ...);
+static cl_object L51fast_upgraded_array_element_type(cl_object );
+static cl_object L52parse_array_type(cl_object );
+static cl_object L53array_type___(cl_object , cl_object );
+static cl_object L54array_type_p(cl_object );
+static cl_object L57register_elementary_interval(cl_object , cl_object );
+static cl_object LC55__lambda292(cl_object );
+static cl_object LC56__lambda293(cl_object , cl_object );
+static cl_object L58register_interval_type(cl_object );
+static cl_object L59bounds___(cl_object , cl_object );
+static cl_object L60bounds__(cl_object , cl_object );
+static cl_object L61canonical_complex_type(cl_object );
+static cl_object L62register_cons_type(cl_narg, ...);
+static cl_object L63find_built_in_tag(cl_object );
+static cl_object L64extend_type_tag(cl_object , cl_object );
+static cl_object L65canonical_type(cl_object );
+static cl_object L66safe_canonical_type(cl_object volatile );
+static cl_object L67fast_subtypep(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_subtypep(cl_narg, cl_object , cl_object , ...);
+static cl_object L68fast_type_(cl_object , cl_object );
+static cl_object L69type_(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 118
+#define VMtemp 66
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 23
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-1,0,ecl_make_fixnum(85),ecl_make_fixnum(0),(cl_objectfn)L1constantly_t,NULL,ECL_NIL,ecl_make_fixnum(723)},
+{0,0,-1,0,ecl_make_fixnum(86),ecl_make_fixnum(1),(cl_objectfn)L2constantly_nil,NULL,ECL_NIL,ecl_make_fixnum(786)},
+{0,0,0,0,ecl_make_fixnum(87),ecl_make_fixnum(6),(cl_objectfn)L4subtypep_clear_cache,NULL,ECL_NIL,ecl_make_fixnum(1249)},
+{0,0,1,0,ecl_make_fixnum(88),ecl_make_fixnum(8),(cl_objectfn)L5create_type_name,NULL,ECL_NIL,ecl_make_fixnum(1411)},
+{0,0,2,0,ecl_make_fixnum(89),ecl_make_fixnum(16),(cl_objectfn)LC9deftype,NULL,ECL_NIL,ecl_make_fixnum(1913)},
+{0,0,1,0,ecl_make_fixnum(94),ecl_make_fixnum(30),(cl_objectfn)L24simple_array_p,NULL,ECL_NIL,ecl_make_fixnum(12494)},
+{0,0,1,0,ecl_make_fixnum(95),ecl_make_fixnum(31),(cl_objectfn)L25complex_array_p,NULL,ECL_NIL,ecl_make_fixnum(12654)},
+{0,0,1,0,ecl_make_fixnum(96),ecl_make_fixnum(32),(cl_objectfn)L26complex_single_float_p,NULL,ECL_NIL,ecl_make_fixnum(13795)},
+{0,0,1,0,ecl_make_fixnum(97),ecl_make_fixnum(33),(cl_objectfn)L27complex_double_float_p,NULL,ECL_NIL,ecl_make_fixnum(13990)},
+{0,0,1,0,ecl_make_fixnum(98),ecl_make_fixnum(34),(cl_objectfn)L28complex_long_float_p,NULL,ECL_NIL,ecl_make_fixnum(14185)},
+{0,0,1,0,ecl_make_fixnum(99),ecl_make_fixnum(47),(cl_objectfn)L32normalize_type,NULL,ECL_NIL,ecl_make_fixnum(26127)},
+{0,0,1,0,ecl_make_fixnum(101),ecl_make_fixnum(48),(cl_objectfn)L33expand_deftype,NULL,ECL_NIL,ecl_make_fixnum(26788)},
+{0,0,2,0,ecl_make_fixnum(105),ecl_make_fixnum(59),(cl_objectfn)L38update_types,NULL,ECL_NIL,ecl_make_fixnum(32722)},
+{0,0,1,0,ecl_make_fixnum(106),ecl_make_fixnum(60),(cl_objectfn)L41register_member_type,NULL,ECL_NIL,ecl_make_fixnum(36404)},
+{0,0,1,0,ecl_make_fixnum(107),ecl_make_fixnum(61),(cl_objectfn)L43number_member_type,NULL,ECL_NIL,ecl_make_fixnum(37543)},
+{0,0,2,0,ecl_make_fixnum(108),ecl_make_fixnum(68),(cl_objectfn)L53array_type___,NULL,ECL_NIL,ecl_make_fixnum(42235)},
+{0,0,1,0,ecl_make_fixnum(109),ecl_make_fixnum(71),(cl_objectfn)L54array_type_p,NULL,ECL_NIL,ecl_make_fixnum(42790)},
+{0,0,2,0,ecl_make_fixnum(110),ecl_make_fixnum(72),(cl_objectfn)L59bounds___,NULL,ECL_NIL,ecl_make_fixnum(45743)},
+{0,0,2,0,ecl_make_fixnum(111),ecl_make_fixnum(73),(cl_objectfn)L60bounds__,NULL,ECL_NIL,ecl_make_fixnum(46015)},
+{0,0,-1,0,ecl_make_fixnum(112),ecl_make_fixnum(74),(cl_objectfn)L62register_cons_type,NULL,ECL_NIL,ecl_make_fixnum(48074)},
+{0,0,1,0,ecl_make_fixnum(113),ecl_make_fixnum(82),(cl_objectfn)L65canonical_type,NULL,ECL_NIL,ecl_make_fixnum(55755)},
+{0,0,1,0,ecl_make_fixnum(116),ecl_make_fixnum(83),(cl_objectfn)L66safe_canonical_type,NULL,ECL_NIL,ecl_make_fixnum(59128)},
+{0,0,2,0,ecl_make_fixnum(117),ecl_make_fixnum(84),(cl_objectfn)L69type_,NULL,ECL_NIL,ecl_make_fixnum(62079)},
+};

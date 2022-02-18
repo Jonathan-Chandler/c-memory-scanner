@@ -1,0 +1,25 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1285, (cl_index)1285,
+        (ecl_base_char*)
+"c::*reg-amount* c::var c::add-loop-registers c::*cmp-env* :kind :var :index c::t"
+ "agbody-beginnnig (nil) :args c::*setjmps* :local-vars c::c1tagbody c::tag c::*un"
+ "wind-exit* c::frame c::*env* c::*env-lvl* c::*lex* c::*lcl* c::*inline-blocks* \""
+ "volatile cl_object env\" \" = env\" \";\" \"cl_object \" \"ECL_NEW_FRAME_ID(cl_env_copy)"
+ "\" \"ecl_frs_push(cl_env_copy,\" \");\" \"if (__ecl_frs_push_result) {\" \"if (cl_env_co"
+ "py->values[0]==ecl_make_fixnum(\" \"))\" \"ecl_internal_error(\\\"GO found an inexiste"
+ "nt tag\\\");\" \"}\" c::c2tagbody c::*exit* c::*destination* c::trash c::c2tagbody-bo"
+ "dy \"The tag name ~s is not a symbol nor an integer.\" \"Undefined tag ~A\" c::lexic"
+ "al c::c1go \"cl_go(\" \",ecl_make_fixnum(\" \"));\" c::c2go 0 c::tag-p c::tag-name c::"
+ "c1form-p c::c1form-name c::c1form-args c::var-p 0 c::cmp-env-copy c::make-var c:"
+ ":make-tag c::cmp-env-register-tag c::c1progn c::tag-ref c::c1expr c::var-ref c::"
+ "make-c1form* c::var-ref-ccb 0 c::var-kind c::next-label* c::env-grows c::maybe-o"
+ "pen-inline-block c::wt-nl c::next-lcl c::bind c::wt-nl-open-brace c::next-label "
+ "c::tag-index c::tag-label c::wt-go c::wt-nl-close-brace c::close-inline-blocks 0"
+ " c::wt-label c::c2expr 0 c::check-args-number c::cmperr c::cmp-env-search-tag c:"
+ ":tag-var c::add-to-read-nodes 0 c::tag-unwind-exit c::unwind-no-exit-until \"COMP"
+ "ILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

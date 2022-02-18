@@ -1,0 +1,12 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)318, (cl_index)318,
+        (ecl_base_char*)
+":package-locks ext::lock-package ext::unlock-package ((si::*ignore-package-locks"
+ "* t)) ext::without-package-locks ext::p (ext::package-locked-p ext::p) (ext::unl"
+ "ock-package ext::p) (when (find-package ext::p) (ext::lock-package ext::p)) ext:"
+ ":with-unlocked-packages #:package-locks 0 0 0 0 si::dm-too-few-arguments \"EXT\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

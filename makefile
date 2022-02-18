@@ -24,3 +24,9 @@ clean:
 	#$(MAKE) -C ./src/test_application clean
 	$(MAKE) -C ./src/unit_tests clean
 
+# gcc -Wall -m32 -s -v -shared -Wl,--subsystem,windows -I. app_main.o -o test.dll -lm -Wl,-Bstatic libecl.a libecl.lib -Wl,--no-whole-archive
+# gcc -Wall -m32 -s -v -shared -Wl,--subsystem,windows -I. app_main.o -o test.dll -lm -Wl,-Bstatic,--whole-archive libecl.a libecl.lib -Wl,--no-whole-archive
+# dumpbin /EXPORTS ecl.dll
+# make SHELL='sh -x'
+# ./configure --disable-shared
+# gcc -I. -D_REENTRANT -fPIC -g -pipe -Wall -c app_main.c

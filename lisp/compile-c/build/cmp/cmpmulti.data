@@ -1,0 +1,30 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1722, (cl_index)1722,
+        (ecl_base_char*)
+"c::with-stack c::stack-push-values c::c1multiple-value-call c::stack-pop c::c1mu"
+ "ltiple-value-prog1 :args c::c1values c::*destination* c::return-object c::*curre"
+ "nt-form* \"Trying to return multiple values. ~\n              ~%;But ~a was procla"
+ "imed to have single value.~\n              ~%;Only first one will be assured.\" c:"
+ ":trash c::value0 \"value0 = ECL_NIL;\" \"cl_env_copy->nvalues = 0;\" \"cl_env_copy->v"
+ "alues[0] = ECL_NIL;\" 0 0 c::*inline-blocks* c::*temp* \"cl_env_copy->nvalues = \" "
+ "\";\" \"cl_env_copy->values[\" \"] = \" c::c2values \"The variable ~s is not a symbol.\""
+ " \"The constant ~s is being assigned a value.\" c::c1multiple-value-setq 0 c::glob"
+ "al 0 c::*lcl* \"const int \" \" = cl_env_copy->nvalues;\" \"cl_object \" \" = (\" \"<=\" \""
+ ")? ECL_NIL : \" c::c2multiple-value-setq c::*cmp-env* :local-vars c::c1multiple-v"
+ "alue-bind c::*unwind-exit* c::*env-lvl* c::*env* c::var \" \" c::*volatile* \"volat"
+ "ile cl_object env\" \" = env\" c::c2multiple-value-bind 0 0 c::check-args-number c:"
+ ":c1funcall 0 c::c1args* c::make-c1form* 0 c::cmpwarn c::c2expr* c::unwind-exit c"
+ "::wt-nl c::c1form-single-valued-p c::c2expr c::inline-args c::coerce-locs c::clo"
+ "se-inline-blocks 0 c::cmperr c::chk-symbol-macrolet c::policy-type-assertions c:"
+ ":variable-type-in-env c::trivial-type-p c::c1expr c::c1vref c::add-to-set-nodes-"
+ "of-var-list c::set-var c::var-ref c::var-kind c::bind c::values-loc c::c1form-va"
+ "lues-number c::useful-var-p c::make-lcl-var c::wt-nl-open-brace c::wt-nl-close-b"
+ "race 0 0 c::cmp-env-copy c::c1body c::cmp-env-declare-special c::c1make-var c::p"
+ "ush-vars c::check-vdecl c::c1decl-body c::check-vref c::c1form-type 0 c::local c"
+ "::maybe-open-inline-block c::next-lcl c::rep-type->c-name c::var-name c::wt-comm"
+ "ent c::var-ref-ccb c::env-grows \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

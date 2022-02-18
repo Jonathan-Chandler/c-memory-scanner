@@ -1,0 +1,256 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1__lambda4();
+static cl_object LC2__lambda5();
+static cl_object LC3__lambda6();
+static cl_object LC4__lambda7();
+static cl_object LC5__lambda8();
+static cl_object L6pretty_stream_p(cl_object );
+static cl_object L7make_pretty_stream(cl_object );
+static cl_object LC8print_object(cl_object , cl_object );
+static cl_object L9index_posn(cl_object , cl_object );
+static cl_object L10posn_index(cl_object , cl_object );
+static cl_object L11posn_column(cl_object , cl_object );
+static cl_object LC12gray_stream_write_char(cl_object , cl_object );
+static cl_object LC13gray_stream_force_output(cl_object );
+static cl_object LC14gray_stream_clear_output(cl_object );
+static cl_object L15pretty_out(cl_object , cl_object );
+static cl_object L16pretty_sout(cl_object , cl_object , cl_object , cl_object );
+static cl_object L17make_logical_block(cl_narg, ...);
+#define L17make_logical_blockkeys (&VV[33])
+static cl_object LC18__lambda60(cl_object , cl_object );
+static cl_object LC19__lambda64(cl_object , cl_object );
+static cl_object LC20__lambda68(cl_object , cl_object );
+static cl_object LC21__lambda72(cl_object , cl_object );
+static cl_object LC22__lambda76(cl_object , cl_object );
+static cl_object LC23__lambda80(cl_object , cl_object );
+static cl_object L24really_start_logical_block(cl_object , cl_object , cl_object , cl_object );
+static cl_object L25set_indentation(cl_object , cl_object );
+static cl_object L26really_end_logical_block(cl_object );
+static cl_object L27make_queued_op(cl_narg, ...);
+#define L27make_queued_opkeys (&VV[69])
+static cl_object LC28__lambda113(cl_object , cl_object );
+static cl_object L29make_section_start(cl_narg, ...);
+#define L29make_section_startkeys (&VV[270])
+static cl_object LC30__lambda134(cl_object , cl_object );
+static cl_object LC31__lambda138(cl_object , cl_object );
+static cl_object LC32__lambda142(cl_object , cl_object );
+static cl_object L33make_newline(cl_narg, ...);
+#define L33make_newlinekeys (&VV[275])
+static cl_object LC34__lambda152(cl_object , cl_object );
+static cl_object LC35__lambda156(cl_object , cl_object );
+static cl_object LC36__lambda160(cl_object , cl_object );
+static cl_object LC37__lambda164(cl_object , cl_object );
+static cl_object L38enqueue_newline(cl_object , cl_object );
+static cl_object L39make_indentation(cl_narg, ...);
+#define L39make_indentationkeys (&VV[280])
+static cl_object LC40__lambda191(cl_object , cl_object );
+static cl_object LC41__lambda195(cl_object , cl_object );
+static cl_object LC42__lambda199(cl_object , cl_object );
+static cl_object L43enqueue_indent(cl_object , cl_object , cl_object );
+static cl_object L44make_block_start(cl_narg, ...);
+#define L44make_block_startkeys (&VV[284])
+static cl_object LC45__lambda228(cl_object , cl_object );
+static cl_object LC46__lambda232(cl_object , cl_object );
+static cl_object LC47__lambda236(cl_object , cl_object );
+static cl_object LC48__lambda240(cl_object , cl_object );
+static cl_object LC49__lambda244(cl_object , cl_object );
+static cl_object LC50__lambda248(cl_object , cl_object );
+static cl_object L51start_logical_block(cl_object , cl_object , cl_object , cl_object );
+static cl_object L52make_block_end(cl_narg, ...);
+#define L52make_block_endkeys (&VV[291])
+static cl_object LC53__lambda273(cl_object , cl_object );
+static cl_object LC54__lambda277(cl_object , cl_object );
+static cl_object L55end_logical_block(cl_object );
+static cl_object L56make_tab(cl_narg, ...);
+#define L56make_tabkeys (&VV[294])
+static cl_object LC57__lambda319(cl_object , cl_object );
+static cl_object LC58__lambda323(cl_object , cl_object );
+static cl_object LC59__lambda327(cl_object , cl_object );
+static cl_object LC60__lambda331(cl_object , cl_object );
+static cl_object LC61__lambda335(cl_object , cl_object );
+static cl_object L62enqueue_tab(cl_object , cl_object , cl_object , cl_object );
+static cl_object L63compute_tab_size(cl_object , cl_object , cl_object );
+static cl_object L64index_column(cl_object , cl_object );
+static cl_object L65expand_tabs(cl_object , cl_object );
+static cl_object L66assure_space_in_buffer(cl_object , cl_object );
+static cl_object L67maybe_output(cl_object , cl_object );
+static cl_object L68misering_p(cl_object );
+static cl_object L69fits_on_line_p(cl_object , cl_object , cl_object );
+static cl_object L70output_line(cl_object , cl_object );
+static cl_object L71output_partial_line(cl_object );
+static cl_object L72force_pretty_output(cl_object );
+static cl_object L73pprint_pop_helper(cl_object , cl_object , cl_object );
+static cl_object L74check_print_level();
+static cl_object L76do_pprint_logical_block(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC75__lambda516(cl_narg, cl_object , cl_object , ...);
+static cl_object L77pprint_logical_block_helper(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC78pprint_logical_block(cl_object , cl_object );
+static cl_object LC79pprint_exit_if_list_exhausted(cl_object , cl_object );
+static cl_object LC80pprint_pop(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_pprint_newline(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_pprint_indent(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object cl_pprint_tab(cl_narg, cl_object , cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object cl_pprint_fill(cl_narg, cl_object , cl_object , ...);
+static cl_object LC81__pprint_logical_block_592(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_pprint_linear(cl_narg, cl_object , cl_object , ...);
+static cl_object LC82__pprint_logical_block_608(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_pprint_tabular(cl_narg, cl_object , cl_object , ...);
+static cl_object LC83__pprint_logical_block_624(cl_narg, cl_object , cl_object , ...);
+static cl_object L84make_pprint_dispatch_entry(cl_narg, ...);
+#define L84make_pprint_dispatch_entrykeys (&VV[309])
+static cl_object LC85__lambda646(cl_object , cl_object );
+static cl_object LC86__lambda650(cl_object , cl_object );
+static cl_object LC87__lambda654(cl_object , cl_object );
+static cl_object LC88__lambda658(cl_object , cl_object );
+static cl_object L90_print_pprint_dispatch_entry(cl_object , cl_object , cl_object );
+static cl_object LC89_print_unreadable_object_body_(cl_narg, ...);
+static cl_object L91make_pprint_dispatch_table(cl_narg, ...);
+#define L91make_pprint_dispatch_tablekeys (&VV[315])
+static cl_object LC92__lambda662(cl_object , cl_object );
+static cl_object LC93__lambda666(cl_object , cl_object );
+static cl_object LC94__lambda670(cl_object , cl_object );
+static cl_object L95_print_pprint_dispatch_table(cl_object , cl_object , cl_object );
+static cl_object L96cons_type_specifier_p(cl_object );
+static cl_object L97entry_(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_copy_pprint_dispatch(cl_narg, ...);
+static cl_object LC98__lambda673(cl_narg, cl_object , cl_object , ...);
+static cl_object L99default_pprint_dispatch(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_pprint_dispatch(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_set_pprint_dispatch(cl_narg, cl_object , cl_object , ...);
+static cl_object L100pprint_array(cl_object , cl_object );
+static cl_object L103pprint_vector(cl_object , cl_object );
+static cl_object LC102__lambda702(cl_object , cl_object );
+static cl_object LC101__pprint_logical_block_704(cl_narg, cl_object , cl_object , ...);
+static cl_object L106pprint_array_contents(cl_object , cl_object );
+static cl_object LC105output_guts(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC104__pprint_logical_block_718(cl_narg, cl_object , cl_object , ...);
+static cl_object L108pprint_multi_dim_array(cl_object , cl_object );
+static cl_object LC107__lambda733(cl_object , cl_object );
+static cl_object L111pprint_raw_array(cl_object , cl_object );
+static cl_object LC110__lambda737(cl_object , cl_object );
+static cl_object LC109__pprint_logical_block_739(cl_narg, cl_object , cl_object , ...);
+static cl_object L115pprint_lambda_list(cl_narg, cl_object , cl_object , ...);
+static cl_object LC114__pprint_logical_block_748(cl_object , cl_object );
+static cl_object LC113__pprint_logical_block_773(cl_narg, cl_object , cl_object , ...);
+static cl_object LC112__pprint_logical_block_782(cl_object , cl_object );
+static cl_object L117pprint_lambda(cl_narg, cl_object , cl_object , ...);
+static cl_object LC116__pprint_logical_block_821(cl_narg, cl_object , cl_object , ...);
+static cl_object L119pprint_block(cl_narg, cl_object , cl_object , ...);
+static cl_object LC118__pprint_logical_block_860(cl_narg, cl_object , cl_object , ...);
+static cl_object L123pprint_flet(cl_narg, cl_object , cl_object , ...);
+static cl_object LC122__pprint_logical_block_899(cl_narg, cl_object , cl_object , ...);
+static cl_object LC121__pprint_logical_block_928(cl_narg, cl_object , cl_object , ...);
+static cl_object LC120__pprint_logical_block_946(cl_narg, cl_object , cl_object , ...);
+static cl_object L127pprint_let(cl_narg, cl_object , cl_object , ...);
+static cl_object LC126__pprint_logical_block_1001(cl_narg, cl_object , cl_object , ...);
+static cl_object LC125__pprint_logical_block_1030(cl_narg, cl_object , cl_object , ...);
+static cl_object LC124__pprint_logical_block_1048(cl_narg, cl_object , cl_object , ...);
+static cl_object L129pprint_progn(cl_narg, cl_object , cl_object , ...);
+static cl_object LC128__pprint_logical_block_1091(cl_narg, cl_object , cl_object , ...);
+static cl_object L131pprint_progv(cl_narg, cl_object , cl_object , ...);
+static cl_object LC130__pprint_logical_block_1121(cl_narg, cl_object , cl_object , ...);
+static cl_object L132pprint_quote(cl_narg, cl_object , cl_object , ...);
+static cl_object L134pprint_setq(cl_narg, cl_object , cl_object , ...);
+static cl_object LC133__pprint_logical_block_1170(cl_narg, cl_object , cl_object , ...);
+static cl_object L136pprint_tagbody(cl_narg, cl_object , cl_object , ...);
+static cl_object LC135__pprint_logical_block_1200(cl_object , cl_object );
+static cl_object L139pprint_case(cl_narg, cl_object , cl_object , ...);
+static cl_object LC138__pprint_logical_block_1221(cl_narg, cl_object , cl_object , ...);
+static cl_object LC137__pprint_logical_block_1257(cl_narg, cl_object , cl_object , ...);
+static cl_object L141pprint_defun(cl_narg, cl_object , cl_object , ...);
+static cl_object LC140__pprint_logical_block_1290(cl_narg, cl_object , cl_object , ...);
+static cl_object L143pprint_destructuring_bind(cl_narg, cl_object , cl_object , ...);
+static cl_object LC142__pprint_logical_block_1338(cl_narg, cl_object , cl_object , ...);
+static cl_object L147pprint_do(cl_narg, cl_object , cl_object , ...);
+static cl_object LC146__pprint_logical_block_1386(cl_object , cl_object );
+static cl_object LC145__pprint_logical_block_1406(cl_narg, cl_object , cl_object , ...);
+static cl_object LC144__pprint_logical_block_1424(cl_narg, cl_object , cl_object , ...);
+static cl_object L150pprint_dolist(cl_narg, cl_object , cl_object , ...);
+static cl_object LC149__pprint_logical_block_1472(cl_object , cl_object );
+static cl_object LC148__pprint_logical_block_1492(cl_narg, cl_object , cl_object , ...);
+static cl_object L153pprint_typecase(cl_narg, cl_object , cl_object , ...);
+static cl_object LC152__pprint_logical_block_1536(cl_narg, cl_object , cl_object , ...);
+static cl_object LC151__pprint_logical_block_1572(cl_narg, cl_object , cl_object , ...);
+static cl_object L155pprint_prog(cl_narg, cl_object , cl_object , ...);
+static cl_object LC154__pprint_logical_block_1602(cl_object , cl_object );
+static cl_object L157pprint_function_call(cl_narg, cl_object , cl_object , ...);
+static cl_object LC156__pprint_logical_block_1627(cl_narg, cl_object , cl_object , ...);
+static cl_object Cblock;
+#define VM 340
+#define VMtemp 100
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_base_string(_ecl_static_9,"PPRINT-DISPATCH-TABLE-",22,static,const);
+ecl_def_ct_base_string(_ecl_static_8,"PPRINT-DISPATCH-ENTRY-",22,static,const);
+ecl_def_ct_base_string(_ecl_static_7,"TAB-",4,static,const);
+ecl_def_ct_base_string(_ecl_static_6,"BLOCK-END-",10,static,const);
+ecl_def_ct_base_string(_ecl_static_5,"BLOCK-START-",12,static,const);
+ecl_def_ct_base_string(_ecl_static_4,"INDENTATION-",12,static,const);
+ecl_def_ct_base_string(_ecl_static_3,"NEWLINE-",8,static,const);
+ecl_def_ct_base_string(_ecl_static_2,"SECTION-START-",14,static,const);
+ecl_def_ct_base_string(_ecl_static_1,"QUEUED-OP-",10,static,const);
+ecl_def_ct_base_string(_ecl_static_0,"LOGICAL-BLOCK-",14,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 43
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(259),ecl_make_fixnum(6),(cl_objectfn)L6pretty_stream_p,NULL,ECL_NIL,ecl_make_fixnum(4411)},
+{0,0,1,0,ecl_make_fixnum(260),ecl_make_fixnum(9),(cl_objectfn)L7make_pretty_stream,NULL,ECL_NIL,ecl_make_fixnum(4477)},
+{0,0,2,0,ecl_make_fixnum(262),ecl_make_fixnum(10),(cl_objectfn)L9index_posn,NULL,ECL_NIL,ecl_make_fixnum(4944)},
+{0,0,2,0,ecl_make_fixnum(263),ecl_make_fixnum(11),(cl_objectfn)L10posn_index,NULL,ECL_NIL,ecl_make_fixnum(5086)},
+{0,0,2,0,ecl_make_fixnum(264),ecl_make_fixnum(12),(cl_objectfn)L11posn_column,NULL,ECL_NIL,ecl_make_fixnum(5224)},
+{0,0,-1,0,ecl_make_fixnum(266),ecl_make_fixnum(25),(cl_objectfn)L17make_logical_block,NULL,ECL_NIL,ecl_make_fixnum(7581)},
+{0,0,-1,0,ecl_make_fixnum(268),ecl_make_fixnum(43),(cl_objectfn)L27make_queued_op,NULL,ECL_NIL,ecl_make_fixnum(11712)},
+{0,0,-1,0,ecl_make_fixnum(269),ecl_make_fixnum(54),(cl_objectfn)L29make_section_start,NULL,ECL_NIL,ecl_make_fixnum(12755)},
+{0,0,-1,0,ecl_make_fixnum(273),ecl_make_fixnum(64),(cl_objectfn)L33make_newline,NULL,ECL_NIL,ecl_make_fixnum(12895)},
+{0,0,-1,0,ecl_make_fixnum(279),ecl_make_fixnum(82),(cl_objectfn)L39make_indentation,NULL,ECL_NIL,ecl_make_fixnum(13666)},
+{0,0,-1,0,ecl_make_fixnum(283),ecl_make_fixnum(95),(cl_objectfn)L44make_block_start,NULL,ECL_NIL,ecl_make_fixnum(13940)},
+{0,0,-1,0,ecl_make_fixnum(290),ecl_make_fixnum(107),(cl_objectfn)L52make_block_end,NULL,ECL_NIL,ecl_make_fixnum(14860)},
+{0,0,-1,0,ecl_make_fixnum(293),ecl_make_fixnum(121),(cl_objectfn)L56make_tab,NULL,ECL_NIL,ecl_make_fixnum(15337)},
+{0,0,3,0,ecl_make_fixnum(299),ecl_make_fixnum(152),(cl_objectfn)L73pprint_pop_helper,NULL,ECL_NIL,ecl_make_fixnum(28752)},
+{0,0,6,0,ecl_make_fixnum(300),ecl_make_fixnum(153),(cl_objectfn)L77pprint_logical_block_helper,NULL,ECL_NIL,ecl_make_fixnum(31036)},
+{0,0,2,0,ecl_make_fixnum(301),ecl_make_fixnum(160),(cl_objectfn)LC78pprint_logical_block,NULL,ECL_NIL,ecl_make_fixnum(31732)},
+{0,0,2,0,ecl_make_fixnum(305),ecl_make_fixnum(162),(cl_objectfn)LC79pprint_exit_if_list_exhausted,NULL,ECL_NIL,ecl_make_fixnum(33747)},
+{0,0,2,0,ecl_make_fixnum(307),ecl_make_fixnum(164),(cl_objectfn)LC80pprint_pop,NULL,ECL_NIL,ecl_make_fixnum(34162)},
+{0,0,-1,0,ecl_make_fixnum(308),ecl_make_fixnum(189),(cl_objectfn)L84make_pprint_dispatch_entry,NULL,ECL_NIL,ecl_make_fixnum(41288)},
+{0,0,3,0,ecl_make_fixnum(313),ecl_make_fixnum(183),(cl_objectfn)L90_print_pprint_dispatch_entry,NULL,ECL_NIL,ecl_make_fixnum(41750)},
+{0,0,-1,0,ecl_make_fixnum(314),ecl_make_fixnum(201),(cl_objectfn)L91make_pprint_dispatch_table,NULL,ECL_NIL,ecl_make_fixnum(42095)},
+{0,0,3,0,ecl_make_fixnum(318),ecl_make_fixnum(197),(cl_objectfn)L95_print_pprint_dispatch_table,NULL,ECL_NIL,ecl_make_fixnum(42654)},
+{0,0,2,0,ecl_make_fixnum(319),ecl_make_fixnum(207),(cl_objectfn)L99default_pprint_dispatch,NULL,ECL_NIL,ecl_make_fixnum(44243)},
+{0,0,2,0,ecl_make_fixnum(320),ecl_make_fixnum(212),(cl_objectfn)L100pprint_array,NULL,ECL_NIL,ecl_make_fixnum(47585)},
+{0,0,2,0,ecl_make_fixnum(321),ecl_make_fixnum(214),(cl_objectfn)L103pprint_vector,NULL,ECL_NIL,ecl_make_fixnum(47984)},
+{0,0,-3,0,ecl_make_fixnum(322),ecl_make_fixnum(224),(cl_objectfn)L115pprint_lambda_list,NULL,ECL_NIL,ecl_make_fixnum(50338)},
+{0,0,-3,0,ecl_make_fixnum(323),ecl_make_fixnum(229),(cl_objectfn)L117pprint_lambda,NULL,ECL_NIL,ecl_make_fixnum(52518)},
+{0,0,-3,0,ecl_make_fixnum(324),ecl_make_fixnum(231),(cl_objectfn)L119pprint_block,NULL,ECL_NIL,ecl_make_fixnum(52712)},
+{0,0,-3,0,ecl_make_fixnum(325),ecl_make_fixnum(233),(cl_objectfn)L123pprint_flet,NULL,ECL_NIL,ecl_make_fixnum(52860)},
+{0,0,-3,0,ecl_make_fixnum(326),ecl_make_fixnum(235),(cl_objectfn)L127pprint_let,NULL,ECL_NIL,ecl_make_fixnum(53120)},
+{0,0,-3,0,ecl_make_fixnum(327),ecl_make_fixnum(237),(cl_objectfn)L129pprint_progn,NULL,ECL_NIL,ecl_make_fixnum(53325)},
+{0,0,-3,0,ecl_make_fixnum(328),ecl_make_fixnum(239),(cl_objectfn)L131pprint_progv,NULL,ECL_NIL,ecl_make_fixnum(53459)},
+{0,0,-3,0,ecl_make_fixnum(329),ecl_make_fixnum(241),(cl_objectfn)L132pprint_quote,NULL,ECL_NIL,ecl_make_fixnum(53626)},
+{0,0,-3,0,ecl_make_fixnum(330),ecl_make_fixnum(242),(cl_objectfn)L134pprint_setq,NULL,ECL_NIL,ecl_make_fixnum(54080)},
+{0,0,-3,0,ecl_make_fixnum(331),ecl_make_fixnum(243),(cl_objectfn)L136pprint_tagbody,NULL,ECL_NIL,ecl_make_fixnum(55526)},
+{0,0,-3,0,ecl_make_fixnum(332),ecl_make_fixnum(245),(cl_objectfn)L139pprint_case,NULL,ECL_NIL,ecl_make_fixnum(55774)},
+{0,0,-3,0,ecl_make_fixnum(333),ecl_make_fixnum(247),(cl_objectfn)L141pprint_defun,NULL,ECL_NIL,ecl_make_fixnum(55991)},
+{0,0,-3,0,ecl_make_fixnum(334),ecl_make_fixnum(249),(cl_objectfn)L143pprint_destructuring_bind,NULL,ECL_NIL,ecl_make_fixnum(56203)},
+{0,0,-3,0,ecl_make_fixnum(335),ecl_make_fixnum(251),(cl_objectfn)L147pprint_do,NULL,ECL_NIL,ecl_make_fixnum(56418)},
+{0,0,-3,0,ecl_make_fixnum(336),ecl_make_fixnum(253),(cl_objectfn)L150pprint_dolist,NULL,ECL_NIL,ecl_make_fixnum(57034)},
+{0,0,-3,0,ecl_make_fixnum(337),ecl_make_fixnum(255),(cl_objectfn)L153pprint_typecase,NULL,ECL_NIL,ecl_make_fixnum(57525)},
+{0,0,-3,0,ecl_make_fixnum(338),ecl_make_fixnum(256),(cl_objectfn)L155pprint_prog,NULL,ECL_NIL,ecl_make_fixnum(57730)},
+{0,0,-3,0,ecl_make_fixnum(339),ecl_make_fixnum(258),(cl_objectfn)L157pprint_function_call,NULL,ECL_NIL,ecl_make_fixnum(58116)},
+};

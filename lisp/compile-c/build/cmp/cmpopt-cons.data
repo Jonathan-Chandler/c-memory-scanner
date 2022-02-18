@@ -1,0 +1,15 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)547, (cl_index)547,
+        (ecl_base_char*)
+"((:object) :object \"ECL_CONS_CAR(#0)\" :one-liner t :side-effects nil) c::cons-ca"
+ "r ((:object) :object \"ECL_CONS_CDR(#0)\" :one-liner t :side-effects nil) c::cons-"
+ "cdr (nil) c::simple-optimizer-function c::define-simple-optimizer :read-only c::"
+ "optional-type-check c::policy-assume-right-type c::policy-inline-accessors 0 si:"
+ ":dm-too-few-arguments si::dm-too-many-arguments 0 0 \"COMPILER\" ((c::c cons) c::v"
+ "alue) ((:object :object) :object \"@0;(ECL_CONS_CAR(#0)=#1,#0)\" :one-liner t) ((:"
+ "object :object) :object \"@0;(ECL_CONS_CDR(#0)=#1,#0)\" :one-liner t)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

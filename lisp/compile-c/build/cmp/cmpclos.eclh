@@ -1,0 +1,37 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1maybe_optimize_generic_function(cl_object , cl_object );
+static cl_object L3precompute_applicable_methods(cl_object , cl_object );
+static cl_object LC2applicable_method_p(cl_narg, cl_object , ...);
+static cl_object L4find_slot_accessors(cl_object );
+static cl_object L5maybe_optimize_slot_accessor(cl_object , cl_object , cl_object );
+static cl_object L6try_optimize_slot_reader(cl_object , cl_object );
+static cl_object L7try_optimize_slot_writer(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 20
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 6
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(8),ecl_make_fixnum(0),(cl_objectfn)L1maybe_optimize_generic_function,NULL,ECL_NIL,ecl_make_fixnum(640)},
+{0,0,2,0,ecl_make_fixnum(10),ecl_make_fixnum(1),(cl_objectfn)L3precompute_applicable_methods,NULL,ECL_NIL,ecl_make_fixnum(1233)},
+{0,0,1,0,ecl_make_fixnum(12),ecl_make_fixnum(2),(cl_objectfn)L4find_slot_accessors,NULL,ECL_NIL,ecl_make_fixnum(2305)},
+{0,0,3,0,ecl_make_fixnum(13),ecl_make_fixnum(5),(cl_objectfn)L5maybe_optimize_slot_accessor,NULL,ECL_NIL,ecl_make_fixnum(2873)},
+{0,0,2,0,ecl_make_fixnum(16),ecl_make_fixnum(6),(cl_objectfn)L6try_optimize_slot_reader,NULL,ECL_NIL,ecl_make_fixnum(3625)},
+{0,0,2,0,ecl_make_fixnum(19),ecl_make_fixnum(7),(cl_objectfn)L7try_optimize_slot_writer,NULL,ECL_NIL,ecl_make_fixnum(4262)},
+};

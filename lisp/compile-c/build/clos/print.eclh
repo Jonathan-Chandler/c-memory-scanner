@@ -1,0 +1,55 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+#include <complex.h>
+#include <float.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L3make_load_form_saving_slots(cl_narg, cl_object , ...);
+#define L3make_load_form_saving_slotskeys (&VV[52])
+static cl_object LC2primitive_nil(volatile cl_object  *);
+static cl_object LC1primitive_set(volatile cl_object  *, cl_object );
+static cl_object LC5make_load_form(cl_narg, cl_object , ...);
+static cl_object LC4maybe_quote(cl_object );
+static cl_object LC6make_load_form(cl_narg, cl_object , ...);
+static cl_object LC7make_load_form(cl_narg, cl_object , ...);
+static cl_object LC8make_load_form(cl_narg, cl_object , ...);
+static cl_object L9no_make_load_form(cl_object );
+static cl_object LC10make_load_form(cl_narg, cl_object , ...);
+static cl_object LC11make_load_form(cl_narg, cl_object , ...);
+static cl_object LC13print_object(cl_object , cl_object );
+static cl_object LC12si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object LC15print_object(cl_object , cl_object );
+static cl_object LC14si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object LC17print_object(cl_object , cl_object );
+static cl_object LC16si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object LC19print_object(cl_object , cl_object );
+static cl_object LC18si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object LC21print_object(cl_object , cl_object );
+static cl_object LC20si___print_unreadable_object_body_(cl_narg, ...);
+static cl_object L22float_nan_string(cl_object );
+static cl_object L23float_infinity_string(cl_object );
+static cl_object LC24describe_object(cl_object , cl_object );
+static cl_object LC25describe_object(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 58
+#define VMtemp 21
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 3
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(51),ecl_make_fixnum(0),(cl_objectfn)L3make_load_form_saving_slots,NULL,ECL_NIL,ecl_make_fixnum(818)},
+{0,0,1,0,ecl_make_fixnum(56),ecl_make_fixnum(24),(cl_objectfn)L22float_nan_string,NULL,ECL_NIL,ecl_make_fixnum(7842)},
+{0,0,1,0,ecl_make_fixnum(57),ecl_make_fixnum(43),(cl_objectfn)L23float_infinity_string,NULL,ECL_NIL,ecl_make_fixnum(8562)},
+};

@@ -1,0 +1,21 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1003, (cl_index)1003,
+        (ecl_base_char*)
+"\"The block name ~s is not a symbol.\" :kind c::lexical :var c::*cmp-env* c::*setj"
+ "mps* :local-vars :args c::c1block c::*exit* c::blk c::*destination* c::*env-lvl*"
+ " c::var \"cl_object \" \";\" c::*volatile* \"env\" \" = env\" \"ECL_NEW_FRAME_ID(cl_env_c"
+ "opy)\" \"ecl_frs_push(cl_env_copy,\" \");\" \"if (__ecl_frs_push_result!=0) {\" c::*unw"
+ "ind-exit* c::frame \"} else {\" \"}\" c::*env* c::c2block \"The block ~s is undefined"
+ ".\" c::clb c::c1return-from c::ccb \"cl_return_from(\" \",\" 0 0 \",ECL_NIL);\" c::c2re"
+ "turn-from 0 c::check-args-number c::cmperr c::make-var c::make-blk c::cmp-env-co"
+ "py c::cmp-env-register-block c::c1progn c::var-ref-ccb c::var-ref-clb c::blk-ref"
+ " c::blk-type c::c1form-type c::values-type-or c::make-c1form* 0 c::blk-var c::va"
+ "r-ref c::check-vref c::wt-nl-open-brace c::var-kind c::next-lcl c::wt-nl c::env-"
+ "grows c::bind c::unwind-exit c::c2expr c::wt c::wt-nl-close-brace 0 c::cmp-env-s"
+ "earch-block c::c1expr c::add-to-read-nodes 0 c::c2expr* c::blk-name c::add-symbo"
+ "l c::blk-destination c::blk-exit \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

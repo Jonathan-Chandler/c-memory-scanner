@@ -1,0 +1,12 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)314, (cl_index)314,
+        (ecl_base_char*)
+"\"21.2.1\" \"UNKNOWN\" \"HOSTTYPE\" \"PROCESSOR_ARCHITECTURE\" \"I686\" \"HOSTNAME\" \"COMPUT"
+ "ERNAME\" \"PROCESSOR_LEVEL\" :mingw32 \"mingw32\" \"COMMON-LISP\" \"HOME\" ((\"**;*.*\" \"~/"
+ "**/*.*\")) \"TMPDIR\" \"TEMP\" \"TMP\" \"./\" \"**;*.*\" \"~A/**/*.*\" \"SYS\" \"**/*.*\" \"ECLSRC"
+ "DIR\" #P\"C:/work/lisp/ecl-21.2.1/ecl-21.2.1/src/\" \"SRC\" \"../contrib/\" \"EXT\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};
