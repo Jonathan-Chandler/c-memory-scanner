@@ -33,8 +33,8 @@ int main(void)
   pMain = (pAppMain)GetProcAddress(hDll, "app_main");
   
   /*Call the function*/
-  printf("magicNumber = %d",magicNumber);
-  printf("&magicNumber = %08x",(uint32_t)&magicNumber);
+  printf("magicNumber = %d\n",magicNumber);
+  printf("&magicNumber = %08x\n",(uint32_t)&magicNumber);
   pMain();
   getchar();
   return 0;
