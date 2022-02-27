@@ -1,0 +1,13 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)363, (cl_index)363,
+        (ecl_base_char*)
+":kind c::global \"IGNORE/IGNORABLE declarations in DECLAIM are ignored\" :initial-"
+ "value c::*cmp-env* c::*cmp-env-root* c::process-declaim-args (declare (notinline"
+ " mapc)) (:compile-toplevel) 'proclaim (:load-toplevel :execute) declaim ext::c-d"
+ "eclaim 0 c::c1body c::cmpwarn-style c::add-one-declaration c::c1make-global-vari"
+ "able c::cmp-env-register-var 0 0 \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

@@ -63,9 +63,11 @@ int main(void)
   }
 
   printf("Dummy waiting for getchar2: ");
-  dummy = getchar();
 
-
+  while (true)
+  {
+    sleep 5;
+  }
 
   // pretend to use the char
   if (dummy == 0xFF)

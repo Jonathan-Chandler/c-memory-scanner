@@ -33,12 +33,13 @@ typedef unsigned int __stdcall (*pAppMain)(LPVOID lpParam);
 ADD_APP_MAIN_API DWORD WINAPI app_reconfigure_path(LPVOID lpThreadParameter)
 {
   char* lpcAppMainDllDir = "C:\\work\\c\\memscan-dll\\ecl-21.2.1-tests\\build\\;";
-  char* lpcAppMainDll = "C:\\work\\c\\memscan-dll\\ecl-21.2.1-tests\\build\\app_main.dll";
   char lpcOriginalPath[4096] = {0};
   char lpcNewPath[4096] = {0};
+#if 0
+  char* lpcAppMainDll = "C:\\work\\c\\memscan-dll\\ecl-21.2.1-tests\\build\\app_main.dll";
   HANDLE hDll;
-  //LPVOID pMain;
   pAppMain pMain;
+#endif
 
   GetEnvironmentVariable("PATH", lpcOriginalPath, sizeof(lpcOriginalPath));
   printf("original PATH: %s\n\n", lpcOriginalPath);
@@ -48,6 +49,7 @@ ADD_APP_MAIN_API DWORD WINAPI app_reconfigure_path(LPVOID lpThreadParameter)
   printf("new PATH: %s\n\n", lpcNewPath);
   SetEnvironmentVariable("PATH", lpcNewPath);
 
+#if 0
   if ((hDll = LoadLibraryA(lpcAppMainDll)) == 0)
   {
     printf("load library returns null\n");
@@ -69,6 +71,7 @@ ADD_APP_MAIN_API DWORD WINAPI app_reconfigure_path(LPVOID lpThreadParameter)
   //CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)pMain, NULL, 0, NULL);
   //_beginthread((LPTHREAD_START_ROUTINE)pMain, 0, NULL);
   GC_beginthreadex(NULL, 268435456, pMain, NULL, 0, NULL);
+#endif
 
   //pMain();
   

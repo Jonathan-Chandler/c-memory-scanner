@@ -1,0 +1,81 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1effective_method_function(cl_narg, cl_object , ...);
+static cl_object L3combine_method_functions(cl_object , cl_object );
+static cl_object LC2__lambda8(cl_narg, cl_object , cl_object , ...);
+static cl_object LC4call_method(cl_object , cl_object );
+static cl_object L5call_next_method(cl_narg, ...);
+static cl_object L6next_method_p();
+static cl_object LC7__lambda27(cl_object , cl_object );
+static cl_object LC8__lambda31(cl_object , cl_object );
+static cl_object L9error_qualifier(cl_object , cl_object );
+static cl_object L11standard_main_effective_method(cl_object , cl_object , cl_object );
+static cl_object LC10__lambda32(cl_narg, cl_object , cl_object , ...);
+static cl_object L13standard_compute_effective_method(cl_object , cl_object );
+static cl_object LC12__lambda68(cl_narg, ...);
+static cl_object L14search_method_combination(cl_object volatile );
+static cl_object L15install_method_combination(cl_object volatile , cl_object volatile );
+static cl_object L16make_method_combination(cl_object , cl_object , cl_object );
+static cl_object L17find_method_combination(cl_object , cl_object , cl_object );
+static cl_object L18define_simple_method_combination(cl_narg, cl_object , ...);
+#define L18define_simple_method_combinationkeys (&VV[79])
+static cl_object L20define_complex_method_combination(cl_object );
+static cl_object LC19syntax_error(volatile cl_object  *);
+static cl_object LC21define_method_combination(cl_object , cl_object );
+ECL_DLLEXPORT cl_object cl_method_combination_error(cl_narg, cl_object , ...);
+ECL_DLLEXPORT cl_object cl_invalid_method_error(cl_narg, cl_object , cl_object , ...);
+ECL_DLLEXPORT cl_object clos_std_compute_effective_method(cl_object , cl_object , cl_object );
+ECL_DLLEXPORT cl_object clos_compute_effective_method_function(cl_object , cl_object , cl_object );
+static cl_object L22compute_effective_method(cl_object , cl_object , cl_object );
+static cl_object LC24__lambda173(cl_narg, cl_object , cl_object , ...);
+static cl_object LC26__lambda189(cl_narg, cl_object , cl_object , ...);
+static cl_object LC28__lambda205(cl_narg, cl_object , cl_object , ...);
+static cl_object LC30__lambda221(cl_narg, cl_object , cl_object , ...);
+static cl_object LC32__lambda237(cl_narg, cl_object , cl_object , ...);
+static cl_object LC34__lambda253(cl_narg, cl_object , cl_object , ...);
+static cl_object LC36__lambda269(cl_narg, cl_object , cl_object , ...);
+static cl_object LC38__lambda285(cl_narg, cl_object , cl_object , ...);
+static cl_object LC40__lambda301(cl_narg, cl_object , cl_object , ...);
+static cl_object LC23__lambda186(cl_object );
+static cl_object LC25__lambda202(cl_object );
+static cl_object LC27__lambda218(cl_object );
+static cl_object LC29__lambda234(cl_object );
+static cl_object LC31__lambda250(cl_object );
+static cl_object LC33__lambda266(cl_object );
+static cl_object LC35__lambda282(cl_object );
+static cl_object LC37__lambda298(cl_object );
+static cl_object LC39__lambda314(cl_object );
+static cl_object Cblock;
+#define VM 88
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 12
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(66),ecl_make_fixnum(5),(cl_objectfn)L1effective_method_function,NULL,ECL_NIL,ecl_make_fixnum(2487)},
+{0,0,2,0,ecl_make_fixnum(68),ecl_make_fixnum(6),(cl_objectfn)LC4call_method,NULL,ECL_NIL,ecl_make_fixnum(3979)},
+{0,0,-1,0,ecl_make_fixnum(71),ecl_make_fixnum(8),(cl_objectfn)L5call_next_method,NULL,ECL_NIL,ecl_make_fixnum(4202)},
+{0,0,0,0,ecl_make_fixnum(72),ecl_make_fixnum(9),(cl_objectfn)L6next_method_p,NULL,ECL_NIL,ecl_make_fixnum(4445)},
+{0,0,2,0,ecl_make_fixnum(73),ecl_make_fixnum(18),(cl_objectfn)L13standard_compute_effective_method,NULL,ECL_NIL,ecl_make_fixnum(5639)},
+{0,0,1,0,ecl_make_fixnum(74),ecl_make_fixnum(22),(cl_objectfn)L14search_method_combination,NULL,ECL_NIL,ecl_make_fixnum(8442)},
+{0,0,2,0,ecl_make_fixnum(75),ecl_make_fixnum(23),(cl_objectfn)L15install_method_combination,NULL,ECL_NIL,ecl_make_fixnum(8637)},
+{0,0,3,0,ecl_make_fixnum(76),ecl_make_fixnum(24),(cl_objectfn)L16make_method_combination,NULL,ECL_NIL,ecl_make_fixnum(8799)},
+{0,0,3,0,ecl_make_fixnum(77),ecl_make_fixnum(25),(cl_objectfn)L17find_method_combination,NULL,ECL_NIL,ecl_make_fixnum(9027)},
+{0,0,-2,0,ecl_make_fixnum(78),ecl_make_fixnum(35),(cl_objectfn)L18define_simple_method_combination,NULL,ECL_NIL,ecl_make_fixnum(9368)},
+{0,0,2,0,ecl_make_fixnum(86),ecl_make_fixnum(52),(cl_objectfn)LC21define_method_combination,NULL,ECL_NIL,ecl_make_fixnum(14154)},
+{0,0,3,0,ecl_make_fixnum(87),ecl_make_fixnum(55),(cl_objectfn)L22compute_effective_method,NULL,ECL_NIL,ecl_make_fixnum(16354)},
+};

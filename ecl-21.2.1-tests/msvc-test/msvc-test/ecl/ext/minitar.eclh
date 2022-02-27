@@ -1,0 +1,55 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1make_block_buffer();
+static cl_object L2skip_n_blocks(cl_object , cl_object );
+static cl_object L3ascii_subseq(cl_object , cl_object , cl_object );
+static cl_object L4block_asciiz_string(cl_object , cl_object , cl_object );
+static cl_object L5prefix(cl_object );
+static cl_object L6name(cl_object );
+static cl_object L7payload_size(cl_object );
+static cl_object L8nth_block(cl_object volatile , cl_object volatile );
+static cl_object L9payload_type(cl_object );
+static cl_object L10full_path(cl_object );
+static cl_object L11save_file(cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object L12unpack_tarball(volatile cl_narg, cl_object volatile , ...);
+#define L12unpack_tarballkeys (&VV[37])
+static cl_object L13contents(cl_object volatile );
+static cl_object Cblock;
+#define VM 39
+#define VMtemp 3
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_base_string(_ecl_static_0,"QL-MINITAR",10,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 13
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,0,0,ecl_make_fixnum(25),ecl_make_fixnum(0),(cl_objectfn)L1make_block_buffer,NULL,ECL_NIL,ecl_make_fixnum(209)},
+{0,0,2,0,ecl_make_fixnum(26),ecl_make_fixnum(1),(cl_objectfn)L2skip_n_blocks,NULL,ECL_NIL,ecl_make_fixnum(310)},
+{0,0,3,0,ecl_make_fixnum(27),ecl_make_fixnum(2),(cl_objectfn)L3ascii_subseq,NULL,ECL_NIL,ecl_make_fixnum(437)},
+{0,0,3,0,ecl_make_fixnum(28),ecl_make_fixnum(3),(cl_objectfn)L4block_asciiz_string,NULL,ECL_NIL,ecl_make_fixnum(661)},
+{0,0,1,0,ecl_make_fixnum(29),ecl_make_fixnum(4),(cl_objectfn)L5prefix,NULL,ECL_NIL,ecl_make_fixnum(873)},
+{0,0,1,0,ecl_make_fixnum(30),ecl_make_fixnum(5),(cl_objectfn)L6name,NULL,ECL_NIL,ecl_make_fixnum(974)},
+{0,0,1,0,ecl_make_fixnum(31),ecl_make_fixnum(6),(cl_objectfn)L7payload_size,NULL,ECL_NIL,ecl_make_fixnum(1034)},
+{0,0,2,0,ecl_make_fixnum(32),ecl_make_fixnum(8),(cl_objectfn)L8nth_block,NULL,ECL_NIL,ecl_make_fixnum(1137)},
+{0,0,1,0,ecl_make_fixnum(33),ecl_make_fixnum(13),(cl_objectfn)L9payload_type,NULL,ECL_NIL,ecl_make_fixnum(1354)},
+{0,0,1,0,ecl_make_fixnum(34),ecl_make_fixnum(15),(cl_objectfn)L10full_path,NULL,ECL_NIL,ecl_make_fixnum(1530)},
+{0,0,3,0,ecl_make_fixnum(35),ecl_make_fixnum(16),(cl_objectfn)L11save_file,NULL,ECL_NIL,ecl_make_fixnum(1692)},
+{0,0,-2,0,ecl_make_fixnum(36),ecl_make_fixnum(22),(cl_objectfn)L12unpack_tarball,NULL,ECL_NIL,ecl_make_fixnum(2297)},
+{0,0,1,0,ecl_make_fixnum(38),ecl_make_fixnum(23),(cl_objectfn)L13contents,NULL,ECL_NIL,ecl_make_fixnum(3541)},
+};

@@ -1,0 +1,15 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)494, (cl_index)494,
+        (ecl_base_char*)
+"\"ECL\" si::autoload with-compilation-unit \"~S ~A\" \"EDITOR\" \"vi\" ed \"\nUnfortunatel"
+ "y, when linked against the Boehm-Weiser garbage collector,\nECL has no means to f"
+ "ind out the amount of memory used. Please use\nsome other routine (such as top in"
+ " Unix or the Ctrl+Alt+Del combination\nin Windows) to learn this.\" room si::dump-"
+ "help-file si::search-help-file si::help 0 0 si::dm-too-few-arguments 0 0 0 si::p"
+ "rint-doc \"SYSTEM\" \"sys:ecl-help\" \"CL-USER\" (si::help si::help* ext::gc si::autol"
+ "oad ext::quit)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

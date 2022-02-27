@@ -1,0 +1,7 @@
+(require "asdf")
+(push #p"./slime/swank/" asdf:*central-registry*)
+(push #p"./slime/contrib/" asdf:*central-registry*)
+(require "swank")
+("SB-BSD-SOCKETS" "SOCKETS")
+(mp:process-run-function "swank" #'(lambda () (swank:create-server :dont-close t :port 4005)))
+

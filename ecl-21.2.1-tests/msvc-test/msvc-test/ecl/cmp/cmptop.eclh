@@ -1,0 +1,105 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1t1expr(cl_object );
+static cl_object L2t1expr_(cl_object );
+static cl_object L3t1_c1expr(cl_object );
+static cl_object L4t2expr(cl_object );
+static cl_object L5emit_local_funs();
+static cl_object L6ctop_write(cl_object , cl_object , cl_object );
+static cl_object L7emit_toplevel_form(cl_object volatile , cl_object volatile );
+static cl_object L8c1eval_when(cl_object );
+static cl_object L9t2compiler_let(cl_object , cl_object , cl_object , cl_object );
+static cl_object L10t2progn(cl_object , cl_object );
+static cl_object L11exported_fname(cl_object );
+static cl_object L12new_defun(cl_narg, cl_object , ...);
+static cl_object L13print_function(cl_object );
+static cl_object LC14and_(cl_object , cl_object );
+static cl_object L15wt_function_locals(cl_narg, ...);
+static cl_object L16rep_type(cl_object );
+static cl_object L17t1ordinary(cl_object );
+static cl_object L18p1ordinary(cl_object , cl_object , cl_object );
+static cl_object L19t2ordinary(cl_object , cl_object );
+static cl_object L20add_load_time_values(cl_object );
+static cl_object L21t1defmacro(cl_object );
+static cl_object L22c1load_time_value(cl_object );
+static cl_object L23t2load_time_value(cl_object , cl_object , cl_object );
+static cl_object L24t2make_form(cl_object , cl_object , cl_object );
+static cl_object L25t2init_form(cl_object , cl_object , cl_object );
+static cl_object L26parse_cvspecs(cl_object );
+static cl_object L27locative_type_from_var_kind(cl_object );
+static cl_object L28build_debug_lexical_env(cl_narg, cl_object , ...);
+static cl_object L29pop_debug_lexical_env();
+static cl_object L30t3local_fun(cl_object );
+static cl_object L31t3local_fun_body(cl_object volatile );
+static cl_object L32t3local_fun_declaration(cl_object );
+static cl_object L34fun_closure_variables(cl_object );
+static cl_object LC33__lambda147(cl_narg, cl_object , ...);
+static cl_object L35fun_lexical_levels(cl_object );
+static cl_object L36t3local_fun_closure_scan(cl_object );
+static cl_object L37t1fset(cl_object );
+static cl_object L38c1fset(cl_object );
+static cl_object L39p1fset(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L40t2fset(cl_narg, cl_object , ...);
+static cl_object L41c2fset(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L42output_cfuns(cl_object );
+static cl_object Cblock;
+#define VM 362
+#define VMtemp 2
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 39
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(240),ecl_make_fixnum(3),(cl_objectfn)L1t1expr,NULL,ECL_NIL,ecl_make_fixnum(654)},
+{0,0,1,0,ecl_make_fixnum(243),ecl_make_fixnum(12),(cl_objectfn)L2t1expr_,NULL,ECL_NIL,ecl_make_fixnum(992)},
+{0,0,1,0,ecl_make_fixnum(251),ecl_make_fixnum(14),(cl_objectfn)L3t1_c1expr,NULL,ECL_NIL,ecl_make_fixnum(2531)},
+{0,0,1,0,ecl_make_fixnum(253),ecl_make_fixnum(18),(cl_objectfn)L4t2expr,NULL,ECL_NIL,ecl_make_fixnum(2701)},
+{0,0,3,0,ecl_make_fixnum(260),ecl_make_fixnum(87),(cl_objectfn)L6ctop_write,NULL,ECL_NIL,ecl_make_fixnum(4179)},
+{0,0,1,0,ecl_make_fixnum(275),ecl_make_fixnum(106),(cl_objectfn)L8c1eval_when,NULL,ECL_NIL,ecl_make_fixnum(9576)},
+{0,0,4,0,ecl_make_fixnum(278),ecl_make_fixnum(107),(cl_objectfn)L9t2compiler_let,NULL,ECL_NIL,ecl_make_fixnum(10513)},
+{0,0,2,0,ecl_make_fixnum(280),ecl_make_fixnum(108),(cl_objectfn)L10t2progn,NULL,ECL_NIL,ecl_make_fixnum(10633)},
+{0,0,1,0,ecl_make_fixnum(281),ecl_make_fixnum(111),(cl_objectfn)L11exported_fname,NULL,ECL_NIL,ecl_make_fixnum(10753)},
+{0,0,-2,0,ecl_make_fixnum(283),ecl_make_fixnum(113),(cl_objectfn)L12new_defun,NULL,ECL_NIL,ecl_make_fixnum(11047)},
+{0,0,1,0,ecl_make_fixnum(284),ecl_make_fixnum(115),(cl_objectfn)L13print_function,NULL,ECL_NIL,ecl_make_fixnum(11645)},
+{0,0,2,0,ecl_make_fixnum(289),ecl_make_fixnum(118),(cl_objectfn)LC14and_,NULL,ECL_NIL,ecl_make_fixnum(11800)},
+{0,0,-1,0,ecl_make_fixnum(290),ecl_make_fixnum(133),(cl_objectfn)L15wt_function_locals,NULL,ECL_NIL,ecl_make_fixnum(15111)},
+{0,0,1,0,ecl_make_fixnum(292),ecl_make_fixnum(138),(cl_objectfn)L16rep_type,NULL,ECL_NIL,ecl_make_fixnum(16350)},
+{0,0,1,0,ecl_make_fixnum(293),ecl_make_fixnum(141),(cl_objectfn)L17t1ordinary,NULL,ECL_NIL,ecl_make_fixnum(16534)},
+{0,0,3,0,ecl_make_fixnum(295),ecl_make_fixnum(142),(cl_objectfn)L18p1ordinary,NULL,ECL_NIL,ecl_make_fixnum(16745)},
+{0,0,2,0,ecl_make_fixnum(296),ecl_make_fixnum(147),(cl_objectfn)L19t2ordinary,NULL,ECL_NIL,ecl_make_fixnum(16824)},
+{0,0,1,0,ecl_make_fixnum(299),ecl_make_fixnum(149),(cl_objectfn)L20add_load_time_values,NULL,ECL_NIL,ecl_make_fixnum(17030)},
+{0,0,1,0,ecl_make_fixnum(300),ecl_make_fixnum(150),(cl_objectfn)L21t1defmacro,NULL,ECL_NIL,ecl_make_fixnum(17408)},
+{0,0,1,0,ecl_make_fixnum(303),ecl_make_fixnum(152),(cl_objectfn)L22c1load_time_value,NULL,ECL_NIL,ecl_make_fixnum(17842)},
+{0,0,3,0,ecl_make_fixnum(307),ecl_make_fixnum(153),(cl_objectfn)L23t2load_time_value,NULL,ECL_NIL,ecl_make_fixnum(18595)},
+{0,0,3,0,ecl_make_fixnum(308),ecl_make_fixnum(154),(cl_objectfn)L24t2make_form,NULL,ECL_NIL,ecl_make_fixnum(18806)},
+{0,0,3,0,ecl_make_fixnum(309),ecl_make_fixnum(155),(cl_objectfn)L25t2init_form,NULL,ECL_NIL,ecl_make_fixnum(19011)},
+{0,0,1,0,ecl_make_fixnum(310),ecl_make_fixnum(159),(cl_objectfn)L26parse_cvspecs,NULL,ECL_NIL,ecl_make_fixnum(19216)},
+{0,0,1,0,ecl_make_fixnum(311),ecl_make_fixnum(161),(cl_objectfn)L27locative_type_from_var_kind,NULL,ECL_NIL,ecl_make_fixnum(20037)},
+{0,0,-2,0,ecl_make_fixnum(312),ecl_make_fixnum(179),(cl_objectfn)L28build_debug_lexical_env,NULL,ECL_NIL,ecl_make_fixnum(20842)},
+{0,0,0,0,ecl_make_fixnum(316),ecl_make_fixnum(180),(cl_objectfn)L29pop_debug_lexical_env,NULL,ECL_NIL,ecl_make_fixnum(22652)},
+{0,0,1,0,ecl_make_fixnum(317),ecl_make_fixnum(187),(cl_objectfn)L30t3local_fun,NULL,ECL_NIL,ecl_make_fixnum(22728)},
+{0,0,1,0,ecl_make_fixnum(321),ecl_make_fixnum(188),(cl_objectfn)L31t3local_fun_body,NULL,ECL_NIL,ecl_make_fixnum(24223)},
+{0,0,1,0,ecl_make_fixnum(329),ecl_make_fixnum(204),(cl_objectfn)L32t3local_fun_declaration,NULL,ECL_NIL,ecl_make_fixnum(24986)},
+{0,0,1,0,ecl_make_fixnum(336),ecl_make_fixnum(205),(cl_objectfn)L34fun_closure_variables,NULL,ECL_NIL,ecl_make_fixnum(27039)},
+{0,0,1,0,ecl_make_fixnum(341),ecl_make_fixnum(207),(cl_objectfn)L35fun_lexical_levels,NULL,ECL_NIL,ecl_make_fixnum(27679)},
+{0,0,1,0,ecl_make_fixnum(342),ecl_make_fixnum(212),(cl_objectfn)L36t3local_fun_closure_scan,NULL,ECL_NIL,ecl_make_fixnum(27782)},
+{0,0,1,0,ecl_make_fixnum(344),ecl_make_fixnum(213),(cl_objectfn)L37t1fset,NULL,ECL_NIL,ecl_make_fixnum(29149)},
+{0,0,1,0,ecl_make_fixnum(345),ecl_make_fixnum(223),(cl_objectfn)L38c1fset,NULL,ECL_NIL,ecl_make_fixnum(29373)},
+{0,0,7,0,ecl_make_fixnum(350),ecl_make_fixnum(224),(cl_objectfn)L39p1fset,NULL,ECL_NIL,ecl_make_fixnum(31595)},
+{0,0,-2,0,ecl_make_fixnum(351),ecl_make_fixnum(225),(cl_objectfn)L40t2fset,NULL,ECL_NIL,ecl_make_fixnum(31708)},
+{0,0,6,0,ecl_make_fixnum(352),ecl_make_fixnum(232),(cl_objectfn)L41c2fset,NULL,ECL_NIL,ecl_make_fixnum(31770)},
+{0,0,1,0,ecl_make_fixnum(357),ecl_make_fixnum(239),(cl_objectfn)L42output_cfuns,NULL,ECL_NIL,ecl_make_fixnum(32510)},
+};

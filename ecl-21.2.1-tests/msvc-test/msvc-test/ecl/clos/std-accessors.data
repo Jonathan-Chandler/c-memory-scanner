@@ -1,0 +1,15 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)493, (cl_index)493,
+        (ecl_base_char*)
+"\"List instead of a slot definition object\" clos::safe-slot-definition-location c"
+ "los::*clos-booted* #:foo clos::safe-add-method clos::direct-slots 0 0 0 clos::al"
+ "location :slot-definition :generic-function :qualifiers (clos::object) :speciali"
+ "zers clos::*early-methods* (clos::value clos::object) clos::readers (clos::self)"
+ " clos::writers (clos::value clos::self) clos::std-class-generate-accessors clos:"
+ ":std-class clos::slots clos::direct-subclasses 0 0 0 0 0 clos::wrapped-method-fu"
+ "nction \"CLOS\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

@@ -1,0 +1,62 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1__lambda3(cl_object , cl_object );
+static cl_object L2simplify_arithmetic(cl_object , cl_object , cl_object );
+static cl_object LC3__lambda11(cl_object , cl_object );
+static cl_object LC4__lambda15(cl_object , cl_object );
+static cl_object LC5__lambda19(cl_object , cl_object );
+static cl_object LC6__lambda23(cl_object , cl_object );
+static cl_object L7maximum_number_type(cl_narg, cl_object , cl_object , ...);
+#define L7maximum_number_typekeys (&VV[42])
+static cl_object L8ensure_number_type(cl_narg, cl_object , ...);
+#define L8ensure_number_typekeys (&VV[8])
+static cl_object L9ensure_nonrational_type(cl_object );
+static cl_object L10ensure_real_type(cl_object );
+static cl_object L11arithmetic_propagator(cl_object , cl_object , cl_object );
+static cl_object LC12__lambda46(cl_narg, cl_object , cl_object , ...);
+static cl_object LC13__lambda50(cl_narg, cl_object , cl_object , ...);
+static cl_object L14most_generic_number_rep_type(cl_object , cl_object );
+static cl_object L15inline_binop(cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object L16inline_arith_unop(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC17__lambda56(cl_narg, cl_object , ...);
+static cl_object LC18__lambda66(cl_narg, cl_object , cl_object , ...);
+static cl_object LC19__lambda73(cl_narg, cl_object , ...);
+static cl_object LC20__lambda83(cl_narg, cl_object , cl_object , ...);
+static cl_object LC21__lambda91(cl_narg, cl_object , cl_object , ...);
+static cl_object LC22__lambda96(cl_narg, cl_object , cl_object , ...);
+static cl_object LC23__lambda101(cl_narg, cl_object , cl_object , ...);
+static cl_object LC24__lambda106(cl_narg, cl_object , cl_object , cl_object , ...);
+static cl_object LC25__lambda111(cl_narg, cl_object , cl_object , ...);
+static cl_object LC26__lambda116(cl_narg, cl_object , cl_object , ...);
+static cl_object LC27__lambda121(cl_narg, cl_object , cl_object , ...);
+static cl_object Cblock;
+#define VM 64
+#define VMtemp 3
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 9
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,3,0,ecl_make_fixnum(40),ecl_make_fixnum(4),(cl_objectfn)L2simplify_arithmetic,NULL,ECL_NIL,ecl_make_fixnum(1734)},
+{0,0,-3,0,ecl_make_fixnum(41),ecl_make_fixnum(7),(cl_objectfn)L7maximum_number_type,NULL,ECL_NIL,ecl_make_fixnum(3315)},
+{0,0,-2,0,ecl_make_fixnum(45),ecl_make_fixnum(9),(cl_objectfn)L8ensure_number_type,NULL,ECL_NIL,ecl_make_fixnum(4550)},
+{0,0,1,0,ecl_make_fixnum(46),ecl_make_fixnum(10),(cl_objectfn)L9ensure_nonrational_type,NULL,ECL_NIL,ecl_make_fixnum(4694)},
+{0,0,1,0,ecl_make_fixnum(47),ecl_make_fixnum(12),(cl_objectfn)L10ensure_real_type,NULL,ECL_NIL,ecl_make_fixnum(4793)},
+{0,0,3,0,ecl_make_fixnum(48),ecl_make_fixnum(13),(cl_objectfn)L11arithmetic_propagator,NULL,ECL_NIL,ecl_make_fixnum(4893)},
+{0,0,2,0,ecl_make_fixnum(50),ecl_make_fixnum(15),(cl_objectfn)L14most_generic_number_rep_type,NULL,ECL_NIL,ecl_make_fixnum(6058)},
+{0,0,5,0,ecl_make_fixnum(54),ecl_make_fixnum(19),(cl_objectfn)L15inline_binop,NULL,ECL_NIL,ecl_make_fixnum(6297)},
+{0,0,4,0,ecl_make_fixnum(61),ecl_make_fixnum(20),(cl_objectfn)L16inline_arith_unop,NULL,ECL_NIL,ecl_make_fixnum(7722)},
+};

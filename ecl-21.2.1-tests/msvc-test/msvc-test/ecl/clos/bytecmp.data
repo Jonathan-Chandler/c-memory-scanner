@@ -1,0 +1,22 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1114, (cl_index)1114,
+        (ecl_base_char*)
+"0 'ext::lambda-block 0 (or function (satisfies si::valid-function-name-p)) \"DISA"
+ "SSEMBLE cannot accept ~A.\" ext::bc-disassemble (or (satisfies si::valid-function"
+ "-name-p) nil) ext::name (or function cons) ext::definition \"COMPILE can not comp"
+ "ile C closures\" 0 0 \"~&;;; Error: Not a valid lambda expression: ~s.\" \"Function "
+ "name ~s is unbound.\" \"COMPILE can not compile generic functions yet.\" \"The bytec"
+ "odes compiler can not compile C closures\" \"We have lost the original function de"
+ "finition for ~s.\" ext::bc-compile :fasl \"fasc\" 0 :fas 0 \"In COMPILE-FILE-PATHNAM"
+ "E, the type ~A is unsupported.\" ext::bc-compile-file-pathname \"~&;;; Compiling ~"
+ "A.\" :output-file \"COMPILE-FILE invoked with a stream input and no :OUTPUT-FILE\" "
+ "ext::bc-compile-file :cl :ecl-bytecmp ext::install-bytecodes-compiler :cmp ext::"
+ "install-c-compiler #:bytecmp si::dodefpackage 0 0 0 :output-file :type :verbose "
+ ":print :c-file :h-file :data-file :shared-data-file :system-p :load :external-fo"
+ "rmat 0 :verbose :print :load :external-format :output-file 0 0 \"EXT\" \"C\" (\"CL\") "
+ "(\"*SUPPRESS-COMPILER-WARNINGS*\" \"*SUPPRESS-COMPILER-NOTES*\") \"COMMON-LISP\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

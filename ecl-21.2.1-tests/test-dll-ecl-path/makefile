@@ -15,8 +15,10 @@ all:
 	cp app_main.h ../build/
 	cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -Wall -I. -D_THREAD_SAFE -o ../test-dll-ecl-path/app_main.o -c ../test-dll-ecl-path/app_main.c
 	cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -o ../test-dll-ecl-path/app_main.dll -L. ../test-dll-ecl-path/app_main.o -shared -lecl -lws2_32
-	cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -Wall -I. -D_THREAD_SAFE -o ../test-dll-ecl-path/preload.o -c ../test-dll-ecl-path/preload.c -lecl -Lgc/.libs -lgc -lwinpthread
-	cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -o ../test-dll-ecl-path/preload.dll -L. ../test-dll-ecl-path/preload.o -shared -lecl -lws2_32 -Lgc/.libs -lgc -lwinpthread
+	cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -Wall -I. -D_THREAD_SAFE -o ../test-dll-ecl-path/preload.o -c ../test-dll-ecl-path/preload.c -Wl,-Bdynamic -lecl -Wl,-Bstatic -lpthread
+	cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -o ../test-dll-ecl-path/preload.dll -L. ../test-dll-ecl-path/preload.o -shared -Wl,-Bdynamic -lecl -Wl,-Bstatic -lws2_32 -Wl,-Bstatic -lpthread
+	#cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -Wall -I. -D_THREAD_SAFE -o ../test-dll-ecl-path/preload.o -c ../test-dll-ecl-path/preload.c -lecl -Lgc/.libs -lgc -lwinpthread
+	#cd ../build && gcc -shared -DADD_APP_MAIN_EXPORTS -o ../test-dll-ecl-path/preload.dll -L. ../test-dll-ecl-path/preload.o -shared -lecl -lws2_32 -Lgc/.libs -lgc -lwinpthread
 	cd ../test-dll-ecl-path && gcc -I. -c main.c -o darkstone-test.o
 	cd ../test-dll-ecl-path && gcc -o darkstone-test.exe darkstone-test.o
 	cd ../test-dll-ecl-path && cp app_main.dll ../build/
@@ -26,6 +28,8 @@ all:
 
 clean:
 	rm -rf *.o *.exe app_main.o app_main.dll preload.dll ../build/preload.dll ../build/darkstone-test.exe
+
+	#mingw32-gcc.exe -o sample.exe sample.c -Wl,-Bstatic -lpthread -Wl,-Bdynamic -lws2_32
 
 	# ecl + app_main
 	# rm -rf main.o app_main.o app_main.dll main.exe

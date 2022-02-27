@@ -1,0 +1,19 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)849, (cl_index)849,
+        (ecl_base_char*)
+"\"MAKE-ARRAY: Cannot supply both :INITIAL-ELEMENT and :INITIAL-CONTENTS\" \"In MAKE"
+ "-ARRAY: the elements in :INITIAL-CONTENTS do not match the array dimensions\" \"Th"
+ "e rank of the array is ~R,~%~\n               ~7@Tbut ~R ~:*~[indices are~;index "
+ "is~:;indices are~] ~\n               supplied.\" \"Not valid index or indices~%~A~%"
+ "into array~%~A\" \"The fill pointer of the vector ~S zero.\" (1) (satisfies array-h"
+ "as-fill-pointer-p) \"You supplied a fill pointer for an array without it.\" \"Unabl"
+ "e to shrink vector ~S which is type-of ~S\" si::shrink-vector :element-type :init"
+ "ial-element :initial-contents :adjustable :fill-pointer :displaced-to :displaced"
+ "-index-offset si::make-seq-iterator si::seq-iterator-ref si::seq-iterator-next :"
+ "element-type :initial-element :initial-contents :fill-pointer :displaced-to :dis"
+ "placed-index-offset 0 si::simple-array-p \"SYSTEM\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

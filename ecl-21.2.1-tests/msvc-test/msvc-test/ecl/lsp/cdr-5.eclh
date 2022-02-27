@@ -1,0 +1,71 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1__lambda3(cl_object );
+static cl_object LC2__lambda6(cl_object );
+static cl_object LC3__lambda9(cl_object );
+static cl_object LC4__lambda12(cl_object );
+ECL_DLLEXPORT cl_object si_negative_fixnum_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_fixnum_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_fixnum_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_fixnum_p(cl_object );
+ECL_DLLEXPORT cl_object si_array_index_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_integer_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_integer_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_integer_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_integer_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_rational_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_rational_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_rational_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_rational_p(cl_object );
+static cl_object L5ratiop(cl_object );
+ECL_DLLEXPORT cl_object si_positive_ratio_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_ratio_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_ratio_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_ratio_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_real_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_real_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_real_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_real_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_short_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_short_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_short_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_short_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_single_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_single_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_single_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_single_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_double_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_double_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_double_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_double_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_negative_long_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_positive_long_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_negative_long_float_p(cl_object );
+ECL_DLLEXPORT cl_object si_non_positive_long_float_p(cl_object );
+static cl_object Cblock;
+#define VM 8
+#define VMtemp 75
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 1
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(3),ecl_make_fixnum(1),(cl_objectfn)L5ratiop,NULL,ECL_NIL,ecl_make_fixnum(4640)},
+};

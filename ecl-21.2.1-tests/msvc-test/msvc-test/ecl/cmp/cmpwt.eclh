@@ -1,0 +1,92 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1data_permanent_storage_size();
+static cl_object L2data_temporary_storage_size();
+static cl_object L3data_size();
+static cl_object L4data_init(volatile cl_narg, ...);
+static cl_object L5data_get_all_objects();
+static cl_object L6data_dump_array();
+static cl_object L10data_c_dump(cl_object volatile );
+static cl_object LC9output_c_strings(cl_object , cl_object );
+static cl_object LC8output_one_c_string(cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object LC7produce_strings();
+static cl_object L11data_empty_loc();
+static cl_object L14add_load_form(cl_object volatile , cl_object volatile );
+static cl_object LC13maybe_init(volatile cl_object  *, cl_object volatile , cl_object volatile );
+static cl_object LC12__lambda47(cl_narg, cl_object , ...);
+static cl_object L15add_object(cl_narg, cl_object , ...);
+#define L15add_objectkeys (&VV[91])
+static cl_object L16add_symbol(cl_object );
+static cl_object L18add_keywords(cl_object );
+static cl_object LC17__lambda98(cl_object , cl_object );
+static cl_object L19static_base_string_builder(cl_object , cl_object , cl_object );
+static cl_object L20static_single_float_builder(cl_object , cl_object , cl_object );
+static cl_object L21static_double_float_builder(cl_object , cl_object , cl_object );
+static cl_object L22static_long_float_builder(cl_object , cl_object , cl_object );
+static cl_object L23static_rational_builder(cl_object , cl_object , cl_object );
+static cl_object L24static_constant_delegate(cl_object , cl_object , cl_object );
+static cl_object L25static_complex_builder(cl_object , cl_object , cl_object );
+static cl_object L26static_csfloat_builder(cl_object , cl_object , cl_object );
+static cl_object L27static_cdfloat_builder(cl_object , cl_object , cl_object );
+static cl_object L28static_clfloat_builder(cl_object , cl_object , cl_object );
+static cl_object L30static_constant_builder(cl_object , cl_object );
+static cl_object LC29__lambda105(cl_narg, cl_object , cl_object , ...);
+static cl_object L31static_constant_expression(cl_object );
+static cl_object L32add_static_constant(cl_object );
+static cl_object L33wt_vv_index(cl_object , cl_object );
+static cl_object L34set_vv_index(cl_object , cl_object , cl_object );
+static cl_object L35wt_vv(cl_object );
+static cl_object L36set_vv(cl_object , cl_object );
+static cl_object L37vv_type(cl_object );
+static cl_object Cblock;
+#define VM 124
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 30
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,0,0,ecl_make_fixnum(76),ecl_make_fixnum(1),(cl_objectfn)L1data_permanent_storage_size,NULL,ECL_NIL,ecl_make_fixnum(1122)},
+{0,0,0,0,ecl_make_fixnum(77),ecl_make_fixnum(3),(cl_objectfn)L2data_temporary_storage_size,NULL,ECL_NIL,ecl_make_fixnum(1193)},
+{0,0,0,0,ecl_make_fixnum(78),ecl_make_fixnum(4),(cl_objectfn)L3data_size,NULL,ECL_NIL,ecl_make_fixnum(1264)},
+{0,0,-1,0,ecl_make_fixnum(79),ecl_make_fixnum(5),(cl_objectfn)L4data_init,NULL,ECL_NIL,ecl_make_fixnum(1357)},
+{0,0,0,0,ecl_make_fixnum(80),ecl_make_fixnum(7),(cl_objectfn)L5data_get_all_objects,NULL,ECL_NIL,ecl_make_fixnum(1741)},
+{0,0,0,0,ecl_make_fixnum(82),ecl_make_fixnum(10),(cl_objectfn)L6data_dump_array,NULL,ECL_NIL,ecl_make_fixnum(2566)},
+{0,0,1,0,ecl_make_fixnum(83),ecl_make_fixnum(15),(cl_objectfn)L10data_c_dump,NULL,ECL_NIL,ecl_make_fixnum(3290)},
+{0,0,0,0,ecl_make_fixnum(85),ecl_make_fixnum(18),(cl_objectfn)L11data_empty_loc,NULL,ECL_NIL,ecl_make_fixnum(6561)},
+{0,0,2,0,ecl_make_fixnum(86),ecl_make_fixnum(29),(cl_objectfn)L14add_load_form,NULL,ECL_NIL,ecl_make_fixnum(6631)},
+{0,0,-2,0,ecl_make_fixnum(90),ecl_make_fixnum(34),(cl_objectfn)L15add_object,NULL,ECL_NIL,ecl_make_fixnum(7864)},
+{0,0,1,0,ecl_make_fixnum(98),ecl_make_fixnum(35),(cl_objectfn)L16add_symbol,NULL,ECL_NIL,ecl_make_fixnum(10683)},
+{0,0,1,0,ecl_make_fixnum(99),ecl_make_fixnum(36),(cl_objectfn)L18add_keywords,NULL,ECL_NIL,ecl_make_fixnum(10762)},
+{0,0,3,0,ecl_make_fixnum(100),ecl_make_fixnum(40),(cl_objectfn)L19static_base_string_builder,NULL,ECL_NIL,ecl_make_fixnum(11696)},
+{0,0,3,0,ecl_make_fixnum(101),ecl_make_fixnum(42),(cl_objectfn)L20static_single_float_builder,NULL,ECL_NIL,ecl_make_fixnum(11904)},
+{0,0,3,0,ecl_make_fixnum(102),ecl_make_fixnum(44),(cl_objectfn)L21static_double_float_builder,NULL,ECL_NIL,ecl_make_fixnum(12143)},
+{0,0,3,0,ecl_make_fixnum(103),ecl_make_fixnum(46),(cl_objectfn)L22static_long_float_builder,NULL,ECL_NIL,ecl_make_fixnum(12382)},
+{0,0,3,0,ecl_make_fixnum(104),ecl_make_fixnum(48),(cl_objectfn)L23static_rational_builder,NULL,ECL_NIL,ecl_make_fixnum(12616)},
+{0,0,3,0,ecl_make_fixnum(105),ecl_make_fixnum(49),(cl_objectfn)L24static_constant_delegate,NULL,ECL_NIL,ecl_make_fixnum(12918)},
+{0,0,3,0,ecl_make_fixnum(106),ecl_make_fixnum(53),(cl_objectfn)L25static_complex_builder,NULL,ECL_NIL,ecl_make_fixnum(13048)},
+{0,0,3,0,ecl_make_fixnum(107),ecl_make_fixnum(55),(cl_objectfn)L26static_csfloat_builder,NULL,ECL_NIL,ecl_make_fixnum(13593)},
+{0,0,3,0,ecl_make_fixnum(108),ecl_make_fixnum(57),(cl_objectfn)L27static_cdfloat_builder,NULL,ECL_NIL,ecl_make_fixnum(13875)},
+{0,0,3,0,ecl_make_fixnum(109),ecl_make_fixnum(59),(cl_objectfn)L28static_clfloat_builder,NULL,ECL_NIL,ecl_make_fixnum(14157)},
+{0,0,2,0,ecl_make_fixnum(110),ecl_make_fixnum(60),(cl_objectfn)L30static_constant_builder,NULL,ECL_NIL,ecl_make_fixnum(14754)},
+{0,0,1,0,ecl_make_fixnum(111),ecl_make_fixnum(61),(cl_objectfn)L31static_constant_expression,NULL,ECL_NIL,ecl_make_fixnum(14865)},
+{0,0,1,0,ecl_make_fixnum(112),ecl_make_fixnum(65),(cl_objectfn)L32add_static_constant,NULL,ECL_NIL,ecl_make_fixnum(16113)},
+{0,0,2,0,ecl_make_fixnum(113),ecl_make_fixnum(69),(cl_objectfn)L33wt_vv_index,NULL,ECL_NIL,ecl_make_fixnum(17060)},
+{0,0,3,0,ecl_make_fixnum(115),ecl_make_fixnum(72),(cl_objectfn)L34set_vv_index,NULL,ECL_NIL,ecl_make_fixnum(17252)},
+{0,0,1,0,ecl_make_fixnum(118),ecl_make_fixnum(73),(cl_objectfn)L35wt_vv,NULL,ECL_NIL,ecl_make_fixnum(17391)},
+{0,0,2,0,ecl_make_fixnum(121),ecl_make_fixnum(74),(cl_objectfn)L36set_vv,NULL,ECL_NIL,ecl_make_fixnum(17506)},
+{0,0,1,0,ecl_make_fixnum(122),ecl_make_fixnum(75),(cl_objectfn)L37vv_type,NULL,ECL_NIL,ecl_make_fixnum(17631)},
+};

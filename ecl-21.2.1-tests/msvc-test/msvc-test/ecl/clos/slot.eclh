@@ -1,0 +1,38 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1make_simple_slotd(cl_narg, cl_object , ...);
+#define L1make_simple_slotdkeys (&VV[16])
+static cl_object L2freeze_class_slot_initfunction(cl_object );
+static cl_object L3canonical_slot_to_direct_slot(cl_object , cl_object );
+static cl_object L4direct_slot_to_canonical_slot(cl_object );
+static cl_object L5make_function_initform(cl_object );
+static cl_object L6parse_slot(cl_narg, cl_object , ...);
+static cl_object L7parse_slots(cl_object );
+static cl_object Cblock;
+#define VM 32
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 6
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(15),ecl_make_fixnum(2),(cl_objectfn)L1make_simple_slotd,NULL,ECL_NIL,ecl_make_fixnum(768)},
+{0,0,1,0,ecl_make_fixnum(26),ecl_make_fixnum(3),(cl_objectfn)L2freeze_class_slot_initfunction,NULL,ECL_NIL,ecl_make_fixnum(1582)},
+{0,0,2,0,ecl_make_fixnum(27),ecl_make_fixnum(4),(cl_objectfn)L3canonical_slot_to_direct_slot,NULL,ECL_NIL,ecl_make_fixnum(1844)},
+{0,0,1,0,ecl_make_fixnum(28),ecl_make_fixnum(5),(cl_objectfn)L4direct_slot_to_canonical_slot,NULL,ECL_NIL,ecl_make_fixnum(2261)},
+{0,0,1,0,ecl_make_fixnum(30),ecl_make_fixnum(6),(cl_objectfn)L5make_function_initform,NULL,ECL_NIL,ecl_make_fixnum(2720)},
+{0,0,1,0,ecl_make_fixnum(31),ecl_make_fixnum(14),(cl_objectfn)L7parse_slots,NULL,ECL_NIL,ecl_make_fixnum(5239)},
+};

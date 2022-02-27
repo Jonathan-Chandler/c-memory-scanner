@@ -1,0 +1,23 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1123, (cl_index)1123,
+        (ecl_base_char*)
+"c::any c::member-type (fixnum short-float single-float double-float long-float s"
+ "ymbol null) 0 0 0 0 0 0 0 c::object-type c::valid-type-specifier c::known-type-p"
+ " c::trivial-type-p c::*type-and-cache* c::type-and-empty-cache si::*highest-type"
+ "-tag* si::*save-types-database* si::*member-types* si::*elementary-types* \"Unsup"
+ "ported CONS type ~S. Replacing it with T.\" \"Unknown type ~S. Assuming it is T.\" "
+ "(integer 0 1023) c::type-and c::values-number-from-type c::*values-type-primary-"
+ "type-cache* c::values-type-primary-type-empty-cache 0 0 (&allow-other-keys) c::v"
+ "alues-type-primary-type c::*values-type-to-n-types-cache* c::values-type-to-n-ty"
+ "pes-empty-cache c::values-type-to-n-types \"Syntax error in type expression ~S\" 0"
+ " 0 c::split-values-type c::*values-type-or-cache* c::values-type-or-empty-cache "
+ "(values &rest t) c::values-type-or c::*values-type-and-cache* c::values-type-and"
+ "-empty-cache c::values-type-and c::*type-or-cache* c::type-or-empty-cache \"Unkno"
+ "wn type ~S\" c::type-or c::type>= 0 0 0 0 0 0 0 si::safe-canonical-type c::cmpwar"
+ "n c::cmpnote 0 0 0 0 0 0 c::cmperr 0 0 0 0 0 0 0 \"COMPILER\" (deftype c::any nil "
+ "'t)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

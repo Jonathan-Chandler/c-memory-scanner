@@ -1,0 +1,36 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1lock_package(cl_object );
+static cl_object L2unlock_package(cl_object );
+static cl_object LC3without_package_locks(cl_object , cl_object );
+static cl_object LC4with_unlocked_packages(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 16
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Statically defined constants
+ */
+ecl_def_ct_base_string(_ecl_static_0,"UNLOCKED-PACKAGES",17,static,const);
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 4
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(11),ecl_make_fixnum(1),(cl_objectfn)L1lock_package,NULL,ECL_NIL,ecl_make_fixnum(312)},
+{0,0,1,0,ecl_make_fixnum(12),ecl_make_fixnum(2),(cl_objectfn)L2unlock_package,NULL,ECL_NIL,ecl_make_fixnum(538)},
+{0,0,2,0,ecl_make_fixnum(13),ecl_make_fixnum(4),(cl_objectfn)LC3without_package_locks,NULL,ECL_NIL,ecl_make_fixnum(766)},
+{0,0,2,0,ecl_make_fixnum(14),ecl_make_fixnum(9),(cl_objectfn)LC4with_unlocked_packages,NULL,ECL_NIL,ecl_make_fixnum(974)},
+};

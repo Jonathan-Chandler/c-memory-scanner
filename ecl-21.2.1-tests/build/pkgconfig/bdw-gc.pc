@@ -1,7 +1,7 @@
-prefix=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build
+prefix=/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-rebuild/build
 exec_prefix=${prefix}
-libdir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build
-includedir=/c/work/c/memscan-dll/lisp/ecl-21.2.1/build/ecl
+libdir=/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-rebuild/build
+includedir=/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-rebuild/build/ecl
 
 Name: Boehm-Demers-Weiser Conservative Garbage Collector
 Description: A garbage collector for C and C++

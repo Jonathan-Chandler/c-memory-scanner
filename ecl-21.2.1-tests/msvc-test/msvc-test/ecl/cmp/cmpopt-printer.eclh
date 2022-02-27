@@ -1,0 +1,27 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1printer_default_stream(cl_object , cl_object );
+static cl_object LC2__lambda5(cl_object , cl_object );
+static cl_object LC3__lambda11(cl_object , cl_object );
+static cl_object LC4__lambda16(cl_object , cl_object );
+static cl_object LC5__lambda22(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 18
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 0
+#define compiler_cfuns NULL

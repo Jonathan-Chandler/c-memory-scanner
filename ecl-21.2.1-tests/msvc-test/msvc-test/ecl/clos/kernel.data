@@ -1,0 +1,18 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)790, (cl_index)790,
+        (ecl_base_char*)
+"clos::*clos-booted* 0 0 \"The class associated to the CL specifier ~S cannot be c"
+ "hanged.\" \"~A is not a class.\" clos::setf-find-class clos::classp \"In method defi"
+ "nition for ~A, found an invalid specializer ~A\" clos::install-method clos::wrapp"
+ "ed-method-function ensure-generic-function (setf clos::generic-function-name) cl"
+ "os::default-dispatch clos::compute-discriminating-function clos::methods clos::s"
+ "pec-list clos::set-generic-function-dispatch clos::std-compute-applicable-method"
+ "s-using-classes clos::sort-applicable-methods 0 \"The type specifiers ~S and ~S c"
+ "an not be disambiguated~\n                  with respect to the argument speciali"
+ "zer: ~S\" (1 2 = nil) (clos::%list) clos::%list clos::compute-g-f-spec-list print"
+ "-object 0 0 0 0 0 :lambda-list 0 0 0 clos::class-id 0 0 0 0 0 0 \"CLOS\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

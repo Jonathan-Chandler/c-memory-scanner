@@ -1,0 +1,27 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1509, (cl_index)1509,
+        (ecl_base_char*)
+"c::*cmp-env* c::simple-program-error :format-error \"Wrong number of arguments fo"
+ "r operator ~a in ~a\" c::simplify-arithmetic (fixnum integer rational single-floa"
+ "t double-float long-float float real number) (fixnum integer rational single-flo"
+ "at double-float long-float float real) c::maximum-number-type :integer-result c:"
+ ":ensure-number-type c::ensure-nonrational-type :only-real c::ensure-real-type c:"
+ ":arithmetic-propagator c::*p0-dispatch-table* c::most-generic-number-rep-type \"("
+ "~@[(~A)~]#0)~A(~@[(~A)~]#1)\" (:object :object) (:object) c::inline-binop c::inli"
+ "ne-arith-unop c::*cinline-dispatch-table* (c::fixnum-value 0) \"ecl_plus(#0,#1)\" "
+ "\"ecl_negate(#0)\" \"-(#0)\" \"ecl_minus(#0,#1)\" (c::fixnum-value 1) \"ecl_times(#0,#1"
+ ")\" \"ecl_divide(ecl_make_fixnum(1),(#0))\" \"1/(#0)\" \"ecl_divide(#0,#1)\" (real 0 *)"
+ " ((fixnum integer 0 536870911) (integer integer 0 *) (rational rational 0 *) (sh"
+ "ort-float short-float 0 *) (single-float single-float 0 *) (double-float double-"
+ "float 0 *) (long-float long-float 0 *) (real real 0 *) (number real 0 *)) (integ"
+ "er 0 536870911) ((integer 0 536870911)) ((integer 0 *)) (integer 0 *) si::dm-too"
+ "-few-arguments si::dm-too-many-arguments 0 0 :only-real :integer-result c::type>"
+ "= 0 0 0 0 c::copy-type-propagator 0 c::rep-type-record c::rep-type-index c::rep-"
+ "type-name 0 c::inlined-arg-type c::policy-assume-right-type c::c-number-type-p c"
+ "::lisp-type->rep-type c::rep-type->c-name c::produce-inline-loc 0 c::inlined-arg"
+ "-loc c::save-inline-loc \"COMPILER\" (+ -) (sin tan cosh sinh tanh exp)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

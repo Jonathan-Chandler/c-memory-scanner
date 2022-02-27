@@ -1,0 +1,86 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1rep_type_record_unsafe(cl_object );
+static cl_object L2rep_type_record(cl_object );
+static cl_object L3rep_type__lisp_type(cl_object );
+static cl_object L4lisp_type__rep_type(cl_object );
+static cl_object L5c_number_rep_type_p(cl_object );
+static cl_object L6c_integer_rep_type_p(cl_object );
+static cl_object L7c_integer_rep_type_bits(cl_object );
+static cl_object L8c_number_type_p(cl_object );
+static cl_object L9c_integer_type_p(cl_object );
+static cl_object L10c_integer_type_bits(cl_object );
+static cl_object L11rep_type__c_name(cl_object );
+static cl_object L12lisp_type_p(cl_object );
+static cl_object L13wt_to_object_conversion(cl_object , cl_object );
+static cl_object L14wt_from_object_conversion(cl_object , cl_object , cl_object , cl_object );
+static cl_object L15loc_movable_p(cl_object );
+static cl_object L16loc_type(cl_object );
+static cl_object L17loc_representation_type(cl_object );
+static cl_object L20wt_coerce_loc(cl_object , cl_object );
+static cl_object LC19ensure_valid_object_type(volatile cl_object  *, cl_object );
+static cl_object LC18coercion_error(volatile cl_object  *);
+static cl_object L21c1clines(cl_object );
+static cl_object L24output_clines(cl_object volatile );
+static cl_object LC23parse_one_string(cl_object volatile , cl_object volatile );
+static cl_object LC22__lambda47(cl_narg, cl_object , ...);
+static cl_object L26c1c_inline(cl_object );
+static cl_object LC25produce_type_pair(cl_object );
+static cl_object L27c1c_progn(cl_object );
+static cl_object L28c2c_progn(cl_object , cl_object , cl_object );
+static cl_object L30produce_inline_loc(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC29make_output_var(cl_object );
+static cl_object L31c2c_inline(cl_narg, cl_object , cl_object , ...);
+static cl_object L32coerce_locs(cl_narg, cl_object , ...);
+static cl_object L33wt_c_inline_loc(cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile , cl_object volatile );
+static cl_object L34c_inline_safe_string(cl_object );
+static cl_object Cblock;
+#define VM 207
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 28
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(132),ecl_make_fixnum(1),(cl_objectfn)L1rep_type_record_unsafe,NULL,ECL_NIL,ecl_make_fixnum(713)},
+{0,0,1,0,ecl_make_fixnum(134),ecl_make_fixnum(3),(cl_objectfn)L2rep_type_record,NULL,ECL_NIL,ecl_make_fixnum(810)},
+{0,0,1,0,ecl_make_fixnum(136),ecl_make_fixnum(5),(cl_objectfn)L3rep_type__lisp_type,NULL,ECL_NIL,ecl_make_fixnum(1002)},
+{0,0,1,0,ecl_make_fixnum(138),ecl_make_fixnum(6),(cl_objectfn)L4lisp_type__rep_type,NULL,ECL_NIL,ecl_make_fixnum(1242)},
+{0,0,1,0,ecl_make_fixnum(141),ecl_make_fixnum(7),(cl_objectfn)L5c_number_rep_type_p,NULL,ECL_NIL,ecl_make_fixnum(1722)},
+{0,0,1,0,ecl_make_fixnum(143),ecl_make_fixnum(8),(cl_objectfn)L6c_integer_rep_type_p,NULL,ECL_NIL,ecl_make_fixnum(1843)},
+{0,0,1,0,ecl_make_fixnum(145),ecl_make_fixnum(9),(cl_objectfn)L7c_integer_rep_type_bits,NULL,ECL_NIL,ecl_make_fixnum(1966)},
+{0,0,1,0,ecl_make_fixnum(147),ecl_make_fixnum(10),(cl_objectfn)L8c_number_type_p,NULL,ECL_NIL,ecl_make_fixnum(2088)},
+{0,0,1,0,ecl_make_fixnum(148),ecl_make_fixnum(11),(cl_objectfn)L9c_integer_type_p,NULL,ECL_NIL,ecl_make_fixnum(2171)},
+{0,0,1,0,ecl_make_fixnum(149),ecl_make_fixnum(12),(cl_objectfn)L10c_integer_type_bits,NULL,ECL_NIL,ecl_make_fixnum(2256)},
+{0,0,1,0,ecl_make_fixnum(151),ecl_make_fixnum(13),(cl_objectfn)L11rep_type__c_name,NULL,ECL_NIL,ecl_make_fixnum(2346)},
+{0,0,1,0,ecl_make_fixnum(153),ecl_make_fixnum(14),(cl_objectfn)L12lisp_type_p,NULL,ECL_NIL,ecl_make_fixnum(2422)},
+{0,0,2,0,ecl_make_fixnum(154),ecl_make_fixnum(19),(cl_objectfn)L13wt_to_object_conversion,NULL,ECL_NIL,ecl_make_fixnum(2471)},
+{0,0,4,0,ecl_make_fixnum(157),ecl_make_fixnum(21),(cl_objectfn)L14wt_from_object_conversion,NULL,ECL_NIL,ecl_make_fixnum(3152)},
+{0,0,1,0,ecl_make_fixnum(161),ecl_make_fixnum(27),(cl_objectfn)L15loc_movable_p,NULL,ECL_NIL,ecl_make_fixnum(3983)},
+{0,0,1,0,ecl_make_fixnum(162),ecl_make_fixnum(39),(cl_objectfn)L16loc_type,NULL,ECL_NIL,ecl_make_fixnum(4171)},
+{0,0,1,0,ecl_make_fixnum(167),ecl_make_fixnum(49),(cl_objectfn)L17loc_representation_type,NULL,ECL_NIL,ecl_make_fixnum(5230)},
+{0,0,2,0,ecl_make_fixnum(169),ecl_make_fixnum(86),(cl_objectfn)L20wt_coerce_loc,NULL,ECL_NIL,ecl_make_fixnum(6373)},
+{0,0,1,0,ecl_make_fixnum(173),ecl_make_fixnum(90),(cl_objectfn)L21c1clines,NULL,ECL_NIL,ecl_make_fixnum(11685)},
+{0,0,1,0,ecl_make_fixnum(174),ecl_make_fixnum(94),(cl_objectfn)L24output_clines,NULL,ECL_NIL,ecl_make_fixnum(11903)},
+{0,0,1,0,ecl_make_fixnum(179),ecl_make_fixnum(105),(cl_objectfn)L26c1c_inline,NULL,ECL_NIL,ecl_make_fixnum(12969)},
+{0,0,1,0,ecl_make_fixnum(188),ecl_make_fixnum(106),(cl_objectfn)L27c1c_progn,NULL,ECL_NIL,ecl_make_fixnum(16156)},
+{0,0,3,0,ecl_make_fixnum(191),ecl_make_fixnum(108),(cl_objectfn)L28c2c_progn,NULL,ECL_NIL,ecl_make_fixnum(16652)},
+{0,0,6,0,ecl_make_fixnum(195),ecl_make_fixnum(117),(cl_objectfn)L30produce_inline_loc,NULL,ECL_NIL,ecl_make_fixnum(17077)},
+{0,0,-3,0,ecl_make_fixnum(200),ecl_make_fixnum(120),(cl_objectfn)L31c2c_inline,NULL,ECL_NIL,ecl_make_fixnum(20004)},
+{0,0,-2,0,ecl_make_fixnum(203),ecl_make_fixnum(124),(cl_objectfn)L32coerce_locs,NULL,ECL_NIL,ecl_make_fixnum(20238)},
+{0,0,5,0,ecl_make_fixnum(204),ecl_make_fixnum(128),(cl_objectfn)L33wt_c_inline_loc,NULL,ECL_NIL,ecl_make_fixnum(21587)},
+{0,0,1,0,ecl_make_fixnum(205),ecl_make_fixnum(131),(cl_objectfn)L34c_inline_safe_string,NULL,ECL_NIL,ecl_make_fixnum(23301)},
+};

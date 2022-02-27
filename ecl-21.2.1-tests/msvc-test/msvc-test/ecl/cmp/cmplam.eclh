@@ -1,0 +1,60 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1c1lambda_doc(cl_object );
+static cl_object L2c1lambda_body(cl_object );
+static cl_object L3c1lambda_list(cl_object );
+static cl_object L4fun_needs_narg(cl_object );
+static cl_object L5fun_fixed_narg(cl_object );
+static cl_object L6add_to_fun_referenced_vars(cl_object , cl_object );
+static cl_object L7add_to_fun_referenced_funs(cl_object , cl_object );
+static cl_object L8function_block_name_declaration(cl_object );
+static cl_object L9c1compile_function(cl_narg, cl_object , ...);
+#define L9c1compile_functionkeys (&VV[115])
+static cl_object L11cmp_process_lambda_list(cl_object volatile );
+static cl_object LC10__lambda75(cl_narg, cl_object , ...);
+static cl_object L14c1lambda_expr(cl_object , cl_object , cl_object );
+static cl_object LC12__lambda138(cl_object );
+static cl_object LC13__lambda146(cl_object );
+static cl_object L15lambda_form_allowed_nargs(cl_object );
+static cl_object L19c2lambda_expr(cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object , cl_object );
+static cl_object LC17do_decl(cl_object );
+static cl_object LC16wt_decl(cl_object );
+static cl_object LC18last_variable(volatile cl_object  *);
+static cl_object L20transform_funcall_apply_into_let_(cl_object , cl_object , cl_object );
+static cl_object L21optimize_funcall_apply_lambda(cl_object , cl_object , cl_object );
+static cl_object Cblock;
+#define VM 179
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 14
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(95),ecl_make_fixnum(0),(cl_objectfn)L1c1lambda_doc,NULL,ECL_NIL,ecl_make_fixnum(1685)},
+{0,0,1,0,ecl_make_fixnum(97),ecl_make_fixnum(1),(cl_objectfn)L2c1lambda_body,NULL,ECL_NIL,ecl_make_fixnum(1743)},
+{0,0,1,0,ecl_make_fixnum(98),ecl_make_fixnum(2),(cl_objectfn)L3c1lambda_list,NULL,ECL_NIL,ecl_make_fixnum(1802)},
+{0,0,1,0,ecl_make_fixnum(99),ecl_make_fixnum(3),(cl_objectfn)L4fun_needs_narg,NULL,ECL_NIL,ecl_make_fixnum(1861)},
+{0,0,1,0,ecl_make_fixnum(100),ecl_make_fixnum(5),(cl_objectfn)L5fun_fixed_narg,NULL,ECL_NIL,ecl_make_fixnum(1920)},
+{0,0,2,0,ecl_make_fixnum(104),ecl_make_fixnum(7),(cl_objectfn)L6add_to_fun_referenced_vars,NULL,ECL_NIL,ecl_make_fixnum(2296)},
+{0,0,2,0,ecl_make_fixnum(107),ecl_make_fixnum(8),(cl_objectfn)L7add_to_fun_referenced_funs,NULL,ECL_NIL,ecl_make_fixnum(2748)},
+{0,0,1,0,ecl_make_fixnum(111),ecl_make_fixnum(9),(cl_objectfn)L8function_block_name_declaration,NULL,ECL_NIL,ecl_make_fixnum(3336)},
+{0,0,-2,0,ecl_make_fixnum(112),ecl_make_fixnum(22),(cl_objectfn)L9c1compile_function,NULL,ECL_NIL,ecl_make_fixnum(3555)},
+{0,0,1,0,ecl_make_fixnum(130),ecl_make_fixnum(24),(cl_objectfn)L11cmp_process_lambda_list,NULL,ECL_NIL,ecl_make_fixnum(8408)},
+{0,0,1,0,ecl_make_fixnum(145),ecl_make_fixnum(32),(cl_objectfn)L15lambda_form_allowed_nargs,NULL,ECL_NIL,ecl_make_fixnum(14353)},
+{0,0,10,0,ecl_make_fixnum(148),ecl_make_fixnum(87),(cl_objectfn)L19c2lambda_expr,NULL,ECL_NIL,ecl_make_fixnum(15334)},
+{0,0,3,0,ecl_make_fixnum(176),ecl_make_fixnum(93),(cl_objectfn)L20transform_funcall_apply_into_let_,NULL,ECL_NIL,ecl_make_fixnum(24486)},
+{0,0,3,0,ecl_make_fixnum(178),ecl_make_fixnum(94),(cl_objectfn)L21optimize_funcall_apply_lambda,NULL,ECL_NIL,ecl_make_fixnum(28236)},
+};

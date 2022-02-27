@@ -1,0 +1,11 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)201, (cl_index)201,
+        (ecl_base_char*)
+"si::*requiring* \"Module error: ~?\" si::require-error \"~@<Could not ~S ~A: circul"
+ "arity detected. Please check ~\n                     your configuration.~:@>\" \"Do"
+ "n't know how to ~S ~A.\" \"SYS:\" 0 \"SYSTEM\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

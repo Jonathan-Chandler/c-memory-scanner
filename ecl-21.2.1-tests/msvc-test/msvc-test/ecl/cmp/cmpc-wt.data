@@ -1,0 +1,22 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1078, (cl_index)1078,
+        (ecl_base_char*)
+"c::*compiler-output1* \"\" \"U\" \"L\" \"UL\" \"LL\" \"ULL\" \"wt1: The number ~A doesn't fit"
+ " any integer type.\" c::var \"-INFINITY\" \"INFINITY\" \"(float)~10,,,,,,'eG\" \"~10,,,,"
+ ",,'eG\" \"~,,,,,,'eEl\" c::wt1 c::*compiler-output2* c::wt-h1 c::wt c::wt-h c::wt-n"
+ "l-h c::princ-h c::wt-nl c::wt-nl1 c::+max-depth+ c::+c-newline-indent-strings+ c"
+ "::*opened-c-braces* c::wt-nl-indent c::wt-open-brace c::wt-nl-open-brace \"Mismat"
+ "ch in C blocks\" c::wt-nl-close-many-braces c::wt-nl-close-brace ((c::*opened-c-b"
+ "races* (1+ c::*opened-c-braces*))) c::with-indentation \"goto L\" \";\" c::wt-go \":;"
+ "\" c::wt-label \"/*      \" \"~50T/*  \" \"ux\" \"~70T*/\" c::wt-filtered-comment c::do-w"
+ "t-comment c::wt-comment c::wt-comment-nl c::*wt-string-size* c::encode-string \"\\"
+ "\"\" \"~%\\\"\" \"\\\"~% \\\"\" \"\\\\n\" \"\\\\t\" \"\\\\~3,'0o\" \"\\\\\\\\\" \"\\\\\\\"\" c::wt-filtered-data :on"
+ "e-liner c::c-filtered-string 0 c::rep-type->lisp-type c::baboon c::wt-var c::wt-"
+ "loc 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 :one-liner :external-format 0 \"COM"
+ "PILER\" #A(t (11) (\"\n\" \"\n \" \"\n  \" \"\n   \" \"\n    \" \"\n     \" \"\n      \" \"\n       \" \"\n"
+ "        \" \"\n         \" \"\n          \"))" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

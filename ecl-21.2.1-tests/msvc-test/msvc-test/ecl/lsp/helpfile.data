@@ -1,0 +1,15 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)533, (cl_index)533,
+        (ecl_base_char*)
+"si::*keep-documentation* si::new-documentation-pool si::record-cons si::record-f"
+ "ield si::set-record-field si::rem-record-field ext::annotate ext::remove-annotat"
+ "ion :all ext::get-annotation si::dump-documentation si::setf-documentation si::g"
+ "et-documentation \"~S is not a valid documentation string\" si::set-documentation "
+ "si::expand-set-documentation si::make-dspec ext::optional-annotation 'ext::locat"
+ "ion 0 0 0 ext::default-annotation-logic 0 0 0 0 0 0 0 0 si::search-help-file 0 s"
+ "i::dump-help-file 0 0 0 0 0 0 \"SYSTEM\" \"SYS:help.doc\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

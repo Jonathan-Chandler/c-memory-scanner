@@ -1,0 +1,40 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1c1with_stack(cl_object );
+static cl_object L2c2with_stack(cl_object , cl_object );
+static cl_object L3c1innermost_stack_frame(cl_object );
+static cl_object L4c1stack_push(cl_object );
+static cl_object L5c1stack_push_values(cl_object );
+static cl_object L6c2stack_push_values(cl_object , cl_object , cl_object );
+static cl_object L7c1stack_pop(cl_object );
+static cl_object L8c1apply_from_stack_frame(cl_object );
+static cl_object Cblock;
+#define VM 46
+#define VMtemp 3
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 8
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(28),ecl_make_fixnum(5),(cl_objectfn)L1c1with_stack,NULL,ECL_NIL,ecl_make_fixnum(981)},
+{0,0,2,0,ecl_make_fixnum(32),ecl_make_fixnum(14),(cl_objectfn)L2c2with_stack,NULL,ECL_NIL,ecl_make_fixnum(1222)},
+{0,0,1,0,ecl_make_fixnum(39),ecl_make_fixnum(16),(cl_objectfn)L3c1innermost_stack_frame,NULL,ECL_NIL,ecl_make_fixnum(1830)},
+{0,0,1,0,ecl_make_fixnum(40),ecl_make_fixnum(18),(cl_objectfn)L4c1stack_push,NULL,ECL_NIL,ecl_make_fixnum(1961)},
+{0,0,1,0,ecl_make_fixnum(41),ecl_make_fixnum(22),(cl_objectfn)L5c1stack_push_values,NULL,ECL_NIL,ecl_make_fixnum(2116)},
+{0,0,3,0,ecl_make_fixnum(42),ecl_make_fixnum(23),(cl_objectfn)L6c2stack_push_values,NULL,ECL_NIL,ecl_make_fixnum(2483)},
+{0,0,1,0,ecl_make_fixnum(44),ecl_make_fixnum(25),(cl_objectfn)L7c1stack_pop,NULL,ECL_NIL,ecl_make_fixnum(2648)},
+{0,0,1,0,ecl_make_fixnum(45),ecl_make_fixnum(27),(cl_objectfn)L8c1apply_from_stack_frame,NULL,ECL_NIL,ecl_make_fixnum(2831)},
+};

@@ -1,0 +1,56 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1c1expr_inner(cl_object );
+static cl_object L2c1expr(cl_object );
+static cl_object L3c1nil();
+static cl_object L4c1t();
+static cl_object L5c1call(cl_object , cl_object , cl_object );
+static cl_object L6inline_local(cl_object , cl_object , cl_object );
+static cl_object L7c1call_local(cl_object , cl_object , cl_object );
+static cl_object L8c1call_global(cl_object , cl_object );
+static cl_object L11c1call_constant_fold(cl_object volatile , cl_object volatile );
+static cl_object LC9__lambda25(cl_narg, cl_object , ...);
+static cl_object LC10__lambda37(cl_object );
+static cl_object L12c2expr(cl_object );
+static cl_object L13c2expr_(cl_object );
+static cl_object L14c1with_backend(cl_object );
+static cl_object L15c1progn(cl_object );
+static cl_object L16c2progn(cl_object , cl_object );
+static cl_object L17c1args_(cl_object );
+static cl_object LC19si__define_inline_function(cl_object , cl_object );
+static cl_object LC18__lambda104(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 115
+#define VMtemp 2
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 13
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(61),ecl_make_fixnum(7),(cl_objectfn)L2c1expr,NULL,ECL_NIL,ecl_make_fixnum(1857)},
+{0,0,0,0,ecl_make_fixnum(63),ecl_make_fixnum(9),(cl_objectfn)L3c1nil,NULL,ECL_NIL,ecl_make_fixnum(2092)},
+{0,0,0,0,ecl_make_fixnum(64),ecl_make_fixnum(11),(cl_objectfn)L4c1t,NULL,ECL_NIL,ecl_make_fixnum(2187)},
+{0,0,3,0,ecl_make_fixnum(65),ecl_make_fixnum(14),(cl_objectfn)L5c1call,NULL,ECL_NIL,ecl_make_fixnum(2208)},
+{0,0,2,0,ecl_make_fixnum(88),ecl_make_fixnum(23),(cl_objectfn)L8c1call_global,NULL,ECL_NIL,ecl_make_fixnum(5980)},
+{0,0,2,0,ecl_make_fixnum(92),ecl_make_fixnum(26),(cl_objectfn)L11c1call_constant_fold,NULL,ECL_NIL,ecl_make_fixnum(6704)},
+{0,0,1,0,ecl_make_fixnum(96),ecl_make_fixnum(30),(cl_objectfn)L12c2expr,NULL,ECL_NIL,ecl_make_fixnum(7782)},
+{0,0,1,0,ecl_make_fixnum(104),ecl_make_fixnum(35),(cl_objectfn)L13c2expr_,NULL,ECL_NIL,ecl_make_fixnum(8003)},
+{0,0,1,0,ecl_make_fixnum(107),ecl_make_fixnum(36),(cl_objectfn)L14c1with_backend,NULL,ECL_NIL,ecl_make_fixnum(8484)},
+{0,0,1,0,ecl_make_fixnum(108),ecl_make_fixnum(37),(cl_objectfn)L15c1progn,NULL,ECL_NIL,ecl_make_fixnum(8680)},
+{0,0,2,0,ecl_make_fixnum(111),ecl_make_fixnum(41),(cl_objectfn)L16c2progn,NULL,ECL_NIL,ecl_make_fixnum(9040)},
+{0,0,1,0,ecl_make_fixnum(112),ecl_make_fixnum(42),(cl_objectfn)L17c1args_,NULL,ECL_NIL,ecl_make_fixnum(9636)},
+{0,0,2,0,ecl_make_fixnum(113),ecl_make_fixnum(52),(cl_objectfn)LC19si__define_inline_function,NULL,ECL_NIL,ecl_make_fixnum(9851)},
+};

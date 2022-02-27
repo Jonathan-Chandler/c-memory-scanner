@@ -1,0 +1,27 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1503, (cl_index)1503,
+        (ecl_base_char*)
+"c::valid-form-p si::deftype-definition si::structure-type c::type-name-p \"The de"
+ "claration ~s is not a symbol\" \"Symbol name ~S cannot be both the name of a type "
+ "and of a declaration\" c::validate-alien-declaration c::*cmp-env* c::alien c::ali"
+ "en-declaration-p \"Invalid argument to IGNORE/IGNORABLE declaration:~&~A\" \"Syntax"
+ " error in declaration ~s\" (optimize ftype inline notinline declaration si::c-loc"
+ "al si::c-global dynamic-extent ignorable values si::no-check-type c::policy-debu"
+ "g-ihs-frame :read-only) \"Unknown declaration specifier ~s.\" c::c1body c::policy-"
+ "debug-ihs-frame (t) c::*current-function* \"Syntax error in declaration ~a\" \"In a"
+ "n FTYPE declaration, found ~A which is not a function type.\" si::c-local 0 si::c"
+ "-global 0 si::no-check-type 0 :read-only 0 0 0 0 \"Unknown declaration specifier "
+ "~s\" c::add-one-declaration c::symbol-macro-declaration-p \"Declaration of type~&~"
+ "4T~A~&was found for not bound variable ~s.\" \"IGNORE declaration was found for no"
+ "t bound variable ~s.\" \"IGNORABLE declaration was found for not bound variable ~s"
+ ".\" c::check-vdecl 0 0 0 0 c::cmp-env-search-declaration c::cmperr 0 c::valid-typ"
+ "e-specifier c::policy-declaration-name-p c::machine-c-type-p c::cmpwarn 0 c::cmp"
+ "-env-add-optimizations c::fun-cmp-env c::cmp-env-add-declaration si::normalize-t"
+ "ype c::add-function-declaration c::declare-inline c::declare-notinline c::cmp-en"
+ "v-extend-declaration c::maybe-add-policy 0 c::cmp-env-search-symbol-macro c::cmp"
+ "-env-register-symbol-macro 0 c::cmp-env-search-macro \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

@@ -1,0 +1,46 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)3016, (cl_index)3016,
+        (ecl_base_char*)
+"c::c1lambda-doc c::c1lambda-body c::c1lambda-list c::fun-needs-narg c::closure c"
+ "::fun-fixed-narg c::fun c::add-to-fun-referenced-vars c::add-to-fun-referenced-f"
+ "uns c::function-block-name-declaration c::*current-function* c::*cmp-env* c::*se"
+ "tjmps* c::*use-c-global* si::c-global si::c-local \"Ignoring SI::C-LOCAL declarat"
+ "ion for~%~4I~A~%because the debug level is large\" c::c1form \"LC~D~A\" \"~&;;; Func"
+ "tion ~A proclaimed (~A,~A)\" \"Function ~A takes between ~A and ~A arguments, but "
+ "is proclaimed to take between ~A and ~A arguments\" \"Function ~A is global but is"
+ " closed over some variables.~%~{~A ~}\" c::c1compile-function \"Illegal lambda lis"
+ "t ~S:~%~A\" c::cmp-process-lambda-list c::*permanent-data* \"The lambda expression"
+ " ~s is illegal.\" :safe \"In (LAMBDA ~a...)\" :initial-value :local-vars :args c::l"
+ "ambda-form-allowed-nargs c::*unwind-exit* c::*env* c::*inline-blocks* c::var c::"
+ "*tail-recursion-info* \"if (ecl_unlikely(narg!=\" \")) FEwrong_num_arguments_anonym"
+ "();\" \"if (ecl_unlikely(narg<\" \"if (ecl_unlikely(narg>\" c::*c1nil* \" \" c::*volati"
+ "le* \";\" c::lexical \"lex~D\" c::*level* \"narg\" \"va_list args; va_start(args,\" \");\""
+ " \"ecl_va_list args; ecl_va_start(args,\" \",narg,\" c::*ihs-used-p* c::ihs \"ecl_ihs"
+ "_push(cl_env_copy,&ihs,\" \",_ecl_debug_env);\" c::va-arg c::cl-va-arg \"int i = \" \""
+ "if (i >= narg) {\" c::*opened-c-braces* \"} else {\" \"i++;\" \"}\" \" = cl_grab_rest_ar"
+ "gs(args);\" \"cl_object keyvars[\" \"];\" \"cl_parse_key(args,\" \",\" \"keys,keyvars\" \"cl"
+ "_parse_key(args,0,NULL,NULL\" \",(cl_object*)&\" \",NULL\" \",TRUE);\" \",FALSE);\" \"va_e"
+ "nd(args);\" \"ecl_va_end(args);\" (c::keyvars 0) \"if (Null(\" \")) {\" \"#define \" \"key"
+ "s (&\" \")\" c::tail-recursion-mark \"TTL:\" c::c2lambda-expr (si::dm-too-few-argumen"
+ "ts nil) \"Too few arguments for lambda form ~S\" 'si::missing-keyword si::search-k"
+ "eyword si::check-keyword c::transform-funcall/apply-into-let* c::optimize-funcal"
+ "l/apply-lambda 0 c::c1form-args 0 0 0 0 c::fun-closure c::fun-minarg c::fun-maxa"
+ "rg 0 c::fun-referenced-vars c::fun-local-vars 0 c::fun-referenced-funs c::child-"
+ "function-p c::fun-referencing-funs 0 0 c::make-fun c::fun-name :fun :name c::fun"
+ "-child-funs c::cmp-env-mark c::policy-debug-ihs-frame c::cmpnote c::exported-fna"
+ "me c::next-cfun c::get-proclaimed-narg c::cmpdebug c::cmperr c::update-fun-closu"
+ "re-type c::var-name c::fun-no-entry c::new-defun 0 c::cmp-env-copy c::c1body c::"
+ "c1make-var c::push-vars c::var-type c::c1expr c::and-form-type c::default-init c"
+ "::add-one-declaration c::extract-lambda-type-checks c::cmp-env-new-variables c::"
+ "c1progn c::check-vref c::make-c1form* 0 si::dm-too-few-arguments si::dm-too-many"
+ "-arguments 0 c::policy-debug-variable-bindings c::var-ref-ccb c::policy-check-na"
+ "rgs c::wt-nl c::open-inline-block c::unboxed c::var-ref c::var-kind c::bind c::b"
+ "uild-debug-lexical-env c::add-symbol c::wt-nl-open-brace c::bind-init c::c2expr*"
+ " c::wt-nl-close-brace c::wt c::c1form-name c::wt-loc c::add-keywords c::wt-nl-h "
+ "c::wt-nl1 c::c2expr c::close-inline-blocks c::local c::next-lcl c::var-rep-type "
+ "c::rep-type->c-name 0 si::find-declarations 0 \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

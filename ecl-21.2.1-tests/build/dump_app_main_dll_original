@@ -1,6 +1,0 @@
-Microsoft (R) COFF/PE Dumper Version 14.25.28610.4
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-
-Dump of file app_main.dll
-LINK : fatal error LNK1181: cannot open input file 'app_main.dll'

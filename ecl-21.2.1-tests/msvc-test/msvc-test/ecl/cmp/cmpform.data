@@ -1,0 +1,30 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1715, (cl_index)1715,
+        (ecl_base_char*)
+"\"#<form ~A ~X>\" c::print-c1form :args :sp-change :volatile :form c::*current-for"
+ "m* :toplevel-form c::*current-toplevel-form* :file-position c::*compile-file-pos"
+ "ition* c::make-c1form \"make-c1form*: ~s is not a keyword.\" c::make-c1form* c::c1"
+ "form \"Running twice through same form\" c::c1form-add-info-loop c::+c1-form-hash+"
+ " \"Internal error: unknown C1FORM name ~A\" \"Internal error: illegal number of arg"
+ "uments in ~A\" c::c1form-add-info c::copy-c1form c::c1form-args c::c1form-arg \"vo"
+ "latile \" \"\" c::c1form-volatile* c::c1form-primary-type c::location-primary-type "
+ "\"Mismatch between FIND-FORM-IN-NODE-LISTs\" c::find-form-in-node-list c::add-form"
+ "-to-node-list \"Unable to find C1FORM~%~4I~A~%in node list~%~4I~A\" c::delete-form"
+ "-from-node-list c::traverse-c1form-tree c::var c::c1form-movable-p c::c1form-pur"
+ "e-p c::c1form-unmodified-p c::c1form-values-number c::c1form-single-valued-p c::"
+ "c1form-file c::c1form-file-position c::c1form-toplevel-form c::c1form-form c::*c"
+ "mp-env* c::c1form-env c::with-c1form-env c::relocate-parents-list \"Attempted to "
+ "move a form with side-effects\" \"Cannot replace forms other than VARs:~%~4I~A\" c:"
+ ":c1form-replace-with c::delete-c1forms c::c1form-constant-p 0 c::c1form-name 0 c"
+ "::info-type c::info-sp-change c::info-volatile c::do-make-c1form 0 c::baboon 0 c"
+ "::c1form-p c::c1form-sp-change c::c1form-side-effects c::c1form-parents 0 0 0 si"
+ "::dm-too-few-arguments si::dm-too-many-arguments 0 c::c1form-volatile 0 c::c1for"
+ "m-type c::values-type-primary-type 0 0 0 0 0 0 c::global-var-p c::var-set-nodes "
+ "0 0 c::var-changed-in-form-list 0 c::values-number-from-type 0 0 0 0 c::delete-f"
+ "rom-read-nodes c::add-to-read-nodes c::c1form-local-vars c::values-type-and 0 0 "
+ "c::loc-immediate-value-p \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

@@ -1,0 +1,17 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)710, (cl_index)710,
+        (ecl_base_char*)
+"c::get-slot-type si::structure-access \"Unable to inline access to structure slot"
+ " ~A because index is corrupt: ~A\" \"Too many arguments for structure slot accesso"
+ "r ~A\" c::maybe-optimize-structure-access ((:object :fixnum) :object \"(#0)->insta"
+ "nce.slots[#1]\" :one-liner t) ((:object :object :fixnum) :object \"ecl_structure_r"
+ "ef(#0,#1,#2)\" :one-liner t) :read-only ((:object :fixnum :object) :object \"(#0)-"
+ ">instance.slots[#1]=#2\" :one-liner t) ((:object :object :fixnum :object) :object"
+ " \"ecl_structure_set(#0,#1,#2,#3)\" :one-liner t) 0 0 c::inline-possible c::policy"
+ "-inline-slot-access-p c::cmpwarn si::dm-too-few-arguments si::dm-too-many-argume"
+ "nts c::policy-inline-slot-access c::policy-assume-no-errors \"COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

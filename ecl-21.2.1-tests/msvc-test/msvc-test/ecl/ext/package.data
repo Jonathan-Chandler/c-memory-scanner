@@ -1,0 +1,16 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)639, (cl_index)639,
+        (ecl_base_char*)
+"si::dodefpackage \"SB-BSD-SOCKETS\" (\"CL\" \"FFI\" \"SI\") (\"GET-HOST-BY-NAME\" \"GET-HOS"
+ "T-BY-ADDRESS\" \"SOCKET-BIND\" \"SOCKET-ACCEPT\" \"SOCKET-CONNECT\" \"SOCKET-PEERNAME\" \""
+ "SOCKET-NAME\" \"SOCKET-LISTEN\" \"SOCKET-RECEIVE\" \"SOCKET-CLOSE\" \"SOCKET-MAKE-STREAM"
+ "\" \"GET-PROTOCOL-BY-NAME\" \"MAKE-INET-ADDRESS\" \"LOCAL-SOCKET\" \"UNKNOWN-PROTOCOL\" \""
+ "UNKNOWN-PROTOCOL-NAME\" \"SOCKET\" \"INET-SOCKET\" \"SOCKET-FILE-DESCRIPTOR\" \"NAMED-PI"
+ "PE-SOCKET\" \"SOCKET-FAMILY\" \"SOCKET-PROTOCOL\" \"SOCKET-TYPE\" \"SOCKET-ERROR\" \"NAME-"
+ "SERVICE-ERROR\" \"NON-BLOCKING-MODE\" \"HOST-ENT-NAME\" \"HOST-ENT-ALIASES\" \"HOST-ENT-"
+ "ADDRESS-TYPE\" \"HOST-ENT-ADDRESSES\" \"HOST-ENT\" \"HOST-ENT-ADDRESS\" \"SOCKET-SEND\")" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

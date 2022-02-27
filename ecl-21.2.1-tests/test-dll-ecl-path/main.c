@@ -12,8 +12,8 @@ int main(void)
   char* lpPreloadDll = "C:\\work\\c\\memscan-dll\\ecl-21.2.1-tests\\build\\preload.dll";
   //char* lpcAppMainDllDir = "C:\\work\\c\\memscan-dll\\ecl-21.2.1-tests\\build\\;";
 
-  //const char *pszWindowTitle = "dummy-target";
-  const char *pszWindowTitle = "DarkStone DSI";
+  const char *pszWindowTitle = "dummy-target";
+  //const char *pszWindowTitle = "DarkStone DSI";
   DWORD dwProcessId;        // remote process id
   HANDLE hProcess;          // handle remote process
 
@@ -194,7 +194,7 @@ int main(void)
     goto exit_crt;
   }
 
-#if 0
+#if 1
   // Allocate space for app_main.dll
   lpAllocatedAppMainDll = (LPVOID)VirtualAllocEx(hProcess, NULL, strlen(lpcAppMainDll), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
   if(lpAllocatedAppMainDll == NULL) 
@@ -268,19 +268,20 @@ int main(void)
       lpAppMainAddr += 0x1539;
       // dumpbin /EXPORTS app_main.dll
       // app_main at 0x1539
+      // app_main@4
       printf("Returns 1 address of app_main.dll app_main - lpAppMainAddr: 0x%08X\n", lpAppMainAddr);
       break;
     }
     x++;
   }
 
-  sleep(1);
 #endif
-#if 0
+#if 1
   if (0 != lpAppMainAddr)
   {
     // 10M = 10485760 bytes
-    hThreadLaunchAppMain = CreateRemoteThread(hProcess, NULL, 10485760, (LPTHREAD_START_ROUTINE)lpAppMainAddr, lpAllocatedAppMainDll, 0, NULL);
+    //hThreadLaunchAppMain = CreateRemoteThread(hProcess, NULL, 268435456, (LPTHREAD_START_ROUTINE)lpAppMainAddr, lpAllocatedAppMainDll, 0, NULL);
+    hThreadLaunchAppMain = CreateRemoteThread(hProcess, NULL, 536870912, (LPTHREAD_START_ROUTINE)lpAppMainAddr, lpAllocatedAppMainDll, 0, NULL);
     if(hThreadLaunchAppMain == NULL) 
     {
       printf("Error: the remote thread could not be created at app_main for app_main.dll\n");

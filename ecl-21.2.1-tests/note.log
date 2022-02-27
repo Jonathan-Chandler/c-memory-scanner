@@ -1,0 +1,31 @@
+cl_boot
+ecl.cl_boot @ 3A61A10
+call eax
+cl_shutdown?
+ecl_process_env
+stack overflow msvcrt
+753E7Eb7
+
+_ecl_frs_push
+
+je app_main.79B116DE
+
+je 79B116F9 -> call 79B11856
+79B116F9 = call 79B11856
+  - jump into msvcrt @753E7EB7
+  - stack overflow
+
+ext:heap-size limits the total amount of memory which is available for lisp objects. This is the memory used when you create conses, arrays, structures, etc.
+ext:c-stack controls the size of the stack for compiled code, including ECL’s library itself. This limit is less stringent than the others. For instance, when code is compiled with low safety settings, checks for this stack limit are usually omitted, for performance reasons.
+ext:binding-stack controls the number of nested bindings for special variables. The current value is usually safe enough, unless you have deep recursive functions that bind special variables, which is not really a good idea.
+ext:frame-stack controls the number of nested blocks, tagbodys and other control structures. It affects both interpreted and compiled code, but quite often compiled code optimizes away these stack frames, saving memory and not being affected by this limit.
+ext:lisp-stack controls the size of the interpreter stack. It only affects interpreted code.
+
+Concept	            Units	          Default	            Commandline
+ext:frame-stack	    Nested frames	  2048	              --frame-stack
+ext:binding-stack	  Bindings	      8192	
+ext:c-stack	        Bytes	          128   kilobytes	    --c-stack
+ext:heap-size	      Bytes	          256   megabytes	    --heap-size
+ext:lisp-stack	    Bytes	          32    kilobyes	    --lisp-stack
+
+

@@ -59,6 +59,13 @@
 ;(write-skill-level pp-proc-info skill-name skill-level)
 
 (print "test")
+(defparameter checkvals (cffi:make-pointer #x009BC2A8))
+
+; strength
+(defparameter str-pointer (cffi:make-pointer #x00AF9F4E))
+(cffi:mem-aref str-pointer :int16)
+
+
 
 (defparameter p-magic-number (cffi:make-pointer #x00dff950))
 (print p-magic-number)

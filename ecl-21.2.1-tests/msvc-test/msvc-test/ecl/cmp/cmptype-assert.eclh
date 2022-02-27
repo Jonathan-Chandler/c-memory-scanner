@@ -1,0 +1,40 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1c1compiler_typecase(cl_object );
+static cl_object L2c2compiler_typecase(cl_object , cl_object , cl_object );
+static cl_object L3simple_type_assertion(cl_object , cl_object );
+static cl_object L4expand_type_assertion(cl_object , cl_object , cl_object , cl_object );
+static cl_object L5c1checked_value(cl_object );
+static cl_object L6c2checked_value(cl_object , cl_object , cl_object , cl_object );
+static cl_object LC7optional_type_assertion(cl_object , cl_object );
+static cl_object LC8type_assertion(cl_object , cl_object );
+static cl_object Cblock;
+#define VM 56
+#define VMtemp 2
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 8
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(27),ecl_make_fixnum(3),(cl_objectfn)L1c1compiler_typecase,NULL,ECL_NIL,ecl_make_fixnum(624)},
+{0,0,3,0,ecl_make_fixnum(36),ecl_make_fixnum(6),(cl_objectfn)L2c2compiler_typecase,NULL,ECL_NIL,ecl_make_fixnum(1881)},
+{0,0,2,0,ecl_make_fixnum(38),ecl_make_fixnum(11),(cl_objectfn)L3simple_type_assertion,NULL,ECL_NIL,ecl_make_fixnum(2596)},
+{0,0,4,0,ecl_make_fixnum(39),ecl_make_fixnum(14),(cl_objectfn)L4expand_type_assertion,NULL,ECL_NIL,ecl_make_fixnum(3032)},
+{0,0,1,0,ecl_make_fixnum(42),ecl_make_fixnum(22),(cl_objectfn)L5c1checked_value,NULL,ECL_NIL,ecl_make_fixnum(4000)},
+{0,0,4,0,ecl_make_fixnum(51),ecl_make_fixnum(23),(cl_objectfn)L6c2checked_value,NULL,ECL_NIL,ecl_make_fixnum(6135)},
+{0,0,2,0,ecl_make_fixnum(52),ecl_make_fixnum(25),(cl_objectfn)LC7optional_type_assertion,NULL,ECL_NIL,ecl_make_fixnum(6292)},
+{0,0,2,0,ecl_make_fixnum(55),ecl_make_fixnum(26),(cl_objectfn)LC8type_assertion,NULL,ECL_NIL,ecl_make_fixnum(6659)},
+};

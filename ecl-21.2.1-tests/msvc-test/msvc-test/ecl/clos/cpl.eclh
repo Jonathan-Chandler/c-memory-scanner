@@ -1,0 +1,32 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L7compute_clos_class_precedence_list(cl_object , cl_object );
+static cl_object LC6delete_class(cl_object , cl_object );
+static cl_object LC5next_element(cl_object , cl_object );
+static cl_object LC4free_elements(cl_object , cl_object );
+static cl_object LC3has_no_precedent(cl_object , cl_object );
+static cl_object LC2cycle_error(cl_object );
+static cl_object LC1walk_supers(cl_object );
+static cl_object Cblock;
+#define VM 5
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 1
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,2,0,ecl_make_fixnum(4),ecl_make_fixnum(3),(cl_objectfn)L7compute_clos_class_precedence_list,NULL,ECL_NIL,ecl_make_fixnum(3405)},
+};

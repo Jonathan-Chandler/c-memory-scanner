@@ -1,0 +1,16 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)569, (cl_index)569,
+        (ecl_base_char*)
+"c::*cmp-env* c::*p0-dispatch-table* (values &rest t) c::infer-arg-and-return-typ"
+ "es 0 0 0 0 \"Syntax error in type proclamation for function ~A.~&~A\" \"Too few arg"
+ "uments for proclaimed function ~A\" \"The argument ~d of function ~a has type~&~4T"
+ "~A~&instead of expected~&~4T~A\" c::c1form \"Too many arguments passed to ~A\" c::e"
+ "nforce-types c::propagate-types c::def-type-propagator c::copy-type-propagator 0"
+ " c::location-primary-type c::get-arg-types c::get-return-type 0 c::cmpwarn c::ty"
+ "pe-and c::cmpwarn-style c::cmp-env-optimization 0 0 si::dm-too-few-arguments 0 \""
+ "COMPILER\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

@@ -1,0 +1,85 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1cmp_env_root(cl_narg, ...);
+static cl_object L2cmp_env_copy(cl_narg, ...);
+static cl_object L3set_closure_env(cl_narg, cl_object , cl_object , ...);
+static cl_object LC4cmp_env_variables(cl_object , cl_object );
+static cl_object LC5cmp_env_functions(cl_object , cl_object );
+static cl_object L6cmp_env_cleanups(cl_object );
+static cl_object L7cmp_env_register_var(cl_narg, cl_object , ...);
+static cl_object L8cmp_env_declare_special(cl_narg, cl_object , ...);
+static cl_object L9cmp_env_add_declaration(cl_narg, cl_object , cl_object , ...);
+static cl_object L10cmp_env_extend_declaration(cl_narg, cl_object , cl_object , ...);
+static cl_object L11cmp_env_register_function(cl_narg, cl_object , ...);
+static cl_object L12cmp_env_register_global_macro(cl_object , cl_object );
+static cl_object L13cmp_env_register_macro(cl_narg, cl_object , cl_object , ...);
+static cl_object L14cmp_env_register_ftype(cl_narg, cl_object , cl_object , ...);
+static cl_object L16cmp_env_register_symbol_macro(cl_narg, cl_object , cl_object , ...);
+static cl_object LC15__lambda52(cl_narg, cl_object , cl_object , ...);
+static cl_object L17cmp_env_register_symbol_macro_function(cl_narg, cl_object , cl_object , ...);
+static cl_object L18cmp_env_register_block(cl_narg, cl_object , ...);
+static cl_object L19cmp_env_register_tag(cl_narg, cl_object , cl_object , ...);
+static cl_object L20cmp_env_register_cleanup(cl_narg, cl_object , ...);
+static cl_object L21cmp_env_search_function(cl_narg, cl_object , ...);
+static cl_object L22cmp_env_search_variables(cl_object , cl_object , cl_object );
+static cl_object L23cmp_env_search_block(cl_narg, cl_object , ...);
+static cl_object L24cmp_env_search_tag(cl_narg, cl_object , ...);
+static cl_object L25cmp_env_search_symbol_macro(cl_narg, cl_object , ...);
+static cl_object L26cmp_env_search_var(cl_narg, cl_object , ...);
+static cl_object L27cmp_env_search_macro(cl_narg, cl_object , ...);
+static cl_object L28cmp_env_search_ftype(cl_narg, cl_object , ...);
+static cl_object L29cmp_env_mark(cl_narg, cl_object , ...);
+static cl_object L30cmp_env_new_variables(cl_object , cl_object );
+static cl_object L31cmp_env_search_declaration(cl_narg, cl_object , ...);
+static cl_object Cblock;
+#define VM 81
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 30
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-1,0,ecl_make_fixnum(41),ecl_make_fixnum(1),(cl_objectfn)L1cmp_env_root,NULL,ECL_NIL,ecl_make_fixnum(638)},
+{0,0,-1,0,ecl_make_fixnum(43),ecl_make_fixnum(3),(cl_objectfn)L2cmp_env_copy,NULL,ECL_NIL,ecl_make_fixnum(888)},
+{0,0,-3,0,ecl_make_fixnum(44),ecl_make_fixnum(5),(cl_objectfn)L3set_closure_env,NULL,ECL_NIL,ecl_make_fixnum(967)},
+{0,0,2,0,ecl_make_fixnum(45),ecl_make_fixnum(6),(cl_objectfn)LC4cmp_env_variables,NULL,ECL_NIL,ecl_make_fixnum(3522)},
+{0,0,2,0,ecl_make_fixnum(47),ecl_make_fixnum(7),(cl_objectfn)LC5cmp_env_functions,NULL,ECL_NIL,ecl_make_fixnum(3595)},
+{0,0,1,0,ecl_make_fixnum(48),ecl_make_fixnum(10),(cl_objectfn)L6cmp_env_cleanups,NULL,ECL_NIL,ecl_make_fixnum(3668)},
+{0,0,-2,0,ecl_make_fixnum(49),ecl_make_fixnum(14),(cl_objectfn)L7cmp_env_register_var,NULL,ECL_NIL,ecl_make_fixnum(4530)},
+{0,0,-2,0,ecl_make_fixnum(52),ecl_make_fixnum(17),(cl_objectfn)L8cmp_env_declare_special,NULL,ECL_NIL,ecl_make_fixnum(4819)},
+{0,0,-3,0,ecl_make_fixnum(54),ecl_make_fixnum(18),(cl_objectfn)L9cmp_env_add_declaration,NULL,ECL_NIL,ecl_make_fixnum(5006)},
+{0,0,-3,0,ecl_make_fixnum(55),ecl_make_fixnum(19),(cl_objectfn)L10cmp_env_extend_declaration,NULL,ECL_NIL,ecl_make_fixnum(5162)},
+{0,0,-2,0,ecl_make_fixnum(56),ecl_make_fixnum(20),(cl_objectfn)L11cmp_env_register_function,NULL,ECL_NIL,ecl_make_fixnum(5377)},
+{0,0,2,0,ecl_make_fixnum(58),ecl_make_fixnum(21),(cl_objectfn)L12cmp_env_register_global_macro,NULL,ECL_NIL,ecl_make_fixnum(5527)},
+{0,0,-3,0,ecl_make_fixnum(59),ecl_make_fixnum(22),(cl_objectfn)L13cmp_env_register_macro,NULL,ECL_NIL,ecl_make_fixnum(5700)},
+{0,0,-3,0,ecl_make_fixnum(60),ecl_make_fixnum(23),(cl_objectfn)L14cmp_env_register_ftype,NULL,ECL_NIL,ecl_make_fixnum(5853)},
+{0,0,-3,0,ecl_make_fixnum(61),ecl_make_fixnum(24),(cl_objectfn)L16cmp_env_register_symbol_macro,NULL,ECL_NIL,ecl_make_fixnum(6011)},
+{0,0,-3,0,ecl_make_fixnum(62),ecl_make_fixnum(25),(cl_objectfn)L17cmp_env_register_symbol_macro_function,NULL,ECL_NIL,ecl_make_fixnum(6236)},
+{0,0,-2,0,ecl_make_fixnum(63),ecl_make_fixnum(26),(cl_objectfn)L18cmp_env_register_block,NULL,ECL_NIL,ecl_make_fixnum(6412)},
+{0,0,-3,0,ecl_make_fixnum(65),ecl_make_fixnum(27),(cl_objectfn)L19cmp_env_register_tag,NULL,ECL_NIL,ecl_make_fixnum(6556)},
+{0,0,-2,0,ecl_make_fixnum(66),ecl_make_fixnum(28),(cl_objectfn)L20cmp_env_register_cleanup,NULL,ECL_NIL,ecl_make_fixnum(6698)},
+{0,0,-2,0,ecl_make_fixnum(67),ecl_make_fixnum(30),(cl_objectfn)L21cmp_env_search_function,NULL,ECL_NIL,ecl_make_fixnum(6837)},
+{0,0,3,0,ecl_make_fixnum(69),ecl_make_fixnum(31),(cl_objectfn)L22cmp_env_search_variables,NULL,ECL_NIL,ecl_make_fixnum(7544)},
+{0,0,-2,0,ecl_make_fixnum(70),ecl_make_fixnum(32),(cl_objectfn)L23cmp_env_search_block,NULL,ECL_NIL,ecl_make_fixnum(8615)},
+{0,0,-2,0,ecl_make_fixnum(71),ecl_make_fixnum(33),(cl_objectfn)L24cmp_env_search_tag,NULL,ECL_NIL,ecl_make_fixnum(8723)},
+{0,0,-2,0,ecl_make_fixnum(72),ecl_make_fixnum(34),(cl_objectfn)L25cmp_env_search_symbol_macro,NULL,ECL_NIL,ecl_make_fixnum(8827)},
+{0,0,-2,0,ecl_make_fixnum(73),ecl_make_fixnum(35),(cl_objectfn)L26cmp_env_search_var,NULL,ECL_NIL,ecl_make_fixnum(8953)},
+{0,0,-2,0,ecl_make_fixnum(74),ecl_make_fixnum(36),(cl_objectfn)L27cmp_env_search_macro,NULL,ECL_NIL,ecl_make_fixnum(9054)},
+{0,0,-2,0,ecl_make_fixnum(75),ecl_make_fixnum(37),(cl_objectfn)L28cmp_env_search_ftype,NULL,ECL_NIL,ecl_make_fixnum(9195)},
+{0,0,-2,0,ecl_make_fixnum(77),ecl_make_fixnum(38),(cl_objectfn)L29cmp_env_mark,NULL,ECL_NIL,ecl_make_fixnum(9405)},
+{0,0,2,0,ecl_make_fixnum(78),ecl_make_fixnum(39),(cl_objectfn)L30cmp_env_new_variables,NULL,ECL_NIL,ecl_make_fixnum(9521)},
+{0,0,-2,0,ecl_make_fixnum(80),ecl_make_fixnum(40),(cl_objectfn)L31cmp_env_search_declaration,NULL,ECL_NIL,ecl_make_fixnum(9751)},
+};

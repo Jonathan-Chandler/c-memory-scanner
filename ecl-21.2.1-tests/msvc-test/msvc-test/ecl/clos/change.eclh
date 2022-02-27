@@ -1,0 +1,41 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object LC1update_instance_for_different_class(cl_narg, cl_object , cl_object , ...);
+static cl_object LC2change_class(cl_narg, cl_object , cl_object , ...);
+static cl_object LC3change_class(cl_narg, cl_object , cl_object , ...);
+static cl_object LC4update_instance_for_redefined_class(cl_narg, cl_object , cl_object , cl_object , cl_object , ...);
+static cl_object LC5update_instance_for_redefined_class(cl_narg, cl_object , cl_object , cl_object , cl_object , ...);
+static cl_object L6update_instance(cl_object );
+static cl_object LC7reinitialize_instance(cl_narg, cl_object , ...);
+#define LC7reinitialize_instancekeys (&VV[16])
+static cl_object L8slot_definitions_compatible_p(cl_object , cl_object );
+static cl_object LC9make_instances_obsolete(cl_object );
+static cl_object L10remove_optional_slot_accessors(cl_object );
+static cl_object Cblock;
+#define VM 25
+#define VMtemp 12
+#define ECL_DEFINE_SETF_FUNCTIONS \
+VV[22]=ecl_setf_definition(ECL_SYM("CLASS-FINALIZED-P",1552),ECL_T);\
+VV[21]=ecl_setf_definition(ECL_SYM("CLASS-DIRECT-SUPERCLASSES",1551),ECL_T);\
+VV[19]=ecl_setf_definition(ECL_SYM("CLASS-DIRECT-SLOTS",1549),ECL_T);\
+VV[13]=ecl_setf_definition(ECL_SYM("SLOT-VALUE",973),ECL_T);
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 2
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,1,0,ecl_make_fixnum(15),ecl_make_fixnum(2),(cl_objectfn)L6update_instance,NULL,ECL_NIL,ecl_make_fixnum(6739)},
+{0,0,2,0,ecl_make_fixnum(24),ecl_make_fixnum(6),(cl_objectfn)L8slot_definitions_compatible_p,NULL,ECL_NIL,ecl_make_fixnum(10064)},
+};

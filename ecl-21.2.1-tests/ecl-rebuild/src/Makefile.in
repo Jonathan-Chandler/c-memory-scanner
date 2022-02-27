@@ -1,0 +1,316 @@
+# -*- Mode: Makefile; indent-tabs-mode: nil -*-
+# vim: set filetype=makefile tabstop=8 shiftwidth=4 expandtab:
+
+#
+# Makefile for ECL
+#
+top_srcdir= @top_srcdir@
+srcdir	= @srcdir@
+datarootdir = @datarootdir@
+datadir = @datadir@
+mandir=@mandir@
+manext=1
+
+# Programs used by "make":
+#
+
+@SET_MAKE@
+# CC may be either C or CXX compiler (depending on --with-cxx
+# option). This compiler is used for building all contribs, modules
+# and anything what goes through CMP module.
+CC	= @ECL_CC@
+# TRUE_CC is always C compiler. ECL core files (src/c/*) doesn't build
+# with CXX compiler.
+TRUE_CC = @CC@
+CFLAGS	= -I. -I@true_builddir@ -I$(srcdir)/c -Iecl/gc    \
+	-DECL_BUILD -DECL_API -DECL_NO_LEGACY           \
+	@CPPFLAGS@ @CFLAGS@ @ECL_CFLAGS@ -c
+LIBS	= @LIBS@
+FASL_LIBS = @FASL_LIBS@
+CORE_LIBS = @CORE_LIBS@
+LDFLAGS	= @LDFLAGS@
+RM	= @RM@
+LN_S	= @LN_S@
+EXE	= @EXEEXT@
+CTAGS	= @CTAGS@
+ETAGS	= @ETAGS@
+RANLIB	= @RANLIB@
+AR	= @AR@
+DPP	= dpp$(EXE)
+ECL_MIN = ecl_min$(EXE)
+ECL     = ecl$(EXE)
+
+# ==================== Where To Install Things ====================
+
+# The default location for installation.  Everything is placed in
+# subdirectories of this directory.  The default values for many of
+# the variables below are expressed in terms of this one, so you may
+# not need to change them.  This defaults to /usr/local.
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+bindir=@bindir@
+libdir=@libdir@
+includedir=@includedir@
+ecldir=@ecldir@
+
+# Programs used by "make install":
+#
+SHELL = @SHELL@
+INSTALL	= @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_LIBRARY = $(INSTALL_SCRIPT)
+INSTALL_DATA = @INSTALL_DATA@
+mkinstalldirs = $(top_srcdir)/bdwgc/install-sh -d
+
+# Files
+
+SUBDIRS = @SUBDIRS@
+LIBRARIES = @LIBRARIES@
+LSP_LIBRARIES = @LSP_LIBRARIES@
+TARGETS = @TARGETS@
+ECL_CMPDIR = @ECL_CMPDIR@
+
+all: $(TARGETS) bin/ecl-config .git/tags TAGS doc
+.PHONY: all
+.SUFFIXES: .c .o .d .s
+
+ifndef VERBOSE
+.SILENT:
+endif
+
+%Makefile: $(srcdir)/%Makefile.in config.status
+	./config.status
+
+#
+# When compiling the library itself, we have to remove the dllimport
+# declarations, because the variables that they mark are in the
+# in the library and can be referenced without indirection.
+#
+c/ecl/external.h: $(top_srcdir)/h/external.h
+	test -d c/ecl || mkdir c/ecl
+	sed 's,__declspec(dllimport),,g' $(top_srcdir)/h/external.h > $@
+
+ecl/external.h: c/ecl/external.h c/ecl/external.h
+	cp -rf $(srcdir)/h/*.h $(srcdir)/h/impl ecl/
+
+bin/$(ECL): $(ECL_MIN) compile.lsp ecl/external.h build-stamp $(top_srcdir)/lsp/*.lsp $(top_srcdir)/clos/*.lsp $(top_srcdir)/*cmp/*.lsp
+	if [ -f CROSS-COMPILER ]; then \
+		./CROSS-COMPILER compile; \
+	else \
+		ECLDIR=`pwd`/ ./$(ECL_MIN) compile; \
+	fi
+	if [ "x@SONAME@" != "x" -a -f "@SONAME@" -a "@SONAME@" != "@SONAME3@" ]; then \
+	  ( mv @SONAME@ @SONAME3@ && \
+	    $(RM) -f @SONAME2@ @SONAME1@ @SONAME@ && \
+	    $(LN_S) @SONAME3@ @SONAME2@ && \
+	    $(LN_S) @SONAME3@ @SONAME1@ && \
+	    $(LN_S) @SONAME3@ @SONAME@ ) \
+	fi
+
+# prerequisite libraries
+libeclgc.a: libeclatomic.a
+	test -d ecl/gc || mkdir ecl/gc
+	test -d ecl/gc/private || mkdir ecl/gc/private
+	if (echo $(SUBDIRS) | grep gc); then \
+	  cd gc && $(MAKE) install && cd .. && \
+	  cp -rf $(srcdir)/@ECL_GC_DIR@/include/private/*.h ecl/gc/private/ && \
+	  mv libgc.a libeclgc.a; \
+	fi
+libeclffi.a:
+	if (echo $(SUBDIRS) | grep libffi); then \
+	  cd libffi && $(MAKE) install && cd .. && \
+	  sed -e 's,<ffitarget,<ecl/ffitarget,' ecl/ffi.h > ecl/foo.h && \
+	  rm ecl/ffi.h && mv ecl/foo.h ecl/ffi.h && \
+	  mv libffi.a libeclffi.a; \
+	fi
+libeclatomic.a:
+	if (echo $(SUBDIRS) | grep atomic); then \
+	  cd atomic && $(MAKE) && $(MAKE) install && cd .. && \
+	  $(RM) -rf share ecl/atomic_ops_stack.h ecl/atomic_ops_malloc.h *atomic*gpl* && \
+	  mv libatomic_ops.a libeclatomic.a; \
+	fi
+libeclgmp.a:
+	if (echo $(SUBDIRS) | grep gmp); then \
+	  cd gmp && $(MAKE) install && \
+	  cd .. && mv include/gmp.h ecl/ && rmdir include &&  \
+	  mv ./libgmp.a ./libeclgmp.a; \
+	fi
+
+# final objects archive
+libeclmin.a: libeclgmp.a libeclatomic.a libeclgc.a libeclffi.a lsp/config.lsp $(ECL_CMPDIR)/cmpdefs.lsp ecl/external.h
+	@echo "Building $@..."
+	cd c; $(MAKE)
+
+$(ECL_MIN): $(LIBRARIES) .gdbinit libeclmin.a
+	@echo "Building $@..."
+	if [ -f CROSS-COMPILER ]; then \
+		touch $@; \
+	else \
+		$(CC) $(LDFLAGS) -o $@ \
+		cinit.o c/all_symbols.o \
+		-L./ libeclmin.a \
+		$(CORE_LIBS) $(FASL_LIBS) $(LIBS);\
+	fi
+mini_ecl: $(ECL_MIN) bare2.lsp
+	(echo '#!/bin/sh'; echo './$(ECL_MIN) bare2.lsp') > $@
+	chmod +x $@
+
+clean-ecl_min:
+	$(RM) -rf $(DPP) $(ECL_MIN) libecl*.a c/
+	for i in $(srcdir)/c/*/; do mkdir -p c/`basename $$i`; done
+
+bare2.lsp:
+	echo '(load "bare")(si::top-level)' > $@
+
+.gdbinit: $(srcdir)/util/gdbinit
+	cp $(srcdir)/util/gdbinit $@
+
+$(ECL_CMPDIR)/cmpdefs.lsp: $(ECL_CMPDIR)/cmpdefs.pre
+	sed -e 's,@ecldir\\@,$(ecldir),g' \
+	    -e 's,@libdir\\@,$(libdir),g' \
+	    -e 's,@includedir\\@,$(includedir),g' < $(ECL_CMPDIR)/cmpdefs.pre > $@
+
+# @SONAME_LDFLAGS@ expansion may contain @libdir@ on OSX
+compile.lsp: compile.pre
+	sed -e 's,@ecldir\\@,$(ecldir),g' \
+            -e 's,@libdir\\@,$(libdir),g' < compile.pre > compile.lsp
+
+bin/ecl-config: bin/ecl-config.pre
+	sed -e 's,@libdir\\@,$(libdir),' \
+	    -e 's,@includedir\\@,$(includedir),' \
+	    -e 's,~A,$(libdir),' bin/ecl-config.pre > bin/ecl-config
+
+build-stamp: config.status
+	echo "#" `uname -a` > $@
+	head -8 config.log | tail -6 >> $@
+
+doc:
+	$(MAKE) -C doc
+.PHONY: doc
+
+install:
+# Here we would use the option -s but the install program in sourceforge-solaris
+# is broken.
+	$(mkinstalldirs) $(DESTDIR)$(bindir) $(DESTDIR)$(libdir) \
+	  $(DESTDIR)$(ecldir) $(DESTDIR)$(includedir) $(DESTDIR)$(includedir)/ecl
+	for i in $(TARGETS); do \
+	  $(INSTALL_PROGRAM) $$i $(DESTDIR)$(bindir); \
+	done
+	if [ -d encodings ]; then \
+	  $(mkinstalldirs) $(DESTDIR)$(ecldir)/encodings; \
+	  for i in ./encodings/*; do \
+	    $(INSTALL_DATA) $$i $(DESTDIR)$(ecldir)/encodings; \
+	  done \
+	fi
+	$(mkinstalldirs) $(DESTDIR)$(includedir)/ecl
+	for i in `(cd ecl && find . -type d)`; do \
+	  k="$(DESTDIR)$(includedir)/ecl/$$i"; \
+	  test -d "$$k" || $(mkinstalldirs) $$k; \
+	done
+	for i in `(cd ecl && find . -name '*.h')`; do echo $$i; \
+	  $(INSTALL_DATA) ecl/$$i $(DESTDIR)$(includedir)/ecl/$$i; \
+	done
+	$(INSTALL_SCRIPT) bin/ecl-config $(DESTDIR)$(bindir)
+	for i in build-stamp help.doc TAGS ; do \
+	  $(INSTALL_DATA) $$i $(DESTDIR)$(ecldir); \
+	done
+	for i in $(LSP_LIBRARIES) $(LIBRARIES); do \
+	  if test -s $$i ; then \
+	   if echo $$i | grep dll; then \
+	    $(INSTALL_LIBRARY) $$i $(DESTDIR)$(bindir); \
+	   fi; \
+	   $(INSTALL_LIBRARY) $$i $(DESTDIR)$(libdir); \
+	  fi \
+	done
+	if [ "x@SONAME3@" != "x" -a -f "@SONAME3@" -a "@SONAME@" != "@SONAME3@" ]; then \
+	  ( $(INSTALL_LIBRARY) @SONAME3@ $(DESTDIR)$(libdir) && \
+	    cd $(DESTDIR)$(libdir) && $(RM) -f @SONAME2@ @SONAME1@ @SONAME@ && \
+	    $(LN_S) @SONAME3@ @SONAME2@ && \
+	    $(LN_S) @SONAME3@ @SONAME1@ && \
+	    $(LN_S) @SONAME3@ @SONAME@ ) \
+	fi
+	$(INSTALL_PROGRAM) c/$(DPP) $(DESTDIR)$(ecldir)
+	$(INSTALL_PROGRAM) $(ECL_MIN) $(DESTDIR)$(ecldir)
+	for i in `cat modules`; do \
+	  case $$i in \
+	    *.fas) $(INSTALL_PROGRAM) $$i $(DESTDIR)$(ecldir);; \
+	    *) $(INSTALL_DATA) $$i $(DESTDIR)$(ecldir);; \
+	  esac \
+	done
+	for i in LICENSE COPYING; do \
+	  $(INSTALL_DATA) $(top_srcdir)/../$$i $(DESTDIR)$(ecldir); \
+	done
+	$(MAKE) -C doc install
+
+flatinstall: build-stamp
+	$(MAKE) DESTDIR=$(DESTDIR) bindir=$(prefix) libdir=$(prefix) \
+	  includedir=$(prefix) ecldir=$(prefix) install
+
+uninstall:
+	for i in $(ECL) ecl-config; do $(RM) $(DESTDIR)$(bindir)/$$i; done
+	for i in $(LSP_LIBRARIES) $(LIBRARIES) LICENSE LGPL \
+			@SONAME@ @SONAME1@ @SONAME2@ @SONAME3@; do \
+	  $(RM) $(DESTDIR)$(libdir)/$$i || : ; \
+	done
+	$(MAKE) -C doc uninstall
+	$(RM) -r $(DESTDIR)$(includedir)/ecl $(DESTDIR)$(ecldir)
+
+clean: mostlyclean
+	$(RM) -r *
+mostlyclean: clean-ecl_min clean_lisp
+	(cd tests && $(MAKE) clean)
+	-for i in $(SUBDIRS); do (test -d $$i && cd $$i && $(MAKE) clean); done
+	$(RM) -r $(ECL_MIN) $(ECL) help.doc core a.out TAGS
+	$(RM) config.version config.log config.cache
+	$(RM) *.c *.o *.a *.eclh *.h *.data *.fas *.dat *.la *.so *.dylib
+clean_lisp:
+	-$(RM) help.doc $(TARGETS)
+	-for i in lsp cmp clos tk ext; do $(RM) lib$$i.a $$i/?*.{o,eclh,data,c,sdat,h,fas}; done
+distclean: clean
+realclean: distclean
+#
+# Rebuild ECL using recent changes and compare
+#
+test_changes:
+	test -d old || mkdir old
+	cp -rf lsp clos cmp old/
+	$(MAKE) clean_lisp; $(MAKE) -C c clean; $(RM) -f $(ECL)
+	$(MAKE)
+	for i in lsp clos cmp; do diff --exclude=\*.o $$i old/$$i; done
+#
+# Run test suite
+#
+check:
+	cd tests && $(MAKE) clean && $(MAKE) check TESTS="$(TESTS)"
+
+#
+# Rebuild ECL using its own image and compare. Does not work
+# right now.
+#
+selfbuild:
+	exit 2
+	test -d stage2 || mkdir stage2
+	cp -rf lsp clos cmp stage2
+	-for i in lsp cmp clos tk; do test -f lib$$i.a && mv lib$$i.a stage2; done
+	$(MAKE) clean_lisp
+	./ecl compile
+	-for i in lsp clos cmp tk; do test -d $$i && diff --exclude=\*.o $$i stage2/$$i; done | less
+
+.git/tags:
+	( cd $(srcdir)/../.git && test "x$(CTAGS)" != "x" && $(CTAGS) -f tags -R --langmap=c:+.d ../src || false) || echo "tags generation failed, but this does not break the build."
+
+# Make sure to also include *.d files; and match DPP's idiosyncracies
+# like "@si::foo" and "@(defun si::foo".  This rule is allowed to fail
+# when etags does not exist.
+TAGS:
+	-if test "x$(ETAGS)" != "x"; then \
+	srcfiles=`find $(srcdir)/c $(srcdir)/h -name '*.[chd]'` && \
+	$(ETAGS) --language=c    -o $@ $$srcfiles && \
+	$(ETAGS) --language=none -o $@ --append \
+	      --regex='/@\([-:*a-zA-z]+\)/\1/' \
+	      --regex='/@(defun \([-:*a-zA-z]+\)/\1/' \
+	      $$srcfiles; \
+	fi
+	touch $@

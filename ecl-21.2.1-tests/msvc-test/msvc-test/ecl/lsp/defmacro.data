@@ -1,0 +1,20 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)921, (cl_index)921,
+        (ecl_base_char*)
+"si::search-keyword \"keyword list is not a proper list\" \"The key ~s is not allowe"
+ "d\" si::check-keyword \"Too many arguments supplied to a macro or a destructuring-"
+ "bind form:~%~s\" si::dm-too-many-arguments \"Too few arguments supplied to a macro"
+ " or a destructuring-bind form:~%~S\" \"Too few arguments supplied to a inlined lam"
+ "bda form.\" si::dm-too-few-arguments si::*dl* si::*arg-check* 0 0 'funcall 'funct"
+ "ion 'si::missing-keyword (t) \"destructure: ~A is not a list nor a symbol\" \"The d"
+ "estructuring-lambda-list ~s is not a list.\" si::destructure si::find-documentati"
+ "on si::remove-documentation si::find-declarations si::expand-defmacro destructur"
+ "ing-bind \"In a MACROLET function you tried to access a local variable, ~A,\nfrom "
+ "the function in which it appears.\" \"In a MACROLET function you tried to access a"
+ " local function, ~A,\nfrom the function in which it appears.\" si::cmp-env-registe"
+ "r-macrolet 0 0 0 0 0 0 0 0 0 0 0 \"SYSTEM\"" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

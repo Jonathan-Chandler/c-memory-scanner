@@ -1,0 +1,64 @@
+
+#ifdef ECL_DYNAMIC_VV
+static cl_object *VV;
+#else
+static cl_object VV[VM];
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+static cl_object L1make_inline_temp_var(cl_narg, cl_object , ...);
+static cl_object L2save_inline_loc(cl_object );
+static cl_object LC3with_inlined_loc(cl_object , cl_object );
+static cl_object L4emit_inlined_variable(cl_object , cl_object );
+static cl_object L5emit_inlined_setq(cl_object , cl_object );
+static cl_object L6emit_inlined_call_global(cl_object , cl_object );
+static cl_object L7emit_inlined_progn(cl_object , cl_object );
+static cl_object L8emit_inlined_values(cl_object , cl_object );
+static cl_object L9emit_inlined_structure_ref(cl_object , cl_object );
+static cl_object L10emit_inlined_instance_ref(cl_object , cl_object );
+static cl_object L11emit_inline_form(cl_object , cl_object );
+static cl_object L12inline_args(cl_object );
+static cl_object L13destination_type();
+static cl_object L14maybe_open_inline_block();
+static cl_object L15open_inline_block();
+static cl_object L16close_inline_blocks();
+static cl_object L17form_causes_side_effect(cl_object );
+static cl_object L18args_cause_side_effect(cl_object );
+static cl_object L19function_may_have_side_effects(cl_object );
+static cl_object L20function_may_change_sp(cl_object );
+static cl_object Cblock;
+#define VM 91
+#define VMtemp 1
+#define ECL_DEFINE_SETF_FUNCTIONS 
+#ifdef __cplusplus
+}
+#endif
+/*
+ * Exported Lisp functions
+ */
+#define compiler_cfuns_size 20
+static const struct ecl_cfunfixed compiler_cfuns[] = {
+ /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
+{0,0,-2,0,ecl_make_fixnum(36),ecl_make_fixnum(3),(cl_objectfn)L1make_inline_temp_var,NULL,ECL_NIL,ecl_make_fixnum(1510)},
+{0,0,1,0,ecl_make_fixnum(42),ecl_make_fixnum(5),(cl_objectfn)L2save_inline_loc,NULL,ECL_NIL,ecl_make_fixnum(1918)},
+{0,0,2,0,ecl_make_fixnum(45),ecl_make_fixnum(7),(cl_objectfn)LC3with_inlined_loc,NULL,ECL_NIL,ecl_make_fixnum(2127)},
+{0,0,2,0,ecl_make_fixnum(48),ecl_make_fixnum(8),(cl_objectfn)L4emit_inlined_variable,NULL,ECL_NIL,ecl_make_fixnum(2302)},
+{0,0,2,0,ecl_make_fixnum(53),ecl_make_fixnum(10),(cl_objectfn)L5emit_inlined_setq,NULL,ECL_NIL,ecl_make_fixnum(2679)},
+{0,0,2,0,ecl_make_fixnum(57),ecl_make_fixnum(12),(cl_objectfn)L6emit_inlined_call_global,NULL,ECL_NIL,ecl_make_fixnum(3026)},
+{0,0,2,0,ecl_make_fixnum(66),ecl_make_fixnum(14),(cl_objectfn)L7emit_inlined_progn,NULL,ECL_NIL,ecl_make_fixnum(3556)},
+{0,0,2,0,ecl_make_fixnum(67),ecl_make_fixnum(15),(cl_objectfn)L8emit_inlined_values,NULL,ECL_NIL,ecl_make_fixnum(3771)},
+{0,0,2,0,ecl_make_fixnum(69),ecl_make_fixnum(16),(cl_objectfn)L9emit_inlined_structure_ref,NULL,ECL_NIL,ecl_make_fixnum(4252)},
+{0,0,2,0,ecl_make_fixnum(71),ecl_make_fixnum(17),(cl_objectfn)L10emit_inlined_instance_ref,NULL,ECL_NIL,ecl_make_fixnum(4834)},
+{0,0,2,0,ecl_make_fixnum(72),ecl_make_fixnum(23),(cl_objectfn)L11emit_inline_form,NULL,ECL_NIL,ecl_make_fixnum(5380)},
+{0,0,1,0,ecl_make_fixnum(78),ecl_make_fixnum(24),(cl_objectfn)L12inline_args,NULL,ECL_NIL,ecl_make_fixnum(6435)},
+{0,0,0,0,ecl_make_fixnum(79),ecl_make_fixnum(25),(cl_objectfn)L13destination_type,NULL,ECL_NIL,ecl_make_fixnum(6582)},
+{0,0,0,0,ecl_make_fixnum(81),ecl_make_fixnum(27),(cl_objectfn)L14maybe_open_inline_block,NULL,ECL_NIL,ecl_make_fixnum(6705)},
+{0,0,0,0,ecl_make_fixnum(82),ecl_make_fixnum(28),(cl_objectfn)L15open_inline_block,NULL,ECL_NIL,ecl_make_fixnum(6800)},
+{0,0,0,0,ecl_make_fixnum(84),ecl_make_fixnum(29),(cl_objectfn)L16close_inline_blocks,NULL,ECL_NIL,ecl_make_fixnum(6876)},
+{0,0,1,0,ecl_make_fixnum(86),ecl_make_fixnum(30),(cl_objectfn)L17form_causes_side_effect,NULL,ECL_NIL,ecl_make_fixnum(6995)},
+{0,0,1,0,ecl_make_fixnum(88),ecl_make_fixnum(31),(cl_objectfn)L18args_cause_side_effect,NULL,ECL_NIL,ecl_make_fixnum(7064)},
+{0,0,1,0,ecl_make_fixnum(89),ecl_make_fixnum(33),(cl_objectfn)L19function_may_have_side_effects,NULL,ECL_NIL,ecl_make_fixnum(7141)},
+{0,0,1,0,ecl_make_fixnum(90),ecl_make_fixnum(35),(cl_objectfn)L20function_may_change_sp,NULL,ECL_NIL,ecl_make_fixnum(7237)},
+};
