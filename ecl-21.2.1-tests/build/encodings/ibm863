@@ -1,1 +1,0 @@
-(defparameter EXT::IBM863 (ext::make-encoding 'EXT::DOS-CP863))

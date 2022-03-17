@@ -27,6 +27,25 @@ clean:
 # gcc -Wall -m32 -s -v -shared -Wl,--subsystem,windows -I. app_main.o -o test.dll -lm -Wl,-Bstatic libecl.a libecl.lib -Wl,--no-whole-archive
 # gcc -Wall -m32 -s -v -shared -Wl,--subsystem,windows -I. app_main.o -o test.dll -lm -Wl,-Bstatic,--whole-archive libecl.a libecl.lib -Wl,--no-whole-archive
 # dumpbin /EXPORTS ecl.dll
+# editbin /STACK:64000000 Darkstone.exe
+# dumpbin /headers Darkstone.exe
+# 
 # make SHELL='sh -x'
 # ./configure --disable-shared
 # gcc -I. -D_REENTRANT -fPIC -g -pipe -Wall -c app_main.c
+# (require :cmp)
+# (compile-file "slime-test2/swank-loader.lisp" :system-p t)
+# ecl --norc 
+# 		-eval '(require :asdf)' 
+# 		-eval '(require :cmp)' 
+# 		-eval '(push "./" asdf:*central-registry*)' 
+# 		-eval '(asdf:make-build :swank :type :static-library :move-here "./")' 
+# 		-eval '(quit)'
+#
+# (require :asdf)
+# (require :cmp)
+# (push "./slime-test2/" asdf:*central-registry*)
+# (asdf:make-build :swank :type :static-library :monolithic t :move-here "./")
+# (asdf:make-build :packages :type :static-library :move-here "./")
+# (quit)
+# 

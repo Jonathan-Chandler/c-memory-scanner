@@ -1,1 +1,0 @@
-(defparameter EXT::CP949 (ext::make-encoding 'EXT::WINDOWS-CP949))

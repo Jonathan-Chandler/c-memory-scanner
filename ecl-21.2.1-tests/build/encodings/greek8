@@ -1,1 +1,0 @@
-(defparameter EXT::GREEK8 (ext::make-encoding 'EXT::ISO-8859-7))

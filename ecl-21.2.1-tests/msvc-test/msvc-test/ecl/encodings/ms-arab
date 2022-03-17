@@ -1,1 +1,0 @@
-(defparameter EXT::MS-ARAB (ext::make-encoding 'EXT::WINDOWS-CP1256))

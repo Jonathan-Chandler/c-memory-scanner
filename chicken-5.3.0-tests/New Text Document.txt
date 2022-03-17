@@ -1,0 +1,2 @@
+-I/c/msys64/mingw32/include/chicken/ -L/c/msys64/mingw32/lib/chicken/11/
+

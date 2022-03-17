@@ -1,3 +1,0 @@
-(princ "Lisp Environment Booted.")
-
-

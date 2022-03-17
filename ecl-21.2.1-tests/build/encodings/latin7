@@ -1,1 +1,0 @@
-(defparameter EXT::LATIN7 (ext::make-encoding 'EXT::ISO-8859-13))

@@ -1,0 +1,138 @@
+$ make install
+cd build; make flatinstall
+make[1]: Entering directory '/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/build'
+make[2]: Entering directory '/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/build'
+./atomic_ops/ao_version.h
+./atomic_ops/generalize-arithm.h
+./atomic_ops/generalize-small.h
+./atomic_ops/generalize.h
+./atomic_ops/sysdeps/all_acquire_release_volatile.h
+./atomic_ops/sysdeps/all_aligned_atomic_load_store.h
+./atomic_ops/sysdeps/all_atomic_load_store.h
+./atomic_ops/sysdeps/all_atomic_only_load.h
+./atomic_ops/sysdeps/ao_t_is_int.h
+./atomic_ops/sysdeps/armcc/arm_v6.h
+./atomic_ops/sysdeps/emul_cas.h
+./atomic_ops/sysdeps/gcc/aarch64.h
+./atomic_ops/sysdeps/gcc/alpha.h
+./atomic_ops/sysdeps/gcc/arm.h
+./atomic_ops/sysdeps/gcc/avr32.h
+./atomic_ops/sysdeps/gcc/cris.h
+./atomic_ops/sysdeps/gcc/generic-arithm.h
+./atomic_ops/sysdeps/gcc/generic-small.h
+./atomic_ops/sysdeps/gcc/generic.h
+./atomic_ops/sysdeps/gcc/hexagon.h
+./atomic_ops/sysdeps/gcc/hppa.h
+./atomic_ops/sysdeps/gcc/ia64.h
+./atomic_ops/sysdeps/gcc/m68k.h
+./atomic_ops/sysdeps/gcc/mips.h
+./atomic_ops/sysdeps/gcc/powerpc.h
+./atomic_ops/sysdeps/gcc/riscv.h
+./atomic_ops/sysdeps/gcc/s390.h
+./atomic_ops/sysdeps/gcc/sh.h
+./atomic_ops/sysdeps/gcc/sparc.h
+./atomic_ops/sysdeps/gcc/tile.h
+./atomic_ops/sysdeps/gcc/x86.h
+./atomic_ops/sysdeps/generic_pthread.h
+./atomic_ops/sysdeps/hpc/hppa.h
+./atomic_ops/sysdeps/hpc/ia64.h
+./atomic_ops/sysdeps/ibmc/powerpc.h
+./atomic_ops/sysdeps/icc/ia64.h
+./atomic_ops/sysdeps/loadstore/acquire_release_volatile.h
+./atomic_ops/sysdeps/loadstore/atomic_load.h
+./atomic_ops/sysdeps/loadstore/atomic_store.h
+./atomic_ops/sysdeps/loadstore/char_acquire_release_volatile.h
+./atomic_ops/sysdeps/loadstore/char_atomic_load.h
+./atomic_ops/sysdeps/loadstore/char_atomic_store.h
+./atomic_ops/sysdeps/loadstore/double_atomic_load_store.h
+./atomic_ops/sysdeps/loadstore/int_acquire_release_volatile.h
+./atomic_ops/sysdeps/loadstore/int_atomic_load.h
+./atomic_ops/sysdeps/loadstore/int_atomic_store.h
+./atomic_ops/sysdeps/loadstore/ordered_loads_only.h
+./atomic_ops/sysdeps/loadstore/ordered_stores_only.h
+./atomic_ops/sysdeps/loadstore/short_acquire_release_volatile.h
+./atomic_ops/sysdeps/loadstore/short_atomic_load.h
+./atomic_ops/sysdeps/loadstore/short_atomic_store.h
+./atomic_ops/sysdeps/msftc/arm.h
+./atomic_ops/sysdeps/msftc/common32_defs.h
+./atomic_ops/sysdeps/msftc/x86.h
+./atomic_ops/sysdeps/msftc/x86_64.h
+./atomic_ops/sysdeps/ordered.h
+./atomic_ops/sysdeps/ordered_except_wr.h
+./atomic_ops/sysdeps/read_ordered.h
+./atomic_ops/sysdeps/standard_ao_double_t.h
+./atomic_ops/sysdeps/sunc/sparc.h
+./atomic_ops/sysdeps/sunc/x86.h
+./atomic_ops/sysdeps/test_and_set_t_is_ao_t.h
+./atomic_ops/sysdeps/test_and_set_t_is_char.h
+./atomic_ops.h
+./bytecodes.h
+./cache.h
+./config-internal.h
+./config.h
+./configpre-int.h
+./configpre.h
+./cons.h
+./cs.h
+./ecl-cmp.h
+./ecl-inl.h
+./ecl.h
+./ecl_atomics.h
+./external.h
+./ffi.h
+./ffitarget.h
+./gc/cord.h
+./gc/cord_pos.h
+./gc/ec.h
+./gc/gc.h
+./gc/gc_allocator.h
+./gc/gc_backptr.h
+./gc/gc_config_macros.h
+./gc/gc_disclaim.h
+./gc/gc_gcj.h
+./gc/gc_inline.h
+./gc/gc_mark.h
+./gc/gc_pthread_redirects.h
+./gc/gc_tiny_fl.h
+./gc/gc_typed.h
+./gc/gc_version.h
+./gc/javaxfc.h
+./gc/leak_detector.h
+./gc/private/darwin_semaphore.h
+./gc/private/darwin_stop_world.h
+./gc/private/dbg_mlc.h
+./gc/private/gcconfig.h
+./gc/private/gc_hdrs.h
+./gc/private/gc_locks.h
+./gc/private/gc_pmark.h
+./gc/private/gc_priv.h
+./gc/private/msvc_dbg.h
+./gc/private/pthread_stop_world.h
+./gc/private/pthread_support.h
+./gc/private/specific.h
+./gc/private/thread_local_alloc.h
+./gc/weakpointer.h
+./gc.h
+./impl/math_dispatch.h
+./impl/math_dispatch2.h
+./impl/math_fenv.h
+./impl/math_fenv_msvc.h
+./internal.h
+./legacy.h
+./number.h
+./object.h
+./page.h
+./stack-resize.h
+./stacks.h
+ecl.dll
+make[3]: Entering directory '/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/build/doc'
+/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/src/bdwgc/install-sh -d /mingw32/share/info
+/usr/bin/install -c -m 644 manual/ecl.info.gz /mingw32/share/info
+/usr/bin/install-info --info-dir=/mingw32/share/info manual/ecl.info.gz
+/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/src/bdwgc/install-sh -d /mingw32/share/man/man1
+/usr/bin/install -c -m 644 ecl.man /mingw32/share/man/man1/ecl.1
+/usr/bin/install -c -m 644 ecl-config.man /mingw32/share/man/man1/ecl-config.1
+make[3]: Leaving directory '/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/build/doc'
+make[2]: Leaving directory '/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/build'
+make[1]: Leaving directory '/c/work/c/memscan-dll/ecl-21.2.1-tests/ecl-unmod/ecl-21.2.1/build'
+

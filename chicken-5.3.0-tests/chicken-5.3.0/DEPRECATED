@@ -1,0 +1,36 @@
+Deprecated functions and variables
+==================================
+
+5.2.1
+- current-milliseconds and its C implementations C_milliseconds and
+  C_a_i_current_milliseconds have been deprecated in favor of
+  current-process_milliseconds, C_current_process_milliseconds and
+  C_a_i_current_process_milliseconds
+- C_pair() is now officially deprecated in favor of C_a_pair(), which
+  should also be faster.
+
+5.1.1
+
+- ##sys#check-exact and its C implementations C_i_check_exact and
+  C_i_check_exact_2 have been deprecated (see also #1631).
+- "C_u_i_zerop" has been turned into an inline operation and is
+  deprecated in favor of "C_u_i_zerop2".
+- The define-record-printer macro has been deprecated in favour of
+  record-printer and set-record-printer! procedures, and a SRFI-17
+  setter for the former.
+
+
+5.0.0
+
+- "bit->boolean" has been introduced temporarily to avoid users
+  having to figure out why "bit-set?" uses a different argument
+  order than the procedure with the same name that is specified in
+  SRFI-33 and SRFI-60. This procedure will be replaced by the proper
+  "bit-set?" in one of the next versions, together with a C level
+  macro or function.
+
+  See also: 45489c1b3d9fb20bacc91fa393ce7330dd61d22f
+
+  "bit->boolean" expands into "C_u_i_bit_to_bool", "C_i_bit_to_bool"
+  or "C_i_fixnum_bit_to_bool", which are all deprecated as well,
+  but might be re-used in a future version of "bit-set?".

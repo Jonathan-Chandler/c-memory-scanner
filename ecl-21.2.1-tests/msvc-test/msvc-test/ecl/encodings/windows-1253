@@ -1,1 +1,0 @@
-(defparameter EXT::WINDOWS-1253 (ext::make-encoding 'EXT::WINDOWS-CP1253))

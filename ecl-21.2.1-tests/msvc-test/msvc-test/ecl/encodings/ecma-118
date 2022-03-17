@@ -1,1 +1,0 @@
-(defparameter EXT::ECMA-118 (ext::make-encoding 'EXT::ISO-8859-7))

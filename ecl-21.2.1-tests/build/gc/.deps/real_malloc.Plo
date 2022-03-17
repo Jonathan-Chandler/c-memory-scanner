@@ -1,4 +1,0 @@
-real_malloc.lo: \
- C:/work/c/memscan-dll/ecl-21.2.1-tests/ecl-rebuild/src/bdwgc/real_malloc.c \
- include/config.h
-include/config.h:

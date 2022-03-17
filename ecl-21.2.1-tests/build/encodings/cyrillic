@@ -1,1 +1,0 @@
-(defparameter EXT::CYRILLIC (ext::make-encoding 'EXT::ISO-8859-5))

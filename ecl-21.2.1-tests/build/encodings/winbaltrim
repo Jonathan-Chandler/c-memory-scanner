@@ -1,1 +1,0 @@
-(defparameter EXT::WINBALTRIM (ext::make-encoding 'EXT::WINDOWS-CP1257))

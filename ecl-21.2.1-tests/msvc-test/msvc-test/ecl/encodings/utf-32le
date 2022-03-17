@@ -1,1 +1,0 @@
-(defparameter EXT::UTF-32LE ':UCS-4LE)

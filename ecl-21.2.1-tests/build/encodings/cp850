@@ -1,1 +1,0 @@
-(defparameter EXT::CP850 (ext::make-encoding 'EXT::DOS-CP850))
